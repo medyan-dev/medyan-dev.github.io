@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Debugging MEDYAN - MEDYAN</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Debugging MEDYAN", url: "#_top", children: [
+              {title: "VS Code", url: "#vs-code" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="debugging-medyan">Debugging MEDYAN</h1>
+<h2 id="vs-code">VS Code</h2>
+<p>Note: On MacOS the default VS Code C++ debugger is buggy so use the CodeLLDB extension instead.</p>
+<h3 id="build-medyan-for-debug">Build MEDYAN for debug</h3>
+<pre><code class="language-console">&gt; MEDYAN_CMAKE_EXTRA_ARGS=&quot;-DCMAKE_BUILD_TYPE=Debug&quot; ./conf.sh
+&gt; cd build
+&gt; make
+</code></pre>
+<h3 id="set-command-line-arguments">Set command line arguments</h3>
+<ol>
+<li>
+<p>Open Run and Debug side panel and click "create a launch.json file".</p>
+</li>
+<li>
+<p>Make <code>"program":</code> <code>"${workspaceFolder}/build/medyan"</code>.\</p>
+</li>
+<li>
+<p>Make <code>"cwd":</code> the directory to run MEDYAN from. For example, <code>"${workspaceFolder}/examples/2filaments"</code></p>
+</li>
+<li>
+<p>Edit the <code>"args": [],</code> line to include the command line arguments you want to debug with. For example, <code>["-s", "systeminput.txt", "-i", ".", "-o", "./sampleResults"]</code></p>
+</li>
+<li>
+<p>Save <code>launch.json</code>, and now you should be able to create breakpoints and debug in VS Code.</p>
+</li>
+</ol>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

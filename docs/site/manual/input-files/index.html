@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Input files - MEDYAN</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Input files", url: "#_top", children: [
+              {title: "System input files", url: "#system-input-files" },
+              {title: "Chemistry input files", url: "#chemistry-input-files" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../output-files/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../output-files/" class="btn btn-xs btn-link">
+        Output files
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../installation/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../installation/" class="btn btn-xs btn-link">
+        Installation
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="input-files">Input files</h1>
+<p>The system file is a simple text file that defines all parameters of the simulation. The
+MEDYAN executable must take in a system file as a command line argument.
+The parameters are defined in a s-expressions:</p>
+<pre><code class="language-lisp">(parameter          parameter-value)
+(parameter-group
+    (property-1     property-1-value)
+    (property-2     property-2-value))
+</code></pre>
+<p>The input files can also be generated using MEDYAN's interactive configuration by running <code>medyan config</code>, which provides limited configuration capabilities.</p>
+<p>All physical quantities in the input files will use the following base units, unless otherwise specified.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>s</td>
+</tr>
+<tr>
+<td>length</td>
+<td>nm</td>
+</tr>
+<tr>
+<td>mass</td>
+<td>g</td>
+</tr>
+</tbody>
+</table>
+<p>Some common derived units are displayed below.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>force</td>
+<td>pN</td>
+</tr>
+<tr>
+<td>energy</td>
+<td>pN⋅nm</td>
+</tr>
+<tr>
+<td>diffusion coefficient</td>
+<td>nm²/s</td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-input-files">System input files</h2>
+<h3 id="geometry">Geometry</h3>
+<p>The following geometric parameters can be set. All geometry parameters must be set in the system file, or a startup error will result.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NX</td>
+<td>int</td>
+<td>Number of compartments in X direction.</td>
+</tr>
+<tr>
+<td>NY</td>
+<td>int</td>
+<td>Number of compartments in Y direction.</td>
+</tr>
+<tr>
+<td>NZ</td>
+<td>int</td>
+<td>Number of compartments in Z direction.</td>
+</tr>
+<tr>
+<td>COMPARTMENTSIZEX</td>
+<td>double</td>
+<td>Size of compartment in X direction.</td>
+</tr>
+<tr>
+<td>COMPARTMENTSIZEY</td>
+<td>double</td>
+<td>Size of compartment in Y direction.</td>
+</tr>
+<tr>
+<td>COMPARTMENTSIZEZ</td>
+<td>double</td>
+<td>Size of compartment in Z direction.</td>
+</tr>
+<tr>
+<td>MONOMERSIZE</td>
+<td>double</td>
+<td>Size of monomer for filament growth (nm).</td>
+</tr>
+<tr>
+<td>CYLINDERSIZE</td>
+<td>double</td>
+<td>Size of cylinder in filament (nm).</td>
+</tr>
+<tr>
+<td>BOUNDARYSHAPE</td>
+<td>{SPHERICAL, CUBIC, CAPSULE}</td>
+<td>Boundary shape.</td>
+</tr>
+<tr>
+<td>BOUNDARYDIAMETER</td>
+<td>double</td>
+<td>Diameter for applicable shapes, including SPHERICAL and CAPSULE geometries.</td>
+</tr>
+</tbody>
+</table>
+<p>The CUBIC BOUNDARYSHAPE creates boundary planes 25nm in from the faces of compartment grid.</p>
+<p>If movement of boundaries is desired, the following parameters can also be set. If these parameters are not set, the system will assume non-moving boundaries. Currently, moving boundaries are only implemented for the CUBIC boundary shape.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOUNDARYMOVE</td>
+<td>{NONE, ALL, TOP}</td>
+<td>Movement of a boundary. ALL specifies that all boundaries will move in the given direction, and top specifies that the top of the boundary in the z direction will move.</td>
+</tr>
+<tr>
+<td>BMOVESPEED</td>
+<td>double</td>
+<td>Speed of boundary movement in nm/s. If a negative value is given, the boundary will move towards the center of the grid. If positive, the boundary will move away from the center of the grid.</td>
+</tr>
+<tr>
+<td>BMOVESTARTTIME</td>
+<td>double</td>
+<td>Time at which the boundary will begin to move. If not specified, the boundary will start moving at the beginning of the simulation.</td>
+</tr>
+<tr>
+<td>BMOVEENDTIME</td>
+<td>double</td>
+<td>Time at which the boundary will stop movement.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mechanics">Mechanics</h3>
+<p>The following mechanical parameters can be set. It is noted that the number of parameters for each force field must match the number of species of that type, specified in the system input file. This must be consistent for all simulation elements, including filaments, cross-linkers, motors, branchers, and bubbles. To set multiple parameters corresponding to multiple species, list the parameter values with space in between after the parameter qualifier.
+If a force field type is left blank, that force field will not be included in the simulation.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FSTRETCHINGTYPE</td>
+<td>{HARMONIC}</td>
+<td>Filament stretching force field.</td>
+</tr>
+<tr>
+<td>FSTRETCHINGK</td>
+<td>double</td>
+<td>Filament stretching force constant.</td>
+</tr>
+<tr>
+<td>FBENDINGTYPE</td>
+<td>{HARMONIC, COSINE}</td>
+<td>Filament bending force field.</td>
+</tr>
+<tr>
+<td>FBENDINGK</td>
+<td>double</td>
+<td>Filament bending force constant.</td>
+</tr>
+<tr>
+<td>FBENDINGTHETA</td>
+<td>double</td>
+<td>Filament bending angle (radians).</td>
+</tr>
+<tr>
+<td>LSTRETCHINGTYPE</td>
+<td>{HARMONIC}</td>
+<td>Cross-linker stretching force field.</td>
+</tr>
+<tr>
+<td>LSTRETCHINGK</td>
+<td>double</td>
+<td>Cross-linker stretching force constant.</td>
+</tr>
+<tr>
+<td>MSTRETCHINGTYPE</td>
+<td>{HARMONIC}</td>
+<td>Motor stretching force field.</td>
+</tr>
+<tr>
+<td>MSTRETCHINGK</td>
+<td>double</td>
+<td>Motor stretching force constant.</td>
+</tr>
+<tr>
+<td>BRSTRETCHINGTYPE</td>
+<td>{HARMONIC}</td>
+<td>Branching point stretching force field.</td>
+</tr>
+<tr>
+<td>BRSTRETCHINGK</td>
+<td>double</td>
+<td>Branching point stretching force constant.</td>
+</tr>
+<tr>
+<td>BRBENDINGTYPE</td>
+<td>{COSINE}</td>
+<td>Branching point bending force field.</td>
+</tr>
+<tr>
+<td>BRBENDINGK</td>
+<td>double</td>
+<td>Branching point bending force constant.</td>
+</tr>
+<tr>
+<td>BRBENDINGTHETA</td>
+<td>double</td>
+<td>Branching point bending angle (radians).</td>
+</tr>
+<tr>
+<td>BRDIHEDRALFFTYPE</td>
+<td>{COSINE}</td>
+<td>Branching point dihedral force field.</td>
+</tr>
+<tr>
+<td>BRDIHEDRALK</td>
+<td>double</td>
+<td>Branching point stretching force constant.</td>
+</tr>
+<tr>
+<td>BRPOSITIONTYPE</td>
+<td>{HARMONIC}</td>
+<td>Branching point position force field.</td>
+</tr>
+<tr>
+<td>BRPOSITIONK</td>
+<td>double</td>
+<td>Branching point position force constant.</td>
+</tr>
+<tr>
+<td>VOLUMEFFTYPE</td>
+<td>{integral, monomer}</td>
+<td>Volume force type. When monomer-based volume exclusion is used, <code>volume-exclusion-monomer-interval</code> can be specified as well. <code>REPULSION</code> is the old option for <code>integral</code>, but its use is deprecated.</td>
+</tr>
+<tr>
+<td>VOLUMECUTOFF</td>
+<td>double</td>
+<td>Volume interaction cutoff distance (nm). The volume force is only calculated on pairs of cylinders with mid points closer than this distance. This should always be larger than <code>CYLINDERSIZE</code></td>
+</tr>
+<tr>
+<td>VOLUMEK</td>
+<td>double</td>
+<td>Volume force constant.</td>
+</tr>
+<tr>
+<td>volume-exclusion-monomer-interval</td>
+<td>list int</td>
+<td>Interval of monomer sampling for volume exclusion for each filament type.</td>
+</tr>
+<tr>
+<td>BOUNDARYFFTYPE</td>
+<td>{REPULSIONEXP}</td>
+<td>Boundary force type.</td>
+</tr>
+<tr>
+<td>BOUNDARYCUTOFF</td>
+<td>double</td>
+<td>Boundary interaction cutoff distance.</td>
+</tr>
+<tr>
+<td>BOUNDARYINTERACTIONK</td>
+<td>double</td>
+<td>Boundary force constant.</td>
+</tr>
+<tr>
+<td>BOUNDARYSCREENLENGTH</td>
+<td>double</td>
+<td>Boundary screening length constant.</td>
+</tr>
+<tr>
+<td>BUBBLEFFTYPE</td>
+<td>{REPULSIONEXP}</td>
+<td>Bubble force type.</td>
+</tr>
+<tr>
+<td>BUBBLECUTOFF</td>
+<td>double</td>
+<td>Boundary interaction cutoff distance.</td>
+</tr>
+<tr>
+<td>BUBBLEINTERACTIONK</td>
+<td>double</td>
+<td>Bubble force constant.</td>
+</tr>
+<tr>
+<td>BUBBLESCREENLENGTH</td>
+<td>double</td>
+<td>Bubble screening length constant.</td>
+</tr>
+<tr>
+<td>BUBBLERADIUS</td>
+<td>double</td>
+<td>Bubble radius.</td>
+</tr>
+<tr>
+<td>NUMBUBBLETYPES</td>
+<td>int</td>
+<td>Number of different bubble types.</td>
+</tr>
+<tr>
+<td>MTOCFFTYPE</td>
+<td>{ATTACHMENTHARMONIC}</td>
+<td>MTOC force type.</td>
+</tr>
+<tr>
+<td>membrane-tension-ff-type</td>
+<td>{CONSTANT}</td>
+<td>Membrane tension type.</td>
+</tr>
+<tr>
+<td>membrane-bending-ff-type</td>
+<td>{HELFRICH, HELFRICH_QUADRATIC}</td>
+<td>Membrane bending type. In quadratic mode, the spontaneous curvature is always assumed to be zero.</td>
+</tr>
+<tr>
+<td>volume-conservation-ff-type</td>
+<td>{MEMBRANE}</td>
+<td>Volume conservation type.</td>
+</tr>
+<tr>
+<td>triangle-bead-volume-ff-type</td>
+<td>{REPULSION}</td>
+<td>Triangle bead volume exclusion force type.</td>
+</tr>
+<tr>
+<td>triangle-bead-volume-k</td>
+<td>float</td>
+<td>Triangle bead volume exclusion force constant.</td>
+</tr>
+<tr>
+<td>triangle-bead-volume-cutoff</td>
+<td>float</td>
+<td>Triangle bead volume exclusion cutoff distance.</td>
+</tr>
+<tr>
+<td>triangle-bead-volume-cutoff-mech</td>
+<td>float</td>
+<td>Triangle bead volume exclusion cutoff distance during mechanical minimization.</td>
+</tr>
+</tbody>
+</table>
+<p>The system mechanical energy is minimized using the minimization algorithm, whose parameters can be specified as follows.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONJUGATEGRADIENT</td>
+<td>{POLAKRIBIERE, FLETCHERRIEVES, STEEPESTDESCENT}</td>
+<td>Type of conjugate gradient minimization.</td>
+</tr>
+<tr>
+<td>GRADIENTTOLERANCE</td>
+<td>double</td>
+<td>Gradient tolerance in conjugate gradient (in pN).</td>
+</tr>
+<tr>
+<td>MAXDISTANCE</td>
+<td>double</td>
+<td>Maximum distance beads can be moved in minimization.</td>
+</tr>
+<tr>
+<td>LAMBDAMAX</td>
+<td>double</td>
+<td>Maximum lambda that can be returned in line search.</td>
+</tr>
+<tr>
+<td>try-to-recover-in-line-search-error</td>
+<td>{false, true}</td>
+<td>Defaults to true. If set to false, whenever line search fails to find a lower energy, the program will terminate with a diagnostic message.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chemistry">Chemistry</h3>
+<p>The following chemical parameters can be set. It should be noted that the number of parameters listed for each chemical species type that resides on a filament must match the number of filament types, specified in the system input file. This must be consistent for all filament types. To set multiple parameters corresponding to multiple filaments, list the parameters with space in between after the parameter qualifier.</p>
+<p>All chemical parameters must be set unless otherwise noted in the description. For the motor parameters, the number of parameters must match the number of motor species in the system. For more information on chemical algorithms, see <a href="https://doi.org/10.1371/journal.pcbi.1004877">Popov et al (2016)</a>.</p>
+<p>An alternate set of parameters can be specified in replacement of <code>RUNTIME</code> for smaller systems in which simulation time is based on explicit reaction steps; if <code>RUNTIME</code> is not initialized or set to zero, the parameter <code>RUNSTEPS</code> and its associated chemical step-based parameter set will be used if provided.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHEMISTRYFILE</td>
+<td>string</td>
+<td>Input chemistry file. Should be in the input directory.</td>
+</tr>
+<tr>
+<td>CALGORITHM</td>
+<td>{GILLESPIE, NRM}</td>
+<td>Chemistry algorithm used.</td>
+</tr>
+<tr>
+<td>RUNSTEPS</td>
+<td>int</td>
+<td>Number of total chemical steps. If <code>RUNTIME</code> is set, will not be used.</td>
+</tr>
+<tr>
+<td>RUNTIME</td>
+<td>double</td>
+<td>Total runtime of simulation.</td>
+</tr>
+<tr>
+<td>SNAPSHOTSTEPS</td>
+<td>int</td>
+<td>Number of steps per snapshot. If <code>SNAPSHOTTIME</code> is set, will not be used.</td>
+</tr>
+<tr>
+<td>SNAPSHOTTIME</td>
+<td>double</td>
+<td>Time of each snapshot.</td>
+</tr>
+<tr>
+<td>MINIMIZATIONSTEPS</td>
+<td>int</td>
+<td>Number of chemical steps per mechanical equilibration. If <code>MINIMIZATIONTIME</code> is set, will not be used.</td>
+</tr>
+<tr>
+<td>MINIMIZATIONTIME</td>
+<td>double</td>
+<td>Time between each mechanical equilibration.</td>
+</tr>
+<tr>
+<td>NEIGHBORLISTSTEPS</td>
+<td>int</td>
+<td>Number of chemical steps per neighbor list update. This includes updating chemical reactions as well as force fields which rely on neighbor lists. If <code>NEIGHBORLISTTIME</code> is set, will not be used.</td>
+</tr>
+<tr>
+<td>NEIGHBORLISTTIME</td>
+<td>double</td>
+<td>Time between each neighbor list update.</td>
+</tr>
+<tr>
+<td>INITIALSLOWDOWNTIME</td>
+<td>double</td>
+<td>Length of time at the beginning of the simulation to run mechanical equilibrations and neighbor list updates 10x more frequently. Disabled by default.</td>
+</tr>
+<tr>
+<td>NUMFILAMENTTYPES</td>
+<td>int</td>
+<td>Number of different filament types.</td>
+</tr>
+<tr>
+<td>NUMBINDINGSITES</td>
+<td>int</td>
+<td>Number of binding sites per cylinder for each filament type defined. This will set binding sites for cross-linkers, motors, and other binding molecules.</td>
+</tr>
+<tr>
+<td>NUMMOTORHEADSMIN</td>
+<td>int</td>
+<td>Minimum number of motor heads per motor species defined.</td>
+</tr>
+<tr>
+<td>NUMMOTORHEADSMAX</td>
+<td>int</td>
+<td>Maximum number of motor heads per motor species defined.</td>
+</tr>
+<tr>
+<td>MOTORSTEPSIZE</td>
+<td>double</td>
+<td>Single motor head step size.</td>
+</tr>
+<tr>
+<td>DISSIPATIONTRACKING</td>
+<td>{OFF, ON}</td>
+<td>Whether to switch on the dissipation tracking feature.</td>
+</tr>
+<tr>
+<td>LINKERBINDINGSKIP</td>
+<td>int</td>
+<td>Switches on the different binding tracking feature to allow motors to have more binding spots per cylinder than linkers. The specified integer is the number of binding sites that the cross-linkers will skip before accepting a possible binding site.</td>
+</tr>
+<tr>
+<td>allow-same-filament-pair-binding</td>
+<td>bool</td>
+<td>Whether pairwise bindings on the same filament is allowed. Even if this is turned off, pairwise bindings will not happen on same or neighboring cylinders.</td>
+</tr>
+<tr>
+<td>EVENTTRACKING</td>
+<td>{OFF, ON}</td>
+<td>Whether to switch on the event tracking feature.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dynamic-rates">Dynamic rates</h3>
+<p>The following dynamic rate forms and parameters can be set. These parameters are characteristic lengths and amplitudes of the rate changing equations outlined in <a href="https://doi.org/10.1371/journal.pcbi.1004877">Popov et al (2016)</a>. These can be tuned to mimic the stall and unbinding mechanochemical coupling of cross-linkers and myosin II motors. Note that if dynamic rates are enabled, the number of dynamic rate forms for each type of reaction must match the number of species of that type specified in the system input file, i.e. the number of forms for cross-linker unbinding must match the number of cross-linker species, etc.</p>
+<p>The number of parameters specified for each type of dynamic rate form must match the number of parameters required for those forms. See below for details, and see <a href="https://doi.org/10.1371/journal.pcbi.1004877">Popov et al (2016)</a> for more information on the explicit forms. Parameters must be listed in order of the form that they correspond to, also corresponding to the species that they represent.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DFPOLYMERIZATIONTYPE</td>
+<td>{BROWRATCHET}</td>
+<td>Filament polymerization dynamic rate form.</td>
+</tr>
+<tr>
+<td>DFPOLYMERIZATIONLEN</td>
+<td>double</td>
+<td>Characteristic length for filament polymerization dynamic rate form.</td>
+</tr>
+<tr>
+<td>DLUNBINDINGTYPE</td>
+<td>{CATCHSLIP, SLIP}</td>
+<td>Cross-linker unbinding dynamic rate form. If <code>CATCHSLIP</code>, two parameters for <code>DLUNBINDINGLEN</code> and <code>DLUNBINDINGAMP</code> are needed to define the functional form. If <code>SLIP</code>, one <code>DLUNBIDINGLEN</code> is needed to define the functional form.</td>
+</tr>
+<tr>
+<td>DLUNBINDINGLEN</td>
+<td>double</td>
+<td>Characteristic length of cross-linker unbinding dynamic rate form.</td>
+</tr>
+<tr>
+<td>DLUNBINDINGAMP</td>
+<td>double</td>
+<td>Amplitude of cross-linker unbinding dynamic rate form.</td>
+</tr>
+<tr>
+<td>DMUNBINDINGTYPE</td>
+<td>{LOWDUTYCATCHSLIP, LOWDUTYSLIP}</td>
+<td>Myosin II unbinding dynamic rate form. If <code>LOWDUTYCATCHSLIP</code>, two parameters for <code>DMUNBINDINGFORCE</code> are needed to define the functional form. If <code>LOWDUTYSLIP</code>, one <code>DMUNBIDINGFORCE</code> is needed to define the functional form.</td>
+</tr>
+<tr>
+<td>DMUNBINDINGFORCE</td>
+<td>double</td>
+<td>Characteristic force of myosin II unbinding dynamic rate form.</td>
+</tr>
+<tr>
+<td>DMWALKINGTYPE</td>
+<td>{LOWDUTYSTALL}</td>
+<td>Myosin II walking dynamic rate form.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="membrane-profile-and-initialization">Membrane profile and initialization</h3>
+<p>A membrane profile can be defined using the following syntax:</p>
+<pre><code class="language-lisp">(membrane &lt;profile-name&gt;
+    (&lt;property&gt; &lt;value&gt;)
+    ...)
+</code></pre>
+<p>where membrane properties include the following parameters.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vertex-system</td>
+<td>{material, general}</td>
+<td>In material vertex system, each vertex represents a patch of membrane with a fixed number of lipid molecules. In general vertex system, a vertex simply represents a point on the membrane surface.</td>
+</tr>
+<tr>
+<td>area-k</td>
+<td>float</td>
+<td>Area elasticity of membrane. Unit pN/nm.</td>
+</tr>
+<tr>
+<td>bending-k</td>
+<td>float</td>
+<td>Bending elasticity of membrane. Unit pN⋅nm.</td>
+</tr>
+<tr>
+<td>eq-curv</td>
+<td>float</td>
+<td>Spontaneous curvature of membrane. Unit 1/nm.</td>
+</tr>
+<tr>
+<td>tension</td>
+<td>float</td>
+<td>Membrane tension. Unit pN/nm.</td>
+</tr>
+<tr>
+<td>volume-k</td>
+<td>float</td>
+<td>Volume conservation force constant of a enclosing membrane. Unit pN/nm².</td>
+</tr>
+</tbody>
+</table>
+<p>Membrane can be initialized with a specified membrane profile, using the following properties:</p>
+<pre><code class="language-lisp">(init-membrane &lt;profile-name&gt;
+    (&lt;property&gt; &lt;value&gt;)
+    ...)
+</code></pre>
+<p>If the membrane profile name was not defined in the input file, a startup error will occur.
+The membrane initialization properties are defined using the following parameters.</p>
+<ul>
+<li><code>mesh</code>: A list describing the initial membrane shape. Currently supporting the following shapes:<ul>
+<li>An ellipsoid whose principal axes are parallel with the x, y, and z axes. Usage: <code>ELLIPSOID center-x center-y center-z radius-x radius-y radius-z</code>.</li>
+<li>A plane specified by a point and a normal vector. A bounding box is also needed to specify the sampling range. Usage: <code>PLANE center_xyz... normal_xyz... box_origin_xyz... box_size_xyz...</code>.</li>
+</ul>
+</li>
+<li><code>eq-area-factor</code>: A floating point value, such that the equilibrium area is the initial area multiplied by this factor.</li>
+</ul>
+<h3 id="starting-filament-configuration">Starting filament configuration</h3>
+<p>These parameters define the initial configuration and length of filaments in the system. It is noted that at least one filament, plus end, and minus end chemical species must be initialized in the chemistry input file, or a startup error will result.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FILAMENTFILE</td>
+<td>string</td>
+<td>Name of filament initialization file. This is not required.</td>
+</tr>
+<tr>
+<td>NUMFILAMENTS</td>
+<td>int</td>
+<td>Number of random filaments to initialize. These filaments will be randomly distributed in the system volume.</td>
+</tr>
+<tr>
+<td>FILAMENTLENGTH</td>
+<td>int</td>
+<td>Number of cylinders per filament to initialize, defining the initial length of the filaments.</td>
+</tr>
+<tr>
+<td>FILAMENTTYTPE</td>
+<td>int</td>
+<td>Filament type to initialize.</td>
+</tr>
+<tr>
+<td>PROJECTIONTYPE</td>
+<td>{STRAIGHT, ZIGZAG, ARC, PREDEFINED}</td>
+<td>Specifies how the beads are sampled between two ends of a filament.</td>
+</tr>
+</tbody>
+</table>
+<p>Projection type meaning for a filament specified by a set of 3D Cartesian coordinates <code>[v0, v1, v2 ...]</code>, and the number of beads.</p>
+<ul>
+<li><code>STRAIGHT</code> - Creates a filament with minus end at <code>v0</code>, and extends number-of-bead full-size cylinders in <code>v0 -&gt; v1</code> direction. <code>v2, v3 ...</code> are ignored.</li>
+<li><code>ZIGZAG</code> - Creates a filament with minus end at <code>v0</code>, and extends number-of-bead full-size cylinders in (1) <code>v0 -&gt; v1</code> direction (2) another different direction alternatively. <code>v2, v3 ...</code> are ignored.</li>
+<li><code>ARC</code> - Not sure. (TODO: NEED DOCS)</li>
+<li><code>PREDEFINED</code> - Creates a filament with bead coordinates <code>[v0, v1, v2 ...]</code>. WARNING: Each cylinder in the filament is treated as a full-sized cylinder, no matter what the initial bead coordinates are. That means each cylinder in the filament can be compressed or stretched initially.</li>
+</ul>
+<h3 id="starting-bubble-configuration">Starting bubble configuration</h3>
+<p>The following bubble initialization parameters can be set. These parameters define the initial configuration of bubbles in the system, similar to the filament configuration parameters. It is noted that at least one type of bubble must be set, or a startup error will result.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUBBLEFILE</td>
+<td>string</td>
+<td>Name of bubble initialization file. This is not required.</td>
+</tr>
+<tr>
+<td>NUMBUBBLES</td>
+<td>int</td>
+<td>Number of random filaments to initialize. These filaments will be randomly distributed in the system volume.</td>
+</tr>
+<tr>
+<td>BUBBLETYTPE</td>
+<td>int</td>
+<td>Bubble type to initialize.</td>
+</tr>
+</tbody>
+</table>
+<p>The following syntax is used to initialize a Microtubule Organizing Center (MTOC), or a bead for Atomic Force Microscopy (AFM), which are both implemented as a bubble with extra parameters.</p>
+<pre><code class="language-lisp">(init-mtoc
+    (&lt;property&gt; &lt;value&gt;...)
+    ...)
+(init-afm
+    (&lt;property&gt; &lt;value&gt;...)
+    ...)
+</code></pre>
+<p>where most properties are shared by both MTOC and AFM. The properties are listed below.</p>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bubble-type</td>
+<td>int</td>
+<td>Type of bubble to initialize.</td>
+</tr>
+<tr>
+<td>bubble-coord</td>
+<td>list float</td>
+<td>Coordinates of the bubble center.</td>
+</tr>
+<tr>
+<td>bubble-fixed</td>
+<td>{false, true}</td>
+<td>If the bubble is fixed, it's coordinates will not change during energy minimization.</td>
+</tr>
+<tr>
+<td>filament-type</td>
+<td>int</td>
+<td>Type of filament attachment.</td>
+</tr>
+<tr>
+<td>num-filaments</td>
+<td>int</td>
+<td>Number of filaments to attach to the bubble.</td>
+</tr>
+<tr>
+<td>num-cylinders-per-filament</td>
+<td>int</td>
+<td>Number of cylinders per filament to attach to the bubble.</td>
+</tr>
+<tr>
+<td>theta1, theta2, phi1, phi2</td>
+<td>float</td>
+<td>Restricts the initial orientation of the filaments under certain transformations (read source code to see the details). Default to (0, 1, 0, 1), which allows all possible orientations.</td>
+</tr>
+<tr>
+<td>attachment-stretching-k</td>
+<td>float</td>
+<td>Stretching force constant for filament attachments.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-protocols">Special protocols</h3>
+<p>The following special protocols can be initialized. These protocols must be set on different lines, so users should specify a new parameter, on separate lines, for each setup desired.</p>
+<pre><code class="language-lisp">(SPECIALPROTOCOL &lt;name&gt; &lt;parameters&gt;...)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>parameters</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PINBOUNDARYFILAMENTS</td>
+<td><code>&lt;pinK&gt; &lt;pinDistance&gt; &lt;pinTime&gt;</code></td>
+<td>Tether minus and plus ends that are within <code>pinDistance</code> (nm) from the boundary after <code>pinTime</code> (s). This will result in additional forces on the actin network form the boundary.</td>
+</tr>
+<tr>
+<td>PINLOWERBOUNDARYFILAMENTS</td>
+<td><code>&lt;pinK&gt; &lt;pinTime&gt; &lt;pinFraction&gt;</code></td>
+<td>Tether minus and plus ends that are within <code>pinDistance</code> (nm) from the lower boundary after <code>pinTime</code> (s). <code>pinDistance</code> has a default value (250 as of v5.1.0), but can be overwritten by other pinning protocols.</td>
+</tr>
+<tr>
+<td>pin-initial-filament-below-z</td>
+<td><code>&lt;pinK&gt; &lt;pinZ&gt;</code></td>
+<td>Pin all initial beads with z coordinate lower than <code>pinZ</code> (nm).</td>
+</tr>
+<tr>
+<td>MAKEFILAMENTSSTATIC, MAKELINKERSSTATIC</td>
+<td><code>&lt;time&gt;</code></td>
+<td>Make either filament or cross-linker chemistry static after a certain amount of <code>time</code>.</td>
+</tr>
+<tr>
+<td>RATEDEPEND</td>
+<td><code>&lt;time&gt; &lt;force&gt;</code></td>
+<td>Starting at <code>time</code>, increase plus end polymerization rate for actin filaments under larger tension than <code>force</code> (pN).</td>
+</tr>
+<tr>
+<td>AFM</td>
+<td><code>&lt;step1&gt; &lt;step2&gt; &lt;iter-change&gt; &lt;step-total&gt; &lt;step-time&gt;</code></td>
+<td>AFM protocol.</td>
+</tr>
+<tr>
+<td>scale-membrane-eq-area</td>
+<td><code>&lt;rate&gt; &lt;min-eq-area&gt;</code></td>
+<td>For all membranes without lipid reservoir, increase its equilibrium area with <code>rate</code> (nm^2/s). Each equilibrium area cannot drop below <code>min-eq-area</code> (nm^2).</td>
+</tr>
+<tr>
+<td>scale-membrane-eq-volume</td>
+<td><code>&lt;rate&gt; &lt;min-eq-volume&gt;</code></td>
+<td>For all closed membranes, increase its equilibrium volume with <code>rate</code> (nm^3/s). Each equilibrium volume cannot drop below <code>min-eq-volume</code> (nm^3).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="chemistry-input-files">Chemistry input files</h2>
+<p>The chemistry input file, whose name is specified in the system input file, contains the chemical configuration of the system, including species and reactions. It is noted that the order in which cross-linker, motor, and branches species are defined in the chemistry input file should match the relevant mechanical parameters, which are defined in the system input file. The number of species of each type should also match the SystemFile’s species type numbers, or a startup error will result. All species names given must be unique strings, or a startup error will result. In all species and reaction definitions, <code>FILAMENTTYPE</code> is an integer that specifies the type of filament that this filament species belongs to. For example, if there are two filament types defined, the <code>FILAMENTTYPE</code> parameter could be 0 or 1. An invalid value of this parameter will result in an error.</p>
+<h3 id="species">Species</h3>
+<p>Different types of species can be defined as follows:</p>
+<ul>
+<li>
+<p>A diffusing species is defined in the following form:</p>
+<blockquote>
+<p>⚠️ <strong>Breaking change</strong> starting MEDYAN v5.1.0, <code>&lt;DIFFCOEFF&gt;</code> means the 3D diffusion coefficient with dimension nm<sup>2</sup>/s. Previously, it meant the diffusion reaction rate between compartments with dimension s<sup>-1</sup>, obtained from diffusion coefficient and the size of a cubic compartment. For example, if 500 nm compartments were used and the diffusion reaction rate was "1.0", it should be changed to "0.25E6".</p>
+</blockquote>
+<pre><code>SPECIESDIFFUSING &lt;NAME&gt; &lt;COPYNUMBER&gt; &lt;DIFFCOEFF&gt; &lt;RELEASETIME&gt; &lt;REMOVALTIME&gt; &lt;QUALIFIER&gt; (&lt;NUMEVENTS&gt;)
+</code></pre>
+<p>where <code>NAME</code> is any string defining the name of the species, <code>COPYNUMBER</code> is the number of molecules of that species in the system, and <code>DIFFCOEFF</code> is a float value that determines the diffusion coefficient of this molecule in the solution. <code>RELEASETIME</code> specifies when this molecule populates the system in simulation (in seconds). <code>REMOVALTIME</code> specifies whether the species should be removed from the simulation. If no removal is desired, this can be set to 0.</p>
+<p>The <code>QUALIFIER</code> field is used to define the type of reacting species. The options are the following:</p>
+<ul>
+<li><code>REG</code> : A regular reacting species. Copy numbers are updated typically.</li>
+<li><code>AVG</code> : An averaging reacting species. The species will use a copy number averaged over a set number of copy number changes (<code>NUMEVENTS</code>) for efficiency.</li>
+</ul>
+<p>The <code>NUMEVENTS</code> field, denoted in parentheses as optional, only used in the case of defining an averaging reacting species. If using a regular, this should not be included in the file or an error will result.</p>
+</li>
+<li>
+<p>A bulk species, which is assumed to be spatially homogeneous, is defined in the
+following form:</p>
+<pre><code>SPECIESBULK &lt;NAME&gt; &lt;COPYNUMBER&gt; &lt;RELEASETIME&gt; &lt;REMOVALTIME&gt; &lt;QUALIFIER&gt;
+</code></pre>
+<p>where <code>NAME</code> is any string defining the name of the species, <code>COPYNUMBER</code> is the number of molecules of that species in the system, and <code>RELEASETIME</code> specifies when this molecule populates the system in simulation (in seconds). <code>REMOVALTIME</code> specifies whether the species should be removed from the simulation. If no removal is desired, this can be set to 0. The <code>QUALIFIER</code> field is used to define the type of reacting species. The options are the following:</p>
+<ul>
+<li><code>REG</code> : A regular reacting species. Copy numbers are updated typically.</li>
+<li><code>CONST</code> : An constant reacting species. The species will never change copy number upon reacting.</li>
+</ul>
+</li>
+<li>
+<p>Any filament-related species can be defined in the following form:</p>
+<pre><code>SPECIES&lt;SPECIESTYPE&gt; &lt;NAME&gt; &lt;FILAMENTTYPE&gt;
+</code></pre>
+<p>where <code>SPECIESTYPE</code> can be:</p>
+<ul>
+<li><code>FILAMENT</code> : A filamentous species. At least one filament species must be defined if using filaments in simulation.</li>
+<li><code>PLUSEND</code> : A plus end species on a filament, which is defined as the front of the filament. There must be at least one plus end species for every filament species defined in the system.</li>
+<li><code>MINUSEND</code> : A minus end species on a filament, which is defined as the back of the filament. There must be at least one minus end species for every filament species defined in the system.</li>
+<li><code>BOUND</code> : A bound species on a filament. There must be at least one bound species defined for each filament type.</li>
+<li><code>LINKER</code> : A cross-linker species. The ordering of cross-linker initializations should match their mechanical parameters, as stated above.</li>
+<li><code>MOTOR</code> : A myosin II motor species. The ordering of motor initializations should match their mechanical parameters, as stated above.</li>
+<li><code>BRANCHER</code> : A branching species. The ordering of branches initializations should match their mechanical parameters, as stated above.</li>
+</ul>
+</li>
+</ul>
+<h3 id="binding-sites">Binding sites</h3>
+<p>For every species that binds to filaments (linkers, motors, branchers), a binding site species must be set. This binding site must be a bound species on any filament type. It is declared in the following form:</p>
+<pre><code>LINKERBINDINGSITE    &lt;NAME&gt; &lt;FILAMENTTYPE&gt;
+MOTORBINDINGSITE     &lt;NAME&gt; &lt;FILAMENTTYPE&gt;
+BRANCHERBINDINGSITE  &lt;NAME&gt; &lt;FILAMENTTYPE&gt;
+</code></pre>
+<p>where <code>NAME</code> is the name of a pre-defined bound species on a filament of type <code>FILAMENTTYPE</code>.</p>
+<h3 id="reactions">Reactions</h3>
+<p>Reaction definitions must follow these common rules:</p>
+<ul>
+<li>Species that are defined in reactions must be previously defined in the chemistry file.</li>
+<li>For filament-related reactions, most species type and ordering parameters are fixed; if they are fixed, they will be pre-defined in the reaction definition below. If the ordering is not properly followed, a startup error will result.</li>
+<li>All species declarations in a reaction must be separated by white space, with <code>+</code> markers between reactants and products. A <code>-&gt;</code> must be placed between reactants and products, separated by whitespace. If this syntax is not followed, a startup error will result.</li>
+<li>The optional string <code>HRCDID</code> and accompanying float <code>DELGZERO</code> specify the identity and the ∆G_0 value for the reaction, respectively, for use in dissipation tracking. If this feature is turned on, then this field must be supplied, and if it is turned off then this field must be omitted. Currently only some reactions support dissipation tracking, as specified below, and it is only supported when the Next Reaction Method algorithm choice is used. For those reactions which do not support dissipation tracking, the <code>HRCDID</code> and <code>DELGZERO</code> fields should not be set. This allows those reactions to be included in the chemical system while allowing dissipation tracking for supported reactions.</li>
+</ul>
+<p>Different types of reactions can be defined as follows:</p>
+<ul>
+<li>
+<p>A general reaction between any bulk or diffusing species can be defined in the
+following form:</p>
+<pre><code>(GENREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;]
+    &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BULK/DIFFUSING + ...
+        -&gt; &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BULK/DIFFUSING + ...
+    &lt;RATE&gt;)
+</code></pre>
+<p>where any bulk or diffusing species can be included, and <code>RATE</code> is a float value that determines the rate constant of the reaction.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A bulk reaction between bulk species only can be defined in the following form:</p>
+<pre><code>BULKREACTION &lt;NAME&gt;:BULK + &lt;NAME&gt;:BULK + ... -&gt; &lt;NAME&gt;:BULK + &lt;NAME&gt;:BULK + ... &lt;RATE&gt;
+</code></pre>
+<p>where any bulk species can be included. If the reaction only contains bulk species, it must be specified as a bulk reaction. <code>RATE</code> is a float value that determines the rate constant of the reaction.</p>
+<p>This reaction does not support dissipation tracking, so <code>HRCDID</code> and <code>DELGZERO</code> should not be provided.</p>
+</li>
+<li>
+<p>A polymerization reaction can be defined in the following form:</p>
+<pre><code>(POLYMERIZATIONREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:PLUSEND/MINUSEND
+        -&gt; &lt;NAME&gt;:FILAMENT + &lt;NAME&gt;:PLUSEND/MINUSEND
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. It is noted that the first species listed can be either <code>DIFFUSING</code> or <code>BULK</code>, and the reaction can contain a <code>PLUSEND</code> or <code>MINUSEND</code>.</p>
+<p>This reaction will polymerize the filament, producing a new chemical species on the end of the filament and increasing the length of the filament by a single monomer. </p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A depolymerization reaction can be defined in the following form:</p>
+<pre><code>(DEPOLYMERIZATIONREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:FILAMENT + &lt;NAME&gt;:PLUSEND/MINUSEND
+        -&gt; &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:PLUSEND/MINUSEND
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. It is noted that the third species listed can be either <code>DIFFUSING</code> or <code>BULK</code>, and the reaction can contain a <code>PLUSEND</code> or <code>MINUSEND</code>.</p>
+<p>This reaction will depolymerize the filament, removing a chemical species from the end of the filament and decreasing the length of the filament by a single monomer.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A cross-linker reaction between two filaments can be defined in the following form:</p>
+<pre><code>(LINKERREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] 0
+    &lt;NAME&gt;:BOUND:1 + &lt;NAME&gt;:BOUND:2 + &lt;NAME&gt;:BULK/DIFFUSING
+        &lt;-&gt; &lt;NAME&gt;:LINKER:1 + &lt;NAME&gt;:LINKER:2
+    &lt;ONRATE&gt; &lt;OFFRATE&gt; &lt;RMIN&gt; &lt;RMAX&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>ONRATE</code> and <code>OFFRATE</code> are float values that determines the rate constant of the binding and unbinding reactions. <code>RMIN</code> and <code>RMAX</code> are the range of the chemical reaction, and this can be set depending on the structure of the simulated cross-linker. It is noted that the third species listed can be either <code>DIFFUSING</code> or <code>BULK</code>. The bound species listed must be the corresponding cross-linker binding site.</p>
+<p>This reaction produces cross-linker species at two separate positions on each respective filament which are chemically and mechanically connected. If mechanical force fields are defined for the cross-linkers, a potential will be created between the filaments. The unbinding reaction will remove these species from the filaments, as well as remove any linker potentials that have been created between the filaments.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A motor reaction between two filaments can be defined in the following form:</p>
+<pre><code>(MOTORREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] 0
+    &lt;NAME&gt;:BOUND:1 + &lt;NAME&gt;:BOUND:2 + &lt;NAME&gt;:BULK/DIFFUSING
+        &lt;-&gt; &lt;NAME&gt;:MOTOR:1 + &lt;NAME&gt;:MOTOR:2
+    &lt;ONRATE&gt; &lt;OFFRATE&gt; &lt;RMIN&gt; &lt;RMAX&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>ONRATE</code> and <code>OFFRATE</code> are float values that determines the rate constant of the binding and unbinding reactions. <code>RMIN</code> and <code>RMAX</code> are the range of the chemical reaction, and this can be set depending on the structure of the simulated motor. It is noted that the third species listed can be either <code>DIFFUSING</code> or <code>BULK</code>. The bound species listed must be the corresponding motor binding site.</p>
+<p>This binding reaction produces motor species at two separate positions on each respective filament which are chemically and mechanically connected. If mechanical force fields are defined for the motor, a potential will be created between the filaments. The unbinding reaction will remove these species from the filaments, as well as remove any motor potentials that have been created between the filaments.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A motor walking reaction can be defined in the following form:</p>
+<pre><code>(MOTORWALKINGREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:MOTOR:N/N+1 + &lt;NAME&gt;:BOUND:N/N+1
+        -&gt; &lt;NAME&gt;:MOTOR:N/N+1 + &lt;NAME&gt;:BOUND:N/N+1
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. The choice of <code>N</code>/<code>N+1</code> will determine whether the motor is stepping forward or backward. A motor movement from <code>N</code> to <code>N+1</code> is defined as forward movement (towards the plus end of the filament), and the opposite is backward (towards the minus end). These choices for the reactants and products must be self-consistent as well as consistent with the bound species positions chosen in the reaction, or a startup error will result. The bound species listed must be the corresponding motor binding site.</p>
+<p>This reaction will move a motor head in the given direction.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A branching reaction can be defined in the following form:</p>
+<pre><code>(BRANCHINGREACTION
+    &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BOUND
+        &lt;-&gt; &lt;NAME&gt;:BRANCHER + &lt;NAME&gt;:PLUSEND
+    &lt;ONRATE&gt; &lt;OFFRATE&gt; &lt;NUCLEATIONZONE&gt; &lt;NUCLEATIONDIST&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>ONRATE</code>, <code>OFFRATE</code> are float values that determine the rate constants of the reaction. It is noted that the first and second species listed can be either <code>DIFFUSING</code> or <code>BULK</code>. The bound species listed must be the corresponding branching binding site.</p>
+<p>The <code>NUCLEATIONZONE</code> and <code>NUCLEATIONDIST</code> specify the volume in which a branching reaction can occur. The choices for the zone parameter are the following</p>
+<ul>
+<li><code>ALL</code> : A new filament can nucleate anywhere in the simulation volume due to branching.</li>
+<li><code>BOUNDARY</code> : A new filament can nucleate a given distance away from a boundary due to branching, specified by the <code>NUCLEATIONDIST</code> from the system boundary.</li>
+<li><code>TOPBOUNDARY</code> : Similar to <code>BOUNDARY</code> except only in the top half of the volume (in the z direction).</li>
+</ul>
+<p>It is noted that <code>NUCLEATIONDIST</code> needs to be specified for all nucleation zones, but it is unused for <code>ALL</code>.</p>
+<p>This reaction will create a new branching point, as well as a filament with the desired chemical plus end. If mechanical force fields are defined for the branching point, a potential will be created between the parent and child filament. The unbinding reaction will remove the branching point from the filaments, thus freeing the child filament from the parent. It will also remove any branching point potentials that have been created between the filaments.</p>
+<p>This reaction does not support dissipation tracking, so <code>HRCDID</code> and <code>DELGZERO</code> should not be provided.</p>
+</li>
+<li>
+<p>A nucleation reaction can be defined in the following form:</p>
+<pre><code>(NUCLEATIONREACTION
+    &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BULK/DIFFUSING
+        -&gt; &lt;NAME&gt;:PLUSEND + &lt;NAME&gt;:FILAMENT + &lt;NAME&gt;:MINUSEND
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. It is noted that the first and second species listed can be either <code>DIFFUSING</code> or <code>BULK</code>.</p>
+<p>This reaction will create a new filament with the given chemical plus end, minus end, and filament species. PLEASE REFER TO THE EXAMPLE FILES FOR A COMPLETE NUCLEATION CYCLE.</p>
+<p>This reaction does not support dissipation tracking, so <code>HRCDID</code> and <code>DELGZERO</code> should not be provided.</p>
+</li>
+<li>
+<p>A destruction reaction can be defined in the following form:</p>
+<pre><code>(DESTRUCTIONREACTION
+    &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:PLUSEND + &lt;NAME&gt;:MINUSEND -&gt; &lt;NAME&gt;:BULK/DIFFUSING + &lt;NAME&gt;:BULK/DIFFUSING
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. It is noted that the third and fourth species listed can be either <code>DIFFUSING</code> or <code>BULK</code>.</p>
+<p>This reaction will destroy a filament, removing it from the system.</p>
+<p>This reaction does not support dissipation tracking, so <code>HRCDID</code> and <code>DELGZERO</code> should not be provided.</p>
+</li>
+<li>
+<p>A filament aging reaction can be defined in the following form:</p>
+<pre><code>(AGINGREACTION
+    [&lt;DELGZERO&gt;:&lt;HRCDID&gt;] &lt;FILAMENTTYPE&gt;
+    &lt;NAME&gt;:FILAMENT/PLUSEND/MINUSEND -&gt; &lt;NAME&gt;:FILAMENT/PLUSEND/MINUSEND
+    &lt;RATE&gt;)
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction. Either of the reactant or product species can be <code>FILAMENT</code>, <code>PLUSEND</code>, or <code>MINUEND</code>, but the product and reactant species must be the same type, or a startup error will result.</p>
+<p>This reaction will change the chemical species that resides in a filament.</p>
+<p>This reaction supports dissipation tracking, so if the feature is turned on, then <code>HRCDID</code> should be set to a user specified short unique string, and <code>DELGZERO</code> should be set to a float value based on the user’s parameterization of the chemical energetics.</p>
+</li>
+<li>
+<p>A filament severing reaction can be defined in the following form:</p>
+<pre><code>SEVERINGREACTION &lt;FILAMENTTYPE&gt; AT &lt;NAME&gt;:FILAMENT &lt;RATE&gt;
+</code></pre>
+<p>where <code>NAME</code> is the string name of the species, and <code>RATE</code> is a float value that determines the rate constant of the reaction.</p>
+<p>This reaction will sever the filament at the closest cylinder connection to a given chemical position, producing two child filaments.</p>
+<p>This reaction does not support dissipation tracking, so <code>HRCDID</code> and <code>DELGZERO</code> should not be provided.</p>
+</li>
+</ul>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../output-files/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../output-files/" class="btn btn-xs btn-link">
+        Output files
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../installation/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../installation/" class="btn btn-xs btn-link">
+        Installation
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

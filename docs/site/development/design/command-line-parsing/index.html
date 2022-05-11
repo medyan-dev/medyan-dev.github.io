@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Command line parsing - MEDYAN</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Command line parsing", url: "#_top", children: [
+              {title: "Command line input plays a different role from input file", url: "#command-line-input-plays-a-different-role-from-input-file" },
+              {title: "Command line input information storage", url: "#command-line-input-information-storage" },
+              {title: "Command line parsing specs for MEDYAN", url: "#command-line-parsing-specs-for-medyan" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="command-line-parsing">Command line parsing</h1>
+<p>An input from command line is important to specify important runtime environment variables other than simulation parameters (which are read using the input file).</p>
+<h2 id="command-line-input-plays-a-different-role-from-input-file">Command line input plays a different role from input file</h2>
+<p>Command line input and the input files both provide runtime information for the program. Input files specify all the simulation related contents, while the command line input specifies the parameters needed only for how the software runs. That is to say, <strong>no matter how the command line input changes, if the input files stay the same, we could always consider them as the "same simulations"</strong>. Due to this difference, the two different sources of input could contain the following information.</p>
+<h3 id="command-line-input">Command line input</h3>
+<ul>
+<li>Where to find the input files, and where the output should go</li>
+<li>Methods of informational output (log level, log file, verbosity, ...)</li>
+<li>Fixed random seed if applicable</li>
+<li>Parallelization methods (number of cores, mpi, ...)</li>
+<li>Auto restart configuration (e.g. start with restart is a restart file is available)</li>
+</ul>
+<h3 id="input-files">Input files</h3>
+<ul>
+<li>Simulation duration, algorithms used and algorithm parameters</li>
+<li>Name of additional input files</li>
+<li>Simulation output categories <em>(currently useless)</em></li>
+<li>Geometric, mechanochemical parameters</li>
+<li>Simulation initialization parameters</li>
+</ul>
+<h2 id="command-line-input-information-storage">Command line input information storage</h2>
+<p>As the command line input provides different information from the input files, the structure that holds the information from command line input could also be separated from the system parameters. They could be stored as global variables in a certain namespace or as members of a class.</p>
+<p>We should limit the ability to change these global variables everywhere. To achieve that without adding <code>get</code>/<code>set</code> functions for every variable, we can put the global variables in a struct, and use this struct as a private static member of another class. The class could provide two accessors, one for const access and one for non-const access. The code might look like the follows.</p>
+<pre><code class="language-C++">struct RuntimeGlobalVariableContainer {
+    int some_integer;
+    std::string some_string;
+    // ...
+};
+
+class Global {
+private:
+    static RuntimeGlobalVariableContainer _runtime; // Definition elsewhere
+
+public:
+    static const RuntimeGlobalVariableContainer&amp; runtime() {
+        return _runtime;
+    }
+    static RuntimeGlobalVariableContainer&amp; runtimeMutable() {
+        return _runtime;
+    }
+};
+</code></pre>
+<p>Then, when trying to access a global variable without modification, one can use something like <code>Global::runtime().some_integer</code> to access the variable. For the functions like the parser that actually writes to the global variables, one has to use <code>Global::runtimeMutable().some_integer</code> to access the variables in a non-const manner.</p>
+<p>One could also provide only the const accessor, and mark certain functions as <code>friend</code> to the class <code>Global</code>, so that they can access the non-const members using <code>Global::_runtime.some_integer</code>. This method is similar to current implementation of <code>SysParams</code> class in MEDYAN. But in this way, one class can only implement one set of accessibility control.</p>
+<h2 id="command-line-parsing-specs-for-medyan">Command line parsing specs for MEDYAN</h2>
+<p>No standard exists for command line parsing, and implementations vary a lot in popular programs. But there are some common conventions and other command line parsing libraries that we could follow.</p>
+<p>Currently, MEDYAN is using <code>getopt</code> as the command line parser, but <code>getopt</code> offers limited functionality and is not portable (GNU project). Therefore, it is natural to write our very own parser that suits our needs.</p>
+<p>The following specifies the MEDYAN command line syntax and parser.</p>
+<h3 id="general">General</h3>
+<p>For simplicity, the lexing, parsing, data writing and simple data validation should be combined to a one-pass process. More validations can be applied after parsing is complete, such as option mutual exclusivity, option requiredness and number range check.</p>
+<p>We do not explicitly support groups (optional or mutual exclusive) during parsing such as <code>MEDYAN [-a (-b | -c -d)] [-e | -f -g]</code>, though they could be checked in the validation process after parsing. In the help message, groups will not be hinted.</p>
+<p>The command line syntax looks like this</p>
+<pre><code>cmd &lt;required-options&gt; [&lt;options&gt;] [--] &lt;positional-arguments&gt;
+cmd &lt;sub-command&gt;
+</code></pre>
+<p>where <code>&lt;&gt;</code> encloses the name of an object and <code>[]</code> means optional.</p>
+<h3 id="positional-argument">Positional argument</h3>
+<p>A command can specify 0 or more positional arguments.</p>
+<p>To avoid recursive parsing, only one set of positional argument specification is allowed for a command, i.e. when reading a positional argument, the parser must know what this positional argument mean, and the type of this argument. And hence the following specifications.</p>
+<p>A positional argument can be required or optional. In a command, an optional positional argument must appear later than the last required positional argument. Therefore, the following is a correct usage of positional arguments</p>
+<pre><code>cmd &lt;file&gt; [&lt;path&gt;] [&lt;id&gt;]
+</code></pre>
+<p>and the following is illegal</p>
+<pre><code>cmd [&lt;file&gt;] &lt;path&gt;
+</code></pre>
+<p>A positional argument could also be a positional argument list, denoted as <code>&lt;argument-list&gt;...</code>. At most one positional argument list is allowed in one command, and must be after all the other positional arguments.</p>
+<p>A required positional argument list takes 1 or more arguments, and an optional positional argument list takes 0 or more arguments. If there exists at least one optional positional argument in a command that is not a list, then the positional argument list must be optional. Therefore, the following cases are the correct usages</p>
+<pre><code>cmd &lt;arg1&gt; &lt;arg2&gt; &lt;arg-list&gt;...
+cmd &lt;arg1&gt; [&lt;arg2&gt;] [&lt;arg-list&gt;...]
+</code></pre>
+<p>while the following are incorrect usages</p>
+<pre><code>cmd &lt;arg-list&gt;... &lt;arg1&gt;
+cmd &lt;arg1&gt; &lt;arg-list1&gt;... &lt;arg-list2&gt;...
+cmd [&lt;arg1&gt;] &lt;arg-list&gt;...
+</code></pre>
+<p>For illegal cases in specification, an error should be generated before parsing.</p>
+<p>During parsing, the parser will always fill the positional arguments from the first to the last, regardless of requiredness. For example, if the program specifies this</p>
+<pre><code>cmd1 &lt;arg1&gt; [&lt;arg2&gt;] [&lt;arg3&gt;] [&lt;arg-list&gt;...]
+cmd2 &lt;arg1&gt; [&lt;arg-list&gt;...]
+</code></pre>
+<p>and runs with the following</p>
+<pre><code>cmd1 100 200
+cmd2 100 200
+</code></pre>
+<p>then in <code>cmd1</code>, <code>200</code> will always bind with <code>arg2</code>, and in <code>cmd2</code>, <code>200</code> is the first and only element in <code>arg-list</code>. If the number of positional arguments supplied is more than the maximum number of positional argument and there is no argument list specified, an error should be generated. If the number of positional arguments supplied is less than the number of required positional argument, the parsing could finish successfully, but should fail the validation process after parsing, which generates an error.</p>
+<h3 id="option">Option</h3>
+<p>A command can specify 0 or more options.</p>
+<p>Unlike positional arguments, options can appear anywhere <em>after</em> the command, <em>before</em> the positional argument delimiter <code>--</code> (see next section).</p>
+<p>An option starts with an option marker, and can take 0 or 1 variable <em>right after</em> the option marker. The option marker could be a short option marker or a long option marker.</p>
+<p>A short option marker is 2 characters. The first character is <code>-</code>, and the second character is anything but <code>-</code>. During parsing, if the option takes 1 variable, then (1) if the argument is longer than 2 characters, the rest of the argument will be considered as the variable (2) otherwise the next argument will be considered as the argument. In the 2nd case, if the next argument does not exist (end of argument list), an error should be generated. For example, if <code>-t</code> is an option that takes 1 variable, then <code>-t est</code> and <code>-test</code> both mean taking <code>"est"</code> as the variable of <code>-t</code> option, and an error should be generated for <code>-t</code> without further arguments. If the option takes 0 variable and the argument has more than 2 characters, then append <code>-</code> before the rest, and parse it accordingly. For example, if <code>-t</code> does not take variable, then <code>-test</code> will be treated as the option <code>-t</code> showing up, and the parser will try to parse <code>-est</code> next.</p>
+<p>As a more complicated example, assume <code>-s</code> and <code>-e</code> are options that take 1 variable, and <code>-t</code> is an option that takes no variable, then <code>-test</code> is parsed as <code>-t -e st</code> where <code>-t</code> shows up, <code>-e</code> shows up and gets a variable <code>"st"</code> and <code>-s</code> does not show up.</p>
+<p>A long option marker has more than 2 characters and starts with <code>--</code>, and should not contain the character <code>=</code>. During parsing, the longest starting part in an argument that satisfies the criteria will be considered the long option marker. If the option takes no variable and <code>=</code> shows up, an error should be generated. If the option takes 1 variable, then (1) if at least one <code>=</code> shows up, everything after the first <code>=</code> will be considered the variable (2) otherwise, the next argument will be considered the variable. In the 2nd case, if the next argument does not exist (end of argument list), an error should be generated. For example, if <code>--test</code> is an option that takes one variable, then <code>--test=yes</code> and <code>--test yes</code> both mean taking "yes" as the variable of the <code>--test</code> option, and an error should be generated for <code>--test</code> without further arguments. Specifically, using <code>=</code> allows specifying empty string variable for options using long option markers. For example, if <code>--test</code> takes one variable, then <code>--test=</code> means giving empty string to <code>--test</code> as the variable.</p>
+<p>During parsing, if an argument can be considered as an option, but the option does not exist, then an error is generated. If one really wants a positional argument that looks like an option, consider using the positional argument delimiter <code>--</code>.</p>
+<p>Like positional arguments, an option can be required or optional. That an option is required means that the option must show up at least once. However, the requiredness should not have effect during parsing, as it can only be checked when parsing is finished. Nevertheless, the requiredness should be hinted in the help message.</p>
+<h3 id="positional-argument-delimiter-">Positional argument delimiter <code>--</code></h3>
+<p>During parsing, the positional argument delimiter is an argument that is exactly <code>--</code>. In a command, anything after <code>--</code> is considered positional arguments of that command, even if they look like options, subcommands or even the delimiter.</p>
+<p>For example, if the specified syntax looks like this</p>
+<pre><code>cmd [-a] [-b] -c [--] &lt;arg1&gt; [&lt;arg2&gt;] [&lt;arg-list&gt;...]
+cmd subcmd1
+cmd subcmd2
+</code></pre>
+<p>Then running</p>
+<pre><code>cmd -b -c -- -a subcmd1 -- subcmd2
+</code></pre>
+<p>means that <code>-b</code> and <code>-c</code> show up, <code>-a</code> does not show up, <code>arg1 = "-a"</code>, <code>arg2 = "subcmd1"</code> and <code>arg-list = ["--", "subcmd2"]</code>. Notice that everything after the first <code>--</code> is considered the positional argument.</p>
+<h3 id="subcommand">Subcommand</h3>
+<p>A command can specify 0 or more subcommands.</p>
+<p>During parsing, the first argument that is not an option will be matched against the list of subcommands. If it matches a subcommand, the subcommand will take over and parse all the remaining arguments. The control will not return to the parent command, which implies that running multiple subcommands in the same nested level is not possible. For example, with specification</p>
+<pre><code>cmd [--] [&lt;arg1&gt;]
+cmd subcmd1
+</code></pre>
+<p>then running with <code>cmd subcmd1</code> will run subcommand <code>subcmd1</code> and leave <code>arg1</code> uninitialized (probably default value), but running with <code>cmd subcmd2</code> will set <code>arg1</code> to be <code>subcmd2</code>, since there is no subcommand with name <code>subcmd2</code>. If one really needs the positional argument that has the name of a subcommand, consider using the positional argument delimiter <code>--</code>.</p>
+<p>A subcommand works like a command, and can specify its own positional arguments, options and subcommands. During parsing, when control moves to a subcommand, the subcommands and positional arguments of the parent command will no longer have effect. The options of the parent command, however, will be inherited to the subcommand, but subcommand options can overwrite the parent options with the same name. When parsing a subcommand, the parser should try to look for the option of an option-like argument from the most nested subcommand, all the way to the options of the main command, and if no option can be found, an error should be generated.</p>
+<h3 id="help-message">Help message</h3>
+<p>Help message displays the basic usage of a command. A typical help message might look like this:</p>
+<pre><code>Usage: cmd &lt;required-options&gt; [&lt;options&gt;] [--] &lt;arg1&gt; [&lt;arg2&gt;] [&lt;arg-list&gt;...]
+
+Subcommands:
+    subcmd-name         Description
+    subcmd-name-2       Description 2
+
+Options:
+    -o, --option        [Required] Description
+    -2, --option-2      Description 2
+    --option-3=&lt;val&gt;    Description 3
+</code></pre>
+<p>The parser should provide an auxiliary function that generates the formatted help message with the given specification. By convention, <code>-h</code> and <code>--help</code> options should be added to every command and subcommand to generate the help message and exit the program. Also the help message should be printed on parsing errors of the associated subcommand.</p>
+<p>The subcommand help message should contain the chain of all parent command names. For example,</p>
+<pre><code>$ cmd run install --help
+Usage: cmd run install [&lt;options&gt;] [--] &lt;arg1&gt; &lt;arg-list&gt;...
+
+Options:
+    -f, --file=&lt;path&gt;   File location
+</code></pre>
+<h3 id="procedure-and-error-handling">Procedure and error handling</h3>
+<p>The program should hard code the specification for all commands and subcommands.</p>
+<p>Before parsing, the specification will be checked against some rules, and if an violation happens, an exception should be thrown without handling, so that it aborts the parsing and the rest of the program, so no help message should be printed, as this is an internal error.</p>
+<p>During parsing, the arguments of the main function <code>int argc, char *argv[]</code> will be fed to the parser. The parsing process follows the rules mentioned in the previous sections. If an error occurs, an exception should be thrown, which should be handled outside the parser. The simple data writing and validation should happen along with the parsing process. The parser should decide whether the simple data writing and validation is successful, and if it is not, an exception should be thrown which should be handled outside the parser. The handler should print the error, print the help message generated by the parser, and abort the program.</p>
+<p>After parsing is complete, further validation and other initialization could kick in. The validation may decide to print the help message as needed. Specifically, an unprovided required option or unprovided required positional argument should result in the failure of the validation process, causing it to print the help message and abort the program.</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
