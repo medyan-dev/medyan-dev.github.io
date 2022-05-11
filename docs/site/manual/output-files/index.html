@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Output files - MEDYAN</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Output files", url: "#_top", children: [
+              {title: "snapshot.traj", url: "#snapshottraj" },
+              {title: "plusend.traj", url: "#plusendtraj" },
+              {title: "forces.traj, stresses.traj, and birthtimes.traj", url: "#forcestraj-stressestraj-and-birthtimestraj" },
+              {title: "chemistry.traj", url: "#chemistrytraj" },
+              {title: "concentration.traj", url: "#concentrationtraj" },
+              {title: "monomers.traj", url: "#monomerstraj" },
+              {title: "dissipation.traj", url: "#dissipationtraj" },
+              {title: "HRCD.traj", url: "#hrcdtraj" },
+              {title: "HRMD.traj", url: "#hrmdtraj" },
+              {title: "CMGraph.traj", url: "#cmgraphtraj" },
+              {title: "motorwalkingevents.traj, linkerbindingevents.traj, linkerunbindingevents.traj", url: "#motorwalkingeventstraj-linkerbindingeventstraj-linkerunbindingeventstraj" },
+              {title: "traj.h5", url: "#trajh5" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../predefined-macro/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../predefined-macro/" class="btn btn-xs btn-link">
+        Predefined Macro
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../input-files/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../input-files/" class="btn btn-xs btn-link">
+        Input files
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="output-files">Output files</h1>
+<p>MEDYAN can produce a number of output types, set in the <code>SystemFile</code>, produced at a
+snapshot frequency also defined in the <code>SystemFile</code>. These output files will be placed in the
+<code>OutputDirectory</code> specified at runtime. The output types are described below.</p>
+<h2 id="snapshottraj">snapshot.traj</h2>
+<blockquote>
+<p>⚠️ <strong>Breaking change</strong> Starting MEDYAN v5.1.0, brancher output is similar to other linkers, where two 3D coordinates (on mother/daughter filament, respectively) are recorded. Previously, only the starting coordinates (on the mother filament) were recorded.</p>
+</blockquote>
+<p>The snapshot file gives the basic trajectory information of the system. It includes a brief
+description for all filaments, cross-linkers, motors, and branching points in the system, as
+well as information on the current chemical step. It is produced with the following form:</p>
+<pre><code>chemstepnumber time numfilaments numlinkers nummotors numbranchers
+FILAMENT filamentid filamenttype filamentcyllength deltal deltar
+beadcoord1x beadcoord1y beadcoord1z beadcoord2x beadcoord2y beadcoord2z ...
+...
+LINKER linkerid linkertype
+startcoordx startcoordy startcoordz endcoordx endcoordy endcoordz
+...
+MOTOR motorid motortype
+startcoordx startcoordy startcoordz endcoordx endcoordy endcoordz
+...
+BRANCHER brancherid branchertype
+startcoordx startcoordy startcoordz endcoordx endcoordy endcoordz
+</code></pre>
+<h2 id="plusendtraj">plusend.traj</h2>
+<p>The plusend file gives the plus end coordinates and types information. The plus end coordinates should be the same as the last bead coordinates in the snapshot.traj for each
+filament. The plus end type is recorded as 0, 1, 2, etc. that follows the same order as the
+SPECIESPLUSEND in chemistry input files. It is produced with the following form:</p>
+<pre><code>chemstepnumber time numfilaments numlinkers nummotors numbranchers
+F filamentid filamenttype filamentcyllength deltal deltar
+plusendcoordx plusendcoordx plusendcoordx
+PLUSEND: type
+</code></pre>
+<h2 id="forcestraj-stressestraj-and-birthtimestraj">forces.traj, stresses.traj, and birthtimes.traj</h2>
+<p>The forces file gives the forces on each element in the system, in similar form to the snapshot file. It is produced with the following format:</p>
+<pre><code>chemstepnumber time numfilaments numlinkers nummotors numbranchers
+F filamentid filamenttype filamentcyllength deltal deltar
+bead1property bead2property ...
+...
+L linkerid linkertype
+linkerproperty
+...
+M motorid motortype
+motorproperty
+...
+B brancherid branchertype
+*no property printed for branching points*
+...
+</code></pre>
+<p>where the properties are as follows:
+- <code>forces.traj</code>: the magnitude forces on each cylinder, as well as the magnitude of stretching force on each cross-linker and motor are printed.
+- <code>stresses.traj</code>: the stretching stress on cylinders, cross-linkers, and motors are printed.
+- <code>birthtimes.traj</code>: the birth time of on cylinders, cross-linkers, and motors are printed.</p>
+<h2 id="chemistrytraj">chemistry.traj</h2>
+<p>The chemistry trajectory file gives the copy numbers of all species in the system, along
+with the current chemical step and time. It is produced with the following form:</p>
+<pre><code>chemstepnumber time
+SPECIESNAME COPYNUMBER
+</code></pre>
+<p>where <code>SPECIESNAME</code> represents the name of the system species and <code>COPYNUMBER</code> is the
+current copy number of that species at the given timestep.</p>
+<h2 id="concentrationtraj">concentration.traj</h2>
+<p>The concentration trajectory file gives the center point coordinates of compartments and
+the copy numbers of all diffusing species in the compartment. It is produced with the following form:</p>
+<pre><code>chemstepnumber time
+COMPARTMENT: coordx coordy coordz
+SPECIESNAME COPYNUMBER
+</code></pre>
+<h2 id="monomerstraj">monomers.traj</h2>
+<p>The monomers trajectory files gives the number of reactions occurred since last snapshot.
+DeltaMinusEnd and DeltaPlusEnd shows the number of cylinder is created and destructed. (Dd)Poly refers to (de)polymerization. IfNucleation = 1 suggests that this filament
+is nucleated by nucleation reaction during this period. It is produced with the following
+form:</p>
+<pre><code>chemstepnumber time numfilaments numlinkers nummotors numbranchers
+F filamentid filamenttype filamentcyllength DeltaMinusEnd DeltaPlusEnd
+DeltaMinusEnd DeltaPlusEnd PolyMinusEnd PolyPlusEnd DepolyMinusEnd DepolyPlusEnd
+IfNucleation TotalNumMonomers
+</code></pre>
+<h2 id="dissipationtraj">dissipation.traj</h2>
+<p>The dissipation file gives the cumulative changes in the Gibbs free energy of the system
+resulting from chemical reactions and mechanical rearrangements. The difference between
+the values at consecutive times will approximate the dissipation rates. The distinction
+between <code>chemdiss</code> and <code>chemenergy</code> and between <code>mechdiss</code> and <code>mechenergy</code> is explained
+in accompanying material. The format of the output file is:</p>
+<pre><code>chemstepnumber time
+total chemdiss mechdiss chemenergy mechenergy
+</code></pre>
+<h2 id="hrcdtraj">HRCD.traj</h2>
+<p>The high resolution chemical dissipation file gives the cumulative changes in the Gibbs free
+energy of the system resulting from chemical reactions, with the contributions from each
+reaction specified separately. The order of the reactions is preserved from time step to
+time step and is set by the order of their first occurrence in the trajectory. For the change
+in Gibbs free energy resulting from diffusion of a diffusing species, the <code>HRCDDID</code> is given
+as <code>DIF_SPECIESNAME</code>. For the change in Gibbs free energy resulting from the unbinding of
+linkers or motors, the <code>HRCDDID</code> is given as <code>HRCDIDoff</code>, where <code>HRCDID</code> is that of the corresponding binding reaction. The format of the output file is:</p>
+<pre><code>chemstepnumber time
+HRCDID1 HRCDID2 ...
+chemenergy1 chemenergy2 ...
+</code></pre>
+<p>Here the <code>chemenergy</code> fields are cumulative changes in Gibbs free energy owing to this
+reaction.</p>
+<h2 id="hrmdtraj">HRMD.traj</h2>
+<p>The high resolution mechanical dissipation file gives the cumulative values of ∆G<sub>mech</sub> and
+∆G<sub>mech, diss</sub>, with contributions from each force field specified separately. The format of
+the output file is:</p>
+<pre><code>chemstepnumber time
+ForceField1 ForceField2 ...
+mechenergy1 mechenergy2 ...
+mechdiss1 mechdiss2 ...
+</code></pre>
+<p>Here the <code>mechenergy1</code> fields are cumulative net changes in mechanical energy owing to
+force field 1, and the mechdiss1 are cumulative changes in mechanical energy during energy
+minimization owing to force field 1. The difference between these two quantities is explained
+in accompanying material. Summing across the rows of the <code>mechenergy</code> and <code>mechdiss</code> lines
+will give the corresponding values found at that time point in the <code>dissipation.traj</code> file.
+When parsing this file, note that the <code>Excluded Volume</code> force field consists of two words
+whereas the other force fields (e.g. <code>Bubble</code>) consist of only one word.</p>
+<h2 id="cmgraphtraj">CMGraph.traj</h2>
+<p>The connectivity-based mapping output gives information which can be used to construct
+a weighted graph, in which filaments are nodes and the weighted edges between them represent the number of cross-linkers connecting them. The format of the output file is:</p>
+<pre><code>chemstepnumber time
+filid1a filid1b numlinks1 filid2a fildid2b numlinks2 ...
+</code></pre>
+<p>Here the <code>filida</code> and <code>filidb</code> fields are the filament identification numbers, indicating
+that this pair of filaments is connected by <code>numlinks</code> cross-linkers.</p>
+<h2 id="motorwalkingeventstraj-linkerbindingeventstraj-linkerunbindingeventstraj">motorwalkingevents.traj, linkerbindingevents.traj, linkerunbindingevents.traj</h2>
+<p>These output files will be generated if the event tracking feature is turned on. They give
+detailed information on the spatiotemporal occurrences of motor walking, and cross-linker
+binding and unbinding. The format for these output files is:</p>
+<pre><code>event_t event_x event_y event_z
+</code></pre>
+<h2 id="trajh5">traj.h5</h2>
+<p>All desired system information should be stored in the <code>traj.h5</code> file. The file has the following structure. Some items are documented inline.</p>
+<pre><code>🗂️ HDF5.File: traj.h5
+├─ 📂 header                             &lt;- contains information about the simulation
+│  ├─ 🏷️ version                         &lt;- version of medyan generating this file
+│  ├─ 🔢 count                           &lt;- number of snapshot frames
+│  ├─ 🔢 finished                        &lt;- whether the simulation finished successfully
+│  └─ 📂 meta
+│     ├─ 🔢 chem                         &lt;- reconstituded chemistry input file
+│     ├─ 🔢 diffusingSpeciesNames
+│     ├─ 🔢 energyNames
+│     ├─ 🔢 globalFilamentModel
+│     ├─ 🔢 globalSpeciesNames           &lt;- names of species reported in each snapshot
+│     ├─ 🔢 system                       &lt;- reconstituted system input file
+│     ├─ 🔢 vertexColumnNamesFloat64
+│     └─ 🔢 vertexColumnNamesInt64
+└─ 📂 snapshots                          &lt;- all snapshot data
+   ├─ 📂 0                               &lt;- snapshot id starting from 0
+   │  ├─ 📂 bubbles
+   │  │  ├─ 📂 0
+   │  │  │  ├─ 🔢 coords
+   │  │  │  ├─ 🔢 id
+   │  │  │  ├─ 🔢 radius
+   │  │  │  └─ 🔢 type
+   │  │  └─ 🔢 count                     &lt;- number of bubbles
+   │  ├─ 📂 filaments
+   │  │  ├─ 📂 0
+   │  │  │  ├─ 🔢 beadCoords             &lt;- 3 x NUM_BEADS matrix
+   │  │  │  ├─ 🔢 monomerIds             &lt;- 3 x (NUM_BEADS-1) matrix of Int32
+   │  │  │  ├─ 🔢 extraCoords            &lt;- All coordinates to determine shape of filament
+   │  │  │  └─ 🔢 monomerStates          &lt;- 1 x NUM_MONOMERS matrix of UInt8
+   │  │  └─ 🔢 count                     &lt;- number of filaments
+   │  ├─ 📂 linkers
+   │  │  ├─ 📂 0
+   │  │  │  ├─ 🔢 coords
+   │  │  │  ├─ 🔢 id
+   │  │  │  ├─ 🔢 subtype                &lt;- integer subtype of linker
+   │  │  │  └─ 🔢 type                   &lt;- string of &quot;linker&quot;, &quot;motor&quot; or &quot;brancher&quot;
+   │  │  └─ 🔢 count                     &lt;- number of linkers
+   │  ├─ 📂 membranes
+   │  │  ├─ 📂 0
+   │  │  │  ├─ 🔢 numBorders
+   │  │  │  ├─ 🔢 numTriangles
+   │  │  │  ├─ 🔢 numVertices
+   │  │  │  ├─ 🔢 packedBorderVertices   &lt;- read &quot;struct OutputStructMembrane&quot; in OutputStruct.hpp for details
+   │  │  │  ├─ 🔢 triangleDataInt64
+   │  │  │  ├─ 🔢 type
+   │  │  │  ├─ 🔢 vertexDataFloat64
+   │  │  │  └─ 🔢 vertexDataInt64
+   │  │  └─ 🔢 count                     &lt;- number of membranes
+   │  ├─ 🔢 diffusingSpeciesCopyNumbers  &lt;- 4D array indexed by [species index, x, y, z]
+   │  ├─ 🔢 globalSpeciesCopyNumbers     &lt;- some selected species copy numbers
+   │  ├─ 🔢 energies                     &lt;- mechanical energies after minimization
+   │  └─ 🔢 time                         &lt;- current time of simulation
+   └─ 📂 ...
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../predefined-macro/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../predefined-macro/" class="btn btn-xs btn-link">
+        Predefined Macro
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../input-files/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../input-files/" class="btn btn-xs btn-link">
+        Input files
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

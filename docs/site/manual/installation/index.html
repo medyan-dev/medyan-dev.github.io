@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Installation - MEDYAN</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Building MEDYAN", url: "#_top", children: [
+              {title: "Requirements", url: "#requirements" },
+              {title: "Steps", url: "#steps" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../input-files/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../input-files/" class="btn btn-xs btn-link">
+        Input files
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../.." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="building-medyan">Building MEDYAN</h1>
+<p>To use MEDYAN, one needs to build it from the source code. The source code is available for download at <a href="http://medyan.org/download.html">http://medyan.org/download.html</a>. One can also clone the git repository for the latest version.</p>
+<h2 id="requirements">Requirements</h2>
+<p>A C++17 compatible compiler such as the following is required:</p>
+<ul>
+<li>gcc &gt;= 7</li>
+<li>clang &gt;= 5</li>
+<li>MSVC with Visual Studio 2017 15.7 and above</li>
+</ul>
+<p>The following tools are also required:</p>
+<ul>
+<li>CMake &gt;= 3.13</li>
+<li>git &gt;= 2.7.0</li>
+</ul>
+<p><code>medyan</code> is also dependent on several external libraries, which will be automatically installed before building.</p>
+<h2 id="steps">Steps</h2>
+<p>The preferred way of building medyan is to generate the build files using CMake. From the MEDYAN root directory, use either of the following scripts to generate build files.</p>
+<ul>
+<li><code>conf.sh</code> on Linux and MacOS. It will generate <code>Makefile</code> in the <code>build</code> directory by default.</li>
+<li><code>conf.ps1</code> on Windows. It will generate the Visual Project solution in the <code>build</code> directory by default.</li>
+</ul>
+<p>Under the hood, the scripts use <code>vcpkg</code> to install and configure the required external libraries, and use <code>cmake</code> to generate the build files. The external library installation normally happens only for the first build. External variables can be used to control some of the behaviors of the script.</p>
+<p>Setting <code>MEDYAN_NO_GUI="true"</code> disables installing GUI libraries and building the GUI.
+Setting <code>MEDYAN_CMAKE_EXTRA_ARGS</code> passes those arguments to the<code>cmake</code> command; for example, setting <code>MEDYAN_CMAKE_EXTRA_ARGS="-DCMAKE_BUILD_TYPE=Debug"</code> will build for debug.</p>
+<p>On MacOS, one can also change the target build system of the CMake from <code>make</code> to Xcode project, by setting <code>MEDYAN_BUILD_TOOL</code> to be <code>"Xcode"</code>.</p>
+<p><strong>Example 1</strong>: I am building medyan on Linux, and I do not have boost installed anywhere.</p>
+<pre><code class="language-console">&gt; ./conf.sh
+&gt; cd build
+&gt; make
+</code></pre>
+<p>And the medyan would be built in the <code>build</code> directory.</p>
+<p><strong>Example 2</strong>: I want to build medyan on my Mac using Xcode.</p>
+<pre><code class="language-console">&gt; MEDYAN_BUILD_TOOL=&quot;Xcode&quot; ./conf.sh
+</code></pre>
+<p>And an Xcode project file would be in the <code>build</code> directory.</p>
+<p><strong>Example 3</strong>: I want to build medyan on Windows.</p>
+<pre><code class="language-console">&gt; .\conf.ps1
+</code></pre>
+<p>And a Visual Studio solution file named <code>medyan.sln</code> would be in the <code>build</code> directory.</p>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../input-files/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../input-files/" class="btn btn-xs btn-link">
+        Input files
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../.." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

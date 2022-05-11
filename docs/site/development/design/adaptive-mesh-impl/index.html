@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Adaptive surface meshing implementation in MEDYAN - MEDYAN</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Adaptive surface meshing implementation in MEDYAN", url: "#_top", children: [
+              {title: "Goals", url: "#goals" },
+              {title: "Implementations", url: "#implementations" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+
+    <h1 id="adaptive-surface-meshing-implementation-in-medyan">Adaptive surface meshing implementation in MEDYAN</h1>
+<h2 id="goals">Goals</h2>
+<p>The goals are to improve the correctness of numerical simulation of membrane deformations. Remeshing will be applied after energy minimization.</p>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proximity</td>
+<td>The new mesh and the original mesh must approximate the same geometry.</td>
+</tr>
+<tr>
+<td>Size quality</td>
+<td>The vertices should be denser where high local curvatures are observed.</td>
+</tr>
+<tr>
+<td>Shape quality</td>
+<td>The triangles should be as equilateral as possible.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementations">Implementations</h2>
+<h3 id="achieving-the-goals">Achieving the goals</h3>
+<p>The goal for <strong>proximity</strong> is discussed in [<a name="Frey2000"></a>Pascal J. Frey, About surface remeshing (2000)] and [<a name="Frey1998"></a>Pascal J. Frey et al, Geometric surface mesh optimization (1998)]. The remeshing operations must respect the geometic measures.</p>
+<p><strong>Size quality</strong> is pursued in most adaptive mesh papers, as the mesh density should be controlled by the local geometry, typically curvature. In terms of the curvature mesh size adaptation, the idea is equivalent as the smoothness criterion, which requires that the normal vectors of any two neighboring triangles are almost parallel. Size quality is mainly achieved by adding/subtracting nodes from the mesh. Node addition are mainly by edge-splitting, and node subtraction are mainly by edge-collapsing.</p>
+<p>An additional goal discussed in [<a href="#Frey1998">Frey 1998</a>] is the <strong>size gradation control</strong>, which means that the gradient of size quality on the surface should not be too big. This will help improve the shape quality below.</p>
+<p><strong>Triangle shape quality</strong> is required by numerical simulations. Many local approximations render bad results when triangles are in bad shape, aka away from being equilateral. Errors might also arise when, for example, negative Voronoi area around a vertex due to bad neighbor triangle shapes. Point relocation (or relaxation) and edge-flipping are the main methods of achieving this goal.</p>
+<h3 id="mesh-operations">Mesh operations</h3>
+<p><strong>Relaxation</strong> is discussed in [<a name="Cristini2001"></a>Vittorio Cristini et al, An adaptive mesh algorithm for evolving surfaces: simulations of drop breakup and coalescence (2001)]. The vertices are moved inside their tangent planes responding to forces that try to bring edges to their preferred lengths. The sizes of the edges are precomputed to best achieve the size quality and shape quality, via curvature criteria averaged over local regions.</p>
+<p><strong>Node relocation</strong> discussed in [<a href="#Frey1998">Frey 1998</a>] and [<a href="#Frey2000">Frey 2000</a>] serves only to achieve shape quality, since size quality has already been achieved via other means.</p>
+<p><strong>Edge-flipping</strong> is performed to increase the neighbor triangle shape quality. In general, it is only performed given (1) the topology after flipping is feasible, (2) the neighbor triangles are almost coplanar, and (3) the neighbor triangle quality will be improved after edge flipping. It is also mentioned in [<a href="#Frey1998">Frey 1998</a>] that this operation could also improve geometric quality, but in [<a href="#Frey2000">Frey 2000</a>], the coplanar criterion preserves geometric approximation.</p>
+<p><strong>Edge-splitting</strong> is performed when new vertices are needed to improve the size quality. In [<a href="#Frey1998">Frey 1998</a>], the new vertex is introduced in the middle of an edge (that is "too long") and then snapped to the geometric support, while in [<a href="#Cristini2001">Cristini 2001</a>], edge-splitting do not happen individually, but rather inserts 3 vertices at once on the edges of a triangle, equivalent to 3 edge-splittings plus 1 edge-flipping, followed by local relaxation. Local relaxation/edge-flipping might follow each edge-flipping process.</p>
+<p><strong>Edge-collapsing</strong> is performed when vertices should be subtracted to improve the size quality. It is generally achieved by collapsing edges that are "too short". This operation will not be applied if the quality of the neighboring triangles decrease too much. Local relaxation might follow in [<a href="#Cristini2001">Cristnin 2001</a>].</p>
+<h3 id="important-value-calculation">Important value calculation</h3>
+<h4 id="vertex-normals">Vertex normals</h4>
+<p>Vertex normals could be computed as a weighted average of neighbor triangle normal vectors. Here we use angles of the vertex in the triangles as the weights, and the resulting vertex normal is effectively the so-called pseudo normal.</p>
+<h4 id="curvatures-and-size-criteria">Curvatures and size criteria</h4>
+<p>Curvatures can be calculated in a variety of ways, and the size dependency on the curvature can also be different. The easiest way is described in [<a href="#Frey1998">Frey 1998</a>] where only the neighbor edge direction and triangle normals are used. The curvature information is used to determine the preferred sizes of the edges.</p>
+<p>[<a href="#Frey1998">Frey 1998</a>] and [<a href="#Frey2000">Frey 2000</a>] discusses rectification of the preferred sizes to control mesh gradation using <em>H-correction</em>, while in [<a href="#Cristini2001">Cristini 2001</a>] the local averaging scheme achieves a similar goal.</p>
+
+  <br>
+    
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
