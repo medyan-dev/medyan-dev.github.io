@@ -27,7 +27,7 @@ begin
 	elseif parentdir=="build"
 		Pkg.develop(path="../../../")
 	else
-Pkg.add(url="https://github.com/medyan-dev/MEDYAN.jl", rev="cda4ed8")
+Pkg.add(url="https://github.com/medyan-dev/MEDYAN.jl", rev="858e23e")
 	end
 
 	
