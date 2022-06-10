@@ -27,7 +27,7 @@ begin
 	elseif parentdir=="build"
 		Pkg.develop(path="../../../")
 	else
-Pkg.add(url="git@github.com:medyan-dev/MEDYAN.jl.git", rev="278454e")
+Pkg.add(url="git@github.com:medyan-dev/MEDYAN.jl.git", rev="a95ff72")
 	end
 
 	
@@ -38,7 +38,7 @@ end
 
 
 # ╔═╡ eb4d33f9-8ae8-483c-adc8-a034edf0cb14
-statedef = StateDefinition(
+statedef = MEDYAN.StateDef(
 	diffusingspeciesnames= [:a,:b,:c],
 )
 
@@ -46,7 +46,7 @@ statedef = StateDefinition(
 grid= CubicGrid((10,10,10),500.0)
 
 # ╔═╡ 34c09a62-adcd-42da-a55d-8fd5efb710e5
-s= SystemDefinitions(statedef)
+s= MEDYAN.SysDef(statedef)
 
 # ╔═╡ 1ec02642-e097-4140-9225-bf8f94cfa7f9
 diffusion_coeffs= [1.0E6,4.0E6,9.0E6]
