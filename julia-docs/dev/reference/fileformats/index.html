@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>File Formats · MEDYAN.jl</title><script data-outdated-warner src="../../assets/warner.js"></script><link rel="canonical" href="https://medyan-dev.github.io/MEDYAN.jl/reference/fileformats/"/><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.044/juliamono.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.11/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">MEDYAN.jl</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../tutorials/">Tutorials</a></li><li><span class="tocitem">Reference</span><ul><li><a class="tocitem" href="../">Contents</a></li><li><a class="tocitem" href="../sites/">Sites</a></li><li class="is-active"><a class="tocitem" href>File Formats</a><ul class="internal"><li><a class="tocitem" href="#traj.h5"><span>traj.h5</span></a></li><li><a class="tocitem" href="#Snapshot-group"><span>Snapshot group</span></a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Reference</a></li><li class="is-active"><a href>File Formats</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>File Formats</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/medyan-dev/MEDYAN.jl/blob/master/docs/src/reference/fileformats.md#" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="File-Formats"><a class="docs-heading-anchor" href="#File-Formats">File Formats</a><a id="File-Formats-1"></a><a class="docs-heading-anchor-permalink" href="#File-Formats" title="Permalink"></a></h1><p>MEDYAN.jl uses HDF5 with Blosc compression for saving trajectories and snapshots.</p><p>In HDF5.jl Blosc is built in.</p><div class="admonition is-info"><header class="admonition-header">Note</header><div class="admonition-body"><p>To open these files with h5py you must also install the blosc plugin </p><p><a href="https://pypi.org/project/hdf5plugin/">https://pypi.org/project/hdf5plugin/</a> </p><p>For other HDF5 tools see</p><p><a href="https://github.com/Blosc/hdf5-blosc">https://github.com/Blosc/hdf5-blosc</a></p><p>In addition, HDF5.jl transposes all arrays on load and store.</p><p>So any column described below is a row, and vice versa, in the HDF5 file and when read with h5py.</p></div></div><h2 id="traj.h5"><a class="docs-heading-anchor" href="#traj.h5">traj.h5</a><a id="traj.h5-1"></a><a class="docs-heading-anchor-permalink" href="#traj.h5" title="Permalink"></a></h2><p>This file is composed of two groups, &quot;header&quot; and &quot;snapshots&quot;.</p><p>&quot;snapshots&quot; has a subgroup for each snapshot with names &quot;0&quot;, &quot;1&quot;, ...</p><p>The following describe the format of the groups.</p><h2 id="Snapshot-group"><a class="docs-heading-anchor" href="#Snapshot-group">Snapshot group</a><a id="Snapshot-group-1"></a><a class="docs-heading-anchor-permalink" href="#Snapshot-group" title="Permalink"></a></h2><p>A snapshot describes the state of a <code>Context</code> at a single point in time.</p><p>A snapshot can be used to set the state of a <code>Context</code> if it was  constructed with the same system and parameters as the <code>Context</code> used to create the snapshot.  Trying to load a snapshot into a <code>Context</code> constructed with a different system or parameters may lead to unexpected results.</p><p>The snapshot doesn&#39;t hold the exact full state of a <code>Context</code>, simulations restarted from a snapshot may not have the exact same results because:</p><ol><li>The snapshot doesn&#39;t store the state of the random number generator.</li><li>Coordinates may be rounded to save disk space.</li><li>Dictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.</li><li>Multithreading may be non determanistic.</li></ol><p>But if rounding isn&#39;t too extreme, the reloaded <code>Context</code> should have the same statistics.</p><h3 id="Snapshot-Versioning"><a class="docs-heading-anchor" href="#Snapshot-Versioning">Snapshot Versioning</a><a id="Snapshot-Versioning-1"></a><a class="docs-heading-anchor-permalink" href="#Snapshot-Versioning" title="Permalink"></a></h3><p>The snapshot format is versioned by the &quot;version&quot; attribute. The current snapshot version is:</p><pre><code class="language-julia-repl hljs" style="display:block;">julia&gt; using MEDYAN</code><code class="nohighlight hljs ansi" style="display:block;"></code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; using HDF5</code><code class="nohighlight hljs ansi" style="display:block;">ERROR: ArgumentError: Package HDF5 not found in current path:
+- Run `import Pkg; Pkg.add(&quot;HDF5&quot;)` to install the HDF5 package.</code><br/><code class="language-julia-repl hljs" style="display:block;">julia&gt; MEDYAN.SNAPSHOT_VERSION</code><code class="nohighlight hljs ansi" style="display:block;">v&quot;0.2.0&quot;</code></pre><p>Currently before snapshot version 1.0.0 anything goes.</p><p>After snapshot version 1.0.0 is released.</p><p>Snapshots written with a previous snapshot version above <code>v&quot;1&quot;</code> should be readable. Snapshots written with a newer snapshot version are generally not readable.</p><p>If new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.</p><p>If new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.</p><p>If the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.</p><h4 id="&quot;#experimental&quot;-and-&quot;#comment&quot;-prefixes"><a class="docs-heading-anchor" href="#&quot;#experimental&quot;-and-&quot;#comment&quot;-prefixes">&quot;#experimental&quot; and &quot;#comment&quot; prefixes</a><a id="&quot;#experimental&quot;-and-&quot;#comment&quot;-prefixes-1"></a><a class="docs-heading-anchor-permalink" href="#&quot;#experimental&quot;-and-&quot;#comment&quot;-prefixes" title="Permalink"></a></h4><p>Any group, dataset, or attribute name prefixed with  with &quot;#&quot; can change format or be removed without changing the snapshot version. </p><p>&quot;#experimental&quot; is used for saving new types of agents or other data that doesn&#39;t have a stable format yet.</p><p>&quot;#comment&quot; is used for saving human readable comments that could change in format or wording.</p><p>Example snapshot</p><pre><code class="language- hljs">using MEDYAN
+using HDF5
+fname = tempname()
+fid = h5open(fname, &quot;w&quot;)
+cinit, s = MEDYAN.example_all_sites_context()
+MEDYAN.snapshot(cinit,fid)
+fid
+nothing</code></pre><!-- From https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_treeview -->
+<head>
+<style>
+
+ul.topnestedlist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.innernestedlist.myhidden {
+  list-style-type: none;
+  display: none;
+}
+
+ul ul ul.innernestedlist {
+  list-style-type: none;
+  display: block;
+}
+
+ul ul.innernestedlist {
+  list-style-type: none;
+  display: block;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */'
+  transform: rotate(90deg);  
+}
+
+</style>
+</head>
+<body>
+
+<ul class="topnestedlist">
+  <li><span class="caret caret-down">Snapshot 📂</span>
+    <ul class="innernestedlist">
+
+<!-- Attributes -->
+      <li><span class="caret caret-down">🏷️</span>
+        <ul class="innernestedlist">
+          <li>
+            <details>
+            <summary>time (s)</summary><pre><code class="language- hljs">attrs(fid)[&quot;time (s)&quot;]</code></pre><p>Default: No change</p><p>See <a href="../#MEDYAN.set_time!"><code>set_time!</code></a></p>            </details>
+          </li>
+          <li>
+            <details>
+            <summary>version</summary><pre><code class="language- hljs">attrs(fid)[&quot;version&quot;]</code></pre><p>See <a href="#Snapshot-Versioning">Snapshot Versioning</a></p>            </details>
+          </li>
+        </ul>
+      </li>
+<!-- Attributes End -->
+
+
+
+<!--##################### DATASETS ##################-->
+    <li><span class="caret caret-down">🔢</span>
+    <ul class="innernestedlist">
+
+
+<li><details><summary>diffusingcounts</summary><pre><code class="language- hljs">read(fid[&quot;diffusingcounts&quot;])</code></pre><p>Default: Empty</p><p>Indexed by [species id, compartment id] to give count.</p><p>See <a href="../#MEDYAN.chem_adddiffusingcount!"><code>chem_adddiffusingcount!</code></a></p></details></li>
+
+
+<li><details><summary>fixedcounts</summary><pre><code class="language- hljs">read(fid[&quot;fixedcounts&quot;])</code></pre><p>Default: Empty</p><p>Indexed by [species id, compartment id] to give count.</p><p>See <a href="../#MEDYAN.chem_addfixedcount!"><code>chem_addfixedcount!</code></a></p></details></li>
+
+
+<li><details><summary>mechboundingplanes</summary><pre><code class="language- hljs">read(fid[&quot;mechboundingplanes&quot;])</code></pre><p>Default: Empty</p><p>Each column of the dataset is a plane.</p><p>See <a href="../#MEDYAN.set_mechboundingplanes!"><code>set_mechboundingplanes!</code></a></p></details></li>
+
+
+    </ul>
+    </li>
+<!--##################### DATASETS END ##################-->
+
+
+<!--##################### SNAPSHOT GROUPS ##################-->
+    <li><span class="caret caret-down">📂</span>
+    <ul class="innernestedlist">
+
+<!--##################### FILAMENTS ##################-->
+    <li><span class="caret caret-down">filaments</span>
+    <ul class="innernestedlist">
+
+<!-- Attributes -->
+    <li><span class="caret caret-down">🏷️</span>
+    <ul class="innernestedlist">
+<li>
+<details>
+<summary>position_scale</summary><pre><code class="language- hljs">attrs(fid[&quot;filaments&quot;])[&quot;position_scale&quot;]</code></pre><p>Default: No effect</p><p>Filament positions were rounded to the nearest 2^-position_scale nm when saved.</p></details>
+</li>
+    </ul>
+    </li>
+<!-- Attributes End -->
+<p>There is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:</p>
+
+<!--##################### FILAMENTTYPE ##################-->
+    <li><span class="caret caret-down">📂 1</span>
+    <ul class="innernestedlist">
+
+
+<li><details><summary>🔢 endloadforces</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/endloadforces&quot;])</code></pre><p>Filament end load forces (pN).</p><p>Each row is the load force on the minus and plus ends of a filament.</p></details></li>
+
+
+<li><details><summary>🔢 fids</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/fids&quot;])</code></pre><p>Filament ids.</p></details></li>
+
+
+<li><details><summary>🔢 minusend_num_notminimized</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/minusend_num_notminimized&quot;])</code></pre><p>Number of newly added monomers to the filament minus ends since last minimization.</p></details></li>
+
+
+<li><details><summary>🔢 plusend_num_notminimized</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/plusend_num_notminimized&quot;])</code></pre><p>Number of newly added monomers to the filament plus ends since last minimization.</p></details></li>
+
+
+<li><details><summary>🔢 num_cylinders</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/num_cylinders&quot;])</code></pre><p>Number of cylinders per filament.</p></details></li>
+
+
+<li><details><summary>🔢 num_monomers</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/num_monomers&quot;])</code></pre><p>Number of monomers per filament.</p></details></li>
+
+
+<li><details><summary>🔢 node_mids</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/node_mids&quot;])</code></pre><p>The monomer ids at the minus ends of the cylinders.</p><pre><code class="nohighlight hljs">                               |
+                    -----+-----|-----+-----
+minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
+                    -----+-----|-----+-----
+                               |
+                               ^ A nodeposition is indicated by the line.</code></pre><p>The monomer id with parenthesis (M) will in <code>node_mids</code></p></details></li>
+
+
+<li><details><summary>🔢 nodepositions</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/nodepositions&quot;])</code></pre><p>Each row is a node position in nm.</p></details></li>
+
+
+
+<li><details><summary>🔢 monomerstates</summary><pre><code class="language- hljs">read(fid[&quot;filaments/1/monomerstates&quot;])</code></pre><p>Monomer states.</p></details></li>
+
+
+    </ul>
+    </li>
+<!--##################### FILAMENTTYPE END ##################-->
+
+    </ul>
+    </li>
+<!--##################### FILAMENTS END ##################-->
+
+
+<!--##################### LINKERS ##################-->
+    <li><span class="caret caret-down">linkers</span>
+    <ul class="innernestedlist">
+<p>There is a subgroup for each linker type with at least one linker. The subgroups are named by their linker type id. For example:</p>
+<!--##################### LINKERTYPE ##################-->
+    <li><span class="caret caret-down">📂 1</span>
+    <ul class="innernestedlist">
+
+<!-- Attributes -->
+    <li><span class="caret caret-down">🏷️</span>
+    <ul class="innernestedlist">
+<li>
+<details>
+<summary>num_linkers</summary><pre><code class="language- hljs">attrs(fid[&quot;linkers/1&quot;])[&quot;num_linkers&quot;]</code></pre><p>Number of linkers of this type.</p></details>
+</li>
+    </ul>
+    </li>
+<!-- Attributes End -->
+
+
+<!--##################### ENDNAMES ##################-->
+    <li><span class="caret caret-down">📂 endnames</span>
+    <ul class="innernestedlist">
+<p>The pairs of monomers that the linkers are linked between. The monomer pairs are directed and unique.</p>
+
+<li><details><summary>🔢 minusend/ftid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/minusend/ftid&quot;])</code></pre><p>Minus end filament type id.</p></details></li>
+
+
+<li><details><summary>🔢 minusend/fid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/minusend/fid&quot;])</code></pre><p>Minus end filament id.</p></details></li>
+
+
+<li><details><summary>🔢 minusend/mid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/minusend/mid&quot;])</code></pre><p>Minus end monomer id.</p></details></li>
+
+
+<li><details><summary>🔢 plusend/ftid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/plusend/ftid&quot;])</code></pre><p>Plus end filament type id.</p></details></li>
+
+
+<li><details><summary>🔢 plusend/fid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/plusend/fid&quot;])</code></pre><p>Plus end filament id.</p></details></li>
+
+
+<li><details><summary>🔢 plusend/mid</summary><pre><code class="language- hljs">read(fid[&quot;linkers/1/endnames/plusend/mid&quot;])</code></pre><p>Plus end monomer id.</p></details></li>
+
+
+    </ul>
+    </li>
+<!--##################### ENDNAMES END ##################-->
+
+
+<li><details><summary>📂 state</summary><p>Default: default linkerstate</p><p>See <a href="../#MEDYAN.chem_setlinkerstate!"><code>chem_setlinkerstate!</code></a> and <a href="reference/@ref"><code>LinkerState</code></a></p><p>The state of a linker, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The &quot;name&quot; attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn&#39;t in the snapshot will stay at its default value.</p><pre><code class="language- hljs">fid[&quot;linkers/1/state&quot;]</code></pre></details></li>
+
+
+
+    </ul>
+    </li>
+<!--##################### LINKERTYPE END ##################-->
+
+    </ul>
+    </li>
+<!--##################### LINKERS END ##################-->
+
+
+    </ul>
+    </li>
+<!--##################### SNAPSHOT GROUPS END ##################-->
+
+    </ul>
+  </li>
+</ul>
+
+<script>
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector("ul.innernestedlist").classList.toggle("myhidden");
+    this.classList.toggle("caret-down");
+  });
+}
+</script>
+</body></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../sites/">« Sites</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.19 on <span class="colophon-date" title="Sunday 3 July 2022 02:07">Sunday 3 July 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
