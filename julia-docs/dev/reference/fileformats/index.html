@@ -288,7 +288,7 @@ minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
 <!--##################### ENDNAMES END ##################-->
 
 
-<li><details><summary>📂 state</summary><p>Default: default linkerstate</p><p>See <a href="../#MEDYAN.chem_setlinkerstate!"><code>chem_setlinkerstate!</code></a> and <a href="reference/@ref"><code>LinkerState</code></a></p><p>The state of a linker, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The &quot;name&quot; attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn&#39;t in the snapshot will stay at its default value.</p><pre><code class="language-julia hljs">fid[&quot;linkers/1/state&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_NLNyzi)
+<li><details><summary>📂 state</summary><p>Default: default linkerstate</p><p>See <a href="../#MEDYAN.chem_setlinkerstate!"><code>chem_setlinkerstate!</code></a> and <a href="reference/@ref"><code>LinkerState</code></a></p><p>The state of a linker, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The &quot;name&quot; attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn&#39;t in the snapshot will stay at its default value.</p><pre><code class="language-julia hljs">fid[&quot;linkers/1/state&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_ax10lw)
 ├─ 📂 1
 │  ├─ 🏷️ name
 │  ├─ 🔢 1
@@ -346,6 +346,66 @@ minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
     </li>
 <!--##################### MECHBOUNDARY END ##################-->
 
+
+<!--##################### MEMBRANES ##################-->
+    <li><span class="caret caret-down">membranes</span>
+    <ul class="innernestedlist">
+
+<!-- Attributes -->
+    <li><span class="caret caret-down">🏷️</span>
+    <ul class="innernestedlist">
+<li>
+<details>
+<summary>num_membranes</summary><pre><code class="language-julia hljs">attrs(fid[&quot;membranes&quot;])[&quot;num_membranes&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">1</code></pre><p>Total number of membranes.</p></details>
+</li>
+
+<li>
+<details>
+<summary>position_scale</summary><pre><code class="language-julia hljs">attrs(fid[&quot;membranes&quot;])[&quot;position_scale&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">3</code></pre><p>Default: No effect</p><p>Positions were rounded to the nearest 2^-position_scale nm when saved.</p></details>
+</li>
+
+    </ul>
+    </li>
+<!-- Attributes End -->
+
+<p>There is a subgroup for each membrane. The subgroups are named by the membrane index. For example:</p>
+<!--##################### MEMBRANE ##################-->
+    <li><span class="caret caret-down">📂 1</span>
+    <ul class="innernestedlist">
+
+<!-- Attributes -->
+    <li><span class="caret caret-down">🏷️</span>
+    <ul class="innernestedlist">
+<li>
+<details>
+<summary>type_id</summary><pre><code class="language-julia hljs">attrs(fid[&quot;membranes/1&quot;])[&quot;type_id&quot;]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">1</code></pre><p>This membrane&#39;s type id.</p></details>
+</li>
+
+    </ul>
+    </li>
+<!-- Attributes End -->
+
+
+<li><details><summary>🔢 trilist</summary><pre><code class="language-julia hljs">read(fid[&quot;membranes/1/trilist&quot;])</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">3×404 Matrix{Int64}:
+  46   52  139   23  75   47  92  133  …   99  154   62   20   17  130  109
+ 103  200  178  170  51   53  15  180      38   34   28   36  135  164  164
+  31  121   67  125  60  145  65    3     163  124  138  175   57   80  162</code></pre><p>Each column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.</p></details></li>
+
+
+<li><details><summary>🔢 vertlist</summary><pre><code class="language-julia hljs">read(fid[&quot;membranes/1/vertlist&quot;])</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">3×204 Matrix{Float64}:
+ 1335.88  1429.25  1688.25  1664.0   …  1522.25  1343.62  1418.25  1314.88
+ 1572.12  1588.75  1450.88  1476.5      1675.62  1453.0   1562.62  1474.25
+ 1580.62  1341.25  1484.88  1395.62     1582.75  1607.25  1666.38  1441.62</code></pre><p>Each column is a vertex coordinate in nm.</p></details></li>
+
+
+    </ul>
+    </li>
+<!--##################### MEMBRANE END ##################-->
+
+    </ul>
+    </li>
+<!--##################### MEMBRANES END ##################-->
+
     </ul>
     </li>
 <!--##################### SNAPSHOT GROUPS END ##################-->
@@ -365,4 +425,4 @@ for (i = 0; i < toggler.length; i++) {
   });
 }
 </script>
-</body></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../sites/">« Sites</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.21 on <span class="colophon-date" title="Saturday 16 July 2022 19:14">Saturday 16 July 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</body></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../sites/">« Sites</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.21 on <span class="colophon-date" title="Sunday 17 July 2022 13:50">Sunday 17 July 2022</span>. Using Julia version 1.7.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
