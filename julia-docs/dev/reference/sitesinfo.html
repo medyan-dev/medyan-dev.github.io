@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MEDYAN.jl – sitesinfo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MEDYAN.jl</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/index.html">Tutorials</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../howto/index.html">How-To</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanations.html">Explanations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../reference/index.html" aria-current="page">Reference</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false">Versions</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
+        <li>
+    <a class="dropdown-item" href="../../dev/">
+ <span class="dropdown-text">dev</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../stable/">
+ <span class="dropdown-text">stable</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">Table of Contents</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/sitesinfo.html" class="sidebar-item-text sidebar-link active">Sites</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/fileformats.html" class="sidebar-item-text sidebar-link">File Formats</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sites" id="toc-sites" class="nav-link active" data-scroll-target="#sites">Sites</a>
+  <ul class="collapse">
+  <li><a href="#filament-sites" id="toc-filament-sites" class="nav-link" data-scroll-target="#filament-sites">filament sites</a>
+  <ul class="collapse">
+  <li><a href="#required-functions" id="toc-required-functions" class="nav-link" data-scroll-target="#required-functions">Required Functions</a></li>
+  <li><a href="#built-in-filament-sites" id="toc-built-in-filament-sites" class="nav-link" data-scroll-target="#built-in-filament-sites"><span>Built-in filament sites</span></a></li>
+  <li><a href="#related-functions-and-fields" id="toc-related-functions-and-fields" class="nav-link" data-scroll-target="#related-functions-and-fields">Related Functions and Fields</a></li>
+  </ul></li>
+  <li><a href="#filament-end-sites" id="toc-filament-end-sites" class="nav-link" data-scroll-target="#filament-end-sites">filament end sites</a>
+  <ul class="collapse">
+  <li><a href="#required-functions-1" id="toc-required-functions-1" class="nav-link" data-scroll-target="#required-functions-1">Required Functions</a></li>
+  <li><a href="#built-in-filament-end-sites" id="toc-built-in-filament-end-sites" class="nav-link" data-scroll-target="#built-in-filament-end-sites"><span>Built-in filament end sites</span></a></li>
+  <li><a href="#related-functions-and-fields-1" id="toc-related-functions-and-fields-1" class="nav-link" data-scroll-target="#related-functions-and-fields-1">Related Functions and Fields</a></li>
+  </ul></li>
+  <li><a href="#linker-sites" id="toc-linker-sites" class="nav-link" data-scroll-target="#linker-sites">linker sites</a>
+  <ul class="collapse">
+  <li><a href="#required-functions-2" id="toc-required-functions-2" class="nav-link" data-scroll-target="#required-functions-2">Required Functions</a></li>
+  <li><a href="#built-in-linker-sites" id="toc-built-in-linker-sites" class="nav-link" data-scroll-target="#built-in-linker-sites"><span>Built-in linker sites</span></a></li>
+  <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
+  </ul></li>
+  <li><a href="#linkable-sites" id="toc-linkable-sites" class="nav-link" data-scroll-target="#linkable-sites">linkable sites</a>
+  <ul class="collapse">
+  <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
+  <li><a href="#built-in-linkable-sites" id="toc-built-in-linkable-sites" class="nav-link" data-scroll-target="#built-in-linkable-sites"><span>Built-in linkable sites</span></a></li>
+  <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/reference/sitesinfo.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="sites" class="level1">
+<h1>Sites</h1>
+<p>Abstractly, sites are an interface that allow more complex structures like filaments to interact with diffusing species and compartment reaction propensities.</p>
+<p>Each site type has an associated fixed species. During chemistry that fixed species count will always be the total counts of the site in the compartment.</p>
+<p>Chemistry callbacks can try and pick a random site in a compartment to get specific information about exactly where in a compartment some event should happen.</p>
+<p>These are the groups of sites currently in MEDYAN.jl:</p>
+<section id="filament-sites" class="level2">
+<h2 class="anchored" data-anchor-id="filament-sites">filament sites</h2>
+<p>Filament sites can only be associated with one filament type.</p>
+<section id="required-functions" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions">Required Functions</h3>
+<p>A type <code>T</code> must implement the following functions to be a filament site.</p>
+<section id="getplusrangesitetint" class="level4">
+<h4 class="anchored" data-anchor-id="getplusrangesitetint"><code>getplusrange(site::T)::Int</code></h4>
+<p>How many monomer states in the plus direction this site looks at.</p>
+</section>
+<section id="getminusrangesitetint" class="level4">
+<h4 class="anchored" data-anchor-id="getminusrangesitetint"><code>getminusrange(site::T)::Int</code></h4>
+<p>How many monomer states in the minus direction this site looks at.</p>
+</section>
+<section id="filamentsitecountsitetstatesfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="filamentsitecountsitetstatesfloat64"><code>filamentsitecount(site::T,states)::Float64</code></h4>
+<p>Return site count at a monomer given <code>states</code>, A vector of <code>MonomerState</code> with length <code>length(states) == getminusrange(filamentsite) + 1 + getplusrange(filamentsite)</code></p>
+<p>The site count gets put in the compartment of the center monomer.</p>
+</section>
+</section>
+<section id="built-in-filament-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-filament-sites"><a href="../docstrings/src/filamentsites.qmd">Built-in filament sites</a></h3>
+</section>
+<section id="related-functions-and-fields" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields">Related Functions and Fields</h3>
+<section id="context" class="level4">
+<h4 class="anchored" data-anchor-id="context"><code>Context</code></h4>
+<p><a href="../docstrings/a7b996db7ccb5b66.qmd"><code>MEDYAN.pickrandomfilamentsite</code></a> function</p>
+<p><a href="../docstrings/736368ed32b08894.qmd#7a276883a424083b"><code>MEDYAN.Context#filamentsites</code></a> field</p>
+</section>
+<section id="sysdef" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef"><code>SysDef</code></h4>
+<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#c1d2ceaa790662af"><code>MEDYAN.SysDef#filamentsite</code></a> field</p>
+<p><a href="../docstrings/eb6bfd871a21b6f4.qmd"><code>MEDYAN.addfilamentsite!</code></a> function</p>
+<p><a href="../docstrings/63195cbff2ab4237.qmd"><code>MEDYAN.addfilament_reaction!</code></a> function</p>
+</section>
+</section>
+</section>
+<section id="filament-end-sites" class="level2">
+<h2 class="anchored" data-anchor-id="filament-end-sites">filament end sites</h2>
+<p>Filament end sites can only be associated with one filament type.</p>
+<section id="required-functions-1" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions-1">Required Functions</h3>
+<p>A type <code>T</code> must implement the following functions to be a filament end site.</p>
+<section id="getrangesitetint" class="level4">
+<h4 class="anchored" data-anchor-id="getrangesitetint"><code>getrange(site::T)::Int</code></h4>
+<p>How many monomer states this site looks at.</p>
+</section>
+<section id="isminusendsitetbool" class="level4">
+<h4 class="anchored" data-anchor-id="isminusendsitetbool"><code>isminusend(site::T)::Bool</code></h4>
+<p>True if the filament end site is on the minus end, false if on the plus end.</p>
+</section>
+<section id="spacingsitetfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="spacingsitetfloat64"><code>spacing(site::T)::Float64</code></h4>
+<p>Return spacing needed for the filament end site reaction to happen, units of nm.</p>
+</section>
+<section id="filamentendsitecountsitetstatesfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="filamentendsitecountsitetstatesfloat64"><code>filamentendsitecount(site::T,states)::Float64</code></h4>
+<p>Return the filament end site count at the end of a filament with monomer states vector <code>states</code> The rate of filament end reaction will be modified by the brownian ratchet model:</p>
+<p>exp(-β*F*L) where F is the compression force on the filament end, and L is <code>spacing(site)</code>.</p>
+<p><code>length(states) == getrange(filamentendsite)</code></p>
+<p>The site count gets put in the compartment of the end monomer.</p>
+</section>
+</section>
+<section id="built-in-filament-end-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-filament-end-sites"><a href="../docstrings/src/filamentendsites.qmd">Built-in filament end sites</a></h3>
+</section>
+<section id="related-functions-and-fields-1" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields-1">Related Functions and Fields</h3>
+<section id="context-1" class="level4">
+<h4 class="anchored" data-anchor-id="context-1"><code>Context</code></h4>
+<p><a href="../docstrings/fd78e3cf67338e1b.qmd"><code>MEDYAN.pickrandomfilamentendsite</code></a></p>
+<p><a href="../docstrings/736368ed32b08894.qmd#efb703550223ee5b"><code>MEDYAN.Context#filamentendsites</code></a> field</p>
+</section>
+<section id="sysdef-1" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef-1"><code>SysDef</code></h4>
+<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#4e4e27a9cb5074a4"><code>MEDYAN.SysDef#filamentendsite</code></a> field</p>
+<p><a href="../docstrings/95612d72d1fda05f.qmd"><code>MEDYAN.addfilamentendsite!</code></a></p>
+<p><a href="../docstrings/83ec3db37b4e2130.qmd"><code>MEDYAN.addfilamentend_reaction!</code></a></p>
+</section>
+</section>
+</section>
+<section id="linker-sites" class="level2">
+<h2 class="anchored" data-anchor-id="linker-sites">linker sites</h2>
+<p>Linker sites can only be associated with one linker type. They can represent propensities for reactions to happen to a linker attached to two monomers, like unbinding or motor walking, or a site for a diffusing species to interact with a bound linker.</p>
+<section id="required-functions-2" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions-2">Required Functions</h3>
+<p>A type <code>T</code> must implement the following functions to be a linker site.</p>
+<section id="linkersitecountsitet-linkerstatelinkerstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="linkersitecountsitet-linkerstatelinkerstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64"><code>linkersitecount(site::T, linkerstate::LinkerState, mechparams, minusftid, plusftid, minusmonomerstates, plusmonomerstates, m_pos, p_pos, m_plusv, p_plusv)::Float64</code></h4>
+<p>Return the site count given the state of the linker, the <code>minusftid</code>, <code>plusftid</code> filament type ids, the <code>minusmonomerstates</code>, <code>plusmonomerstates</code> monomer states, and the positions and orientations of the two monomers.</p>
+<p><code>minusmonomerstates</code> and <code>plusmonomerstates</code> should be collections of 3 <code>MonomerState</code> ordered from minus to plus end, with the linker attached to the center monomer.</p>
+<p>If a monomer doesn’t exist, its state should be input as zero.</p>
+<p>The site count gets put in the compartment of the minus end of the linker.</p>
+</section>
+</section>
+<section id="built-in-linker-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-linker-sites"><a href="../docstrings/src/linkersites.qmd">Built-in linker sites</a></h3>
+</section>
+<section id="related-functions-and-fields-2" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields-2">Related Functions and Fields</h3>
+<section id="context-2" class="level4">
+<h4 class="anchored" data-anchor-id="context-2"><code>Context</code></h4>
+<p><a href="../docstrings/1fa6a1063b44eafb.qmd"><code>MEDYAN.pickrandomlinkersite</code></a></p>
+<p><a href="../docstrings/736368ed32b08894.qmd#6e8b059de16ffede"><code>MEDYAN.Context#linkersites</code></a> field</p>
+</section>
+<section id="sysdef-2" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef-2"><code>SysDef</code></h4>
+<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#bce423249ba51fbb"><code>MEDYAN.SysDef#linkersite</code></a> field</p>
+<p><a href="../docstrings/c298c8d740eb51b1.qmd"><code>MEDYAN.addlinkersite!</code></a></p>
+</section>
+</section>
+</section>
+<section id="linkable-sites" class="level2">
+<h2 class="anchored" data-anchor-id="linkable-sites">linkable sites</h2>
+<p>Linkable sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the compartment of the potential monomer that could attach to the minus end of the linker.</p>
+<section id="required-functions-3" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
+<p>A type <code>T</code> must implement the following functions to be a linkable site.</p>
+<section id="cutoff_distancesitetfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="cutoff_distancesitetfloat64"><code>cutoff_distance(site::T)::Float64</code></h4>
+<p>Return the maximum distance in nm of a linkable site.</p>
+</section>
+<section id="in_linking_rangesitetm_posp_posm_plusvp_plusvtupleboolbool" class="level4">
+<h4 class="anchored" data-anchor-id="in_linking_rangesitetm_posp_posm_plusvp_plusvtupleboolbool"><code>in_linking_range(site::T,m_pos,p_pos,m_plusv,p_plusv)::Tuple{Bool,Bool}</code></h4>
+<p>Return if two monomers are in range to possibly link in the forward direction, and if they are in range to possibly link in the reverse direction.</p>
+</section>
+<section id="getftidssitettupleintegerinteger" class="level4">
+<h4 class="anchored" data-anchor-id="getftidssitettupleintegerinteger"><code>getftids(site::T)::Tuple{Integer,Integer}</code></h4>
+<p>Return the filament types of the minus and plus monomers.</p>
+</section>
+<section id="getmidstepssitettupleintegerinteger" class="level4">
+<h4 class="anchored" data-anchor-id="getmidstepssitettupleintegerinteger"><code>getmidsteps(site::T)::Tuple{Integer,Integer}</code></h4>
+<p>Return the monomer step size starting with mid 0 in the search for potential linkable sites on the minus and plus ends respectively.</p>
+<p>1 searches every monomer. 2 searches every monomer with even mid …</p>
+<p>If the plus and minus filament types are the same, then <code>getmidsteps(site)[1] == getmidsteps(site)[2]</code></p>
+</section>
+<section id="linkablesitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="linkablesitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64"><code>linkablesitecount(site::T,minusstate,plusstate,m_pos,p_pos,m_plusv,p_plusv)::Float64</code></h4>
+<p>Return the site count of two monomers getting linked given their states, their positions, and their plus vectors.</p>
+</section>
+</section>
+<section id="built-in-linkable-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-linkable-sites"><a href="../docstrings/src/linkablesites.qmd">Built-in linkable sites</a></h3>
+</section>
+<section id="related-functions-and-fields-3" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields-3">Related Functions and Fields</h3>
+<section id="context-3" class="level4">
+<h4 class="anchored" data-anchor-id="context-3"><code>Context</code></h4>
+<p><a href="../docstrings/ff6e780516ce8a9a.qmd"><code>MEDYAN.pickrandomlinkablesite</code></a></p>
+<p><a href="../docstrings/736368ed32b08894.qmd#3c5fdac78044efed"><code>MEDYAN.Context#linkablesites</code></a> field</p>
+</section>
+<section id="sysdef-3" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef-3"><code>SysDef</code></h4>
+<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#62ff66189cdef1eb"><code>MEDYAN.SysDef#linkablesite</code></a> field</p>
+<p><a href="../docstrings/9ffc8c8377769414.qmd"><code>MEDYAN.addlinkablesite!</code></a></p>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

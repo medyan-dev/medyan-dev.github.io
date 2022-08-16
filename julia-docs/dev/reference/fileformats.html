@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MEDYAN.jl – fileformats</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MEDYAN.jl</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/index.html">Tutorials</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../howto/index.html">How-To</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanations.html">Explanations</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../reference/index.html" aria-current="page">Reference</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false">Versions</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
+        <li>
+    <a class="dropdown-item" href="../../dev/">
+ <span class="dropdown-text">dev</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../stable/">
+ <span class="dropdown-text">stable</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">Table of Contents</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/sitesinfo.html" class="sidebar-item-text sidebar-link">Sites</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reference/fileformats.html" class="sidebar-item-text sidebar-link active">File Formats</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#file-formats" id="toc-file-formats" class="nav-link active" data-scroll-target="#file-formats">File Formats</a>
+  <ul class="collapse">
+  <li><a href="#traj.h5" id="toc-traj.h5" class="nav-link" data-scroll-target="#traj.h5">traj.h5</a></li>
+  <li><a href="#snapshot-group" id="toc-snapshot-group" class="nav-link" data-scroll-target="#snapshot-group">Snapshot group</a>
+  <ul class="collapse">
+  <li><a href="#snapshot-versioning" id="toc-snapshot-versioning" class="nav-link" data-scroll-target="#snapshot-versioning">Snapshot Versioning</a></li>
+  <li><a href="#example-snapshot" id="toc-example-snapshot" class="nav-link" data-scroll-target="#example-snapshot">Example snapshot</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/reference/fileformats.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="file-formats" class="level1">
+<h1>File Formats</h1>
+<p>MEDYAN.jl uses HDF5 with Blosc compression for saving trajectories and snapshots.</p>
+<p>In HDF5.jl Blosc is built in.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Other Languages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To open these files with h5py you must also install the blosc plugin</p>
+<p><a href="https://pypi.org/project/hdf5plugin/">https://pypi.org/project/hdf5plugin/</a></p>
+<p>For other HDF5 tools see</p>
+<p><a href="https://github.com/Blosc/hdf5-blosc">https://github.com/Blosc/hdf5-blosc</a></p>
+<p>In addition, HDF5.jl transposes all arrays on load and store.</p>
+<p>So any column described below is a row, and vice versa, in the HDF5 file and when read with h5py.</p>
+</div>
+</div>
+<section id="traj.h5" class="level2">
+<h2 class="anchored" data-anchor-id="traj.h5">traj.h5</h2>
+<p>This file is composed of two groups, “header” and “snapshots”.</p>
+<p>“snapshots” has a subgroup for each snapshot with names “0”, “1”, …</p>
+<p>The following describe the format of the groups.</p>
+</section>
+<section id="snapshot-group" class="level2">
+<h2 class="anchored" data-anchor-id="snapshot-group">Snapshot group</h2>
+<p>A snapshot describes the state of a <code>Context</code> at a single point in time.</p>
+<p>A snapshot can be used to set the state of a <code>Context</code> if it was constructed with the same system and parameters as the <code>Context</code> used to create the snapshot. Trying to load a snapshot into a <code>Context</code> constructed with a different system or parameters may lead to unexpected results.</p>
+<p>The snapshot doesn’t hold the exact full state of a <code>Context</code>, simulations restarted from a snapshot may not have the exact same results because:</p>
+<ol type="1">
+<li>The snapshot doesn’t store the state of the random number generator.</li>
+<li>Coordinates may be rounded to save disk space.</li>
+<li>Dictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.</li>
+<li>Multithreading may be non determanistic.</li>
+</ol>
+<p>But if rounding isn’t too extreme, the reloaded <code>Context</code> should have the same statistics.</p>
+<section id="snapshot-versioning" class="level3">
+<h3 class="anchored" data-anchor-id="snapshot-versioning">Snapshot Versioning</h3>
+<p>The snapshot format is versioned by the “version” attribute. The current snapshot version is:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HDF5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.SNAPSHOT_VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>v"0.4.0"</code></pre>
+</div>
+</div>
+<p>Currently before snapshot version 1.0.0 anything goes.</p>
+<p>After snapshot version 1.0.0 is released.</p>
+<p>Snapshots written with a previous snapshot version above <code>v"1"</code> should be readable. Snapshots written with a newer snapshot version are generally not readable.</p>
+<p>If new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.</p>
+<p>If new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.</p>
+<p>If the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.</p>
+<section id="experimental-and-comment-prefixes" class="level4">
+<h4 class="anchored" data-anchor-id="experimental-and-comment-prefixes">“#experimental” and “#comment” prefixes</h4>
+<p>Any group, dataset, or attribute name prefixed with with “#” can change format or be removed without changing the snapshot version.</p>
+<p>“#experimental” is used for saving new types of agents or other data that doesn’t have a stable format yet.</p>
+<p>“#comment” is used for saving human readable comments that could change in format or wording.</p>
+</section>
+</section>
+<section id="example-snapshot" class="level3">
+<h3 class="anchored" data-anchor-id="example-snapshot">Example snapshot</h3>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HDF5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> <span class="fu">tempname</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fid <span class="op">=</span> <span class="fu">h5open</span>(fname, <span class="st">"w"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cinit, s <span class="op">=</span> MEDYAN.<span class="fu">example_all_sites_context</span>()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">snapshot</span>(cinit,fid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Snapshot 📂
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!-- Attributes -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🏷️
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+time (s)
+</summary>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid)[<span class="st">"time (s)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<p>Default: No change<br>
+See <a href="../docstrings/a6dd8f73f68a3759.qmd"><code>MEDYAN.set_time!</code></a></p>
+</details>
+<details>
+<summary>
+version
+</summary>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid)[<span class="st">"version"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>"0.4.0"</code></pre>
+</div>
+</div>
+<p>Default: No change<br>
+See <a href="#snapshot-versioning">Snapshot Versioning</a></p>
+</details>
+</div>
+</div>
+</div>
+<!-- Attributes End -->
+<!-- Datasets -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🔢
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+diffusingcounts
+</summary>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"diffusingcounts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>2×4 Matrix{Int32}:
+ 0   100  0   40
+ 0  1000  0  400</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+<p>Indexed by [species id, compartment id] to give count.</p>
+See <a href="../docstrings/2264be341b81a600.qmd"><code>MEDYAN.chem_adddiffusingcount!</code></a>
+</details>
+<details>
+<summary>
+fixedcounts
+</summary>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"fixedcounts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>2×4 Matrix{Float64}:
+ 10.25  0.0  0.0   0.0
+  0.0   0.0  0.0  20.25</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+<p>Indexed by [species id, compartment id] to give count.</p>
+See <a href="../docstrings/0286edfebf8ea5e6.qmd"><code>MEDYAN.chem_addfixedcount!</code></a>
+</details>
+</div>
+</div>
+</div>
+<!-- Datasets End -->
+<!--##################### SNAPSHOT GROUPS ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+📂
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!--##################### CHEMBOUNDARY ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+chemboundary
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
+<p>See <a href="../docstrings/0aa6e4e95c60f9f7.qmd"><code>MEDYAN.set_chemboundary!</code></a></p>
+<details>
+<summary>
+🔢 capsules
+</summary>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"chemboundary/capsules"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>8×1 Matrix{Float64}:
+     0.0
+     0.0
+     0.0
+     0.0
+     0.0
+     0.0
+ 10000.0
+     1.0</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+Each column of the dataset is a capsule.
+</details>
+<details>
+<summary>
+🔢 planes
+</summary>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"chemboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>4×6 Matrix{Float64}:
+ -10.0     10.0    0.0     0.0    0.0     0.0
+   0.0      0.0  -10.0    10.0    0.0     0.0
+   0.0      0.0    0.0     0.0  -10.0    10.0
+   0.0  20000.0    0.0  5000.0    0.0  5000.0</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+Each column of the dataset is a plane.
+</details>
+</div>
+</div>
+</div>
+<!--##################### CHEMBOUNDARY END ##################-->
+<!--##################### FILAMENTS ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+filaments
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!-- Attributes -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🏷️
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+position_scale
+</summary>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"filaments"</span>])[<span class="st">"position_scale"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>Default: No effect</p>
+Filament positions were rounded to the nearest 2^-position_scale nm when saved.
+</details>
+</div>
+</div>
+</div>
+<!-- Attributes End -->
+<p>There is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:</p>
+<!--##################### FILAMENTTYPE ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+📂 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+🔢 endloadforces
+</summary>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/endloadforces"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>2×2 Matrix{Float64}:
+ 0.0  0.0
+ 0.0  0.0</code></pre>
+</div>
+</div>
+<p>Filament end load forces (pN).</p>
+Each row is the load force on the minus and plus ends of a filament.
+</details>
+<details>
+<summary>
+🔢 fids
+</summary>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/fids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>2-element Vector{Int32}:
+ 1
+ 2</code></pre>
+</div>
+</div>
+Filament ids.
+</details>
+<details>
+<summary>
+🔢 minusend_num_notminimized
+</summary>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/minusend_num_notminimized"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>2-element Vector{Int32}:
+ 0
+ 0</code></pre>
+</div>
+</div>
+Number of newly added monomers to the filament minus ends since last minimization.
+</details>
+<details>
+<summary>
+🔢 plusend_num_notminimized
+</summary>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/plusend_num_notminimized"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>2-element Vector{Int32}:
+ 0
+ 0</code></pre>
+</div>
+</div>
+Number of newly added monomers to the filament plus ends since last minimization.
+</details>
+<details>
+<summary>
+🔢 num_cylinders
+</summary>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/num_cylinders"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>2-element Vector{Int32}:
+ 1
+ 1</code></pre>
+</div>
+</div>
+Number of cylinders per filament.
+</details>
+<details>
+<summary>
+🔢 num_monomers
+</summary>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/num_monomers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>2-element Vector{Int32}:
+ 9
+ 9</code></pre>
+</div>
+</div>
+Number of monomers per filament.
+</details>
+<details>
+<summary>
+🔢 node_mids
+</summary>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/node_mids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>2-element Vector{Int32}:
+ 1
+ 1</code></pre>
+</div>
+</div>
+<p>The monomer ids at the minus ends of the cylinders.</p>
+<pre><code>                                   |
+                        -----+-----|-----+-----
+    minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
+                        -----+-----|-----+-----
+                                   |
+                                   ^ A nodeposition is indicated by the line.</code></pre>
+The monomer id with parenthesis (M) will in <code>node_mids</code>
+</details>
+<details>
+<summary>
+🔢 nodepositions
+</summary>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/nodepositions"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>4×3 Matrix{Float64}:
+ 470.0  200.0  200.0
+ 560.0  200.0  200.0
+ 480.0  201.0  200.0
+ 570.0  201.0  200.0</code></pre>
+</div>
+</div>
+Each row is a node position in nm.
+</details>
+<details>
+<summary>
+🔢 monomerstates
+</summary>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"filaments/1/monomerstates"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>18-element Vector{UInt8}:
+ 0x01
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x05
+ 0x01
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x02
+ 0x05</code></pre>
+</div>
+</div>
+Monomer states.
+</details>
+</div>
+</div>
+</div>
+<!--##################### FILAMENTTYPE END ##################-->
+</div>
+</div>
+</div>
+<!--##################### FILAMENTS END ##################-->
+<!--##################### LINKERS ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+linkers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>There is a subgroup for each linker type with at least one linker. The subgroups are named by their linker type id. For example:</p>
+<!--##################### LINKERTYPE ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+📂 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!-- Attributes -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🏷️
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+num_linkers
+</summary>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"linkers/1"</span>])[<span class="st">"num_linkers"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>2</code></pre>
+</div>
+</div>
+Number of linkers of this type.
+</details>
+</div>
+</div>
+</div>
+<!-- Attributes End -->
+<!--##################### ENDNAMES ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+📂 endnames
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The pairs of monomers that the linkers are linked between. The monomer pairs are directed and unique.</p>
+<details>
+<summary>
+🔢 minusend/ftid
+</summary>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>2-element Vector{Int64}:
+ 1
+ 1</code></pre>
+</div>
+</div>
+Minus end filament type id.
+</details>
+<details>
+<summary>
+🔢 minusend/fid
+</summary>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>2-element Vector{Int64}:
+ 1
+ 1</code></pre>
+</div>
+</div>
+Minus end filament id.
+</details>
+<details>
+<summary>
+🔢 minusend/mid
+</summary>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>2-element Vector{Int64}:
+ 2
+ 2</code></pre>
+</div>
+</div>
+Minus end monomer id.
+</details>
+<details>
+<summary>
+🔢 plusend/ftid
+</summary>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>2-element Vector{Int64}:
+ 1
+ 1</code></pre>
+</div>
+</div>
+Plus end filament type id.
+</details>
+<details>
+<summary>
+🔢 plusend/fid
+</summary>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>2-element Vector{Int64}:
+ 1
+ 2</code></pre>
+</div>
+</div>
+Plus end filament id.
+</details>
+<details>
+<summary>
+🔢 plusend/mid
+</summary>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>2-element Vector{Int64}:
+ 2
+ 2</code></pre>
+</div>
+</div>
+Plus end monomer id.
+</details>
+</div>
+</div>
+</div>
+<!--##################### ENDNAMES END ##################-->
+<details>
+<summary>
+📂 state
+</summary>
+<p>Default: default linkerstate</p>
+<p>See <a href="../docstrings/5d2d78f0a619d47e.qmd"><code>MEDYAN.chem_setlinkerstate!</code></a> and <a href="../docstrings/754f6bce456bc62b.qmd"><code>MEDYAN.LinkerState</code></a></p>
+<p>The state of a linker, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"linkers/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_r6HVBV)
+├─ 📂 1
+│  ├─ 🏷️ name
+│  ├─ 🔢 1
+│  │  └─ 🏷️ name
+│  └─ 🔢 2
+│     └─ 🏷️ name
+├─ 📂 2
+│  ├─ 🏷️ name
+│  └─ 📂 1
+│     ├─ 🏷️ name
+│     ├─ 🔢 1
+│     │  └─ 🏷️ name
+│     ├─ 🔢 2
+│     │  └─ 🏷️ name
+│     └─ 🔢 3
+│        └─ 🏷️ name
+└─ 🔢 3
+   └─ 🏷️ name</code></pre>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
+<!--##################### LINKERTYPE END ##################-->
+</div>
+</div>
+</div>
+<!--##################### LINKERS END ##################-->
+<!--##################### MECHBOUNDARY ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+mechboundary
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
+<p>See <a href="../docstrings/b5e26b6b690256aa.qmd"><code>MEDYAN.set_mechboundary!</code></a></p>
+<details>
+<summary>
+🔢 capsules
+</summary>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"mechboundary/capsules"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>8×1 Matrix{Float64}:
+     0.0
+     0.0
+     0.0
+     0.0
+     0.0
+     0.0
+ 10000.0
+     1.0</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+Each column of the dataset is a capsule.
+</details>
+<details>
+<summary>
+🔢 planes
+</summary>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"mechboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>4×6 Matrix{Float64}:
+ -10.0     10.0    0.0     0.0    0.0     0.0
+   0.0      0.0  -10.0    10.0    0.0     0.0
+   0.0      0.0    0.0     0.0  -10.0    10.0
+   0.0  20000.0    0.0  5000.0    0.0  5000.0</code></pre>
+</div>
+</div>
+<p>Default: Empty</p>
+Each column of the dataset is a plane.
+</details>
+</div>
+</div>
+</div>
+<!--##################### MECHBOUNDARY END ##################-->
+<!--##################### MEMBRANES ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+membranes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!-- Attributes -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🏷️
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+num_membranes
+</summary>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"membranes"</span>])[<span class="st">"num_membranes"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>1</code></pre>
+</div>
+</div>
+Total number of membranes.
+</details>
+<details>
+<summary>
+position_scale
+</summary>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"membranes"</span>])[<span class="st">"position_scale"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>Default: No effect</p>
+Positions were rounded to the nearest 2^-position_scale nm when saved.
+</details>
+</div>
+</div>
+</div>
+<!-- Attributes End -->
+<p>There is a subgroup for each membrane. The subgroups are named by the membrane index. For example:</p>
+<!--##################### MEMBRANE ##################-->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+📂 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<!-- Attributes -->
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+🏷️
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<details>
+<summary>
+type_id
+</summary>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"membranes/1"</span>])[<span class="st">"type_id"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>1</code></pre>
+</div>
+</div>
+This membrane’s type id.
+</details>
+</div>
+</div>
+</div>
+<!-- Attributes End -->
+<details>
+<summary>
+🔢 trilist
+</summary>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"membranes/1/trilist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>3×404 Matrix{Int64}:
+  46   52  139   23  75   47  92  133  …   99  154   62   20   17  130  109
+ 103  200  178  170  51   53  15  180      38   34   28   36  135  164  164
+  31  121   67  125  60  145  65    3     163  124  138  175   57   80  162</code></pre>
+</div>
+</div>
+Each column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.
+</details>
+<details>
+<summary>
+🔢 vertlist
+</summary>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"membranes/1/vertlist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>3×204 Matrix{Float64}:
+ 1335.88  1429.25  1688.25  1664.0   …  1522.25  1343.62  1418.25  1314.88
+ 1572.12  1588.75  1450.88  1476.5      1675.62  1453.0   1562.62  1474.25
+ 1580.62  1341.25  1484.88  1395.62     1582.75  1607.25  1666.38  1441.62</code></pre>
+</div>
+</div>
+Each column is a vertex coordinate in nm.
+</details>
+</div>
+</div>
+</div>
+<!--##################### MEMBRANE END ##################-->
+</div>
+</div>
+</div>
+<!--##################### MEMBRANES END ##################-->
+</div>
+</div>
+</div>
+<!--##################### SNAPSHOT GROUPS END ##################-->
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/reference/fileformats.html</loc>
+    <lastmod>2022-08-16T15:38:53.643Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/reference/sitesinfo.html</loc>
+    <lastmod>2022-08-16T15:38:54.459Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/reference/index.html</loc>
+    <lastmod>2022-08-16T15:38:54.863Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/index.html</loc>
+    <lastmod>2022-08-16T15:38:55.511Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/tutorials/index.html</loc>
+    <lastmod>2022-08-16T15:38:56.115Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/howto/index.html</loc>
+    <lastmod>2022-08-16T15:38:56.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/docstrings.html</loc>
+    <lastmod>2022-08-16T15:38:56.775Z</lastmod>
+  </url>
+  <url>
+    <loc>https://medyan-dev.github.io/julia-docs/dev/explanations.html</loc>
+    <lastmod>2022-08-16T15:38:57.103Z</lastmod>
+  </url>
+</urlset>
