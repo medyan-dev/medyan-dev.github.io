@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.140">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -182,33 +189,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#srccontext.jl" id="toc-srccontext.jl" class="nav-link active" data-scroll-target="#srccontext.jl">src/context.jl</a>
   <ul class="collapse">
-  <li><a href="#4ca5eb8401ab10b2" id="toc-4ca5eb8401ab10b2" class="nav-link" data-scroll-target="#4ca5eb8401ab10b2"><span><code>Base.copy</code></span></a></li>
-  <li><a href="#a6dd8f73f68a3759" id="toc-a6dd8f73f68a3759" class="nav-link" data-scroll-target="#a6dd8f73f68a3759"><span><code>MEDYAN.set_time!</code></span></a></li>
-  <li><a href="#38c20ab68ab8bf1a" id="toc-38c20ab68ab8bf1a" class="nav-link" data-scroll-target="#38c20ab68ab8bf1a"><span><code>MEDYAN.set_enable_cylinder_volume_exclusion!</code></span></a></li>
-  <li><a href="#0aa6e4e95c60f9f7" id="toc-0aa6e4e95c60f9f7" class="nav-link" data-scroll-target="#0aa6e4e95c60f9f7"><span><code>MEDYAN.set_chemboundary!</code></span></a></li>
-  <li><a href="#b5e26b6b690256aa" id="toc-b5e26b6b690256aa" class="nav-link" data-scroll-target="#b5e26b6b690256aa"><span><code>MEDYAN.set_mechboundary!</code></span></a></li>
-  <li><a href="#2264be341b81a600" id="toc-2264be341b81a600" class="nav-link" data-scroll-target="#2264be341b81a600"><span><code>MEDYAN.chem_adddiffusingcount!</code></span></a></li>
-  <li><a href="#0286edfebf8ea5e6" id="toc-0286edfebf8ea5e6" class="nav-link" data-scroll-target="#0286edfebf8ea5e6"><span><code>MEDYAN.chem_addfixedcount!</code></span></a></li>
-  <li><a href="#9d3ddfabbceeef92" id="toc-9d3ddfabbceeef92" class="nav-link" data-scroll-target="#9d3ddfabbceeef92"><span><code>MEDYAN.adddiffusingcount_rand!</code></span></a></li>
-  <li><a href="#7b719dca63a36b1b" id="toc-7b719dca63a36b1b" class="nav-link" data-scroll-target="#7b719dca63a36b1b"><span><code>MEDYAN.addmembranediffusingcount_rand!</code></span></a></li>
-  <li><a href="#432ec27232aad41e" id="toc-432ec27232aad41e" class="nav-link" data-scroll-target="#432ec27232aad41e"><span><code>MEDYAN.newfilament_rand!</code></span></a></li>
-  <li><a href="#dda22fac5c555b9e" id="toc-dda22fac5c555b9e" class="nav-link" data-scroll-target="#dda22fac5c555b9e"><span><code>MEDYAN.run_chemistry!</code></span></a></li>
-  <li><a href="#418304748816268d" id="toc-418304748816268d" class="nav-link" data-scroll-target="#418304748816268d"><span><code>Base.empty!</code></span></a></li>
-  <li><a href="#ed756af0de4db0ca" id="toc-ed756af0de4db0ca" class="nav-link" data-scroll-target="#ed756af0de4db0ca"><span><code>MEDYAN.chem_setmonomerstate!</code></span></a></li>
-  <li><a href="#7a5e88ac36e4ccbf" id="toc-7a5e88ac36e4ccbf" class="nav-link" data-scroll-target="#7a5e88ac36e4ccbf"><span><code>MEDYAN.chem_polymerize!</code></span></a></li>
-  <li><a href="#a5f262191e484dd4" id="toc-a5f262191e484dd4" class="nav-link" data-scroll-target="#a5f262191e484dd4"><span><code>MEDYAN.chem_depolymerize!</code></span></a></li>
-  <li><a href="#475f8052be7cf4cb" id="toc-475f8052be7cf4cb" class="nav-link" data-scroll-target="#475f8052be7cf4cb"><span><code>MEDYAN.chem_newlinker!</code></span></a></li>
-  <li><a href="#c7e61a0098220c5d" id="toc-c7e61a0098220c5d" class="nav-link" data-scroll-target="#c7e61a0098220c5d"><span><code>MEDYAN.chem_removelinker!</code></span></a></li>
-  <li><a href="#5d2d78f0a619d47e" id="toc-5d2d78f0a619d47e" class="nav-link" data-scroll-target="#5d2d78f0a619d47e"><span><code>MEDYAN.chem_setlinkerstate!</code></span></a></li>
-  <li><a href="#7a45f2860949bee3" id="toc-7a45f2860949bee3" class="nav-link" data-scroll-target="#7a45f2860949bee3"><span><code>MEDYAN.chem_newfilament!</code></span></a></li>
-  <li><a href="#f36888837f14bad7" id="toc-f36888837f14bad7" class="nav-link" data-scroll-target="#f36888837f14bad7"><span><code>MEDYAN.chem_removefilament!</code></span></a></li>
-  <li><a href="#a714b4a1c87062be" id="toc-a714b4a1c87062be" class="nav-link" data-scroll-target="#a714b4a1c87062be"><span><code>MEDYAN.newmembrane!</code></span></a></li>
+  <li><a href="#4ca5eb8401ab10b2" id="toc-4ca5eb8401ab10b2" class="nav-link" data-scroll-target="#4ca5eb8401ab10b2"><code>Base.copy</code></a></li>
+  <li><a href="#a6dd8f73f68a3759" id="toc-a6dd8f73f68a3759" class="nav-link" data-scroll-target="#a6dd8f73f68a3759"><code>MEDYAN.set_time!</code></a></li>
+  <li><a href="#38c20ab68ab8bf1a" id="toc-38c20ab68ab8bf1a" class="nav-link" data-scroll-target="#38c20ab68ab8bf1a"><code>MEDYAN.set_enable_cylinder_volume_exclusion!</code></a></li>
+  <li><a href="#0aa6e4e95c60f9f7" id="toc-0aa6e4e95c60f9f7" class="nav-link" data-scroll-target="#0aa6e4e95c60f9f7"><code>MEDYAN.set_chemboundary!</code></a></li>
+  <li><a href="#b5e26b6b690256aa" id="toc-b5e26b6b690256aa" class="nav-link" data-scroll-target="#b5e26b6b690256aa"><code>MEDYAN.set_mechboundary!</code></a></li>
+  <li><a href="#2264be341b81a600" id="toc-2264be341b81a600" class="nav-link" data-scroll-target="#2264be341b81a600"><code>MEDYAN.chem_adddiffusingcount!</code></a></li>
+  <li><a href="#0286edfebf8ea5e6" id="toc-0286edfebf8ea5e6" class="nav-link" data-scroll-target="#0286edfebf8ea5e6"><code>MEDYAN.chem_addfixedcount!</code></a></li>
+  <li><a href="#9d3ddfabbceeef92" id="toc-9d3ddfabbceeef92" class="nav-link" data-scroll-target="#9d3ddfabbceeef92"><code>MEDYAN.adddiffusingcount_rand!</code></a></li>
+  <li><a href="#7b719dca63a36b1b" id="toc-7b719dca63a36b1b" class="nav-link" data-scroll-target="#7b719dca63a36b1b"><code>MEDYAN.addmembranediffusingcount_rand!</code></a></li>
+  <li><a href="#432ec27232aad41e" id="toc-432ec27232aad41e" class="nav-link" data-scroll-target="#432ec27232aad41e"><code>MEDYAN.newfilament_rand!</code></a></li>
+  <li><a href="#dda22fac5c555b9e" id="toc-dda22fac5c555b9e" class="nav-link" data-scroll-target="#dda22fac5c555b9e"><code>MEDYAN.run_chemistry!</code></a></li>
+  <li><a href="#418304748816268d" id="toc-418304748816268d" class="nav-link" data-scroll-target="#418304748816268d"><code>Base.empty!</code></a></li>
+  <li><a href="#ed756af0de4db0ca" id="toc-ed756af0de4db0ca" class="nav-link" data-scroll-target="#ed756af0de4db0ca"><code>MEDYAN.chem_setmonomerstate!</code></a></li>
+  <li><a href="#7a5e88ac36e4ccbf" id="toc-7a5e88ac36e4ccbf" class="nav-link" data-scroll-target="#7a5e88ac36e4ccbf"><code>MEDYAN.chem_polymerize!</code></a></li>
+  <li><a href="#a5f262191e484dd4" id="toc-a5f262191e484dd4" class="nav-link" data-scroll-target="#a5f262191e484dd4"><code>MEDYAN.chem_depolymerize!</code></a></li>
+  <li><a href="#475f8052be7cf4cb" id="toc-475f8052be7cf4cb" class="nav-link" data-scroll-target="#475f8052be7cf4cb"><code>MEDYAN.chem_newlinker!</code></a></li>
+  <li><a href="#c7e61a0098220c5d" id="toc-c7e61a0098220c5d" class="nav-link" data-scroll-target="#c7e61a0098220c5d"><code>MEDYAN.chem_removelinker!</code></a></li>
+  <li><a href="#5d2d78f0a619d47e" id="toc-5d2d78f0a619d47e" class="nav-link" data-scroll-target="#5d2d78f0a619d47e"><code>MEDYAN.chem_setlinkerstate!</code></a></li>
+  <li><a href="#7a45f2860949bee3" id="toc-7a45f2860949bee3" class="nav-link" data-scroll-target="#7a45f2860949bee3"><code>MEDYAN.chem_newfilament!</code></a></li>
+  <li><a href="#f36888837f14bad7" id="toc-f36888837f14bad7" class="nav-link" data-scroll-target="#f36888837f14bad7"><code>MEDYAN.chem_removefilament!</code></a></li>
+  <li><a href="#a714b4a1c87062be" id="toc-a714b4a1c87062be" class="nav-link" data-scroll-target="#a714b4a1c87062be"><code>MEDYAN.newmembrane!</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/context.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -705,7 +712,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

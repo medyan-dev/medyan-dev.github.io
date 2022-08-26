@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.140">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -65,9 +70,11 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -148,7 +155,7 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -157,25 +164,25 @@ ul.task-list{list-style: none;}
   <li><a href="#filament-sites" id="toc-filament-sites" class="nav-link" data-scroll-target="#filament-sites">filament sites</a>
   <ul class="collapse">
   <li><a href="#required-functions" id="toc-required-functions" class="nav-link" data-scroll-target="#required-functions">Required Functions</a></li>
-  <li><a href="#built-in-filament-sites" id="toc-built-in-filament-sites" class="nav-link" data-scroll-target="#built-in-filament-sites"><span>Built-in filament sites</span></a></li>
+  <li><a href="#built-in-filament-sites" id="toc-built-in-filament-sites" class="nav-link" data-scroll-target="#built-in-filament-sites">Built-in filament sites</a></li>
   <li><a href="#related-functions-and-fields" id="toc-related-functions-and-fields" class="nav-link" data-scroll-target="#related-functions-and-fields">Related Functions and Fields</a></li>
   </ul></li>
   <li><a href="#filament-end-sites" id="toc-filament-end-sites" class="nav-link" data-scroll-target="#filament-end-sites">filament end sites</a>
   <ul class="collapse">
   <li><a href="#required-functions-1" id="toc-required-functions-1" class="nav-link" data-scroll-target="#required-functions-1">Required Functions</a></li>
-  <li><a href="#built-in-filament-end-sites" id="toc-built-in-filament-end-sites" class="nav-link" data-scroll-target="#built-in-filament-end-sites"><span>Built-in filament end sites</span></a></li>
+  <li><a href="#built-in-filament-end-sites" id="toc-built-in-filament-end-sites" class="nav-link" data-scroll-target="#built-in-filament-end-sites">Built-in filament end sites</a></li>
   <li><a href="#related-functions-and-fields-1" id="toc-related-functions-and-fields-1" class="nav-link" data-scroll-target="#related-functions-and-fields-1">Related Functions and Fields</a></li>
   </ul></li>
   <li><a href="#linker-sites" id="toc-linker-sites" class="nav-link" data-scroll-target="#linker-sites">linker sites</a>
   <ul class="collapse">
   <li><a href="#required-functions-2" id="toc-required-functions-2" class="nav-link" data-scroll-target="#required-functions-2">Required Functions</a></li>
-  <li><a href="#built-in-linker-sites" id="toc-built-in-linker-sites" class="nav-link" data-scroll-target="#built-in-linker-sites"><span>Built-in linker sites</span></a></li>
+  <li><a href="#built-in-linker-sites" id="toc-built-in-linker-sites" class="nav-link" data-scroll-target="#built-in-linker-sites">Built-in linker sites</a></li>
   <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
   </ul></li>
   <li><a href="#linkable-sites" id="toc-linkable-sites" class="nav-link" data-scroll-target="#linkable-sites">linkable sites</a>
   <ul class="collapse">
   <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
-  <li><a href="#built-in-linkable-sites" id="toc-built-in-linkable-sites" class="nav-link" data-scroll-target="#built-in-linkable-sites"><span>Built-in linkable sites</span></a></li>
+  <li><a href="#built-in-linkable-sites" id="toc-built-in-linkable-sites" class="nav-link" data-scroll-target="#built-in-linkable-sites">Built-in linkable sites</a></li>
   <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
   </ul></li>
   </ul></li>
@@ -426,7 +433,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

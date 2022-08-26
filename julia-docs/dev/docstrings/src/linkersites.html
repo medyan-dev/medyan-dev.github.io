@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.140">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -65,9 +70,11 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -119,18 +126,18 @@ ul.task-list{list-style: none;}
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#srclinkersites.jl" id="toc-srclinkersites.jl" class="nav-link active" data-scroll-target="#srclinkersites.jl">src/linkersites.jl</a>
   <ul class="collapse">
-  <li><a href="#b78927c847f31f1c" id="toc-b78927c847f31f1c" class="nav-link" data-scroll-target="#b78927c847f31f1c"><span><code>MEDYAN.LinkerSiteOne</code></span></a></li>
-  <li><a href="#a3cfa3bff223743d" id="toc-a3cfa3bff223743d" class="nav-link" data-scroll-target="#a3cfa3bff223743d"><span><code>MEDYAN.LinkerSiteCount</code></span></a></li>
-  <li><a href="#e34a7f650637c5cf" id="toc-e34a7f650637c5cf" class="nav-link" data-scroll-target="#e34a7f650637c5cf"><span><code>MEDYAN.LinkerSiteMonomerStateMatch</code></span></a></li>
-  <li><a href="#6e12ca754f13e601" id="toc-6e12ca754f13e601" class="nav-link" data-scroll-target="#6e12ca754f13e601"><span><code>MEDYAN.LinkerSiteSlipBond</code></span></a></li>
-  <li><a href="#8344ea3a27bb217f" id="toc-8344ea3a27bb217f" class="nav-link" data-scroll-target="#8344ea3a27bb217f"><span><code>MEDYAN.LinkerSiteMotorCatch</code></span></a></li>
-  <li><a href="#65101c73983f0beb" id="toc-65101c73983f0beb" class="nav-link" data-scroll-target="#65101c73983f0beb"><span><code>MEDYAN.LinkerSiteMotorStall</code></span></a></li>
+  <li><a href="#b78927c847f31f1c" id="toc-b78927c847f31f1c" class="nav-link" data-scroll-target="#b78927c847f31f1c"><code>MEDYAN.LinkerSiteOne</code></a></li>
+  <li><a href="#a3cfa3bff223743d" id="toc-a3cfa3bff223743d" class="nav-link" data-scroll-target="#a3cfa3bff223743d"><code>MEDYAN.LinkerSiteCount</code></a></li>
+  <li><a href="#e34a7f650637c5cf" id="toc-e34a7f650637c5cf" class="nav-link" data-scroll-target="#e34a7f650637c5cf"><code>MEDYAN.LinkerSiteMonomerStateMatch</code></a></li>
+  <li><a href="#6e12ca754f13e601" id="toc-6e12ca754f13e601" class="nav-link" data-scroll-target="#6e12ca754f13e601"><code>MEDYAN.LinkerSiteSlipBond</code></a></li>
+  <li><a href="#8344ea3a27bb217f" id="toc-8344ea3a27bb217f" class="nav-link" data-scroll-target="#8344ea3a27bb217f"><code>MEDYAN.LinkerSiteMotorCatch</code></a></li>
+  <li><a href="#65101c73983f0beb" id="toc-65101c73983f0beb" class="nav-link" data-scroll-target="#65101c73983f0beb"><code>MEDYAN.LinkerSiteMotorStall</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/linkersites.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -333,7 +340,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
