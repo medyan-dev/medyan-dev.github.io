@@ -4,8 +4,14 @@
     "items": [
       "/docstrings/a21e771ed8ea7d6f.html",
       "/docstrings/4ca5eb8401ab10b2.html",
+      "/docstrings/56ef520341df3c06.html",
       "/docstrings/418304748816268d.html",
+      "/docstrings/f593dde852851bc8.html",
+      "/docstrings/e7d3f961991e2663.html",
+      "/docstrings/5228367cd62c0bf2.html",
       "/docstrings/7ea31a421de7d258.html",
+      "/docstrings/8715d52e2302aaeb.html",
+      "/docstrings/725f722fff4cfa6d.html",
       "/docstrings/fe4b7cc2dceb0431.html",
       "/docstrings/7a32ac96fb4364ea.html",
       "/docstrings/0d87ce44fed17b2c.html",
@@ -73,7 +79,8 @@
       "/docstrings/src/minimize_energy.html",
       "/docstrings/src/snapshot.html",
       "/docstrings/src/sysdefs.html",
-      "/docstrings/src/util/math/cuboidslicing.html"
+      "/docstrings/src/util/math/cuboidslicing.html",
+      "/docstrings/src/util/stableindex.html"
     ]
   }
 ]
