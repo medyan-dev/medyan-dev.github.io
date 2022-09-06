@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="file-formats" class="level1">
 <h1>File Formats</h1>
 <p>MEDYAN.jl uses HDF5 with Blosc compression for saving trajectories and snapshots.</p>
-<p>In HDF5.jl Blosc is built in.</p>
+<p>In HDF5.jl Blosc sometimes needs to be installed by running <code>import H5Zblosc</code> before reading a compressed dataset.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -872,7 +872,7 @@ Plus end monomer id.
 <div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"linkers/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<pre><code>📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_zM9etAfAZI)
+<pre><code>📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_WfoliHGDuV)
 ├─ 📂 1
 │  ├─ 🏷️ name
 │  ├─ 🔢 1
