@@ -196,6 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#medyan.set_nodepositions" id="toc-medyan.set_nodepositions" class="nav-link active" data-scroll-target="#medyan.set_nodepositions"><code>MEDYAN.set_nodepositions!</code></a>
   <ul class="collapse">
   <li><a href="#855de561ce563125" id="toc-855de561ce563125" class="nav-link" data-scroll-target="#855de561ce563125"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, AbstractVector}</code></a></li>
+  <li><a href="#b6270252fa6e1cec" id="toc-b6270252fa6e1cec" class="nav-link" data-scroll-target="#b6270252fa6e1cec"><code data-shortcodes="false">Tuple{AbstractVector{StaticArraysCore.SVector{3, Float64}}, AbstractVector{StaticArraysCore.SVector{3, Float64}}, Int64, Int64, Int64}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/1248ce32cf49419c.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -217,6 +218,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_nodepositions!</span>(f, nodepos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Set filament chembeadpositions based on node positions.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="b6270252fa6e1cec" class="level2">
+<h2 class="anchored" data-anchor-id="b6270252fa6e1cec"><code data-shortcodes="false">Tuple{AbstractVector{StaticArraysCore.SVector{3, Float64}}, AbstractVector{StaticArraysCore.SVector{3, Float64}}, Int64, Int64, Int64}</code></h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Set <code>chembeadpositions</code> based on <code>nodepos</code></p>
+<p>The indexes of <code>chembeadpositions</code> and <code>nodepos</code> must match</p>
+<p>All positions will be the same except the first and last which may be moved out if the chem cylinder isn’t full.</p>
 </div>
 </div>
 </div>
