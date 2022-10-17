@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – f36888837f14bad7</title>
+<title>MEDYAN.jl – d0affbbdfef6f</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,33 +193,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.chem_removefilament" id="toc-medyan.chem_removefilament" class="nav-link active" data-scroll-target="#medyan.chem_removefilament"><code>MEDYAN.chem_removefilament!</code></a>
+  <li><a href="#medyan.mon_position_plusvector" id="toc-medyan.mon_position_plusvector" class="nav-link active" data-scroll-target="#medyan.mon_position_plusvector"><code>MEDYAN.mon_position_plusvector</code></a>
   <ul class="collapse">
-  <li><a href="#4896731d1a77eb1c" id="toc-4896731d1a77eb1c" class="nav-link" data-scroll-target="#4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
+  <li><a href="#b61fbfabd1561c26" id="toc-b61fbfabd1561c26" class="nav-link" data-scroll-target="#b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></a></li>
+  <li><a href="#ebde317b37bce68d" id="toc-ebde317b37bce68d" class="nav-link" data-scroll-target="#ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/f36888837f14bad7.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/927d0affbbdfef6f.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.chem_removefilament" class="level1">
-<h1><code>MEDYAN.chem_removefilament!</code></h1>
-<section id="4896731d1a77eb1c" class="level2">
-<h2 class="anchored" data-anchor-id="4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
+<section id="medyan.mon_position_plusvector" class="level1">
+<h1><code>MEDYAN.mon_position_plusvector</code></h1>
+<section id="b61fbfabd1561c26" class="level2">
+<h2 class="anchored" data-anchor-id="b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removefilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, fid<span class="op">=</span><span class="fu">maximum</span>(<span class="fu">filtype_fil_ids</span>(c, ftid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
-<p>By default the last added filament with type id <code>ftid</code> is removed.</p>
-<p>Warn if any monomers on the filament are referenced by any linkers, and remove those linkers.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflinkerremoved=false</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return tuple of <code>get_monomerposition</code> and <code>get_monomerplusvector</code></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ebde317b37bce68d" class="level2">
+<h2 class="anchored" data-anchor-id="ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}, StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return a tuple of position and plusvector at a monomer.</p>
 </div>
 </div>
 </div>

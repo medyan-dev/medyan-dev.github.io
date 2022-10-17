@@ -197,13 +197,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#de543e2e5bf40a60" id="toc-de543e2e5bf40a60" class="nav-link" data-scroll-target="#de543e2e5bf40a60"><code>MEDYAN.get_nodepositions</code></a></li>
   <li><a href="#1248ce32cf49419c" id="toc-1248ce32cf49419c" class="nav-link" data-scroll-target="#1248ce32cf49419c"><code>MEDYAN.set_nodepositions!</code></a></li>
-  <li><a href="#6538a4542cb2caf8" id="toc-6538a4542cb2caf8" class="nav-link" data-scroll-target="#6538a4542cb2caf8"><code>MEDYAN.get_node_mids</code></a></li>
+  <li><a href="#b1d3d66a81296343" id="toc-b1d3d66a81296343" class="nav-link" data-scroll-target="#b1d3d66a81296343"><code>MEDYAN.fil_node_mon_ids</code></a></li>
   <li><a href="#1e504e05fb11b248" id="toc-1e504e05fb11b248" class="nav-link" data-scroll-target="#1e504e05fb11b248"><code>MEDYAN.firstmid</code></a></li>
   <li><a href="#47cf8706f97ab960" id="toc-47cf8706f97ab960" class="nav-link" data-scroll-target="#47cf8706f97ab960"><code>MEDYAN.lastmid</code></a></li>
   <li><a href="#ca0b2b5bb10fd927" id="toc-ca0b2b5bb10fd927" class="nav-link" data-scroll-target="#ca0b2b5bb10fd927"><code>MEDYAN.get_monomerstate</code></a></li>
+  <li><a href="#6c16efb303a60058" id="toc-6c16efb303a60058" class="nav-link" data-scroll-target="#6c16efb303a60058"><code>MEDYAN.mon_3states</code></a></li>
   <li><a href="#1a7fc5d763de32de" id="toc-1a7fc5d763de32de" class="nav-link" data-scroll-target="#1a7fc5d763de32de"><code>MEDYAN.get_monomerposition</code></a></li>
   <li><a href="#ade4645c6b27892c" id="toc-ade4645c6b27892c" class="nav-link" data-scroll-target="#ade4645c6b27892c"><code>MEDYAN.get_monomerplusvector</code></a></li>
-  <li><a href="#113595e6b006923a" id="toc-113595e6b006923a" class="nav-link" data-scroll-target="#113595e6b006923a"><code>MEDYAN.get_monomer_position_plusvector</code></a></li>
+  <li><a href="#927d0affbbdfef6f" id="toc-927d0affbbdfef6f" class="nav-link" data-scroll-target="#927d0affbbdfef6f"><code>MEDYAN.mon_position_plusvector</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filamentmodels/filamentdata.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -243,15 +244,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="6538a4542cb2caf8" class="level2">
-<h2 class="anchored" data-anchor-id="6538a4542cb2caf8"><a href="../../../docstrings/6538a4542cb2caf8.html"><code>MEDYAN.get_node_mids</code></a></h2>
+<section id="b1d3d66a81296343" class="level2">
+<h2 class="anchored" data-anchor-id="b1d3d66a81296343"><a href="../../../docstrings/b1d3d66a81296343.html"><code>MEDYAN.fil_node_mon_ids</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_node_mids</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the node monomer ids of the filament</p>
 </div>
 </div>
@@ -299,6 +300,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
+<section id="6c16efb303a60058" class="level2">
+<h2 class="anchored" data-anchor-id="6c16efb303a60058"><a href="../../../docstrings/6c16efb303a60058.html"><code>MEDYAN.mon_3states</code></a></h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_3states</span>(f<span class="op">::</span><span class="dt">FilamentData</span>, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return a tuple of three monomer states centered at monomer id <code>mid</code> in filament data <code>f</code>. If a monomer doesn’t exist, its state will be zero</p>
+</div>
+</div>
+</div>
+</section>
 <section id="1a7fc5d763de32de" class="level2">
 <h2 class="anchored" data-anchor-id="1a7fc5d763de32de"><a href="../../../docstrings/1a7fc5d763de32de.html"><code>MEDYAN.get_monomerposition</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -307,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomerposition</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomerposition</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the monomer position at monomer id <code>mid</code> in filament data <code>f</code>.</p>
 </div>
 </div>
@@ -321,21 +336,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomerplusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomerplusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the monomer plus unit vector at monomer id <code>mid</code> in filament data <code>f</code>. The plus vector points parallel to the filament axis towards the plus end.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="113595e6b006923a" class="level2">
-<h2 class="anchored" data-anchor-id="113595e6b006923a"><a href="../../../docstrings/113595e6b006923a.html"><code>MEDYAN.get_monomer_position_plusvector</code></a></h2>
+<section id="927d0affbbdfef6f" class="level2">
+<h2 class="anchored" data-anchor-id="927d0affbbdfef6f"><a href="../../../docstrings/927d0affbbdfef6f.html"><code>MEDYAN.mon_position_plusvector</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomer_position_plusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return tuple of <code>get_monomerposition</code> and <code>get_monomerplusvector</code></p>
 </div>
 </div>

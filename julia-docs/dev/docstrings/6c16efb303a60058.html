@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – e6b006923a</title>
+<title>MEDYAN.jl – c16efb303a60058</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,20 +193,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.get_monomer_position_plusvector" id="toc-medyan.get_monomer_position_plusvector" class="nav-link active" data-scroll-target="#medyan.get_monomer_position_plusvector"><code>MEDYAN.get_monomer_position_plusvector</code></a>
+  <li><a href="#medyan.mon_3states" id="toc-medyan.mon_3states" class="nav-link active" data-scroll-target="#medyan.mon_3states"><code>MEDYAN.mon_3states</code></a>
   <ul class="collapse">
   <li><a href="#b61fbfabd1561c26" id="toc-b61fbfabd1561c26" class="nav-link" data-scroll-target="#b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></a></li>
+  <li><a href="#ebde317b37bce68d" id="toc-ebde317b37bce68d" class="nav-link" data-scroll-target="#ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/113595e6b006923a.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/6c16efb303a60058.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.get_monomer_position_plusvector" class="level1">
-<h1><code>MEDYAN.get_monomer_position_plusvector</code></h1>
+<section id="medyan.mon_3states" class="level1">
+<h1><code>MEDYAN.mon_3states</code></h1>
 <section id="b61fbfabd1561c26" class="level2">
 <h2 class="anchored" data-anchor-id="b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -215,8 +216,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_monomer_position_plusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return tuple of <code>get_monomerposition</code> and <code>get_monomerplusvector</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_3states</span>(f<span class="op">::</span><span class="dt">FilamentData</span>, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return a tuple of three monomer states centered at monomer id <code>mid</code> in filament data <code>f</code>. If a monomer doesn’t exist, its state will be zero</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ebde317b37bce68d" class="level2">
+<h2 class="anchored" data-anchor-id="ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_3states</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">UInt8</span>, <span class="dt">UInt8</span>, <span class="dt">UInt8</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return a tuple of three monomer states centered at a monomer.</p>
+<p>If a monomer doesn’t exist, its state will be zero</p>
 </div>
 </div>
 </div>

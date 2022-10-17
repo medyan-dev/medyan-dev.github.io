@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – a4542cb2caf8</title>
+<title>MEDYAN.jl – a66637eb50781</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,44 +193,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.get_node_mids" id="toc-medyan.get_node_mids" class="nav-link active" data-scroll-target="#medyan.get_node_mids"><code>MEDYAN.get_node_mids</code></a>
+  <li><a href="#medyan.fil_node_positions" id="toc-medyan.fil_node_positions" class="nav-link active" data-scroll-target="#medyan.fil_node_positions"><code>MEDYAN.fil_node_positions</code></a>
   <ul class="collapse">
-  <li><a href="#fbf2035ca2136b09" id="toc-fbf2035ca2136b09" class="nav-link" data-scroll-target="#fbf2035ca2136b09"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData}</code></a></li>
-  <li><a href="#9939b1f67b512cce" id="toc-9939b1f67b512cce" class="nav-link" data-scroll-target="#9939b1f67b512cce"><code data-shortcodes="false">Tuple{Int64, Int64, Int64}</code></a></li>
+  <li><a href="#481ec25ee4de4849" id="toc-481ec25ee4de4849" class="nav-link" data-scroll-target="#481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/6538a4542cb2caf8.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/618a66637eb50781.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.get_node_mids" class="level1">
-<h1><code>MEDYAN.get_node_mids</code></h1>
-<section id="fbf2035ca2136b09" class="level2">
-<h2 class="anchored" data-anchor-id="fbf2035ca2136b09"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData}</code></h2>
+<section id="medyan.fil_node_positions" class="level1">
+<h1><code>MEDYAN.fil_node_positions</code></h1>
+<section id="481ec25ee4de4849" class="level2">
+<h2 class="anchored" data-anchor-id="481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_node_mids</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the node monomer ids of the filament</p>
-</div>
-</div>
-</div>
-</section>
-<section id="9939b1f67b512cce" class="level2">
-<h2 class="anchored" data-anchor-id="9939b1f67b512cce"><code data-shortcodes="false">Tuple{Int64, Int64, Int64}</code></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Return the node monomer ids of the filament</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_positions</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return the node positions of the filament</p>
 </div>
 </div>
 </div>
