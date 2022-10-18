@@ -195,7 +195,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#medyan.mon_position_plusvector" id="toc-medyan.mon_position_plusvector" class="nav-link active" data-scroll-target="#medyan.mon_position_plusvector"><code>MEDYAN.mon_position_plusvector</code></a>
   <ul class="collapse">
-  <li><a href="#b61fbfabd1561c26" id="toc-b61fbfabd1561c26" class="nav-link" data-scroll-target="#b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></a></li>
   <li><a href="#ebde317b37bce68d" id="toc-ebde317b37bce68d" class="nav-link" data-scroll-target="#ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></a></li>
   </ul></li>
   </ul>
@@ -208,20 +207,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="medyan.mon_position_plusvector" class="level1">
 <h1><code>MEDYAN.mon_position_plusvector</code></h1>
-<section id="b61fbfabd1561c26" class="level2">
-<h2 class="anchored" data-anchor-id="b61fbfabd1561c26"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData, Any}</code></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(f, mid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return tuple of <code>get_monomerposition</code> and <code>get_monomerplusvector</code></p>
-</div>
-</div>
-</div>
-</section>
 <section id="ebde317b37bce68d" class="level2">
 <h2 class="anchored" data-anchor-id="ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -230,10 +215,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}, StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}, StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a tuple of position and plusvector at a monomer.</p>
 </div>
 </div>

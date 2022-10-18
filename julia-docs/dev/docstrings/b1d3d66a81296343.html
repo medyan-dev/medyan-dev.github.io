@@ -195,8 +195,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#medyan.fil_node_mon_ids" id="toc-medyan.fil_node_mon_ids" class="nav-link active" data-scroll-target="#medyan.fil_node_mon_ids"><code>MEDYAN.fil_node_mon_ids</code></a>
   <ul class="collapse">
-  <li><a href="#fbf2035ca2136b09" id="toc-fbf2035ca2136b09" class="nav-link" data-scroll-target="#fbf2035ca2136b09"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData}</code></a></li>
-  <li><a href="#9939b1f67b512cce" id="toc-9939b1f67b512cce" class="nav-link" data-scroll-target="#9939b1f67b512cce"><code data-shortcodes="false">Tuple{Int64, Int64, Int64}</code></a></li>
   <li><a href="#481ec25ee4de4849" id="toc-481ec25ee4de4849" class="nav-link" data-scroll-target="#481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></a></li>
   </ul></li>
   </ul>
@@ -209,33 +207,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="medyan.fil_node_mon_ids" class="level1">
 <h1><code>MEDYAN.fil_node_mon_ids</code></h1>
-<section id="fbf2035ca2136b09" class="level2">
-<h2 class="anchored" data-anchor-id="fbf2035ca2136b09"><code data-shortcodes="false">Tuple{MEDYAN.FilamentData}</code></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the node monomer ids of the filament</p>
-</div>
-</div>
-</div>
-</section>
-<section id="9939b1f67b512cce" class="level2">
-<h2 class="anchored" data-anchor-id="9939b1f67b512cce"><code data-shortcodes="false">Tuple{Int64, Int64, Int64}</code></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Return the node monomer ids of the filament</p>
-</div>
-</div>
-</div>
-</section>
 <section id="481ec25ee4de4849" class="level2">
 <h2 class="anchored" data-anchor-id="481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -244,21 +215,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the node monomer ids of the filament.</p>
 <p>The <code>fil_node_mon_ids</code> are the monomer ids at (slightly plus side of) the <code>fil_node_positions</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-----+-----|-----+-----</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  minus <span class="kw">end</span> <span class="op">&lt;----</span>       M  <span class="op">|</span>  M  <span class="op">|</span> (M) <span class="op">|</span>  M        <span class="op">----&gt;</span> plus <span class="kw">end</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-----+-----|-----+-----</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">^</span> A node position is indicated by the line.</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>The monomer id with parenthesis (M) will <span class="kw">in</span> <span class="ss">`fil_node_mon_ids`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-----+-----|-----+-----</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  minus <span class="kw">end</span> <span class="op">&lt;----</span>       M  <span class="op">|</span>  M  <span class="op">|</span> (M) <span class="op">|</span>  M        <span class="op">----&gt;</span> plus <span class="kw">end</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-----+-----|-----+-----</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">^</span> A node position is indicated by the line.</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>The monomer id with parenthesis (M) will <span class="kw">in</span> <span class="ss">`fil_node_mon_ids`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The first monomer id is the first monomer id on the filament. The last monomer id is the last monomer id on the filament + 1</p>
 </div>
 </div>
