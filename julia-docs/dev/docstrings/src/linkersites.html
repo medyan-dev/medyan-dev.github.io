@@ -185,11 +185,13 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container">
 <p>Returns 1.0 if the monomer states match, otherwise, returns 0.0.</p>
 <ul>
-<li><p><code>minusstate::Tuple{UInt8, UInt8, UInt8}</code></p>
-<p>minus end monomer state</p></li>
-<li><p><code>plusstate::Tuple{UInt8, UInt8, UInt8}</code></p>
-<p>plus end monomer state</p></li>
+<li><code>minusstate::Tuple{UInt8, UInt8, UInt8}</code></li>
 </ul>
+<p>: minus end monomer state</p>
+<ul>
+<li><code>plusstate::Tuple{UInt8, UInt8, UInt8}</code></li>
+</ul>
+<p>: plus end monomer state</p>
 </div>
 </div>
 </div>
@@ -205,11 +207,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Models unbinding rates based on the following exponential form of Bell et al, 1978: k0*exp(f/f0) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.</p>
 <p><code>linkersitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the linker hasn’t been minimized yet.</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>The charicteristic force magnitude. Units of pN</p></li>
-<li><p><code>k0::Float64</code></p>
-<p>Unbinding rate at zero force. Units of 1/s</p></li>
+<li><code>f0::Float64</code></li>
 </ul>
+<p>: The charicteristic force magnitude. Units of pN</p>
+<ul>
+<li><code>k0::Float64</code></li>
+</ul>
+<p>: Unbinding rate at zero force. Units of 1/s</p>
 </div>
 </div>
 </div>
@@ -226,15 +230,21 @@ ul.task-list li input[type="checkbox"] {
 <p>As the force increases, the motor unbinding rate decreases to a minimum of k0/10</p>
 <p><code>linkersitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the linker hasn’t been minimized yet. It assumes linkerstate.chemstate.numHeads exists for the linker.</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>single head characteristic unbinding force, units of pN/head</p></li>
-<li><p><code>onRate::Float64</code></p>
-<p>single head binding rate, units of 1/s</p></li>
-<li><p><code>offRate::Float64</code></p>
-<p>single head unbinding rate, units of 1/s</p></li>
-<li><p><code>β::Float64</code></p>
-<p>slope of head binding, units of (head)/(pN/head)</p></li>
+<li><code>f0::Float64</code></li>
 </ul>
+<p>: single head characteristic unbinding force, units of pN/head</p>
+<ul>
+<li><code>onRate::Float64</code></li>
+</ul>
+<p>: single head binding rate, units of 1/s</p>
+<ul>
+<li><code>offRate::Float64</code></li>
+</ul>
+<p>: single head unbinding rate, units of 1/s</p>
+<ul>
+<li><code>β::Float64</code></li>
+</ul>
+<p>: slope of head binding, units of (head)/(pN/head)</p>
 </div>
 </div>
 </div>
@@ -251,17 +261,25 @@ ul.task-list li input[type="checkbox"] {
 <p>As the motor work per step increases, its walking rate goes to zero.</p>
 <p>Returns the walking rate of one end. The callback can then sample which end to move, or reject the move.</p>
 <ul>
-<li><p><code>fs::Float64</code></p>
-<p>The stall force magnitude. Units of pN</p></li>
-<li><p><code>k0::Float64</code></p>
-<p>Walking rate of one end at zero force. Units of 1/s</p></li>
-<li><p><code>α::Float64</code></p>
-<p>Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</p></li>
-<li><p><code>walking_direction::Int32</code></p>
-<p>Motor walking direction, +1 is towards plus end, -1 is towards minus end</p></li>
-<li><p><code>isminusend::Bool</code></p>
-<p>which motor end does this represent</p></li>
+<li><code>fs::Float64</code></li>
 </ul>
+<p>: The stall force magnitude. Units of pN</p>
+<ul>
+<li><code>k0::Float64</code></li>
+</ul>
+<p>: Walking rate of one end at zero force. Units of 1/s</p>
+<ul>
+<li><code>α::Float64</code></li>
+</ul>
+<p>: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</p>
+<ul>
+<li><code>walking_direction::Int32</code></li>
+</ul>
+<p>: Motor walking direction, +1 is towards plus end, -1 is towards minus end</p>
+<ul>
+<li><code>isminusend::Bool</code></li>
+</ul>
+<p>: which motor end does this represent</p>
 </div>
 </div>
 </div>

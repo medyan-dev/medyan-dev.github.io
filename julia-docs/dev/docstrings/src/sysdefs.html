@@ -232,13 +232,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="callout-body-container">
 <ul>
-<li><p><code>ftid::Int64</code></p>
-<p>filament type id</p></li>
-<li><p><code>fid::Int64</code></p>
-<p>filament id</p></li>
-<li><p><code>mid::Int64</code></p>
-<p>monomer id</p></li>
+<li><code>ftid::Int64</code></li>
 </ul>
+<p>: filament type id</p>
+<ul>
+<li><code>fid::Int64</code></li>
+</ul>
+<p>: filament id</p>
+<ul>
+<li><code>mid::Int64</code></li>
+</ul>
+<p>: monomer id</p>
 </div>
 </div>
 </div>
@@ -253,13 +257,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>There is one instance of this per linker.</p>
 <ul>
-<li><p><code>chemstate::NamedTuple</code></p>
-<p>Other state.</p></li>
-<li><p><code>mechstate::NamedTuple</code></p>
-<p>Used in linker force calculation.</p></li>
-<li><p><code>is_minimized::Bool</code></p>
-<p>Set to true after minimization</p></li>
+<li><code>chemstate::NamedTuple</code></li>
 </ul>
+<p>: Other state.</p>
+<ul>
+<li><code>mechstate::NamedTuple</code></li>
+</ul>
+<p>: Used in linker force calculation.</p>
+<ul>
+<li><code>is_minimized::Bool</code></li>
+</ul>
+<p>: Set to true after minimization</p>
 </div>
 </div>
 </div>
@@ -274,11 +282,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>Linker Parameters, there is one instance of this per linker type</p>
 <ul>
-<li><p><code>defaultstate::MEDYAN.LinkerState</code></p></li>
-<li><p><code>mechparams::Any</code></p></li>
-<li><p><code>no_collide::Bool</code></p>
-<p>if true, allows cylinders this linker type connects and adjacent cylinders to clip</p></li>
+<li><code>defaultstate::MEDYAN.LinkerState</code></li>
+<li><code>mechparams::Any</code></li>
+<li><code>no_collide::Bool</code></li>
 </ul>
+<p>: if true, allows cylinders this linker type connects and adjacent cylinders to clip</p>
 </div>
 </div>
 </div>
@@ -293,13 +301,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>There is one instance of this per cadherin.</p>
 <ul>
-<li><p><code>chemstate::NamedTuple</code></p>
-<p>Other state.</p></li>
-<li><p><code>mechstate::NamedTuple</code></p>
-<p>Used in linker force calculation.</p></li>
-<li><p><code>is_minimized::Bool</code></p>
-<p>Set to true after minimization</p></li>
+<li><code>chemstate::NamedTuple</code></li>
 </ul>
+<p>: Other state.</p>
+<ul>
+<li><code>mechstate::NamedTuple</code></li>
+</ul>
+<p>: Used in linker force calculation.</p>
+<ul>
+<li><code>is_minimized::Bool</code></li>
+</ul>
+<p>: Set to true after minimization</p>
 </div>
 </div>
 </div>
