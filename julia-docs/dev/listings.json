@@ -84,8 +84,8 @@
       "/docstrings/src/linkablesites.html",
       "/docstrings/src/linkersites.html",
       "/docstrings/src/minimize_energy.html",
-      "/docstrings/src/snapshot.html",
       "/docstrings/src/sysdefs.html",
+      "/docstrings/src/trajectory-io/snapshot.html",
       "/docstrings/src/util/math/cuboidslicing.html",
       "/docstrings/src/util/stableindex.html"
     ]
