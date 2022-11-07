@@ -153,7 +153,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <p>Updates all membrane geometries used across various parts of MEDYAN.</p>
-<p>The list of all items can be found in the document for `MEDYAN.compute_geometry!_system`` function.</p>
+<p>The list of all items can be found in the document for <code>MEDYAN.compute_geometry!_system</code> function.</p>
+<p>Keyword parameters:</p>
+<ul>
+<li><code>include_ff::Bool</code>: If true, <code>compute_geometry!</code> used in energy computations will be applied as well, requiring vectorization of the membrane. This happens before system geometry computation in case some fields are overriden.</li>
+</ul>
 </div>
 </div>
 </div>
