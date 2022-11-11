@@ -218,10 +218,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_depolymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove a monomer from the end of the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>If <code>isminusend</code> is <code>true</code> remove the monomer from the minus end of the filament, if <code>false</code> remove it from the plus end of the filament.</p>
-<p>This doesn’t affect the other monomer states, positions, linked linkers, or change any of the monomer names.</p>
+<p>This doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.</p>
 <p>Error if the filament isn’t initially over 2 monomers long.</p>
-<p>Warn if the old end monomer is referenced in a linker, and remove the linker.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflinkerremoved=false</code></p>
+<p>Warn if the old end monomer is referenced in a link<em>2mon, and remove the link</em>2mon.</p>
+<p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
 </div>
 </div>
 </div>

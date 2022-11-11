@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – b215fd47085105</title>
+<title>MEDYAN.jl – deb10f7964d5bef9</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,20 +130,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.linkerparams" id="toc-medyan.linkerparams" class="nav-link active" data-scroll-target="#medyan.linkerparams"><code>MEDYAN.LinkerParams</code></a>
+  <li><a href="#medyan.link2monsitemotorstall" id="toc-medyan.link2monsitemotorstall" class="nav-link active" data-scroll-target="#medyan.link2monsitemotorstall"><code>MEDYAN.Link2MonSiteMotorStall</code></a>
   <ul class="collapse">
   <li><a href="#b2cfd89fb0d1b9c6" id="toc-b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/03b215fd47085105.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/deb10f7964d5bef9.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.linkerparams" class="level1">
-<h1><code>MEDYAN.LinkerParams</code></h1>
+<section id="medyan.link2monsitemotorstall" class="level1">
+<h1><code>MEDYAN.Link2MonSiteMotorStall</code></h1>
 <section id="b2cfd89fb0d1b9c6" class="level2">
 <h2 class="anchored" data-anchor-id="b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -152,13 +152,29 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Linker Parameters, there is one instance of this per linker type</p>
+<p>Models myosin walking rates from the results of Erdmann et al.&nbsp;2013. The parallel cluster model.</p>
+<p>As the motor work per step increases, its walking rate goes to zero.</p>
+<p>Returns the walking rate of one end. The callback can then sample which end to move, or reject the move.</p>
 <ul>
-<li><code>defaultstate::MEDYAN.LinkerState</code></li>
-<li><code>mechparams::Any</code></li>
-<li><code>no_collide::Bool</code></li>
+<li><code>fs::Float64</code></li>
 </ul>
-<p>: if true, allows cylinders this linker type connects and adjacent cylinders to clip</p>
+<p>: The stall force magnitude. Units of pN</p>
+<ul>
+<li><code>k0::Float64</code></li>
+</ul>
+<p>: Walking rate of one end at zero force. Units of 1/s</p>
+<ul>
+<li><code>α::Float64</code></li>
+</ul>
+<p>: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</p>
+<ul>
+<li><code>walking_direction::Int32</code></li>
+</ul>
+<p>: Motor walking direction, +1 is towards plus end, -1 is towards minus end</p>
+<ul>
+<li><code>isminusend::Bool</code></li>
+</ul>
+<p>: which motor end does this represent</p>
 </div>
 </div>
 </div>

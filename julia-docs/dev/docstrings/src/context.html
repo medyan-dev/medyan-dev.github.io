@@ -222,9 +222,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#ed756af0de4db0ca" id="toc-ed756af0de4db0ca" class="nav-link" data-scroll-target="#ed756af0de4db0ca"><code>MEDYAN.chem_setmonomerstate!</code></a></li>
   <li><a href="#7a5e88ac36e4ccbf" id="toc-7a5e88ac36e4ccbf" class="nav-link" data-scroll-target="#7a5e88ac36e4ccbf"><code>MEDYAN.chem_polymerize!</code></a></li>
   <li><a href="#a5f262191e484dd4" id="toc-a5f262191e484dd4" class="nav-link" data-scroll-target="#a5f262191e484dd4"><code>MEDYAN.chem_depolymerize!</code></a></li>
-  <li><a href="#475f8052be7cf4cb" id="toc-475f8052be7cf4cb" class="nav-link" data-scroll-target="#475f8052be7cf4cb"><code>MEDYAN.chem_newlinker!</code></a></li>
-  <li><a href="#c7e61a0098220c5d" id="toc-c7e61a0098220c5d" class="nav-link" data-scroll-target="#c7e61a0098220c5d"><code>MEDYAN.chem_removelinker!</code></a></li>
-  <li><a href="#5d2d78f0a619d47e" id="toc-5d2d78f0a619d47e" class="nav-link" data-scroll-target="#5d2d78f0a619d47e"><code>MEDYAN.chem_setlinkerstate!</code></a></li>
+  <li><a href="#e4f84fe5cfa9a727" id="toc-e4f84fe5cfa9a727" class="nav-link" data-scroll-target="#e4f84fe5cfa9a727"><code>MEDYAN.chem_newlink_2mon!</code></a></li>
+  <li><a href="#e25a3fd69f791cd0" id="toc-e25a3fd69f791cd0" class="nav-link" data-scroll-target="#e25a3fd69f791cd0"><code>MEDYAN.chem_removelink_2mon!</code></a></li>
+  <li><a href="#82213403237b28e5" id="toc-82213403237b28e5" class="nav-link" data-scroll-target="#82213403237b28e5"><code>MEDYAN.chem_setlink_2mon_state!</code></a></li>
   <li><a href="#7a45f2860949bee3" id="toc-7a45f2860949bee3" class="nav-link" data-scroll-target="#7a45f2860949bee3"><code>MEDYAN.chem_newfilament!</code></a></li>
   <li><a href="#f36888837f14bad7" id="toc-f36888837f14bad7" class="nav-link" data-scroll-target="#f36888837f14bad7"><code>MEDYAN.chem_removefilament!</code></a></li>
   <li><a href="#a714b4a1c87062be" id="toc-a714b4a1c87062be" class="nav-link" data-scroll-target="#a714b4a1c87062be"><code>MEDYAN.newmembrane!</code></a></li>
@@ -691,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="callout-body-container">
 <div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">empty!</span>(c<span class="op">::</span><span class="dt">Context</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove all filaments, membranes, linkers, diffusing species, fixed species, chemboundary, and mechboundary.</p>
+<p>Remove all filaments, membranes, link_2mons, diffusing species, fixed species, chemboundary, and mechboundary.</p>
 </div>
 </div>
 </div>
@@ -721,7 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_polymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>, newstate<span class="op">::</span><span class="dt">MonomerState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Add a monomer with state <code>newstate</code> to the end of the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>If <code>isminusend</code> is <code>true</code> add the monomer to the minus end of the filament, if <code>false</code> add it to the plus end of the filament.</p>
-<p>This doesn’t affect the other monomer states, positions, linked linkers, or change any of the monomer names. New monomers are not linkable until after minimization.</p>
+<p>This doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names. New monomers are not linkable until after minimization.</p>
 </div>
 </div>
 </div>
@@ -737,37 +737,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_depolymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove a monomer from the end of the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>If <code>isminusend</code> is <code>true</code> remove the monomer from the minus end of the filament, if <code>false</code> remove it from the plus end of the filament.</p>
-<p>This doesn’t affect the other monomer states, positions, linked linkers, or change any of the monomer names.</p>
+<p>This doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.</p>
 <p>Error if the filament isn’t initially over 2 monomers long.</p>
-<p>Warn if the old end monomer is referenced in a linker, and remove the linker.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflinkerremoved=false</code></p>
+<p>Warn if the old end monomer is referenced in a link<em>2mon, and remove the link</em>2mon.</p>
+<p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
 </div>
 </div>
 </div>
 </section>
-<section id="475f8052be7cf4cb" class="level2">
-<h2 class="anchored" data-anchor-id="475f8052be7cf4cb"><a href="../../docstrings/475f8052be7cf4cb.html"><code>MEDYAN.chem_newlinker!</code></a></h2>
+<section id="e4f84fe5cfa9a727" class="level2">
+<h2 class="anchored" data-anchor-id="e4f84fe5cfa9a727"><a href="../../docstrings/e4f84fe5cfa9a727.html"><code>MEDYAN.chem_newlink_2mon!</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlinker!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, linkerstate<span class="op">::</span><span class="dt">LinkerState</span>)</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlink_2mon!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, link_2mon_state<span class="op">::</span><span class="dt">Link2MonState</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlinker!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>;</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlink_2mon!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>;</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    changedchemstate <span class="op">=</span> (;),</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    changedmechstate <span class="op">=</span> (;),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    is_minimized <span class="op">=</span> c.linkerdata[ltid].params.defaultstate.is_minimized,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    is_minimized <span class="op">=</span> c.link_2mon_data[ltid].params.defaultstate.is_minimized,</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Add a new linker with type id <code>ltid</code> between monemers <code>endnames</code>.</p>
-<p>Error if a linker of the same type links the same monomers in the same order.</p>
-<p>If the linker state isn’t provided, <code>c.linkerdata[ltid].params.defaultstate</code> is new linker’s state, optionally modified by the <code>changedchemstate</code>, <code>changedmechstate</code>, and <code>is_minimized</code> keyword arguments.</p>
-<p>Keyword arguments <code>changedchemstate</code> and <code>changedmechstate</code> are namedtuples that shadow fields from the default chemstate and mechstate for the new linker.</p>
-<p>Keyword argument <code>is_minimized</code> can be used to set the new linker’s <code>is_minimized</code> state.</p>
+<p>Add a new link_2mon with type id <code>ltid</code> between monemers <code>endnames</code>.</p>
+<p>Error if a link_2mon of the same type links the same monomers in the same order.</p>
+<p>If the link<em>2mon state isn’t provided, <code>c.link*2mon*data[ltid].params.defaultstate</code> is new link</em>2mon’s state, optionally modified by the <code>changedchemstate</code>, <code>changedmechstate</code>, and <code>is_minimized</code> keyword arguments.</p>
+<p>Keyword arguments <code>changedchemstate</code> and <code>changedmechstate</code> are namedtuples that shadow fields from the default chemstate and mechstate for the new link_2mon.</p>
+<p>Keyword argument <code>is_minimized</code> can be used to set the new link*2mon’s <code>is*minimized</code> state.</p>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlinker!</span>(c, g.ltid, minusname<span class="op">=&gt;</span>plusname;</span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newlink_2mon!</span>(c, g.ltid, minusname<span class="op">=&gt;</span>plusname;</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        changedmechstate <span class="op">=</span> (L0 <span class="op">=</span> dist,),</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        changedchemstate <span class="op">=</span> (numHeads <span class="op">=</span> <span class="fu">rand</span>(g.numHeadsMin<span class="op">:</span>g.numHeadsMax),),</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -776,33 +776,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="c7e61a0098220c5d" class="level2">
-<h2 class="anchored" data-anchor-id="c7e61a0098220c5d"><a href="../../docstrings/c7e61a0098220c5d.html"><code>MEDYAN.chem_removelinker!</code></a></h2>
+<section id="e25a3fd69f791cd0" class="level2">
+<h2 class="anchored" data-anchor-id="e25a3fd69f791cd0"><a href="../../docstrings/e25a3fd69f791cd0.html"><code>MEDYAN.chem_removelink_2mon!</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removelinker!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove a linker of type id <code>ltid</code> between monemers <code>endnames</code>.</p>
-<p>Error if there is no linker there.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removelink_2mon!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remove a link_2mon of type id <code>ltid</code> between monemers <code>endnames</code>.</p>
+<p>Error if there is no link_2mon there.</p>
 <p>Don’t modify monomer states.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="5d2d78f0a619d47e" class="level2">
-<h2 class="anchored" data-anchor-id="5d2d78f0a619d47e"><a href="../../docstrings/5d2d78f0a619d47e.html"><code>MEDYAN.chem_setlinkerstate!</code></a></h2>
+<section id="82213403237b28e5" class="level2">
+<h2 class="anchored" data-anchor-id="82213403237b28e5"><a href="../../docstrings/82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_setlinkerstate!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, linkerstate<span class="op">::</span><span class="dt">LinkerState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Set linkerstate of the linker of type id <code>ltid</code> with endnames.</p>
-<p>Error if there is no linker there.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_setlink_2mon_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, link_2mon_state<span class="op">::</span><span class="dt">Link2MonState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set link<em>2mon</em>state of the link_2mon of type id <code>ltid</code> with endnames.</p>
+<p>Error if there is no link_2mon there.</p>
 </div>
 </div>
 </div>
@@ -853,8 +853,8 @@ minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
 <div class="sourceCode" id="cb33"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removefilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, fid<span class="op">=</span><span class="fu">maximum</span>(<span class="fu">filtype_fil_ids</span>(c, ftid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>By default the last added filament with type id <code>ftid</code> is removed.</p>
-<p>Warn if any monomers on the filament are referenced by any linkers, and remove those linkers.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflinkerremoved=false</code></p>
+<p>Warn if any monomers on the filament are referenced by any link<em>2mons, and remove those link</em>2mons.</p>
+<p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
 </div>
 </div>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – e12ca754f13e601</title>
+<title>MEDYAN.jl – ab4fcc1eb50c2313</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,20 +130,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.linkersiteslipbond" id="toc-medyan.linkersiteslipbond" class="nav-link active" data-scroll-target="#medyan.linkersiteslipbond"><code>MEDYAN.LinkerSiteSlipBond</code></a>
+  <li><a href="#medyan.link2monsitecount" id="toc-medyan.link2monsitecount" class="nav-link active" data-scroll-target="#medyan.link2monsitecount"><code>MEDYAN.Link2MonSiteCount</code></a>
   <ul class="collapse">
   <li><a href="#b2cfd89fb0d1b9c6" id="toc-b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/6e12ca754f13e601.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/ab4fcc1eb50c2313.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.linkersiteslipbond" class="level1">
-<h1><code>MEDYAN.LinkerSiteSlipBond</code></h1>
+<section id="medyan.link2monsitecount" class="level1">
+<h1><code>MEDYAN.Link2MonSiteCount</code></h1>
 <section id="b2cfd89fb0d1b9c6" class="level2">
 <h2 class="anchored" data-anchor-id="b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -152,16 +152,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Models unbinding rates based on the following exponential form of Bell et al, 1978: k0*exp(f/f0) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.</p>
-<p><code>linkersitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the linker hasn’t been minimized yet.</p>
-<ul>
-<li><code>f0::Float64</code></li>
-</ul>
-<p>: The charicteristic force magnitude. Units of pN</p>
-<ul>
-<li><code>k0::Float64</code></li>
-</ul>
-<p>: Unbinding rate at zero force. Units of 1/s</p>
+<p>Returns <code>link_2mon_state.chemstate.sitecount</code></p>
 </div>
 </div>
 </div>

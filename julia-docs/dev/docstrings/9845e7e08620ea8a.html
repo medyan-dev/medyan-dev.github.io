@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – a8e1a84324de0b3</title>
+<title>MEDYAN.jl – e7e08620ea8a</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -130,45 +130,41 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.addunbindinglinkersite" id="toc-medyan.addunbindinglinkersite" class="nav-link active" data-scroll-target="#medyan.addunbindinglinkersite"><code>MEDYAN.addunbindinglinkersite!</code></a>
+  <li><a href="#medyan.link2monstate" id="toc-medyan.link2monstate" class="nav-link active" data-scroll-target="#medyan.link2monstate"><code>MEDYAN.Link2MonState</code></a>
   <ul class="collapse">
-  <li><a href="#9b4bc6c29fc2cf2a" id="toc-9b4bc6c29fc2cf2a" class="nav-link" data-scroll-target="#9b4bc6c29fc2cf2a"><code data-shortcodes="false">NTuple{11, Any}</code></a></li>
+  <li><a href="#b2cfd89fb0d1b9c6" id="toc-b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/2a8e1a84324de0b3.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/9845e7e08620ea8a.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.addunbindinglinkersite" class="level1">
-<h1><code>MEDYAN.addunbindinglinkersite!</code></h1>
-<section id="9b4bc6c29fc2cf2a" class="level2">
-<h2 class="anchored" data-anchor-id="9b4bc6c29fc2cf2a"><code data-shortcodes="false">NTuple{11, Any}</code></h2>
+<section id="medyan.link2monstate" class="level1">
+<h1><code>MEDYAN.Link2MonState</code></h1>
+<section id="b2cfd89fb0d1b9c6" class="level2">
+<h2 class="anchored" data-anchor-id="b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Add unbinding site, callback, and reaction. Return s.</p>
-<section id="arguments" class="level1">
-<h1>Arguments</h1>
-<ol type="1">
-<li><code>s::SysDef</code>: the system to add to.</li>
-<li><code>linkertypename::Symbol</code>: the linker type name.</li>
-<li><code>linkersitename::Symbol</code>: the new name of the <code>linkersite</code> added. This can be used as a catalyst in other reactions.</li>
-<li><code>linkersite</code>: the linker site to add.</li>
-<li><code>plusfilamenttypename::Symbol</code>: the filament type name of the plus end.</li>
-<li><code>plusnewmonomerstatename::Symbol</code>: the new name of the monomer state of the plus end.</li>
-<li><code>minusfilamenttypename::Symbol</code>: the filament type name of the minus end.</li>
-<li><code>minusnewmonomerstatename::Symbol</code>: the new name of the monomer state of the minus end.</li>
-<li><code>reactionexpr::AbstractString</code>: Allows adding other reactants or products to the reaction. <code>" + linkersite.$(linkertypename).$(linkersitename) + "</code> gets added to both sides this to create the full reaction expression. See <a href="../docstrings/da9bd35e7d1df7c3.html"><code>addreaction!</code></a> for syntax.</li>
-<li><code>rate::Float64</code>: Base rate for the reaction. ((nm³)^(<code>invvolumepower</code>)/s)</li>
-<li><code>invvolumepower::Int</code>: <code>volumefactor= (1/volume)^invvolumepower</code> where <code>volume</code> is the volume of the compartment in nm³. <code>volumefactor</code> only applies to this reaction not any other reaction using <code>linkersitename</code> Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.</li>
-</ol>
-</section>
+<p>There is one instance of this per link_2mon.</p>
+<ul>
+<li><code>chemstate::NamedTuple</code></li>
+</ul>
+<p>: Other state.</p>
+<ul>
+<li><code>mechstate::NamedTuple</code></li>
+</ul>
+<p>: Used in link_2mon force calculation.</p>
+<ul>
+<li><code>is_minimized::Bool</code></li>
+</ul>
+<p>: Set to true after minimization</p>
 </div>
 </div>
 </div>

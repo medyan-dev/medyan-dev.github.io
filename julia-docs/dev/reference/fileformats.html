@@ -281,10 +281,10 @@ Other Languages
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">header</span>(cinit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    "version": "0.1.0"</code></pre>
+    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>,
+<pre><code>"version": "0.1.0",
     "medyanInfo": {</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -361,7 +361,7 @@ Other Languages
             ]
         }
     ],
-    "fil_linkers": [
+    "link_2mons": [
         {
             "name": "a"
         },
@@ -400,7 +400,7 @@ Other Languages
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HDF5</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.SNAPSHOT_VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>v"0.4.0"</code></pre>
+<pre><code>v"0.5.0"</code></pre>
 </div>
 </div>
 <p>Currently before snapshot version 1.0.0 anything goes.</p>
@@ -471,7 +471,7 @@ version
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid)[<span class="st">"version"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>"0.4.0"</code></pre>
+<pre><code>"0.5.0"</code></pre>
 </div>
 </div>
 <p>Default: No change<br>
@@ -817,21 +817,21 @@ Monomer states.
 </div>
 </div>
 <!--##################### FILAMENTS END ##################-->
-<!--##################### LINKERS ##################-->
+<!--##################### LINK_2MONS ##################-->
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-linkers
+link_2mons
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>There is a subgroup for each linker type with at least one linker. The subgroups are named by their linker type id. For example:</p>
-<!--##################### LINKERTYPE ##################-->
+<p>There is a subgroup for each link_2mon type with at least one link_2mon. The subgroups are named by their link_2mon type id. For example:</p>
+<!--##################### LINK_2MON_TYPE ##################-->
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -859,15 +859,15 @@ linkers
 <div class="callout-body-container callout-body">
 <details>
 <summary>
-num_linkers
+num_link_2mons
 </summary>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"linkers/1"</span>])[<span class="st">"num_linkers"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(fid[<span class="st">"link_2mons/1"</span>])[<span class="st">"num_link_2mons"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>2</code></pre>
 </div>
 </div>
-Number of linkers of this type.
+Number of link_2mons of this type.
 </details>
 </div>
 </div>
@@ -886,13 +886,13 @@ Number of linkers of this type.
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>The pairs of monomers that the linkers are linked between. The monomer pairs are directed and unique.</p>
+<p>The pairs of monomers that the link_2mons are linked between. The monomer pairs are directed and unique.</p>
 <details>
 <summary>
 🔢 minusend/ftid
 </summary>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/minusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>2-element Vector{Int64}:
  1
@@ -906,7 +906,7 @@ Minus end filament type id.
 🔢 minusend/fid
 </summary>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/minusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>2-element Vector{Int64}:
  1
@@ -920,7 +920,7 @@ Minus end filament id.
 🔢 minusend/mid
 </summary>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/minusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/minusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>2-element Vector{Int64}:
  2
@@ -934,7 +934,7 @@ Minus end monomer id.
 🔢 plusend/ftid
 </summary>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/plusend/ftid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>2-element Vector{Int64}:
  1
@@ -948,7 +948,7 @@ Plus end filament type id.
 🔢 plusend/fid
 </summary>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/plusend/fid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>2-element Vector{Int64}:
  1
@@ -962,7 +962,7 @@ Plus end filament id.
 🔢 plusend/mid
 </summary>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"linkers/1/endnames/plusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"link_2mons/1/endnames/plusend/mid"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <pre><code>2-element Vector{Int64}:
  2
@@ -979,13 +979,13 @@ Plus end monomer id.
 <summary>
 📂 state
 </summary>
-<p>Default: default linkerstate</p>
-<p>See <a href="../docstrings/5d2d78f0a619d47e.html"><code>MEDYAN.chem_setlinkerstate!</code></a> and <a href="../docstrings/754f6bce456bc62b.html"><code>MEDYAN.LinkerState</code></a></p>
-<p>The state of a linker, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
+<p>Default: default link_2mon_state</p>
+<p>See <a href="../docstrings/82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a> and <a href="../docstrings/9845e7e08620ea8a.html"><code>MEDYAN.Link2MonState</code></a></p>
+<p>The state of a link_2mon, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"linkers/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"link_2mons/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>📂 HDF5.Group: /linkers/1/state (file: /tmp/jl_0PaB6HchuR)
+<pre><code>📂 HDF5.Group: /link_2mons/1/state (file: /tmp/jl_mvEHydIL0x)
 ├─ 📂 1
 │  ├─ 🏷️ name
 │  ├─ 🔢 1
@@ -1010,11 +1010,11 @@ Plus end monomer id.
 </div>
 </div>
 </div>
-<!--##################### LINKERTYPE END ##################-->
+<!--##################### LINK_2MON_TYPE END ##################-->
 </div>
 </div>
 </div>
-<!--##################### LINKERS END ##################-->
+<!--##################### LINK_2MONS END ##################-->
 <!--##################### MECHBOUNDARY ##################-->
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">

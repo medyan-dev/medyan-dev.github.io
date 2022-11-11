@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – c298c8d740eb51b1</title>
+<title>MEDYAN.jl – b28e5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,29 +193,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.addlinkersite" id="toc-medyan.addlinkersite" class="nav-link active" data-scroll-target="#medyan.addlinkersite"><code>MEDYAN.addlinkersite!</code></a>
+  <li><a href="#medyan.chem_setlink_2mon_state" id="toc-medyan.chem_setlink_2mon_state" class="nav-link active" data-scroll-target="#medyan.chem_setlink_2mon_state"><code>MEDYAN.chem_setlink_2mon_state!</code></a>
   <ul class="collapse">
-  <li><a href="#b9a0ed342fa77751" id="toc-b9a0ed342fa77751" class="nav-link" data-scroll-target="#b9a0ed342fa77751"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Symbol, Any}</code></a></li>
+  <li><a href="#35d119ed052f9b98" id="toc-35d119ed052f9b98" class="nav-link" data-scroll-target="#35d119ed052f9b98"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}, MEDYAN.Link2MonState}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/c298c8d740eb51b1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/82213403237b28e5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.addlinkersite" class="level1">
-<h1><code>MEDYAN.addlinkersite!</code></h1>
-<section id="b9a0ed342fa77751" class="level2">
-<h2 class="anchored" data-anchor-id="b9a0ed342fa77751"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Symbol, Any}</code></h2>
+<section id="medyan.chem_setlink_2mon_state" class="level1">
+<h1><code>MEDYAN.chem_setlink_2mon_state!</code></h1>
+<section id="35d119ed052f9b98" class="level2">
+<h2 class="anchored" data-anchor-id="35d119ed052f9b98"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}, MEDYAN.Link2MonState}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addlinkersite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,linkertypename<span class="op">::</span><span class="dt">Symbol</span>,linkersitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_setlink_2mon_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, link_2mon_state<span class="op">::</span><span class="dt">Link2MonState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set link<em>2mon</em>state of the link_2mon of type id <code>ltid</code> with endnames.</p>
+<p>Error if there is no link_2mon there.</p>
 </div>
 </div>
 </div>

@@ -173,10 +173,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#built-in-filament-end-sites" id="toc-built-in-filament-end-sites" class="nav-link" data-scroll-target="#built-in-filament-end-sites">Built-in filament end sites</a></li>
   <li><a href="#related-functions-and-fields-1" id="toc-related-functions-and-fields-1" class="nav-link" data-scroll-target="#related-functions-and-fields-1">Related Functions and Fields</a></li>
   </ul></li>
-  <li><a href="#linker-sites" id="toc-linker-sites" class="nav-link" data-scroll-target="#linker-sites">linker sites</a>
+  <li><a href="#link_2mon-sites" id="toc-link_2mon-sites" class="nav-link" data-scroll-target="#link_2mon-sites">link_2mon sites</a>
   <ul class="collapse">
   <li><a href="#required-functions-2" id="toc-required-functions-2" class="nav-link" data-scroll-target="#required-functions-2">Required Functions</a></li>
-  <li><a href="#built-in-linker-sites" id="toc-built-in-linker-sites" class="nav-link" data-scroll-target="#built-in-linker-sites">Built-in linker sites</a></li>
+  <li><a href="#built-in-link_2mon-sites" id="toc-built-in-link_2mon-sites" class="nav-link" data-scroll-target="#built-in-link_2mon-sites">Built-in link_2mon sites</a></li>
   <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
   </ul></li>
   <li><a href="#linkable-sites" id="toc-linkable-sites" class="nav-link" data-scroll-target="#linkable-sites">linkable sites</a>
@@ -282,40 +282,40 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 </section>
-<section id="linker-sites" class="level2">
-<h2 class="anchored" data-anchor-id="linker-sites">linker sites</h2>
-<p>Linker sites can only be associated with one linker type. They can represent propensities for reactions to happen to a linker attached to two monomers, like unbinding or motor walking, or a site for a diffusing species to interact with a bound linker.</p>
+<section id="link_2mon-sites" class="level2">
+<h2 class="anchored" data-anchor-id="link_2mon-sites">link_2mon sites</h2>
+<p>Link_2mon sites can only be associated with one link_2mon type. They can represent propensities for reactions to happen to a link_2mon attached to two monomers, like unbinding or motor walking, or a site for a diffusing species to interact with a bound link_2mon.</p>
 <section id="required-functions-2" class="level3">
 <h3 class="anchored" data-anchor-id="required-functions-2">Required Functions</h3>
-<p>A type <code>T</code> must implement the following functions to be a linker site.</p>
-<section id="linkersitecountsitet-linkerstatelinkerstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64" class="level4">
-<h4 class="anchored" data-anchor-id="linkersitecountsitet-linkerstatelinkerstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64"><code>linkersitecount(site::T, linkerstate::LinkerState, mechparams, minusftid, plusftid, minusmonomerstates, plusmonomerstates, m_pos, p_pos, m_plusv, p_plusv)::Float64</code></h4>
-<p>Return the site count given the state of the linker, the <code>minusftid</code>, <code>plusftid</code> filament type ids, the <code>minusmonomerstates</code>, <code>plusmonomerstates</code> monomer states, and the positions and orientations of the two monomers.</p>
-<p><code>minusmonomerstates</code> and <code>plusmonomerstates</code> should be collections of 3 <code>MonomerState</code> ordered from minus to plus end, with the linker attached to the center monomer.</p>
+<p>A type <code>T</code> must implement the following functions to be a link_2mon site.</p>
+<section id="link_2mon_sitecountsitet-link_2mon_statelink2monstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="link_2mon_sitecountsitet-link_2mon_statelink2monstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64"><code>link_2mon_sitecount(site::T, link_2mon_state::Link2MonState, mechparams, minusftid, plusftid, minusmonomerstates, plusmonomerstates, m_pos, p_pos, m_plusv, p_plusv)::Float64</code></h4>
+<p>Return the site count given the state of the link_2mon, the <code>minusftid</code>, <code>plusftid</code> filament type ids, the <code>minusmonomerstates</code>, <code>plusmonomerstates</code> monomer states, and the positions and orientations of the two monomers.</p>
+<p><code>minusmonomerstates</code> and <code>plusmonomerstates</code> should be collections of 3 <code>MonomerState</code> ordered from minus to plus end, with the link_2mon attached to the center monomer.</p>
 <p>If a monomer doesn’t exist, its state should be input as zero.</p>
-<p>The site count gets put in the compartment of the minus end of the linker.</p>
+<p>The site count gets put in the compartment of the minus end of the link_2mon.</p>
 </section>
 </section>
-<section id="built-in-linker-sites" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-linker-sites"><a href="../docstrings/src/linkersites.html">Built-in linker sites</a></h3>
+<section id="built-in-link_2mon-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-link_2mon-sites"><a href="../docstrings/src/link_2mon_sites.html">Built-in link_2mon sites</a></h3>
 </section>
 <section id="related-functions-and-fields-2" class="level3">
 <h3 class="anchored" data-anchor-id="related-functions-and-fields-2">Related Functions and Fields</h3>
 <section id="context-2" class="level4">
 <h4 class="anchored" data-anchor-id="context-2"><code>Context</code></h4>
-<p><a href="../docstrings/1fa6a1063b44eafb.qmd"><code>MEDYAN.pickrandomlinkersite</code></a></p>
-<p><a href="../docstrings/736368ed32b08894.qmd#6e8b059de16ffede"><code>MEDYAN.Context#linkersites</code></a> field</p>
+<p><a href="../docstrings/092086bb001f05e1.qmd"><code>MEDYAN.pickrandomlink_2mon_site</code></a></p>
+<p><a href="../docstrings/736368ed32b08894.qmd#23355f2263657e52"><code>MEDYAN.Context#link_2mon_sites</code></a> field</p>
 </section>
 <section id="sysdef-2" class="level4">
 <h4 class="anchored" data-anchor-id="sysdef-2"><code>SysDef</code></h4>
-<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#bce423249ba51fbb"><code>MEDYAN.SysDef#linkersite</code></a> field</p>
-<p><a href="../docstrings/c298c8d740eb51b1.html"><code>MEDYAN.addlinkersite!</code></a></p>
+<p><a href="../docstrings/c0c4da7a2b3d4fef.qmd#6a258c45253c3738"><code>MEDYAN.SysDef#link_2mon_site</code></a> field</p>
+<p><a href="../docstrings/b9548c4a2d23aac9.html"><code>MEDYAN.add_link_2mon_site!</code></a></p>
 </section>
 </section>
 </section>
 <section id="linkable-sites" class="level2">
 <h2 class="anchored" data-anchor-id="linkable-sites">linkable sites</h2>
-<p>Linkable sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the compartment of the potential monomer that could attach to the minus end of the linker.</p>
+<p>Linkable sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the compartment of the potential monomer that could attach to the minus end of the link_2mon.</p>
 <section id="required-functions-3" class="level3">
 <h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
 <p>A type <code>T</code> must implement the following functions to be a linkable site.</p>
