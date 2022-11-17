@@ -993,7 +993,7 @@ Plus end monomer id.
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"link_2mons/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>📂 HDF5.Group: /link_2mons/1/state (file: /tmp/jl_A98FEfcrkZ)
+<pre><code>📂 HDF5.Group: /link_2mons/1/state (file: /tmp/jl_fUVubut8b0)
 ├─ 📂 1
 │  ├─ 🏷️ name
 │  ├─ 🔢 1
@@ -1245,6 +1245,21 @@ Each column is a vertex coordinate in nm.
 </div>
 </div>
 Array of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.
+</details>
+<details>
+<summary>
+optional 🔢 copynumbers
+</summary>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read</span>(fid[<span class="st">"membranes/1/copynumbers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>3×204 Matrix{Int64}:
+ 0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
+</div>
+</div>
+Array of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.
 </details>
 </div>
 </div>
