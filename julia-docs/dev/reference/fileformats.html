@@ -289,10 +289,10 @@ Other Languages
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>JSON3.<span class="fu">pretty</span>(MEDYAN.<span class="fu">header</span>(cinit); allow_inf <span class="op">=</span> <span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    "version": "0.1.0"</code></pre>
+    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>,
+<pre><code>"version": "0.1.0",
     "medyanInfo": {</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -470,7 +470,7 @@ time (s)
 </div>
 </div>
 <p>Default: No change<br>
-See <a href="../docstrings/a6dd8f73f68a3759.html"><code>MEDYAN.set_time!</code></a></p>
+See <a href="../docstrings/medyan.set_time--a6dd8f73f68a3759.html"><code>MEDYAN.set_time!</code></a></p>
 </details>
 <details>
 <summary>
@@ -516,7 +516,7 @@ diffusingcounts
 </div>
 <p>Default: Empty</p>
 <p>Indexed by [species id, compartment id] to give count.</p>
-See <a href="../docstrings/2264be341b81a600.html"><code>MEDYAN.chem_adddiffusingcount!</code></a>
+See <a href="../docstrings/medyan.chem_adddiffusingcount--2264be341b81a600.html"><code>MEDYAN.chem_adddiffusingcount!</code></a>
 </details>
 <details>
 <summary>
@@ -532,7 +532,7 @@ fixedcounts
 </div>
 <p>Default: Empty</p>
 <p>Indexed by [species id, compartment id] to give count.</p>
-See <a href="../docstrings/0286edfebf8ea5e6.html"><code>MEDYAN.chem_addfixedcount!</code></a>
+See <a href="../docstrings/medyan.chem_addfixedcount--0286edfebf8ea5e6.html"><code>MEDYAN.chem_addfixedcount!</code></a>
 </details>
 </div>
 </div>
@@ -565,7 +565,7 @@ chemboundary
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
-<p>See <a href="../docstrings/0aa6e4e95c60f9f7.html"><code>MEDYAN.set_chemboundary!</code></a></p>
+<p>See <a href="../docstrings/medyan.set_chemboundary--0aa6e4e95c60f9f7.html"><code>MEDYAN.set_chemboundary!</code></a></p>
 <details>
 <summary>
 🔢 capsules
@@ -988,12 +988,12 @@ Plus end monomer id.
 📂 state
 </summary>
 <p>Default: default link_2mon_state</p>
-<p>See <a href="../docstrings/82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a> and <a href="../docstrings/9845e7e08620ea8a.html"><code>MEDYAN.Link2MonState</code></a></p>
+<p>See <a href="../docstrings/medyan.chem_setlink_2mon_state--82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a> and <a href="../docstrings/medyan.link2monstate-9845e7e08620ea8a.html"><code>MEDYAN.Link2MonState</code></a></p>
 <p>The state of a link_2mon, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fid[<span class="st">"link_2mons/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>📂 HDF5.Group: /link_2mons/1/state (file: /tmp/jl_pSxo70d4ZM)
+<pre><code>📂 HDF5.Group: /link_2mons/1/state (file: /tmp/jl_2P6lWF2FKD)
 ├─ 📂 1
 │  ├─ 🏷️ name
 │  ├─ 🔢 1
@@ -1037,7 +1037,7 @@ mechboundary
 <div id="callout-12" class="callout-12-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
-<p>See <a href="../docstrings/b5e26b6b690256aa.html"><code>MEDYAN.set_mechboundary!</code></a></p>
+<p>See <a href="../docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html"><code>MEDYAN.set_mechboundary!</code></a></p>
 <details>
 <summary>
 🔢 capsules
