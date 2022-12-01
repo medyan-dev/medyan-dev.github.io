@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MEDYAN.jl – medyan.context-736368ed32b08894</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MEDYAN.jl</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/index.html">
+ <span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../howto/index.html">
+ <span class="menu-text">How-To</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanations.html">
+ <span class="menu-text">Explanations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html">
+ <span class="menu-text">Reference</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Versions</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
+        <li>
+    <a class="dropdown-item" href="../../dev/">
+ <span class="dropdown-text">dev</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../stable/">
+ <span class="dropdown-text">stable</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#medyan.context" id="toc-medyan.context" class="nav-link active" data-scroll-target="#medyan.context"><code>MEDYAN.Context</code></a>
+  <ul class="collapse">
+  <li><a href="#union---b2cfd89fb0d1b9c6" id="toc-union---b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.context-736368ed32b08894.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="medyan.context" class="level1">
+<h1><code>MEDYAN.Context</code></h1>
+<section id="union---b2cfd89fb0d1b9c6" class="level2">
+<h2 class="anchored" data-anchor-id="union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
+<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li><code>statedef::MEDYAN.StateDef</code></li>
+<li><code>compartments::Vector{MEDYAN.Compartment}</code></li>
+<li><code>grid::Any</code></li>
+<li><code>time::Ref{Float64}</code></li>
+</ul>
+<p>: time (s)</p>
+<ul>
+<li><code>stats::MEDYAN.PerformanceStats</code></li>
+<li><code>β::Float64</code></li>
+</ul>
+<p>: inverse kT (1/(nm*pN))</p>
+<ul>
+<li><code>base_diffusion_coeffs::Vector{Float64}</code></li>
+</ul>
+<p>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p>
+<ul>
+<li><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code></li>
+</ul>
+<p>: Membrane species parameters indexed by membrane diffusing species id.</p>
+<ul>
+<li><code>min_compartment_volume_ratio::Float64</code></li>
+</ul>
+<p>: Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p>
+<ul>
+<li><code>chemistryengine::MEDYAN.RDMESampler</code></li>
+</ul>
+<p>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p>
+<ul>
+<li><code>largestfilamentid::Vector{Int64}</code></li>
+</ul>
+<p>: The largest filament id, indexed by filament type id</p>
+<ul>
+<li><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code></li>
+</ul>
+<p>: Data about filament cylinders, indexed by filament type id</p>
+<ul>
+<li><code>membranes::Vector</code></li>
+</ul>
+<p>: All membrane meshes.</p>
+<ul>
+<li><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code></li>
+</ul>
+<p>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p>
+<ul>
+<li><code>linkablesite_managers::Tuple{Vararg{MEDYAN.AbstractLinkableSiteManager}}</code></li>
+</ul>
+<p>: The linkable site managers, indexed by linkable site id</p>
+<ul>
+<li><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}}}}</code></li>
+</ul>
+<p>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon endnames that reference the monomer name</p>
+<ul>
+<li><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
+</ul>
+<p>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p>
+<ul>
+<li><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
+</ul>
+<p>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p>
+<ul>
+<li><code>maxfilsite_plusrange::Vector{Int64}</code></li>
+</ul>
+<p>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p>
+<ul>
+<li><code>maxfilsite_minusrange::Vector{Int64}</code></li>
+</ul>
+<p>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p>
+<ul>
+<li><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code></li>
+</ul>
+<p>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p>
+<ul>
+<li><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code></li>
+</ul>
+<p>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p>
+<ul>
+<li><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
+</ul>
+<p>: The link<em>2mon site definitions, indexed by link</em>2mon type id, link_2mon site id to get a SiteData with fields of id, site, fxsid</p>
+<ul>
+<li><code>linkablesites::Tuple{Vararg{MEDYAN.SiteData}}</code></li>
+</ul>
+<p>: The linkable site definitions, indexed by linkable site id to get a SiteData with fields of id, site, fxsid</p>
+<ul>
+<li><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
+<li><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></li>
+<li><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code></li>
+</ul>
+<p>: Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p>
+<ul>
+<li><code>check_sitecount_error::Bool</code></li>
+</ul>
+<p>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p>
+<ul>
+<li><code>compartmentreactioncallbacks::Any</code></li>
+<li><code>bulkreactioncallbacks::Any</code></li>
+<li><code>memdiff_bulks_index::Int64</code></li>
+</ul>
+<p>: Mock bulk species index for membrane diffusion.</p>
+<ul>
+<li><code>g_tol::Float64</code></li>
+</ul>
+<p>: maximum force magnitude after minimization (pN)</p>
+<ul>
+<li><code>shake_before_minimization::Bool</code></li>
+</ul>
+<p>: If true, add noise to coordinates before starting minimization.</p>
+<ul>
+<li><code>iter_max_cg_minimization::Int64</code></li>
+</ul>
+<p>: Max number of steps in conjugate gradient minimization.</p>
+<ul>
+<li><code>maxstep::Float64</code></li>
+</ul>
+<p>: max step to take during line search (nm)</p>
+<ul>
+<li><code>max_cylinder_force::Float64</code></li>
+</ul>
+<p>: max cylinder force when two cylinders are at zero distance (pN)</p>
+<ul>
+<li><code>check_neighborlist_error::Bool</code></li>
+</ul>
+<p>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p>
+<ul>
+<li><code>nthreads::Int64</code></li>
+</ul>
+<p>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p>
+<ul>
+<li><code>enable_cylinder_volume_exclusion::Ref{Bool}</code></li>
+</ul>
+<p>: Are cylinder volume exclusion forces calculated</p>
+<ul>
+<li><code>enable_triangle_bead_volume_exclusion::Bool</code></li>
+</ul>
+<p>: Are triangle-bead volume exclusion forces calculated.</p>
+<ul>
+<li><code>cylinder_skin_radius::Float64</code></li>
+</ul>
+<p>: Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p>
+<ul>
+<li><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code></li>
+</ul>
+<p>: The filament mechanical parameters, indexed by filament type id</p>
+<ul>
+<li><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code></li>
+</ul>
+<p>: Membrane mechanical parameters, indexed by membrane type id.</p>
+<ul>
+<li><code>func_membranespeciespotentialenergy::Any</code></li>
+</ul>
+<p>: Membrane species potential energy function. See docs on default function for more info.</p>
+<ul>
+<li><code>func_membranespeciesfreeenergy!::Any</code></li>
+</ul>
+<p>: Membrane species total free energy function. See docs on default function for more info.</p>
+<ul>
+<li><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code></li>
+</ul>
+<p>: Membrane-filament mechanical interaction parameters.</p>
+<ul>
+<li><code>external_energy_forces!::Any</code></li>
+</ul>
+<p>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p>
+<ul>
+<li><code>chemboundary::MEDYAN.Boundary</code></li>
+</ul>
+<p>: chemical boundary, updates compartment volumes and diffusion rates</p>
+<ul>
+<li><code>mechboundary::MEDYAN.Boundary</code></li>
+</ul>
+<p>: mechanical boundary</p>
+<ul>
+<li><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code></li>
+</ul>
+<p>: Shared configurations stored in type parameters.</p>
+<ul>
+<li><code>validflags::MEDYAN.ValidFlags</code></li>
+</ul>
+<p>: Interval system consistency validation flags.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
