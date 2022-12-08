@@ -242,17 +242,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="callout-body-container">
 <ul>
-<li><code>ftid::Int64</code></li>
+<li><code>ftid::Int64</code>: filament type id</li>
+<li><code>fid::Int64</code>: filament id</li>
+<li><code>mid::Int64</code>: monomer id</li>
 </ul>
-<p>: filament type id</p>
-<ul>
-<li><code>fid::Int64</code></li>
-</ul>
-<p>: filament id</p>
-<ul>
-<li><code>mid::Int64</code></li>
-</ul>
-<p>: monomer id</p>
 </div>
 </div>
 </div>
@@ -266,13 +259,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="callout-body-container">
 <ul>
-<li><code>membraneindex::Int64</code></li>
+<li><code>membraneindex::Int64</code>: membrane index</li>
+<li><code>vid::Int64</code>: vertex id</li>
 </ul>
-<p>: membrane index</p>
-<ul>
-<li><code>vid::Int64</code></li>
-</ul>
-<p>: vertex id</p>
 </div>
 </div>
 </div>
@@ -287,17 +276,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>There is one instance of this per link_2mon.</p>
 <ul>
-<li><code>chemstate::NamedTuple</code></li>
+<li><code>chemstate::NamedTuple</code>: Other state.</li>
+<li><code>mechstate::NamedTuple</code>: Used in link_2mon force calculation.</li>
+<li><code>is_minimized::Bool</code>: Set to true after minimization</li>
 </ul>
-<p>: Other state.</p>
-<ul>
-<li><code>mechstate::NamedTuple</code></li>
-</ul>
-<p>: Used in link_2mon force calculation.</p>
-<ul>
-<li><code>is_minimized::Bool</code></li>
-</ul>
-<p>: Set to true after minimization</p>
 </div>
 </div>
 </div>
@@ -314,9 +296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>defaultstate::MEDYAN.Link2MonState</code></li>
 <li><code>mechparams::Any</code></li>
-<li><code>no_collide::Bool</code></li>
+<li><code>no_collide::Bool</code>: if true, allows cylinders this link_2mon type connects and adjacent cylinders to clip</li>
 </ul>
-<p>: if true, allows cylinders this link_2mon type connects and adjacent cylinders to clip</p>
 </div>
 </div>
 </div>
@@ -331,17 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>There is one instance of this per cadherin.</p>
 <ul>
-<li><code>chemstate::NamedTuple</code></li>
+<li><code>chemstate::NamedTuple</code>: Other state.</li>
+<li><code>mechstate::NamedTuple</code>: Used in link_2mon force calculation.</li>
+<li><code>is_minimized::Bool</code>: Set to true after minimization</li>
 </ul>
-<p>: Other state.</p>
-<ul>
-<li><code>mechstate::NamedTuple</code></li>
-</ul>
-<p>: Used in link_2mon force calculation.</p>
-<ul>
-<li><code>is_minimized::Bool</code></li>
-</ul>
-<p>: Set to true after minimization</p>
 </div>
 </div>
 </div>

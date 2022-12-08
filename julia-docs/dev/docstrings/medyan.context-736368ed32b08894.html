@@ -160,185 +160,58 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container">
 <ul>
-<li><code>statedef::MEDYAN.StateDef</code></li>
-<li><code>compartments::Vector{MEDYAN.Compartment}</code></li>
-<li><code>grid::Any</code></li>
-<li><code>time::Ref{Float64}</code></li>
+<li><p><code>statedef::MEDYAN.StateDef</code></p></li>
+<li><p><code>compartments::Vector{MEDYAN.Compartment}</code></p></li>
+<li><p><code>grid::Any</code></p></li>
+<li><p><code>time::Ref{Float64}</code>: time (s)</p></li>
+<li><p><code>stats::MEDYAN.PerformanceStats</code></p></li>
+<li><p><code>β::Float64</code>: inverse kT (1/(nm*pN))</p></li>
+<li><p><code>base_diffusion_coeffs::Vector{Float64}</code>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p></li>
+<li><p><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code>: Membrane species parameters indexed by membrane diffusing species id.</p></li>
+<li><p><code>min_compartment_volume_ratio::Float64</code>: Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p></li>
+<li><p><code>chemistryengine::MEDYAN.RDMESampler</code>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
+<li><p><code>largestfilamentid::Vector{Int64}</code>: The largest filament id, indexed by filament type id</p></li>
+<li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
+<li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
+<li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
+<li><p><code>linkablesite_managers::Tuple{Vararg{MEDYAN.AbstractLinkableSiteManager}}</code>: The linkable site managers, indexed by linkable site id</p></li>
+<li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}}}}</code>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon endnames that reference the monomer name</p></li>
+<li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
+<li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
+<li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
+<li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
+<li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The link<em>2mon site definitions, indexed by link</em>2mon type id, link_2mon site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>linkablesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: The linkable site definitions, indexed by linkable site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
+<li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
+<li><p><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code>: Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p></li>
+<li><p><code>check_sitecount_error::Bool</code>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
+<li><p><code>compartmentreactioncallbacks::Any</code></p></li>
+<li><p><code>bulkreactioncallbacks::Any</code></p></li>
+<li><p><code>memdiff_bulks_index::Int64</code>: Mock bulk species index for membrane diffusion.</p></li>
+<li><p><code>g_tol::Float64</code>: maximum force magnitude after minimization (pN)</p></li>
+<li><p><code>shake_before_minimization::Bool</code>: If true, add noise to coordinates before starting minimization.</p></li>
+<li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
+<li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
+<li><p><code>max_cylinder_force::Float64</code>: max cylinder force when two cylinders are at zero distance (pN)</p></li>
+<li><p><code>check_neighborlist_error::Bool</code>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
+<li><p><code>nthreads::Int64</code>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
+<li><p><code>enable_cylinder_volume_exclusion::Ref{Bool}</code>: Are cylinder volume exclusion forces calculated</p></li>
+<li><p><code>enable_triangle_bead_volume_exclusion::Bool</code>: Are triangle-bead volume exclusion forces calculated.</p></li>
+<li><p><code>cylinder_skin_radius::Float64</code>: Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p></li>
+<li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code>: The filament mechanical parameters, indexed by filament type id</p></li>
+<li><p><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code>: Membrane mechanical parameters, indexed by membrane type id.</p></li>
+<li><p><code>func_membranespeciespotentialenergy::Any</code>: Membrane species potential energy function. See docs on default function for more info.</p></li>
+<li><p><code>func_membranespeciesfreeenergy!::Any</code>: Membrane species total free energy function. See docs on default function for more info.</p></li>
+<li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code>: Membrane-filament mechanical interaction parameters.</p></li>
+<li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
+<li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
+<li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
+<li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
+<li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
 </ul>
-<p>: time (s)</p>
-<ul>
-<li><code>stats::MEDYAN.PerformanceStats</code></li>
-<li><code>β::Float64</code></li>
-</ul>
-<p>: inverse kT (1/(nm*pN))</p>
-<ul>
-<li><code>base_diffusion_coeffs::Vector{Float64}</code></li>
-</ul>
-<p>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p>
-<ul>
-<li><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code></li>
-</ul>
-<p>: Membrane species parameters indexed by membrane diffusing species id.</p>
-<ul>
-<li><code>min_compartment_volume_ratio::Float64</code></li>
-</ul>
-<p>: Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p>
-<ul>
-<li><code>chemistryengine::MEDYAN.RDMESampler</code></li>
-</ul>
-<p>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p>
-<ul>
-<li><code>largestfilamentid::Vector{Int64}</code></li>
-</ul>
-<p>: The largest filament id, indexed by filament type id</p>
-<ul>
-<li><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code></li>
-</ul>
-<p>: Data about filament cylinders, indexed by filament type id</p>
-<ul>
-<li><code>membranes::Vector</code></li>
-</ul>
-<p>: All membrane meshes.</p>
-<ul>
-<li><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code></li>
-</ul>
-<p>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p>
-<ul>
-<li><code>linkablesite_managers::Tuple{Vararg{MEDYAN.AbstractLinkableSiteManager}}</code></li>
-</ul>
-<p>: The linkable site managers, indexed by linkable site id</p>
-<ul>
-<li><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}}}}</code></li>
-</ul>
-<p>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon endnames that reference the monomer name</p>
-<ul>
-<li><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
-</ul>
-<p>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p>
-<ul>
-<li><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
-</ul>
-<p>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p>
-<ul>
-<li><code>maxfilsite_plusrange::Vector{Int64}</code></li>
-</ul>
-<p>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p>
-<ul>
-<li><code>maxfilsite_minusrange::Vector{Int64}</code></li>
-</ul>
-<p>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p>
-<ul>
-<li><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code></li>
-</ul>
-<p>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p>
-<ul>
-<li><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code></li>
-</ul>
-<p>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p>
-<ul>
-<li><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
-</ul>
-<p>: The link<em>2mon site definitions, indexed by link</em>2mon type id, link_2mon site id to get a SiteData with fields of id, site, fxsid</p>
-<ul>
-<li><code>linkablesites::Tuple{Vararg{MEDYAN.SiteData}}</code></li>
-</ul>
-<p>: The linkable site definitions, indexed by linkable site id to get a SiteData with fields of id, site, fxsid</p>
-<ul>
-<li><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></li>
-<li><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></li>
-<li><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code></li>
-</ul>
-<p>: Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p>
-<ul>
-<li><code>check_sitecount_error::Bool</code></li>
-</ul>
-<p>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p>
-<ul>
-<li><code>compartmentreactioncallbacks::Any</code></li>
-<li><code>bulkreactioncallbacks::Any</code></li>
-<li><code>memdiff_bulks_index::Int64</code></li>
-</ul>
-<p>: Mock bulk species index for membrane diffusion.</p>
-<ul>
-<li><code>g_tol::Float64</code></li>
-</ul>
-<p>: maximum force magnitude after minimization (pN)</p>
-<ul>
-<li><code>shake_before_minimization::Bool</code></li>
-</ul>
-<p>: If true, add noise to coordinates before starting minimization.</p>
-<ul>
-<li><code>iter_max_cg_minimization::Int64</code></li>
-</ul>
-<p>: Max number of steps in conjugate gradient minimization.</p>
-<ul>
-<li><code>maxstep::Float64</code></li>
-</ul>
-<p>: max step to take during line search (nm)</p>
-<ul>
-<li><code>max_cylinder_force::Float64</code></li>
-</ul>
-<p>: max cylinder force when two cylinders are at zero distance (pN)</p>
-<ul>
-<li><code>check_neighborlist_error::Bool</code></li>
-</ul>
-<p>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p>
-<ul>
-<li><code>nthreads::Int64</code></li>
-</ul>
-<p>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p>
-<ul>
-<li><code>enable_cylinder_volume_exclusion::Ref{Bool}</code></li>
-</ul>
-<p>: Are cylinder volume exclusion forces calculated</p>
-<ul>
-<li><code>enable_triangle_bead_volume_exclusion::Bool</code></li>
-</ul>
-<p>: Are triangle-bead volume exclusion forces calculated.</p>
-<ul>
-<li><code>cylinder_skin_radius::Float64</code></li>
-</ul>
-<p>: Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p>
-<ul>
-<li><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code></li>
-</ul>
-<p>: The filament mechanical parameters, indexed by filament type id</p>
-<ul>
-<li><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code></li>
-</ul>
-<p>: Membrane mechanical parameters, indexed by membrane type id.</p>
-<ul>
-<li><code>func_membranespeciespotentialenergy::Any</code></li>
-</ul>
-<p>: Membrane species potential energy function. See docs on default function for more info.</p>
-<ul>
-<li><code>func_membranespeciesfreeenergy!::Any</code></li>
-</ul>
-<p>: Membrane species total free energy function. See docs on default function for more info.</p>
-<ul>
-<li><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code></li>
-</ul>
-<p>: Membrane-filament mechanical interaction parameters.</p>
-<ul>
-<li><code>external_energy_forces!::Any</code></li>
-</ul>
-<p>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p>
-<ul>
-<li><code>chemboundary::MEDYAN.Boundary</code></li>
-</ul>
-<p>: chemical boundary, updates compartment volumes and diffusion rates</p>
-<ul>
-<li><code>mechboundary::MEDYAN.Boundary</code></li>
-</ul>
-<p>: mechanical boundary</p>
-<ul>
-<li><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code></li>
-</ul>
-<p>: Shared configurations stored in type parameters.</p>
-<ul>
-<li><code>validflags::MEDYAN.ValidFlags</code></li>
-</ul>
-<p>: Interval system consistency validation flags.</p>
 </div>
 </div>
 </div>

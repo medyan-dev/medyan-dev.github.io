@@ -161,17 +161,10 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container">
 <p>Allows up to 1 membrane diffusing species as reactants. Also stores net stoich of membrane diffusing species.</p>
 <ul>
-<li><code>id_membranediffusing_reactant::Int64</code></li>
+<li><code>id_membranediffusing_reactant::Int64</code>: Set to 0 if no membrane diffusing species is involved.</li>
+<li><code>canchangerate_bypotentialenergy::Bool</code>: Whether the reaction rate depends on reactant species potential energy.</li>
+<li><code>membranediffusingnet_stoich::Vector{Pair{Int64, Int64}}</code>: Pairs of membrane diffusing species index =&gt; Δcount</li>
 </ul>
-<p>: Set to 0 if no membrane diffusing species is involved.</p>
-<ul>
-<li><code>canchangerate_bypotentialenergy::Bool</code></li>
-</ul>
-<p>: Whether the reaction rate depends on reactant species potential energy.</p>
-<ul>
-<li><code>membranediffusingnet_stoich::Vector{Pair{Int64, Int64}}</code></li>
-</ul>
-<p>: Pairs of membrane diffusing species index =&gt; Δcount</p>
 </div>
 </div>
 </div>

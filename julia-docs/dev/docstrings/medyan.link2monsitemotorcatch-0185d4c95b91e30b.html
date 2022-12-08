@@ -163,21 +163,11 @@ ul.task-list li input[type="checkbox"] {
 <p>As the force increases, the motor unbinding rate decreases to a minimum of k0/10</p>
 <p><code>link_2mon_sitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the link<em>2mon hasn’t been minimized yet. It assumes link</em>2mon<em>state.chemstate.numHeads exists for the link</em>2mon.</p>
 <ul>
-<li><code>f0::Float64</code></li>
+<li><code>f0::Float64</code>: single head characteristic unbinding force, units of pN/head</li>
+<li><code>onRate::Float64</code>: single head binding rate, units of 1/s</li>
+<li><code>offRate::Float64</code>: single head unbinding rate, units of 1/s</li>
+<li><code>β::Float64</code>: slope of head binding, units of (head)/(pN/head)</li>
 </ul>
-<p>: single head characteristic unbinding force, units of pN/head</p>
-<ul>
-<li><code>onRate::Float64</code></li>
-</ul>
-<p>: single head binding rate, units of 1/s</p>
-<ul>
-<li><code>offRate::Float64</code></li>
-</ul>
-<p>: single head unbinding rate, units of 1/s</p>
-<ul>
-<li><code>β::Float64</code></li>
-</ul>
-<p>: slope of head binding, units of (head)/(pN/head)</p>
 </div>
 </div>
 </div>
