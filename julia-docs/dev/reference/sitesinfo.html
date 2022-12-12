@@ -391,6 +391,7 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="cadherin_sitecountsitet-cadherin_statecadherinstate-mechparams-vid-ftid-vertexstate-monomerstates-v_pos-m_pos-m_plusvfloat64"><code>cadherin_sitecount(site::T, cadherin_state::CadherinState, mechparams, vid, ftid, vertexstate, monomerstates, v_pos, m_pos, m_plusv)::Float64</code></h4>
 <p>Return the site count given the state of the cadherin, the <code>vid</code> vertex id, the <code>ftid</code> filament type id, the <code>vertexstate</code> vertex state, the <code>monomerstates</code> monomer states, the positions of vertex and the monomer, and the orientation of the monomer.</p>
 <p><code>vertexstate</code> should be the state of vertex on the one end of cadherin, when <code>monomerstates</code> should be the collection of 3 <code>MonomerState</code> ordered from minus to plus end, with the other end of cadherin attached to the center monomer.</p>
+<p>Vertex state is defined to denote the reaction activity of vertices. The default state of vertex is one, which means the vertex is inert to chemical reaction.</p>
 <p>If a monomer or a vertex doesn’t exist, its state should be input as zero.</p>
 <p>The site count gets put in the compartment with the vertex.</p>
 </section>
