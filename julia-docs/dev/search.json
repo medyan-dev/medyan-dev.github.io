@@ -746,7 +746,7 @@
     "href": "index.html#authors",
     "title": "MEDYAN.jl",
     "section": "Authors",
-    "text": "Authors\nActive developers:\n\n\n\nName\nEmail\n\n\n\n\nHaoran Ni\nhaoranni@umd.edu\n\n\nNathan Zimmerberg\nnzimmerb@umd.edu\n\n\n\nAll developers including developers of C++ medyan:\nGaregin Papoian (gpapoian@umd.edu), Konstantin Popov, James Komianos, Aravind Chandrasekaran, Qin Ni, Carlos Floyd, Haoran Ni, Nathan Zimmerberg, Joshua Lucker.\nAll general correspondence about the code and its applications should be directed to Garegin Papoian. All developer and more specific code, installation, and usage correspondence should be directed to Active developers via email or the issue tracker."
+    "text": "Authors\nActive developers:\n\n\n\nName\nEmail\n\n\n\n\nHaoran Ni\nhaoranni@umd.edu\n\n\nNathan Zimmerberg\nnzimmerb@umd.edu\n\n\nMengxin Gu\nmxgu1234@umd.edu\n\n\n\nAll developers including developers of C++ medyan:\nGaregin Papoian (gpapoian@umd.edu), Konstantin Popov, James Komianos, Aravind Chandrasekaran, Qin Ni, Carlos Floyd, Haoran Ni, Nathan Zimmerberg, Joshua Lucker, Mengxin Gu.\nAll general correspondence about the code and its applications should be directed to Garegin Papoian. All developer and more specific code, installation, and usage correspondence should be directed to Active developers via email or the issue tracker."
   },
   {
     "objectID": "index.html#running-tests",
