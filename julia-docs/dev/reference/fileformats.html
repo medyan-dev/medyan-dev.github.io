@@ -293,10 +293,10 @@ Other Languages
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>JSON3.<span class="fu">pretty</span>(MEDYAN.<span class="fu">header</span>(cinit); allow_inf <span class="op">=</span> <span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    </code></pre>
+    "version": "0.1.0"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>"version": "0.1.0",
+<pre><code>,
     "medyanInfo": {</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -524,8 +524,8 @@ diffusingcounts
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"diffusingcounts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>2×4 Matrix{Int32}:
- 0   100  0   40
- 0  1000  0  400</code></pre>
+ 0   100   40  0
+ 0  1000  400  0</code></pre>
 </div>
 </div>
 <p>Default: Empty</p>
@@ -1111,10 +1111,10 @@ This membrane’s type id.
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/trilist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
-<pre><code>3×404 Matrix{Int64}:
-  46   52  139   23  75   47  92  133  …   99  154   62   20   17  130  109
- 103  200  178  170  51   53  15  180      38   34   28   36  135  164  164
-  31  121   67  125  60  145  65    3     163  124  138  175   57   80  162</code></pre>
+<pre><code>3×1956 Matrix{Int64}:
+ 568   23  313  682   39  353   80  575  …  692  246  114  268  326  378  961
+ 442  440  185  104  270  917  167  833     581  337  629   84  730  517  716
+ 502  320  391  662  181  964  191  231     503   48   95  375  647   80  497</code></pre>
 </div>
 </div>
 Each column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.
@@ -1126,10 +1126,10 @@ Each column is the 3 vertex indexes of a triangle. Indexes are one based, and fo
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/vertlist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
-<pre><code>3×204 Matrix{Float64}:
- 1335.88  1429.25  1688.25  1664.0   …  1522.25  1343.62  1418.25  1314.88
- 1572.12  1588.75  1450.88  1476.5      1675.62  1453.0   1562.62  1474.25
- 1580.62  1341.25  1484.88  1395.62     1582.75  1607.25  1666.38  1441.62</code></pre>
+<pre><code>3×980 Matrix{Float64}:
+ 889.75   531.25   548.5     629.75   …  1235.88   290.125  383.125  631.125
+ 725.125  191.75   425.875   512.125      256.375  232.5    126.375  685.0
+ 284.875  692.375  669.375  -155.0        145.0    436.25   560.125  459.625</code></pre>
 </div>
 </div>
 Each column is a vertex coordinate in nm.
@@ -1141,33 +1141,33 @@ Each column is a vertex coordinate in nm.
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/id"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>204-element Vector{Int64}:
- 12443
-  4955
-  9000
-   923
-  9968
-  6259
-  3241
-  8395
- 11372
- 10072
-  4342
-  3403
- 12414
+<pre><code>980-element Vector{Int64}:
+  8310
+  5489
+  1956
+  1234
+  3527
+ 13082
+ 11479
+  7695
+  1433
+  3558
+  2511
+  2593
+  3248
      ⋮
-   340
-  5714
-  4879
-  2298
-  6004
-  4560
-  2196
- 12571
-  7160
- 12884
-  3266
-  7764</code></pre>
+ 10174
+   970
+  9836
+  3276
+  3144
+   974
+  2897
+ 12158
+ 14632
+ 10168
+  7317
+ 12170</code></pre>
 </div>
 </div>
 Array of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.
@@ -1179,7 +1179,7 @@ optional 🔢 copynumbers
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/copynumbers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>3×204 Matrix{Int64}:
+<pre><code>3×980 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>

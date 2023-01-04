@@ -208,6 +208,12 @@ ul.task-list li input[type="checkbox"] {
 <li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code>: Membrane-filament mechanical interaction parameters.</p></li>
 <li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
 <li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
+<li><p><code>meshindex_as_chemboundary::Ref{Int64}</code>: The membrane index used as chemical boundary. If values other than 0 is used, the actual interior region of the chemical boundary is the intersection between</p>
+<ul>
+<li>the interior of <code>chemboundary</code>, and</li>
+<li>the interior of the membrane mesh at this index.</li>
+</ul>
+<p>Note: Since the membrane may change its shape often, <code>set_chemboundary!</code> might need to be called often accordingly to update volumes of compartments.</p></li>
 <li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
 <li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
 <li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>

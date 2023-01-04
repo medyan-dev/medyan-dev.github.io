@@ -337,6 +337,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code>: Membrane-filament mechanical interaction parameters.</p></li>
 <li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
 <li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
+<li><p><code>meshindex_as_chemboundary::Ref{Int64}</code>: The membrane index used as chemical boundary. If values other than 0 is used, the actual interior region of the chemical boundary is the intersection between</p>
+<ul>
+<li>the interior of <code>chemboundary</code>, and</li>
+<li>the interior of the membrane mesh at this index.</li>
+</ul>
+<p>Note: Since the membrane may change its shape often, <code>set_chemboundary!</code> might need to be called often accordingly to update volumes of compartments.</p></li>
 <li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
 <li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
 <li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
@@ -603,8 +609,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chemboundary!</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>;</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    meshindex_as_chemboundary,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Set chemical boundary and update compartment volumes and diffusion rates. Note, the chemboundary should be outside the mechboundary so that it is rare for filaments to go outside the chemboundary</p>
 <section id="keywords" class="level1">
 <h1>Keywords</h1>
@@ -621,6 +628,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Capsules that make up the chemical boundary of the simulation.</p>
 <p><code>capsules[bi][1:3]</code> is the starting point of the spine line segment (nm). <code>capsules[bi][4:6]</code> is the axis of the spine line segment (nm). <code>capsules[bi][7]</code> is the radius (nm). <code>capsules[bi][8]</code> is ignored.</p>
 <p>if <code>capsules[bi][4:6]</code> is zero then the capsule is a sphere. Capsule boundaries can be combined with plane boundaries to create cylinder boundaries.</p>
+<ul>
+<li><code>meshindex_as_chemboundary::Int = 0</code>: Index of membrane mesh that further restricts the chem boundary. 0 for none.</li>
+</ul>
+<p>The system geometry information must be up-to-date. This mesh index is not stored in the boundary object, but is directly set in the context.</p>
 </section>
 </div>
 </div>
