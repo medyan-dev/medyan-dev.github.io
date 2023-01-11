@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="file-formats" class="level1">
 <h1>File Formats</h1>
-<p>MEDYAN.jl uses Zarr v2 directory store for saving snapshots.</p>
+<p>MEDYAN.jl uses Zarr v2 zip store for saving snapshots.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -274,9 +274,9 @@ Other Languages
 <section id="trajectory-output-directory" class="level2">
 <h2 class="anchored" data-anchor-id="trajectory-output-directory">trajectory output directory</h2>
 <p>Trajectory outputs and logs are stored in a directory.</p>
-<p>The folder contains a <code>header.json</code> file, a <code>list.txt</code> file, and a <code>snapshots</code> sub directory containing many <code>snapshot$(NUMBER).zarr</code> directories where <code>NUMBER</code> is the frame number of the snapshot.</p>
-<p>The initial state returned by <code>setup</code> is stored in <code>snapshot0.zarr</code>.</p>
-<p>Inside the <code>snapshot$(NUMBER).zarr</code> there is a <code>medyan_context</code> directory containing the snapshot of the <code>MEDYAN.Context</code> at the step. Other state may be stored in sibling directories to <code>medyan_context</code>.</p>
+<p>The folder contains a <code>header.json</code> file, a <code>list.txt</code> file, and a <code>snapshots</code> sub directory containing many <code>snapshot$(NUMBER).zarr.zip</code> files where <code>NUMBER</code> is the frame number of the snapshot.</p>
+<p>The initial state returned by <code>setup</code> is stored in <code>snapshot0.zarr.zip</code>.</p>
+<p>Inside the <code>snapshot$(NUMBER).zarr.zip</code> there is a <code>medyan_context</code> directory containing the snapshot of the <code>MEDYAN.Context</code> at the step. Other state may be stored in sibling directories to <code>medyan_context</code>.</p>
 <p>The <code>header.json</code> file also has a top level <code>"medyan_context"</code> key with a value describing the system being simulated.</p>
 <p>Other header information may be under other top level keys.</p>
 <p>See <a href="https://github.com/medyan-dev/MEDYANSimRunner.jl" class="uri">https://github.com/medyan-dev/MEDYANSimRunner.jl</a> for details on the structure of the <code>list.txt</code> file.</p>
@@ -293,10 +293,10 @@ Other Languages
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>JSON3.<span class="fu">pretty</span>(MEDYAN.<span class="fu">header</span>(cinit); allow_inf <span class="op">=</span> <span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    </code></pre>
+    "version": "0.1.0"</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>"version": "0.1.0",
+<pre><code>,
     "medyanInfo": {</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
