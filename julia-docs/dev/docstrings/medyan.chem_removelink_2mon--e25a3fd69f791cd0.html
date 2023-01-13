@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#medyan.chem_removelink_2mon" id="toc-medyan.chem_removelink_2mon" class="nav-link active" data-scroll-target="#medyan.chem_removelink_2mon"><code>MEDYAN.chem_removelink_2mon!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---854c748a4c488ad3" id="toc-tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---854c748a4c488ad3" class="nav-link" data-scroll-target="#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---854c748a4c488ad3"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}}</code></a></li>
+  <li><a href="#tuple-medyan.context--int64--int64--481ec25ee4de4849" id="toc-tuple-medyan.context--int64--int64--481ec25ee4de4849" class="nav-link" data-scroll-target="#tuple-medyan.context--int64--int64--481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.chem_removelink_2mon--e25a3fd69f791cd0.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -214,17 +214,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="medyan.chem_removelink_2mon" class="level1">
 <h1><code>MEDYAN.chem_removelink_2mon!</code></h1>
-<section id="tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---854c748a4c488ad3" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---854c748a4c488ad3"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}}</code></h2>
+<section id="tuple-medyan.context--int64--int64--481ec25ee4de4849" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--int64--int64--481ec25ee4de4849"><code data-shortcodes="false">Tuple{MEDYAN.Context, Int64, Int64}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removelink_2mon!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove a link_2mon of type id <code>ltid</code> between monemers <code>endnames</code>.</p>
-<p>Error if there is no link_2mon there.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removelink_2mon!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid<span class="op">::</span><span class="dt">Int</span>, lid<span class="op">::</span><span class="dt">Int64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remove a link_2mon of type id <code>ltid</code> with id <code>lid</code>.</p>
+<p>Error if the specified link_2mon doesn’t exist.</p>
 <p>Don’t modify monomer states.</p>
 </div>
 </div>

@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#medyan.chem_setlink_2mon_state" id="toc-medyan.chem_setlink_2mon_state" class="nav-link active" data-scroll-target="#medyan.chem_setlink_2mon_state"><code>MEDYAN.chem_setlink_2mon_state!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--any--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--35d119ed052f9b98" id="toc-tuple-medyan.context--any--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--35d119ed052f9b98" class="nav-link" data-scroll-target="#tuple-medyan.context--any--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--35d119ed052f9b98"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}, MEDYAN.Link2MonState}</code></a></li>
+  <li><a href="#tuple-medyan.context--any--any--medyan.link2monstate--05f3ca4b015e615e" id="toc-tuple-medyan.context--any--any--medyan.link2monstate--05f3ca4b015e615e" class="nav-link" data-scroll-target="#tuple-medyan.context--any--any--medyan.link2monstate--05f3ca4b015e615e"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Any, MEDYAN.Link2MonState}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.chem_setlink_2mon_state--82213403237b28e5.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -214,17 +214,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="medyan.chem_setlink_2mon_state" class="level1">
 <h1><code>MEDYAN.chem_setlink_2mon_state!</code></h1>
-<section id="tuple-medyan.context--any--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--35d119ed052f9b98" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--any--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--35d119ed052f9b98"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Pair{MEDYAN.MonomerName, MEDYAN.MonomerName}, MEDYAN.Link2MonState}</code></h2>
+<section id="tuple-medyan.context--any--any--medyan.link2monstate--05f3ca4b015e615e" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--any--any--medyan.link2monstate--05f3ca4b015e615e"><code data-shortcodes="false">Tuple{MEDYAN.Context, Any, Any, MEDYAN.Link2MonState}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_setlink_2mon_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, endnames<span class="op">::</span><span class="dt">Pair{MonomerName,MonomerName}</span>, link_2mon_state<span class="op">::</span><span class="dt">Link2MonState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Set link<em>2mon</em>state of the link_2mon of type id <code>ltid</code> with endnames.</p>
-<p>Error if there is no link_2mon there.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_setlink_2mon_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, ltid, lid, link_2mon_state<span class="op">::</span><span class="dt">Link2MonState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set link<em>2mon</em>state of the link_2mon of type id <code>ltid</code> with id <code>lid</code>.</p>
+<p>Error if the specified link_2mon doesn’t exist.</p>
 </div>
 </div>
 </div>
