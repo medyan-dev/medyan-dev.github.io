@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – medyan.link2monsitemotorcatch-0185d4c95b91e30b</title>
+<title>MEDYAN.jl – medyan.statedef-c61a7206975877ec</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,20 +137,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.link2monsitemotorcatch" id="toc-medyan.link2monsitemotorcatch" class="nav-link active" data-scroll-target="#medyan.link2monsitemotorcatch"><code>MEDYAN.Link2MonSiteMotorCatch</code></a>
+  <li><a href="#medyan.statedef" id="toc-medyan.statedef" class="nav-link active" data-scroll-target="#medyan.statedef"><code>MEDYAN.StateDef</code></a>
   <ul class="collapse">
   <li><a href="#union---b2cfd89fb0d1b9c6" id="toc-union---b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.link2monsitemotorcatch-0185d4c95b91e30b.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.statedef-c61a7206975877ec.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.link2monsitemotorcatch" class="level1">
-<h1><code>MEDYAN.Link2MonSiteMotorCatch</code></h1>
+<section id="medyan.statedef" class="level1">
+<h1><code>MEDYAN.StateDef</code></h1>
 <section id="union---b2cfd89fb0d1b9c6" class="level2">
 <h2 class="anchored" data-anchor-id="union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -159,18 +159,16 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The catch-bond nature of myosin unbinding with multiple heads. Adopted from the results of Erdmann et al.&nbsp;2013. The parallel cluster model.</p>
-<p>As the force increases, the motor unbinding rate decreases to a minimum of k0/10</p>
-<p><code>link_2mon_sitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the link<em>2mon hasn’t been minimized yet. It assumes link</em>2mon<em>state.chemstate.numHeads exists for the link</em>2mon.</p>
+<p>The names of the agents in a simulation</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>single head characteristic unbinding force, units of pN/head</p></li>
-<li><p><code>onRate::Float64</code></p>
-<p>single head binding rate, units of 1/s</p></li>
-<li><p><code>offRate::Float64</code></p>
-<p>single head unbinding rate, units of 1/s</p></li>
-<li><p><code>β::Float64</code></p>
-<p>slope of head binding, units of (head)/(pN/head)</p></li>
+<li><code>diffusingspeciesnames::Vector{Symbol}</code></li>
+<li><code>bulkspeciesnames::Vector{Symbol}</code></li>
+<li><code>membranediffusingspeciesnames::Vector{Symbol}</code></li>
+<li><code>fixedspeciesnames::Vector{Symbol}</code></li>
+<li><code>filamentnames::Vector{Tuple{Symbol, Vector{Symbol}}}</code></li>
+<li><code>vertexnames::Vector{Symbol}</code></li>
+<li><code>link_2mon_names::Vector{Symbol}</code></li>
+<li><code>cadherinnames::Vector{Symbol}</code></li>
 </ul>
 </div>
 </div>

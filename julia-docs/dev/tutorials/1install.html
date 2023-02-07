@@ -210,6 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../tutorials/1install.html" class="sidebar-item-text sidebar-link active">1. Installing MEDYAN.jl</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/2rdme.html" class="sidebar-item-text sidebar-link">2. Rock Paper Scissors Stochastic Reaction Diffusion</a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -241,10 +246,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Skip this section if you already have julia installed.</p>
 <p>For this section I am assuming you are using linux or mac. Julia can also be installed on windows with <a href="https://julialang.org/downloads/platform/#juliaup">juliaup</a>.</p>
 <p>MEDYAN.jl is a julia package so first install the julia programming language.</p>
-<p>I recommend using https://github.com/johnnychen94/jill.py</p>
+<p>I recommend using <a href="https://github.com/johnnychen94/jill.py">jill.py</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jill <span class="at">--user</span> <span class="at">-U</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jill</span> install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can also download julia from https://julialang.org/downloads/</p>
+<p>You can also download <a href="https://julialang.org/downloads/">julia here</a>.</p>
 <p>Do not install julia using <code>apt install julia</code> or <code>module load julia</code>, as these don’t have a recent version of julia.</p>
 <p>After installing julia open the REPL with the <code>julia</code> command in terminal.</p>
 <p>Then type <code>]</code> to enter <code>pkg</code> mode.</p>
@@ -273,8 +278,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"registry add https://github.com/medyan-dev/MEDYANRegistry.git"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"registry add https://github.com/JuliaRegistries/General"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you don’t have ssh keys set up with GitHub, follow these directions:</p>
-<p>https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</p>
-<p>You will also need read access to https://github.com/medyan-dev/MEDYAN.jl because it is currently a private repository.</p>
+<p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent" class="uri">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></p>
+<p>You will also need read access to <a href="https://github.com/medyan-dev/MEDYAN.jl" class="uri">https://github.com/medyan-dev/MEDYAN.jl</a> because it is currently a private repository.</p>
 </section>
 <section id="install-medyan" class="level2">
 <h2 class="anchored" data-anchor-id="install-medyan">Install MEDYAN</h2>
@@ -284,16 +289,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To install a specific commit of MEDYAN.jl run for example:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"""add "git@github.com:medyan-dev/MEDYAN.jl"#9cb627c60e"""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This will install a snapshot of MEDYAN.jl as it was (here)[https://github.com/medyan-dev/MEDYAN.jl/tree/9cb627c60e].</p>
-<p>See https://github.com/medyan-dev/MEDYAN.jl/commits/master for more commits.</p>
-<p>If you have issues installing: 1. Make sure your ssh key has been added to the (ssh agent)[https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent]. 2. Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code> 3. Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code></p>
+<p>This will install a snapshot of MEDYAN.jl as it was <a href="https://github.com/medyan-dev/MEDYAN.jl/tree/9cb627c60e">here</a>.</p>
+<p>See <a href="https://github.com/medyan-dev/MEDYAN.jl/commits/master" class="uri">https://github.com/medyan-dev/MEDYAN.jl/commits/master</a> for more commits.</p>
+<p>To install the MeshCat visualization tool needed for the tutorials also run:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"add MeshCat"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have issues installing: 1. Make sure your ssh key has been added to the <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">ssh agent</a>. 2. Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code> 3. Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code> in your <code>startup.jl</code></p>
 </section>
 <section id="running-tests" class="level2">
 <h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
 <p>These tests may take a few minutes to run.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"test MEDYAN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you have any errors or failing tests (create an issue)[https://github.com/medyan-dev/MEDYAN.jl/issues/new]</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"test MEDYAN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have any errors or failing tests <a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new">create an issue</a></p>
 
 
 </section>
