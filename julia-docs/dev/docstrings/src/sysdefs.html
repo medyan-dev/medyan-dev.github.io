@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#srcsysdefs.jl" id="toc-srcsysdefs.jl" class="nav-link active" data-scroll-target="#srcsysdefs.jl">src/sysdefs.jl</a>
   <ul class="collapse">
-  <li><a href="#medyan.statedef-c61a7206975877ec" id="toc-medyan.statedef-c61a7206975877ec" class="nav-link" data-scroll-target="#medyan.statedef-c61a7206975877ec"><code>MEDYAN.StateDef</code></a></li>
+  <li><a href="#medyan.agentnames-948e6a24b4fb0cb5" id="toc-medyan.agentnames-948e6a24b4fb0cb5" class="nav-link" data-scroll-target="#medyan.agentnames-948e6a24b4fb0cb5"><code>MEDYAN.AgentNames</code></a></li>
   <li><a href="#medyan.monomername-bb517706cb60c4f5" id="toc-medyan.monomername-bb517706cb60c4f5" class="nav-link" data-scroll-target="#medyan.monomername-bb517706cb60c4f5"><code>MEDYAN.MonomerName</code></a></li>
   <li><a href="#medyan.vertexname-2d87a6a86cabc4f5" id="toc-medyan.vertexname-2d87a6a86cabc4f5" class="nav-link" data-scroll-target="#medyan.vertexname-2d87a6a86cabc4f5"><code>MEDYAN.VertexName</code></a></li>
   <li><a href="#medyan.link2monstate-9845e7e08620ea8a" id="toc-medyan.link2monstate-9845e7e08620ea8a" class="nav-link" data-scroll-target="#medyan.link2monstate-9845e7e08620ea8a"><code>MEDYAN.Link2MonState</code></a></li>
@@ -237,8 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="srcsysdefs.jl" class="level1">
 <h1>src/sysdefs.jl</h1>
-<section id="medyan.statedef-c61a7206975877ec" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.statedef-c61a7206975877ec"><a href="../../docstrings/medyan.statedef-c61a7206975877ec.html"><code>MEDYAN.StateDef</code></a></h2>
+<section id="medyan.agentnames-948e6a24b4fb0cb5" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.agentnames-948e6a24b4fb0cb5"><a href="../../docstrings/medyan.agentnames-948e6a24b4fb0cb5.html"><code>MEDYAN.AgentNames</code></a></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -384,10 +384,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SysDef</span>(statedef<span class="op">::</span><span class="dt">StateDef</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SysDef</span>(agentnames<span class="op">::</span><span class="dt">AgentNames</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A mutable struct mapping names to id numbers in a simulation</p>
 <ul>
-<li><p><code>statedef::MEDYAN.StateDef</code></p></li>
+<li><p><code>agentnames::MEDYAN.AgentNames</code></p></li>
 <li><p><code>diffusing::MEDYAN.PropDictionary</code></p></li>
 <li><p><code>diffusing_coeff::MEDYAN.PropDictionary</code></p></li>
 <li><p><code>bulkspecies_indexmap::MEDYAN.PropDictionary</code></p></li>
@@ -671,7 +671,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="examples" class="level1">
 <h1>Examples</h1>
 <div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>statedef <span class="op">=</span> <span class="fu">StateDef</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>agentnames <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>a,</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>b,</span>
@@ -679,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(statedef)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agentnames)</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>ab,</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b], <span class="fl">1</span>,</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
@@ -719,7 +719,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="examples-1" class="level1">
 <h1>Examples</h1>
 <div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>statedef <span class="op">=</span> <span class="fu">StateDef</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>agentnames <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    diffusingspeciesnames<span class="op">=</span> [<span class="op">:</span>a,],</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>plus,</span>
@@ -728,7 +728,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(statedef)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agentnames)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>monomerspacing<span class="op">=</span> <span class="fl">2.7</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#minus end polymerization</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>pm, <span class="cn">true</span>,</span>
