@@ -292,7 +292,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This will install a snapshot of MEDYAN.jl as it was <a href="https://github.com/medyan-dev/MEDYAN.jl/tree/9cb627c60e">here</a>.</p>
 <p>See <a href="https://github.com/medyan-dev/MEDYAN.jl/commits/master" class="uri">https://github.com/medyan-dev/MEDYAN.jl/commits/master</a> for more commits.</p>
 <p>To install the MeshCat visualization tool needed for the tutorials also run:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"add MeshCat"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"add MeshCat"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"add StorageTrees"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"add CairoMakie"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you have issues installing: 1. Make sure your ssh key has been added to the <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">ssh agent</a>. 2. Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code> 3. Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code> in your <code>startup.jl</code></p>
 </section>
 <section id="running-tests" class="level2">

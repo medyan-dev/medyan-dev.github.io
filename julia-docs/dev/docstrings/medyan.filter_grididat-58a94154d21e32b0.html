@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – grids</title>
+<title>MEDYAN.jl – medyan.filter_grididat-58a94154d21e32b0</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,22 +86,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,7 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
@@ -144,23 +144,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../tutorials/1install.html">
+    <a class="nav-link" href="../tutorials/1install.html">
  <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../howto/index.html">
+    <a class="nav-link" href="../howto/index.html">
  <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../explanations.html">
+    <a class="nav-link" href="../explanations.html">
  <span class="menu-text">Explanations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../reference/index.html">
+    <a class="nav-link" href="../reference/index.html">
  <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -176,11 +176,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="../../../dev/">
+    <a class="dropdown-item" href="../../dev/">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../stable/">
+    <a class="dropdown-item" href="../../stable/">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
@@ -200,130 +200,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#srcgrids.jl" id="toc-srcgrids.jl" class="nav-link active" data-scroll-target="#srcgrids.jl">src/grids.jl</a>
+  <li><a href="#medyan.filter_grididat" id="toc-medyan.filter_grididat" class="nav-link active" data-scroll-target="#medyan.filter_grididat"><code>MEDYAN.filter_grididat</code></a>
   <ul class="collapse">
-  <li><a href="#medyan.cubicgrid-fe4b7cc2dceb0431" id="toc-medyan.cubicgrid-fe4b7cc2dceb0431" class="nav-link" data-scroll-target="#medyan.cubicgrid-fe4b7cc2dceb0431"><code>MEDYAN.CubicGrid</code></a></li>
-  <li><a href="#base.length-7ea31a421de7d258" id="toc-base.length-7ea31a421de7d258" class="nav-link" data-scroll-target="#base.length-7ea31a421de7d258"><code>Base.length</code></a></li>
-  <li><a href="#medyan.grididat-8671e01413346deb" id="toc-medyan.grididat-8671e01413346deb" class="nav-link" data-scroll-target="#medyan.grididat-8671e01413346deb"><code>MEDYAN.grididat</code></a></li>
-  <li><a href="#medyan.filter_grididat-58a94154d21e32b0" id="toc-medyan.filter_grididat-58a94154d21e32b0" class="nav-link" data-scroll-target="#medyan.filter_grididat-58a94154d21e32b0"><code>MEDYAN.filter_grididat</code></a></li>
-  <li><a href="#medyan.centerof-e902b9bb7b2a6caf" id="toc-medyan.centerof-e902b9bb7b2a6caf" class="nav-link" data-scroll-target="#medyan.centerof-e902b9bb7b2a6caf"><code>MEDYAN.centerof</code></a></li>
-  <li><a href="#medyan.randompoint-83e939bdee528294" id="toc-medyan.randompoint-83e939bdee528294" class="nav-link" data-scroll-target="#medyan.randompoint-83e939bdee528294"><code>MEDYAN.randompoint</code></a></li>
+  <li><a href="#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833" id="toc-tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833" class="nav-link" data-scroll-target="#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833"><code data-shortcodes="false">Tuple{Any, MEDYAN.CubicGrid, Any}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/grids.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.filter_grididat-58a94154d21e32b0.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="srcgrids.jl" class="level1">
-<h1>src/grids.jl</h1>
-<section id="medyan.cubicgrid-fe4b7cc2dceb0431" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.cubicgrid-fe4b7cc2dceb0431"><a href="../../docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html"><code>MEDYAN.CubicGrid</code></a></h2>
+<section id="medyan.filter_grididat" class="level1">
+<h1><code>MEDYAN.filter_grididat</code></h1>
+<section id="tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833"><code data-shortcodes="false">Tuple{Any, MEDYAN.CubicGrid, Any}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CubicGrid</span>(num_voxels<span class="op">::</span><span class="dt">SVector{3,Int}</span>, compartmentsize<span class="op">::</span><span class="dt">Float64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><code>n::StaticArraysCore.SVector{3, Int64}</code></li>
-<li><code>compartmentsize::Float64</code></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="base.length-7ea31a421de7d258" class="level2">
-<h2 class="anchored" data-anchor-id="base.length-7ea31a421de7d258"><a href="../../docstrings/base.length-7ea31a421de7d258.html"><code>Base.length</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">length</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Total number of compartments in the grid</p>
-</div>
-</div>
-</div>
-</section>
-<section id="medyan.grididat-8671e01413346deb" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.grididat-8671e01413346deb"><a href="../../docstrings/medyan.grididat-8671e01413346deb.html"><code>MEDYAN.grididat</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grididat</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>,location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the grid id of location The origin is in the corner. Returns a close by compartment if out of the grid</p>
-</div>
-</div>
-</div>
-</section>
-<section id="medyan.filter_grididat-58a94154d21e32b0" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.filter_grididat-58a94154d21e32b0"><a href="../../docstrings/medyan.filter_grididat-58a94154d21e32b0.html"><code>MEDYAN.filter_grididat</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_grididat</span>(f,grid<span class="op">::</span><span class="dt">CubicGrid</span>,location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter_grididat</span>(f,grid<span class="op">::</span><span class="dt">CubicGrid</span>,location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the nearest grid id of location where f(id) evaluates to true. The origin is in the corner. errors if there is no id that evaluates to true. Returns a close by compartment if out of the grid</p>
-</div>
-</div>
-</div>
-</section>
-<section id="medyan.centerof-e902b9bb7b2a6caf" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.centerof-e902b9bb7b2a6caf"><a href="../../docstrings/medyan.centerof-e902b9bb7b2a6caf.html"><code>MEDYAN.centerof</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">centerof</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>,cid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the location of the center of a grid id The origin is in the corner.</p>
-</div>
-</div>
-</div>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">centerof</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the location of the center the grid The origin is in the corner.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="medyan.randompoint-83e939bdee528294" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.randompoint-83e939bdee528294"><a href="../../docstrings/medyan.randompoint-83e939bdee528294.html"><code>MEDYAN.randompoint</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">randompoint</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>,cid)<span class="op">::</span><span class="dt">SVector{3,Float64}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return a random point in a compartment</p>
-</div>
-</div>
-</div>
-<div class="callout-note callout callout-style-simple no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">randompoint</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>)<span class="op">::</span><span class="dt">SVector{3,Float64}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return a random point in the grid</p>
 </div>
 </div>
 </div>
