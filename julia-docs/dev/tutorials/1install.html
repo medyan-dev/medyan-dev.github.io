@@ -250,10 +250,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Commit 17cfb8e65ea (2023-01-08 06:45 UTC)
 Platform Info:
   OS: Linux (x86_64-linux-gnu)
-  CPU: 2 × Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
+  CPU: 2 × Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
   WORD_SIZE: 64
   LIBM: libopenlibm
-  LLVM: libLLVM-13.0.1 (ORCJIT, icelake-server)
+  LLVM: libLLVM-13.0.1 (ORCJIT, skylake-avx512)
   Threads: 1 on 2 virtual cores</code></pre>
 </div>
 </div>
@@ -306,7 +306,12 @@ Platform Info:
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From inside the <code>medyan-tutorial</code> directory.</p>
 <p>You can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.</p>
-<p>If you have issues installing: 1. Make sure your ssh key has been added to the <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">ssh agent</a>. 2. Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code> 3. Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code> in your <code>startup.jl</code></p>
+<p>If you have issues installing:</p>
+<ol type="1">
+<li>Make sure your ssh key has been added to the <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">ssh agent</a>.</li>
+<li>Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code></li>
+<li>Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code> in your <code>startup.jl</code></li>
+</ol>
 </section>
 <section id="running-tests" class="level2">
 <h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
