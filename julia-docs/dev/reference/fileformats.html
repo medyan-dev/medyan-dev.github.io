@@ -293,10 +293,10 @@ Other Languages
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>JSON3.<span class="fu">pretty</span>(MEDYAN.<span class="fu">header</span>(cinit); allow_inf <span class="op">=</span> <span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{
-    "version": "0.1.0"</code></pre>
+    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>,
+<pre><code>"version": "0.1.0",
     "medyanInfo": {</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -928,16 +928,16 @@ Number of link_2mons of this type.
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"link_2mons/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
-<pre><code>📂 
-├─ "1" ⇒ 📂 🏷️"name" =&gt; "chemstate", 
-│        ├─ "1" ⇒ 🔢 2 Int64 🏷️"name" =&gt; "a", 
-│        └─ "2" ⇒ 🔢 2 Float64 🏷️"name" =&gt; "b", 
-├─ "2" ⇒ 📂 🏷️"name" =&gt; "mechstate", 
-│        └─ "1" ⇒ 📂 🏷️"name" =&gt; "â", 
-│                 ├─ "1" ⇒ 🔢 2 Float32 🏷️"name" =&gt; "1", 
-│                 ├─ "2" ⇒ 🔢 2 Float32 🏷️"name" =&gt; "2", 
-│                 └─ "3" ⇒ 🔢 2 Float32 🏷️"name" =&gt; "3", 
-└─ "3" ⇒ 🔢 2 Bool 🏷️"name" =&gt; "is_minimized", </code></pre>
+<pre><code>📂
+├─ 📂 1 🏷️ name =&gt; "chemstate",
+|  ├─ 🔢 1: 2 Int64  🏷️ name =&gt; "a",
+|  └─ 🔢 2: 2 Float64  🏷️ name =&gt; "b",
+├─ 📂 2 🏷️ name =&gt; "mechstate",
+|  └─ 📂 1 🏷️ name =&gt; "â",
+|     ├─ 🔢 1: 2 Float32  🏷️ name =&gt; "1",
+|     ├─ 🔢 2: 2 Float32  🏷️ name =&gt; "2",
+|     └─ 🔢 3: 2 Float32  🏷️ name =&gt; "3",
+└─ 🔢 3: 2 Bool  🏷️ name =&gt; "is_minimized",</code></pre>
 </div>
 </div>
 </details>
