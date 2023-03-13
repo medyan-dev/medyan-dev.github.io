@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#medyan.load_snapshot" id="toc-medyan.load_snapshot" class="nav-link active" data-scroll-target="#medyan.load_snapshot"><code>MEDYAN.load_snapshot!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--storagetrees.zgroup--ef6b3dd605e77b8e" id="toc-tuple-medyan.context--storagetrees.zgroup--ef6b3dd605e77b8e" class="nav-link" data-scroll-target="#tuple-medyan.context--storagetrees.zgroup--ef6b3dd605e77b8e"><code data-shortcodes="false">Tuple{MEDYAN.Context, StorageTrees.ZGroup}</code></a></li>
+  <li><a href="#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b" id="toc-tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b" class="nav-link" data-scroll-target="#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b"><code data-shortcodes="false">Tuple{MEDYAN.Context, SmallZarrGroups.ZGroup}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.load_snapshot--e534be293ce74465.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
@@ -214,15 +214,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="medyan.load_snapshot" class="level1">
 <h1><code>MEDYAN.load_snapshot!</code></h1>
-<section id="tuple-medyan.context--storagetrees.zgroup--ef6b3dd605e77b8e" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--storagetrees.zgroup--ef6b3dd605e77b8e"><code data-shortcodes="false">Tuple{MEDYAN.Context, StorageTrees.ZGroup}</code></h2>
+<section id="tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b"><code data-shortcodes="false">Tuple{MEDYAN.Context, SmallZarrGroups.ZGroup}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load_snapshot!</span>(c<span class="op">::</span><span class="dt">Context</span>,group<span class="op">::</span><span class="dt">StorageTrees.ZGroup</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load_snapshot!</span>(c<span class="op">::</span><span class="dt">Context</span>,group<span class="op">::</span><span class="dt">ZGroup</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Empty the context and load the state saved in the snapshot <code>group</code>.</p>
 <p><code>c</code> should be constructed with the same <code>SysDef</code> and parameters as the <code>Context</code> used to create the snapshot. Trying to load a snapshot into a <code>Context</code> constructed with a different system or parameters may lead to unexpected results.</p>
 <p>See Snapshot group for more details.</p>
