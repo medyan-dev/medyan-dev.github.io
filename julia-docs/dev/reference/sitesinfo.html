@@ -274,6 +274,10 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="spacingsitetfloat64"><code>spacing(site::T)::Float64</code></h4>
 <p>Return spacing needed for the filament end site reaction to happen, units of nm.</p>
 </section>
+<section id="added_monomerssitetint" class="level4">
+<h4 class="anchored" data-anchor-id="added_monomerssitetint"><code>added_monomers(site::T)::Int</code></h4>
+<p>Return number of monomers that need to be added for the filament end site reaction to happen. Each filament has a limited number of monomers that can be added per end between minimizations given by <code>FilamentMechParams.max_num_unmin_end</code>. If this function returns zero, this limit is ignored for <code>site</code>. Also, see <a href="../docstrings/fil_num_unmin_ends-2cafc86f67e9beb0.qmd"><code>fil_num_unmin_ends</code></a> If this function returns a number greater than zero, the site count will be zero if the current number of unminimized monomers on the end plus the <code>added_monomers</code> result will go over <code>FilamentMechParams.max_num_unmin_end</code>.</p>
+</section>
 <section id="filamentendsitecountsitetstatesfloat64" class="level4">
 <h4 class="anchored" data-anchor-id="filamentendsitecountsitetstatesfloat64"><code>filamentendsitecount(site::T,states)::Float64</code></h4>
 <p>Return the filament end site count at the end of a filament with monomer states vector <code>states</code> The rate of filament end reaction will be modified by the brownian ratchet model:</p>
