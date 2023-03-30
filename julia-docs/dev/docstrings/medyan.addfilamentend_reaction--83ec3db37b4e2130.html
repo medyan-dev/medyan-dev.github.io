@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>spacing::Float64</code>: Space needed at the filament end for this reaction. (nm) <code>ratefactor= exp(-β*spacing*loadforce)</code> where β is 1/kT, <code>loadforce</code> is the external force pushing axially on the end of the filament. and <code>ratefactor</code> affects this reaction propensity and any others using <code>filamentendsitename</code></li>
 <li><code>reactionexpr::AbstractString</code>: Allows adding other reactants or products to the reaction. <code>" + filamentendsite.$(filamenttypename).$(filamentendsitename) + "</code> gets added to both sides this to create the full reaction expression. See <a href="../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>addreaction!</code></a> for syntax.</li>
 <li><code>rate::Float64</code>: Base rate for the reaction. ((nm³)^(<code>invvolumepower</code>)/s)</li>
-<li><code>invvolumepower::Int</code>: <code>volumefactor= (1/volume)^invvolumepower</code> where <code>volume</code> is the volume of the compartment in nm³. <code>volumefactor</code> only applies to this reaction not any other reaction using <code>filamentendsitename</code> Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.</li>
+<li><code>invvolumepower::Int</code>: <code>volumefactor= (1/volume)^invvolumepower</code> where <code>volume</code> is the volume of the voxel in nm³. <code>volumefactor</code> only applies to this reaction not any other reaction using <code>filamentendsitename</code> Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.</li>
 </ol>
 </section>
 <section id="examples" class="level1">
