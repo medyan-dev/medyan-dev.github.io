@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – medyan.linkablesiteminanglerange-fb2b6cfdc0e13e58</title>
+<title>MEDYAN.jl – medyan.decimated2monsiterange-8afd8f3188bbcd4a</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,20 +137,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.linkablesiteminanglerange" id="toc-medyan.linkablesiteminanglerange" class="nav-link active" data-scroll-target="#medyan.linkablesiteminanglerange"><code>MEDYAN.LinkableSiteMinAngleRange</code></a>
+  <li><a href="#medyan.decimated2monsiterange" id="toc-medyan.decimated2monsiterange" class="nav-link active" data-scroll-target="#medyan.decimated2monsiterange"><code>MEDYAN.Decimated2MonSiteRange</code></a>
   <ul class="collapse">
   <li><a href="#union---b2cfd89fb0d1b9c6" id="toc-union---b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.linkablesiteminanglerange-fb2b6cfdc0e13e58.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.decimated2monsiterange-8afd8f3188bbcd4a.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="medyan.linkablesiteminanglerange" class="level1">
-<h1><code>MEDYAN.LinkableSiteMinAngleRange</code></h1>
+<section id="medyan.decimated2monsiterange" class="level1">
+<h1><code>MEDYAN.Decimated2MonSiteRange</code></h1>
 <section id="union---b2cfd89fb0d1b9c6" class="level2">
 <h2 class="anchored" data-anchor-id="union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
 <div class="callout-note callout callout-style-simple no-icon">
@@ -159,8 +159,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Any pair within max to min range are linkable if they have matching state with <code>minusstate</code> and <code>plusstate</code> and if both the angles between the filaments and line between the pair are greater than <code>acos(cosminangle)</code> for example if cosminangle is 1, all angles are ok, if cosminangle is sqrt(2)/2, and the line between the pair of monomers is parallel or anti parallel to either filament, it won’t be linkable.</p>
-<p>This can be used to prevent link_2mons from binding both ends to the same filament.</p>
+<p>Any pair within max to min range are linkable if they have matching state with <code>minusstate</code> and <code>plusstate</code>.</p>
 <ul>
 <li><code>minusftid::Int64</code></li>
 <li><code>plusftid::Int64</code></li>
@@ -170,7 +169,6 @@ ul.task-list li input[type="checkbox"] {
 <li><code>plusstate::UInt8</code></li>
 <li><code>minrange::Float64</code></li>
 <li><code>maxrange::Float64</code></li>
-<li><code>cosminangle::Float64</code></li>
 </ul>
 </div>
 </div>

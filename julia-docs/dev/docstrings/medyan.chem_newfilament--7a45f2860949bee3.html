@@ -225,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_newfilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, monomerstates, node_mids, nodepositions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the filament id of a new filament.</p>
 <p>Error if the filament isn’t initially over 2 monomers long.</p>
-<p>Newly added filaments don’t have linkable sites, until after minimization.</p>
+<p>Newly added filaments don’t have decimated_2mon sites, until after minimization.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>

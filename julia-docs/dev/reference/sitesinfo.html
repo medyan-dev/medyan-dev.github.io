@@ -191,10 +191,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#built-in-link_2mon-sites" id="toc-built-in-link_2mon-sites" class="nav-link" data-scroll-target="#built-in-link_2mon-sites">Built-in link_2mon sites</a></li>
   <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
   </ul></li>
-  <li><a href="#linkable-sites" id="toc-linkable-sites" class="nav-link" data-scroll-target="#linkable-sites">linkable sites</a>
+  <li><a href="#decimated_2mon-sites" id="toc-decimated_2mon-sites" class="nav-link" data-scroll-target="#decimated_2mon-sites">decimated_2mon sites</a>
   <ul class="collapse">
   <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
-  <li><a href="#built-in-linkable-sites" id="toc-built-in-linkable-sites" class="nav-link" data-scroll-target="#built-in-linkable-sites">Built-in linkable sites</a></li>
+  <li><a href="#built-in-decimated_2mon-sites" id="toc-built-in-decimated_2mon-sites" class="nav-link" data-scroll-target="#built-in-decimated_2mon-sites">Built-in decimated_2mon sites</a></li>
   <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
   </ul></li>
   <li><a href="#cadherin-sites" id="toc-cadherin-sites" class="nav-link" data-scroll-target="#cadherin-sites">cadherin sites</a>
@@ -335,19 +335,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 </section>
-<section id="linkable-sites" class="level2">
-<h2 class="anchored" data-anchor-id="linkable-sites">linkable sites</h2>
-<p>Linkable sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the compartment of the potential monomer that could attach to the minus end of the link_2mon.</p>
+<section id="decimated_2mon-sites" class="level2">
+<h2 class="anchored" data-anchor-id="decimated_2mon-sites">decimated_2mon sites</h2>
+<p>Decimated_2mon sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the compartment of the potential monomer that could attach to the minus end of the link_2mon.</p>
 <section id="required-functions-3" class="level3">
 <h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
-<p>A type <code>T</code> must implement the following functions to be a linkable site.</p>
+<p>A type <code>T</code> must implement the following functions to be a decimated_2mon site.</p>
 <section id="cutoff_distancesitetfloat64" class="level4">
 <h4 class="anchored" data-anchor-id="cutoff_distancesitetfloat64"><code>cutoff_distance(site::T)::Float64</code></h4>
-<p>Return the maximum distance in nm of a linkable site.</p>
+<p>Return the maximum distance in nm of a decimated_2mon site.</p>
 </section>
-<section id="max_linkablesitecountsitetfloat64" class="level4">
-<h4 class="anchored" data-anchor-id="max_linkablesitecountsitetfloat64"><code>max_linkablesitecount(site::T)::Float64</code></h4>
-<p>Return the maximum <code>linkablesitecount</code> will return given a pair of monomers in linkable range.</p>
+<section id="max_decimated_2mon_sitecountsitetfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="max_decimated_2mon_sitecountsitetfloat64"><code>max_decimated_2mon_sitecount(site::T)::Float64</code></h4>
+<p>Return the maximum <code>decimated_2mon_sitecount</code> will return given a pair of monomers <code>in_linking_range</code>.</p>
 </section>
 <section id="in_linking_rangesitetm_posp_posm_plusvp_plusvtupleboolbool" class="level4">
 <h4 class="anchored" data-anchor-id="in_linking_rangesitetm_posp_posm_plusvp_plusvtupleboolbool"><code>in_linking_range(site::T,m_pos,p_pos,m_plusv,p_plusv)::Tuple{Bool,Bool}</code></h4>
@@ -359,29 +359,29 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="getmidstepssitettupleintegerinteger" class="level4">
 <h4 class="anchored" data-anchor-id="getmidstepssitettupleintegerinteger"><code>getmidsteps(site::T)::Tuple{Integer,Integer}</code></h4>
-<p>Return the monomer step size starting with mid 0 in the search for potential linkable sites on the minus and plus ends respectively.</p>
+<p>Return the monomer step size starting with mid 0 in the search for potential decimated_2mon sites on the minus and plus ends respectively.</p>
 <p>1 searches every monomer. 2 searches every monomer with even mid …</p>
 <p>If the plus and minus filament types are the same, then <code>getmidsteps(site)[1] == getmidsteps(site)[2]</code></p>
 </section>
-<section id="linkablesitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64" class="level4">
-<h4 class="anchored" data-anchor-id="linkablesitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64"><code>linkablesitecount(site::T,minusstate,plusstate,m_pos,p_pos,m_plusv,p_plusv)::Float64</code></h4>
-<p>Return the site count of two monomers getting linked given their states, their positions, and their plus vectors. The monomers can be assumed to be in linkable range, from the correct filament types, and at the correct step.</p>
+<section id="decimated_2mon_sitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64" class="level4">
+<h4 class="anchored" data-anchor-id="decimated_2mon_sitecountsitetminusstateplusstatem_posp_posm_plusvp_plusvfloat64"><code>decimated_2mon_sitecount(site::T,minusstate,plusstate,m_pos,p_pos,m_plusv,p_plusv)::Float64</code></h4>
+<p>Return the site count of two monomers getting linked given their states, their positions, and their plus vectors. The monomers can be assumed to be <code>in_linking_range</code>, from the correct filament types, and at the correct step.</p>
 </section>
 </section>
-<section id="built-in-linkable-sites" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-linkable-sites"><a href="../docstrings/src/linkablesites.html">Built-in linkable sites</a></h3>
+<section id="built-in-decimated_2mon-sites" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-decimated_2mon-sites"><a href="../docstrings/src/decimated_2mon_sites.html">Built-in decimated_2mon sites</a></h3>
 </section>
 <section id="related-functions-and-fields-3" class="level3">
 <h3 class="anchored" data-anchor-id="related-functions-and-fields-3">Related Functions and Fields</h3>
 <section id="context-3" class="level4">
 <h4 class="anchored" data-anchor-id="context-3"><code>Context</code></h4>
-<p><a href="../docstrings/medyan.pickrandomlinkablesite-ff6e780516ce8a9a.qmd"><code>MEDYAN.pickrandomlinkablesite</code></a></p>
-<p><a href="../docstrings/medyan.context-736368ed32b08894.html#linkablesites-3c5fdac78044efed"><code>MEDYAN.Context#linkablesites</code></a> field</p>
+<p><a href="../docstrings/medyan.pickrandom_decimated_2mon_site-57ad10bb1f9030b8.qmd"><code>MEDYAN.pickrandom_decimated_2mon_site</code></a></p>
+<p><a href="../docstrings/medyan.context-736368ed32b08894.html#decimated_2mon_sites-876040b7c781b914"><code>MEDYAN.Context#decimated_2mon_sites</code></a> field</p>
 </section>
 <section id="sysdef-3" class="level4">
 <h4 class="anchored" data-anchor-id="sysdef-3"><code>SysDef</code></h4>
-<p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#linkablesite-62ff66189cdef1eb"><code>MEDYAN.SysDef#linkablesite</code></a> field</p>
-<p><a href="../docstrings/medyan.addlinkablesite--9ffc8c8377769414.html"><code>MEDYAN.addlinkablesite!</code></a></p>
+<p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#decimated_2mon_site-6f0b89b126f52094"><code>MEDYAN.SysDef#decimated_2mon_site</code></a> field</p>
+<p><a href="../docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html"><code>MEDYAN.add_decimated_2mon_site!</code></a></p>
 </section>
 </section>
 </section>
