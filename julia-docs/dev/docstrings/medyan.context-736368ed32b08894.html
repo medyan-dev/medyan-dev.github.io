@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code></p>
 <p>The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
 <li><p><code>linkablesite_managers::Tuple{Vararg{MEDYAN.AbstractLinkableSiteManager}}</code></p>
-<p>The linkable site managers, indexed by linkable site id</p></li>
+<p>Site managers, indexed by site id</p></li>
 <li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Int64}}}</code></p>
 <p>Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon ids that reference the monomer name</p></li>
 <li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p>
@@ -265,9 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code></p>
 <p>Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
 <li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p>
-<p>The link<em>2mon site definitions, indexed by link</em>2mon type id, link_2mon site id to get a SiteData with fields of id, site, fxsid</p></li>
+<p>Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>linkablesites::Tuple{Vararg{MEDYAN.SiteData}}</code></p>
-<p>The linkable site definitions, indexed by linkable site id to get a SiteData with fields of id, site, fxsid</p></li>
+<p>Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
 <li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
 <li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code></p>
