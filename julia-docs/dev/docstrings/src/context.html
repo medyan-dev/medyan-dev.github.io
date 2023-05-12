@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -138,55 +109,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../tutorials/1install.html">
+    <a class="nav-link" href="../../tutorials/1install.html" rel="" target="">
  <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../howto/index.html">
+    <a class="nav-link" href="../../howto/index.html" rel="" target="">
  <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../explanations.html">
+    <a class="nav-link" href="../../explanations.html" rel="" target="">
  <span class="menu-text">Explanations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../reference/index.html">
+    <a class="nav-link" href="../../reference/index.html" rel="" target="">
  <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Versions</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="../../../dev/">
+    <a class="dropdown-item" href="../../../dev/" rel="" target="">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../stable/">
+    <a class="dropdown-item" href="../../../stable/" rel="" target="">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -255,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>src/context.jl</h1>
 <section id="medyan.membranespeciesparams-548fecb643fc2599" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.membranespeciesparams-548fecb643fc2599"><a href="../../docstrings/medyan.membranespeciesparams-548fecb643fc2599.html"><code>MEDYAN.MembraneSpeciesParams</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -263,14 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-body-container">
 <p>Membrane protein physical parameters.</p>
 <ul>
-<li><p><code>diffusion_coeff::Float64</code></p>
-<p>Membrane diffusion coefficients (nm^2/s).</p></li>
-<li><p><code>area::Float64</code></p>
-<p>Protein area projected onto the surface (nm^2).</p></li>
-<li><p><code>kbend::Float64</code></p>
-<p>Bending rigidity (pN nm).</p></li>
-<li><p><code>eqcurv::Float64</code></p>
-<p>The protein’s own spontaneous mean curvature (/nm). Can be used in bending energy computations with curvatures.</p></li>
+<li><code>diffusion_coeff::Float64</code>: Membrane diffusion coefficients (nm^2/s).</li>
+<li><code>area::Float64</code>: Protein area projected onto the surface (nm^2).</li>
+<li><code>kbend::Float64</code>: Bending rigidity (pN nm).</li>
+<li><code>eqcurv::Float64</code>: The protein’s own spontaneous mean curvature (/nm). Can be used in bending energy computations with curvatures.</li>
 </ul>
 </div>
 </div>
@@ -278,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="base.copy-4ca5eb8401ab10b2" class="level2">
 <h2 class="anchored" data-anchor-id="base.copy-4ca5eb8401ab10b2"><a href="../../docstrings/base.copy-4ca5eb8401ab10b2.html"><code>Base.copy</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -291,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.context-736368ed32b08894" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.context-736368ed32b08894"><a href="../../docstrings/medyan.context-736368ed32b08894.html"><code>MEDYAN.Context</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -302,106 +271,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>agentnames::MEDYAN.AgentNames</code></p></li>
 <li><p><code>compartments::Vector{MEDYAN.Compartment}</code></p></li>
 <li><p><code>grid::Any</code></p></li>
-<li><p><code>time::Ref{Float64}</code></p>
-<p>time (s)</p></li>
+<li><p><code>time::Ref{Float64}</code>: time (s)</p></li>
 <li><p><code>stats::MEDYAN.PerformanceStats</code></p></li>
-<li><p><code>β::Float64</code></p>
-<p>inverse kT (1/(nm*pN))</p></li>
-<li><p><code>base_diffusion_coeffs::Vector{Float64}</code></p>
-<p>Diffusion coefficients indexed by diffusing species id (nm²/s)</p></li>
-<li><p><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code></p>
-<p>Membrane species parameters indexed by membrane diffusing species id.</p></li>
-<li><p><code>min_compartment_volume_ratio::Float64</code></p>
-<p>Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p></li>
-<li><p><code>chemistryengine::MEDYAN.RDMESampler</code></p>
-<p>The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
-<li><p><code>largestfilamentid::Vector{Int64}</code></p>
-<p>The largest filament id, indexed by filament type id</p></li>
-<li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code></p>
-<p>Data about filament cylinders, indexed by filament type id</p></li>
-<li><p><code>membranes::Vector</code></p>
-<p>All membrane meshes.</p></li>
-<li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code></p>
-<p>The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
-<li><p><code>decimated_2mon_site_managers::Tuple{Vararg{MEDYAN.AbstractDecimated2MonSiteManager}}</code></p>
-<p>Site managers, indexed by site id</p></li>
-<li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Int64}}}</code></p>
-<p>Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon ids that reference the monomer name</p></li>
-<li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p>
-<p>The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p>
-<p>The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>maxfilsite_plusrange::Vector{Int64}</code></p>
-<p>The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
-<li><p><code>maxfilsite_minusrange::Vector{Int64}</code></p>
-<p>The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
-<li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code></p>
-<p>Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
-<li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code></p>
-<p>Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
-<li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p>
-<p>Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>decimated_2mon_sites::Tuple{Vararg{MEDYAN.SiteData}}</code></p>
-<p>Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>β::Float64</code>: inverse kT (1/(nm*pN))</p></li>
+<li><p><code>base_diffusion_coeffs::Vector{Float64}</code>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p></li>
+<li><p><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code>: Membrane species parameters indexed by membrane diffusing species id.</p></li>
+<li><p><code>min_compartment_volume_ratio::Float64</code>: Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p></li>
+<li><p><code>chemistryengine::MEDYAN.RDMESampler</code>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
+<li><p><code>largestfilamentid::Vector{Int64}</code>: The largest filament id, indexed by filament type id</p></li>
+<li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
+<li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
+<li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
+<li><p><code>decimated_2mon_site_managers::Tuple{Vararg{MEDYAN.AbstractDecimated2MonSiteManager}}</code>: Site managers, indexed by site id</p></li>
+<li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Int64}}}</code>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon ids that reference the monomer name</p></li>
+<li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
+<li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
+<li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
+<li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
+<li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>decimated_2mon_sites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
 <li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
-<li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code></p>
-<p>Site managers, indexed by site id</p></li>
-<li><p><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code></p>
-<p>Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p></li>
-<li><p><code>check_sitecount_error::Bool</code></p>
-<p>If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
+<li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code>: Site managers, indexed by site id</p></li>
+<li><p><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code>: Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p></li>
+<li><p><code>check_sitecount_error::Bool</code>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
 <li><p><code>compartmentreactioncallbacks::Any</code></p></li>
 <li><p><code>bulkreactioncallbacks::Any</code></p></li>
-<li><p><code>memdiff_bulks_index::Int64</code></p>
-<p>Mock bulk species index for membrane diffusion.</p></li>
-<li><p><code>g_tol::Float64</code></p>
-<p>maximum force magnitude after minimization (pN)</p></li>
-<li><p><code>shake_before_minimization::Bool</code></p>
-<p>If true, add noise to coordinates before starting minimization.</p></li>
-<li><p><code>iter_max_cg_minimization::Int64</code></p>
-<p>Max number of steps in conjugate gradient minimization.</p></li>
-<li><p><code>maxstep::Float64</code></p>
-<p>max step to take during line search (nm)</p></li>
-<li><p><code>max_cylinder_force::Float64</code></p>
-<p>max cylinder force when two cylinders are at zero distance (pN)</p></li>
-<li><p><code>check_neighborlist_error::Bool</code></p>
-<p>If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
-<li><p><code>nthreads::Int64</code></p>
-<p>Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
-<li><p><code>enable_cylinder_volume_exclusion::Ref{Bool}</code></p>
-<p>Are cylinder volume exclusion forces calculated</p></li>
-<li><p><code>enable_triangle_bead_volume_exclusion::Bool</code></p>
-<p>Are triangle-bead volume exclusion forces calculated.</p></li>
-<li><p><code>cylinder_skin_radius::Float64</code></p>
-<p>Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p></li>
-<li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code></p>
-<p>The filament mechanical parameters, indexed by filament type id</p></li>
-<li><p><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code></p>
-<p>Membrane mechanical parameters, indexed by membrane type id.</p></li>
-<li><p><code>func_membranespeciespotentialenergy::Any</code></p>
-<p>Membrane species potential energy function. See docs on default function for more info.</p></li>
-<li><p><code>func_membranespeciesfreeenergy!::Any</code></p>
-<p>Membrane species total free energy function. See docs on default function for more info.</p></li>
-<li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code></p>
-<p>Membrane-filament mechanical interaction parameters.</p></li>
-<li><p><code>external_energy_forces!::Any</code></p>
-<p>External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
-<li><p><code>chemboundary::MEDYAN.Boundary</code></p>
-<p>chemical boundary, updates compartment volumes and diffusion rates</p></li>
-<li><p><code>meshindex_as_chemboundary::Ref{Int64}</code></p>
-<p>The membrane index used as chemical boundary. If values other than 0 is used, the actual interior region of the chemical boundary is the intersection between</p>
+<li><p><code>memdiff_bulks_index::Int64</code>: Mock bulk species index for membrane diffusion.</p></li>
+<li><p><code>g_tol::Float64</code>: maximum force magnitude after minimization (pN)</p></li>
+<li><p><code>shake_before_minimization::Bool</code>: If true, add noise to coordinates before starting minimization.</p></li>
+<li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
+<li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
+<li><p><code>max_cylinder_force::Float64</code>: max cylinder force when two cylinders are at zero distance (pN)</p></li>
+<li><p><code>check_neighborlist_error::Bool</code>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
+<li><p><code>nthreads::Int64</code>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
+<li><p><code>enable_cylinder_volume_exclusion::Ref{Bool}</code>: Are cylinder volume exclusion forces calculated</p></li>
+<li><p><code>enable_triangle_bead_volume_exclusion::Bool</code>: Are triangle-bead volume exclusion forces calculated.</p></li>
+<li><p><code>cylinder_skin_radius::Float64</code>: Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p></li>
+<li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code>: The filament mechanical parameters, indexed by filament type id</p></li>
+<li><p><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code>: Membrane mechanical parameters, indexed by membrane type id.</p></li>
+<li><p><code>func_membranespeciespotentialenergy::Any</code>: Membrane species potential energy function. See docs on default function for more info.</p></li>
+<li><p><code>func_membranespeciesfreeenergy!::Any</code>: Membrane species total free energy function. See docs on default function for more info.</p></li>
+<li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code>: Membrane-filament mechanical interaction parameters.</p></li>
+<li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a function (vectorized<em>force, vectorized</em>x, vectorize<em>result) -&gt; energy, which also modifies the force as well. The energy and force must be consistent, and this is not checked. The neighbor lists and related are currently not accessible in the vectorized</em>info. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
+<li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
+<li><p><code>meshindex_as_chemboundary::Ref{Int64}</code>: The membrane index used as chemical boundary. If values other than 0 is used, the actual interior region of the chemical boundary is the intersection between</p>
 <ul>
 <li>the interior of <code>chemboundary</code>, and</li>
 <li>the interior of the membrane mesh at this index.</li>
 </ul>
 <p>Note: Since the membrane may change its shape often, <code>set_chemboundary!</code> might need to be called often accordingly to update volumes of compartments.</p></li>
-<li><p><code>mechboundary::MEDYAN.Boundary</code></p>
-<p>mechanical boundary</p></li>
-<li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code></p>
-<p>Shared configurations stored in type parameters.</p></li>
-<li><p><code>validflags::MEDYAN.ValidFlags</code></p>
-<p>Interval system consistency validation flags.</p></li>
+<li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
+<li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
+<li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
 </ul>
 </div>
 </div>
@@ -409,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.num_filtypes-b9943bbf7a9c7781" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.num_filtypes-b9943bbf7a9c7781"><a href="../../docstrings/medyan.num_filtypes-b9943bbf7a9c7781.html"><code>MEDYAN.num_filtypes</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -423,13 +347,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.filtype_fil_ids-d333c38b9f9b3584" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.filtype_fil_ids-d333c38b9f9b3584"><a href="../../docstrings/medyan.filtype_fil_ids-d333c38b9f9b3584.html"><code>MEDYAN.filtype_fil_ids</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filtype_fil_ids</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ftid<span class="op">::</span><span class="dt">Int64</span>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filtype_fil_ids</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a read only iterable of all filament ids of filament type <code>ftid</code>.</p>
 <p>This can be invalid after any mutations to context, so collect if needed.</p>
 </div>
@@ -438,13 +365,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.fil_node_positions-618a66637eb50781" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.fil_node_positions-618a66637eb50781"><a href="../../docstrings/medyan.fil_node_positions-618a66637eb50781.html"><code>MEDYAN.fil_node_positions</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_positions</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ftid<span class="op">::</span><span class="dt">Int64</span>, fil_id<span class="op">::</span><span class="dt">Int64</span>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_positions</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the node positions of the filament</p>
 </div>
 </div>
@@ -452,13 +383,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.fil_node_mon_ids-b1d3d66a81296343" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.fil_node_mon_ids-b1d3d66a81296343"><a href="../../docstrings/medyan.fil_node_mon_ids-b1d3d66a81296343.html"><code>MEDYAN.fil_node_mon_ids</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ftid<span class="op">::</span><span class="dt">Int64</span>, fil_id<span class="op">::</span><span class="dt">Int64</span>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_node_mon_ids</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{<span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the node monomer ids of the filament.</p>
 <p>The <code>fil_node_mon_ids</code> are the monomer ids at (slightly plus side of) the <code>fil_node_positions</code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span></span>
@@ -476,13 +411,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.fil_mon_states-3db9714621903b78" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.fil_mon_states-3db9714621903b78"><a href="../../docstrings/medyan.fil_mon_states-3db9714621903b78.html"><code>MEDYAN.fil_mon_states</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_mon_states</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ftid<span class="op">::</span><span class="dt">Int64</span>, fil_id<span class="op">::</span><span class="dt">Int64</span>) <span class="op">-&gt;</span> OffsetArrays.OffsetVector{<span class="dt">UInt8</span>, <span class="dt">Vector</span>{<span class="dt">UInt8</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_mon_states</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> OffsetArrays.OffsetVector{<span class="dt">UInt8</span>, <span class="dt">Vector</span>{<span class="dt">UInt8</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a read only OffsetVector of monomer states on a filament.</p>
 <p>This can be invalid after any mutations to context, so copy if needed.</p>
 </div>
@@ -491,13 +430,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.fil_num_unmin_ends-813ffc641f9ac9da" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.fil_num_unmin_ends-813ffc641f9ac9da"><a href="../../docstrings/medyan.fil_num_unmin_ends-813ffc641f9ac9da.html"><code>MEDYAN.fil_num_unmin_ends</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_num_unmin_ends</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ftid<span class="op">::</span><span class="dt">Int64</span>, fil_id<span class="op">::</span><span class="dt">Int64</span>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_num_unmin_ends</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a tuple (minus, plus) of the number of unminimized monomers on the minus and plus end of a filament.</p>
 <p>This will be reset to (0, 0) by <a href="../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
 <p>When an end is depolymerized this will decrease, but saturate at 0. When an end is polymerized this will increase.</p>
@@ -508,13 +451,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.vertex_state-aa3350c08b68b63a" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.vertex_state-aa3350c08b68b63a"><a href="../../docstrings/medyan.vertex_state-aa3350c08b68b63a.html"><code>MEDYAN.vertex_state</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vertex_state</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, vertexname<span class="op">::</span><span class="dt">MEDYAN.VertexName</span>) <span class="op">-&gt;</span> <span class="dt">UInt8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vertex_state</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    vertexname<span class="op">::</span><span class="dt">MEDYAN.VertexName</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">UInt8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the vertex state on a membrane.</p>
 </div>
 </div>
@@ -522,13 +468,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_exists-898c415a5eddc619" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_exists-898c415a5eddc619"><a href="../../docstrings/medyan.mon_exists-898c415a5eddc619.html"><code>MEDYAN.mon_exists</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_exists</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_exists</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return true iff the filament and monomer exists</p>
 </div>
 </div>
@@ -536,13 +485,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_minimized-5b17adaf7d8a4f62" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_minimized-5b17adaf7d8a4f62"><a href="../../docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html"><code>MEDYAN.mon_minimized</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_minimized</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_minimized</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return true iff the monomer has been minimized</p>
 </div>
 </div>
@@ -550,13 +502,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_3states-6c16efb303a60058" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_3states-6c16efb303a60058"><a href="../../docstrings/medyan.mon_3states-6c16efb303a60058.html"><code>MEDYAN.mon_3states</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_3states</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">UInt8</span>, <span class="dt">UInt8</span>, <span class="dt">UInt8</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_3states</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">UInt8</span>, <span class="dt">UInt8</span>, <span class="dt">UInt8</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a tuple of three monomer states centered at a monomer.</p>
 <p>If a monomer doesn’t exist, its state will be zero. The filament must exist.</p>
 </div>
@@ -565,13 +520,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_position-83983d8916347411" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_position-83983d8916347411"><a href="../../docstrings/medyan.mon_position-83983d8916347411.html"><code>MEDYAN.mon_position</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the monomer position.</p>
 </div>
 </div>
@@ -579,13 +537,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_plusvector-b7271c7721602813" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_plusvector-b7271c7721602813"><a href="../../docstrings/medyan.mon_plusvector-b7271c7721602813.html"><code>MEDYAN.mon_plusvector</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_plusvector</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_plusvector</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the unit vector toward the plus end of the filament.</p>
 </div>
 </div>
@@ -593,13 +554,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.mon_position_plusvector-927d0affbbdfef6f" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.mon_position_plusvector-927d0affbbdfef6f"><a href="../../docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html"><code>MEDYAN.mon_position_plusvector</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}, StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_position_plusvector</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}, StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a tuple of position and plusvector at a monomer.</p>
 </div>
 </div>
@@ -607,13 +571,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.link_2mon_endnames-5d0bca4b8e2e3509" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.link_2mon_endnames-5d0bca4b8e2e3509"><a href="../../docstrings/medyan.link_2mon_endnames-5d0bca4b8e2e3509.html"><code>MEDYAN.link_2mon_endnames</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">link_2mon_endnames</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, ltid, lid) <span class="op">-&gt;</span> <span class="dt">Pair</span>{MEDYAN.MonomerName, MEDYAN.MonomerName}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">link_2mon_endnames</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    ltid,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    lid</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{MEDYAN.MonomerName, MEDYAN.MonomerName}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the minusend name =&gt; plusend name of the link with type id <code>ltid</code>, and link id <code>lid</code></p>
 </div>
 </div>
@@ -621,7 +589,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.set_time--a6dd8f73f68a3759" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.set_time--a6dd8f73f68a3759"><a href="../../docstrings/medyan.set_time--a6dd8f73f68a3759.html"><code>MEDYAN.set_time!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -635,13 +603,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a"><a href="../../docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html"><code>MEDYAN.set_enable_cylinder_volume_exclusion!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_enable_cylinder_volume_exclusion!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, x<span class="op">::</span><span class="dt">Bool</span>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_enable_cylinder_volume_exclusion!</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">Bool</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Are cylinder volume exclusion forces calculated.</p>
 </div>
 </div>
@@ -649,13 +620,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.set_chemboundary--0aa6e4e95c60f9f7" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.set_chemboundary--0aa6e4e95c60f9f7"><a href="../../docstrings/medyan.set_chemboundary--0aa6e4e95c60f9f7.html"><code>MEDYAN.set_chemboundary!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chemboundary!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; meshindex_as_chemboundary, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chemboundary!</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>;</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    meshindex_as_chemboundary,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Set chemical boundary and update compartment volumes and diffusion rates. Note, the chemboundary should be outside the mechboundary so that it is rare for filaments to go outside the chemboundary</p>
 <section id="keywords" class="level1">
 <h1>Keywords</h1>
@@ -683,13 +658,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.set_mechboundary--b5e26b6b690256aa" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.set_mechboundary--b5e26b6b690256aa"><a href="../../docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html"><code>MEDYAN.set_mechboundary!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_mechboundary!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; kwargs<span class="op">...</span>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_mechboundary!</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>;</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="keywords-1" class="level1">
 <h1>Keywords</h1>
 <ul>
@@ -718,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_adddiffusingcount--2264be341b81a600" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_adddiffusingcount--2264be341b81a600"><a href="../../docstrings/medyan.chem_adddiffusingcount--2264be341b81a600.html"><code>MEDYAN.chem_adddiffusingcount!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -732,7 +710,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_addfixedcount--0286edfebf8ea5e6" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_addfixedcount--0286edfebf8ea5e6"><a href="../../docstrings/medyan.chem_addfixedcount--0286edfebf8ea5e6.html"><code>MEDYAN.chem_addfixedcount!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -746,7 +724,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.adddiffusingcount_rand--9d3ddfabbceeef92" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.adddiffusingcount_rand--9d3ddfabbceeef92"><a href="../../docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html"><code>MEDYAN.adddiffusingcount_rand!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -764,13 +742,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.addmembranediffusingcount_rand--7b719dca63a36b1b" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.addmembranediffusingcount_rand--7b719dca63a36b1b"><a href="../../docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html"><code>MEDYAN.addmembranediffusingcount_rand!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmembranediffusingcount_rand!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, membraneindex<span class="op">::</span><span class="dt">Int64</span>, speciesindex<span class="op">::</span><span class="dt">Int64</span>, addcount<span class="op">::</span><span class="dt">Int64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmembranediffusingcount_rand!</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    membraneindex<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    speciesindex<span class="op">::</span><span class="dt">Int64</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    addcount<span class="op">::</span><span class="dt">Int64</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Distribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity.</p>
 </div>
 </div>
@@ -778,7 +761,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.newfilament_rand--432ec27232aad41e" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.newfilament_rand--432ec27232aad41e"><a href="../../docstrings/medyan.newfilament_rand--432ec27232aad41e.html"><code>MEDYAN.newfilament_rand!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -797,7 +780,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.run_chemistry--dda22fac5c555b9e" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.run_chemistry--dda22fac5c555b9e"><a href="../../docstrings/medyan.run_chemistry--dda22fac5c555b9e.html"><code>MEDYAN.run_chemistry!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -812,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.defer_chem_caching--9538a1c449f3da93" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.defer_chem_caching--9538a1c449f3da93"><a href="../../docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html"><code>MEDYAN.defer_chem_caching!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -828,7 +811,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.refresh_chem_cache--f90ebca1f896ad2c" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.refresh_chem_cache--f90ebca1f896ad2c"><a href="../../docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html"><code>MEDYAN.refresh_chem_cache!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -842,7 +825,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.is_chem_cache_valid-8336a8adc58a252f" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.is_chem_cache_valid-8336a8adc58a252f"><a href="../../docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html"><code>MEDYAN.is_chem_cache_valid</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -856,7 +839,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="base.empty--418304748816268d" class="level2">
 <h2 class="anchored" data-anchor-id="base.empty--418304748816268d"><a href="../../docstrings/base.empty--418304748816268d.html"><code>Base.empty!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -870,7 +853,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_setmonomerstate--ed756af0de4db0ca" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_setmonomerstate--ed756af0de4db0ca"><a href="../../docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html"><code>MEDYAN.chem_setmonomerstate!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -884,7 +867,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_polymerize--7a5e88ac36e4ccbf" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_polymerize--7a5e88ac36e4ccbf"><a href="../../docstrings/medyan.chem_polymerize--7a5e88ac36e4ccbf.html"><code>MEDYAN.chem_polymerize!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -900,7 +883,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_depolymerize--a5f262191e484dd4" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_depolymerize--a5f262191e484dd4"><a href="../../docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html"><code>MEDYAN.chem_depolymerize!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -919,7 +902,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_newlink_2mon--e4f84fe5cfa9a727" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_newlink_2mon--e4f84fe5cfa9a727"><a href="../../docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html"><code>MEDYAN.chem_newlink_2mon!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -955,7 +938,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_removelink_2mon--e25a3fd69f791cd0" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_removelink_2mon--e25a3fd69f791cd0"><a href="../../docstrings/medyan.chem_removelink_2mon--e25a3fd69f791cd0.html"><code>MEDYAN.chem_removelink_2mon!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -971,7 +954,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_setlink_2mon_state--82213403237b28e5" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_setlink_2mon_state--82213403237b28e5"><a href="../../docstrings/medyan.chem_setlink_2mon_state--82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -986,7 +969,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="medyan.chem_newfilament--7a45f2860949bee3" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_newfilament--7a45f2860949bee3"><a href="../../docstrings/medyan.chem_newfilament--7a45f2860949bee3.html"><code>MEDYAN.chem_newfilament!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -1021,7 +1004,7 @@ minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
 </section>
 <section id="medyan.chem_removefilament--f36888837f14bad7" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_removefilament--f36888837f14bad7"><a href="../../docstrings/medyan.chem_removefilament--f36888837f14bad7.html"><code>MEDYAN.chem_removefilament!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -1038,7 +1021,7 @@ minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end
 </section>
 <section id="medyan.newmembrane--a714b4a1c87062be" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.newmembrane--a714b4a1c87062be"><a href="../../docstrings/medyan.newmembrane--a714b4a1c87062be.html"><code>MEDYAN.newmembrane!</code></a></h2>
-<div class="callout-note callout callout-style-simple no-icon">
+<div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
@@ -1088,9 +1071,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1155,6 +1152,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
