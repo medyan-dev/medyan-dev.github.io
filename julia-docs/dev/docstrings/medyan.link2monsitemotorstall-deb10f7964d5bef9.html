@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -165,11 +165,16 @@ ul.task-list li input[type="checkbox"] {
 <p>As the motor work per step increases, its walking rate goes to zero.</p>
 <p>Returns the walking rate of one end. The callback can then sample which end to move, or reject the move.</p>
 <ul>
-<li><code>fs::Float64</code>: The stall force magnitude. Units of pN</li>
-<li><code>k0::Float64</code>: Walking rate of one end at zero force. Units of 1/s</li>
-<li><code>α::Float64</code>: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</li>
-<li><code>walking_direction::Int32</code>: Motor walking direction, +1 is towards plus end, -1 is towards minus end</li>
-<li><code>isminusend::Bool</code>: which motor end does this represent</li>
+<li><p><code>fs::Float64</code></p>
+<p>The stall force magnitude. Units of pN</p></li>
+<li><p><code>k0::Float64</code></p>
+<p>Walking rate of one end at zero force. Units of 1/s</p></li>
+<li><p><code>α::Float64</code></p>
+<p>Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</p></li>
+<li><p><code>walking_direction::Int32</code></p>
+<p>Motor walking direction, +1 is towards plus end, -1 is towards minus end</p></li>
+<li><p><code>isminusend::Bool</code></p>
+<p>which motor end does this represent</p></li>
 </ul>
 </div>
 </div>

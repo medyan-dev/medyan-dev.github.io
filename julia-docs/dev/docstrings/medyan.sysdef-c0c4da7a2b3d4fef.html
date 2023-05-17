@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -198,32 +198,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SysDef</span>(agentnames<span class="op">::</span><span class="dt">AgentNames</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A mutable struct mapping names to id numbers in a simulation</p>
 <ul>
-<li><code>agentnames::MEDYAN.AgentNames</code></li>
-<li><code>diffusing::MEDYAN.PropDictionary</code></li>
-<li><code>diffusing_coeff::MEDYAN.PropDictionary</code></li>
-<li><code>bulkspecies_indexmap::MEDYAN.PropDictionary</code></li>
-<li><code>membranediffusing::MEDYAN.PropDictionary</code></li>
-<li><code>fixedspecies::MEDYAN.PropDictionary</code></li>
-<li><code>filament::MEDYAN.PropDictionary</code></li>
-<li><code>filament_params::MEDYAN.PropDictionary</code></li>
-<li><code>vertex::MEDYAN.PropDictionary</code></li>
-<li><code>state::MEDYAN.PropDictionary</code></li>
-<li><code>link_2mon::MEDYAN.PropDictionary</code></li>
-<li><code>link_2mon_params::MEDYAN.PropDictionary</code></li>
-<li><code>cadherin::MEDYAN.PropDictionary</code></li>
-<li><code>cadherinparams::MEDYAN.PropDictionary</code></li>
-<li><code>filamentsite::MEDYAN.PropDictionary</code></li>
-<li><code>filamentendsite::MEDYAN.PropDictionary</code></li>
-<li><code>membranesite::MEDYAN.PropDictionary</code>: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.</li>
-<li><code>link_2mon_site::MEDYAN.PropDictionary</code></li>
-<li><code>decimated_2mon_site::MEDYAN.PropDictionary</code></li>
-<li><code>cadherinsite::MEDYAN.PropDictionary</code></li>
-<li><code>possiblecadherinsite::MEDYAN.PropDictionary</code></li>
-<li><code>allfixedspeciesnames::Vector{String}</code></li>
-<li><code>compartmentreactions::Vector{MEDYAN.CompartmentReaction}</code></li>
-<li><code>compartmentreactioncallbacks::Vector{Any}</code></li>
-<li><code>bulkreactions::Vector{MEDYAN.BulkReaction}</code></li>
-<li><code>bulkreactioncallbacks::Vector{Any}</code>: Context -&gt; Nothing</li>
+<li><p><code>agentnames::MEDYAN.AgentNames</code></p></li>
+<li><p><code>diffusing::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>diffusing_coeff::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>bulkspecies_indexmap::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>membranediffusing::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>fixedspecies::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>filament::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>filament_params::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>vertex::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>state::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>link_2mon::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>link_2mon_params::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>cadherin::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>cadherinparams::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>filamentsite::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>filamentendsite::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>membranesite::MEDYAN.PropDictionary</code></p>
+<p>Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.</p></li>
+<li><p><code>link_2mon_site::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>decimated_2mon_site::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>cadherinsite::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>possiblecadherinsite::MEDYAN.PropDictionary</code></p></li>
+<li><p><code>allfixedspeciesnames::Vector{String}</code></p></li>
+<li><p><code>compartmentreactions::Vector{MEDYAN.CompartmentReaction}</code></p></li>
+<li><p><code>compartmentreactioncallbacks::Vector{Any}</code></p></li>
+<li><p><code>bulkreactions::Vector{MEDYAN.BulkReaction}</code></p></li>
+<li><p><code>bulkreactioncallbacks::Vector{Any}</code></p>
+<p>Context -&gt; Nothing</p></li>
 </ul>
 </div>
 </div>
