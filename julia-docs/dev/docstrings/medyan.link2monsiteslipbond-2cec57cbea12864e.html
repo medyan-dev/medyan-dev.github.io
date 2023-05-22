@@ -164,12 +164,9 @@ ul.task-list li input[type="checkbox"] {
 <p>Models unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.</p>
 <p><code>link_2mon_sitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>The charicteristic force magnitude. Units of pN</p></li>
-<li><p><code>k0::Float64</code></p>
-<p>Unbinding rate at zero force. Units of 1/s</p></li>
-<li><p><code>kmax::Float64</code></p>
-<p>Maximum rate. Units of 1/s</p></li>
+<li><code>f0::Float64</code>: The charicteristic force magnitude. Units of pN</li>
+<li><code>k0::Float64</code>: Unbinding rate at zero force. Units of 1/s</li>
+<li><code>kmax::Float64</code>: Maximum rate. Units of 1/s</li>
 </ul>
 </div>
 </div>

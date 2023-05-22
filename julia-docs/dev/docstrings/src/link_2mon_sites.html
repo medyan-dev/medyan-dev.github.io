@@ -194,10 +194,8 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container">
 <p>Returns 1.0 if the monomer states match, otherwise, returns 0.0.</p>
 <ul>
-<li><p><code>minusstate::Tuple{UInt8, UInt8, UInt8}</code></p>
-<p>minus end monomer state</p></li>
-<li><p><code>plusstate::Tuple{UInt8, UInt8, UInt8}</code></p>
-<p>plus end monomer state</p></li>
+<li><code>minusstate::Tuple{UInt8, UInt8, UInt8}</code>: minus end monomer state</li>
+<li><code>plusstate::Tuple{UInt8, UInt8, UInt8}</code>: plus end monomer state</li>
 </ul>
 </div>
 </div>
@@ -214,12 +212,9 @@ ul.task-list li input[type="checkbox"] {
 <p>Models unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.</p>
 <p><code>link_2mon_sitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>The charicteristic force magnitude. Units of pN</p></li>
-<li><p><code>k0::Float64</code></p>
-<p>Unbinding rate at zero force. Units of 1/s</p></li>
-<li><p><code>kmax::Float64</code></p>
-<p>Maximum rate. Units of 1/s</p></li>
+<li><code>f0::Float64</code>: The charicteristic force magnitude. Units of pN</li>
+<li><code>k0::Float64</code>: Unbinding rate at zero force. Units of 1/s</li>
+<li><code>kmax::Float64</code>: Maximum rate. Units of 1/s</li>
 </ul>
 </div>
 </div>
@@ -237,14 +232,10 @@ ul.task-list li input[type="checkbox"] {
 <p>As the force increases, the motor unbinding rate decreases to a minimum of k0/10</p>
 <p><code>link_2mon_sitecount</code> returns the unbinding rate in units of 1/s It returns k0 if the link<em>2mon hasn’t been minimized yet. It assumes link</em>2mon<em>state.chemstate.numHeads exists for the link</em>2mon.</p>
 <ul>
-<li><p><code>f0::Float64</code></p>
-<p>single head characteristic unbinding force, units of pN/head</p></li>
-<li><p><code>onRate::Float64</code></p>
-<p>single head binding rate, units of 1/s</p></li>
-<li><p><code>offRate::Float64</code></p>
-<p>single head unbinding rate, units of 1/s</p></li>
-<li><p><code>β::Float64</code></p>
-<p>slope of head binding, units of (head)/(pN/head)</p></li>
+<li><code>f0::Float64</code>: single head characteristic unbinding force, units of pN/head</li>
+<li><code>onRate::Float64</code>: single head binding rate, units of 1/s</li>
+<li><code>offRate::Float64</code>: single head unbinding rate, units of 1/s</li>
+<li><code>β::Float64</code>: slope of head binding, units of (head)/(pN/head)</li>
 </ul>
 </div>
 </div>
@@ -262,16 +253,11 @@ ul.task-list li input[type="checkbox"] {
 <p>As the motor work per step increases, its walking rate goes to zero.</p>
 <p>Returns the walking rate of one end. The callback can then sample which end to move, or reject the move.</p>
 <ul>
-<li><p><code>fs::Float64</code></p>
-<p>The stall force magnitude. Units of pN</p></li>
-<li><p><code>k0::Float64</code></p>
-<p>Walking rate of one end at zero force. Units of 1/s</p></li>
-<li><p><code>α::Float64</code></p>
-<p>Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</p></li>
-<li><p><code>walking_direction::Int32</code></p>
-<p>Motor walking direction, +1 is towards plus end, -1 is towards minus end</p></li>
-<li><p><code>isminusend::Bool</code></p>
-<p>which motor end does this represent</p></li>
+<li><code>fs::Float64</code>: The stall force magnitude. Units of pN</li>
+<li><code>k0::Float64</code>: Walking rate of one end at zero force. Units of 1/s</li>
+<li><code>α::Float64</code>: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear</li>
+<li><code>walking_direction::Int32</code>: Motor walking direction, +1 is towards plus end, -1 is towards minus end</li>
+<li><code>isminusend::Bool</code>: which motor end does this represent</li>
 </ul>
 </div>
 </div>
