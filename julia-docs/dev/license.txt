@@ -1,0 +1,186 @@
+
+END USER LICENSE AGREEMENT
+
+IMPORTANT – THIS IS A LEGAL AGREEMENT BETWEEN YOU ("You") AND THE UNIVERSITY OF 
+MARYLAND, a public agency and instrumentality of the State of Maryland, through 
+UM Ventures, College Park (“US,” “WE” or “University”).  PLEASE READ THIS END 
+USER LICENSE AGREEMENT (“EULA”) BEFORE DOWNLOADING, ACCESSING, OR USING THE 
+SOFTWARE.  THE TERMS OF THIS EULA GOVERN YOUR ACCESS TO AND USE OF THE SOFTWARE.
+BY USING THE SOFTWARE, YOU SIGNIFY THAT YOU HAVE READ AND UNDERSTAND THIS 
+EULA AND ACCEPT AND AGREE TO ABIDE BY ITS TERMS AND CONDITIONS.  
+IF YOU DO NOT ACCEPT THE TERMS OF THIS EULA, YOU MUST NOT DOWNLOAD, 
+ACCESS OR USE THE SOFTWARE. 
+
+TERMS AND CONDITIONS
+1. DEFINITIONS 
+    a. “Software” shall mean the computer program titled “MEDYAN” described 
+        in University of Maryland Intellectual Property Disclosure 2022-180.
+    b. “Non-commercial Academic Use” shall mean use of the Software for 
+        academic research purposes. 
+    c. “Non-profit Use” shall mean the use of the Software for internal research
+        purposes by an organization tax-exempt under Section 501(c)(3) of 
+        the Internal Revenue Code.
+
+2. LICENSE GRANT.  University hereby grants You a royalty-free, revocable, 
+    non-exclusive, non-transferable right and license to download, access and 
+    use Software for Non-commercial Academic Use and Non-profit Use. 
+    This license is limited to one (1) seat.
+
+3. RESTRICTIONS.  The license granted under Section 2 is subject to the 
+    following restrictions and conditions:  
+    a. You will not:
+        i. modify, hide, delete or interfere with any proprietary and 
+            restrictive legends and notices that are included on Software 
+            at the time it is received. In the event University adopts and 
+            provides you with modified legends or notices, You will promptly 
+            incorporate them into the Software upon receipt; 
+        ii. sell, license, sublicense or otherwise distribute Software, 
+            in whole or in part, to third parties;
+        iii. publicly post or display Software, in whole or in part;
+        iv. use or cause Software to be used to provide services to third 
+            parties or for the production or manufacture of products 
+            for sale to third parties;
+        v. decompile, clone, reverse assemble or reverse compile 
+            Software, in whole or in part, or
+        vi. upload Software to a network.
+    b. The license does not include the right to sublicense or 
+        to make copies of the Software. 
+    c. All rights not expressly granted to You in this EULA 
+        shall remain with University. 
+
+4. SUPPORT AND OPERATION OF SOFTWARE
+    a. You are solely responsible for the installation of the Software.
+    b. University is not obligated to provide any upgrades or 
+        fixes to or otherwise maintain the Software.
+    c. University will not provide any technical support. 
+
+5.  INTELLECTUAL PROPERTY
+    a. University shall own all rights, title, and interest in and to Software. 
+    b. You shall own data files, analyses, and similar works that result 
+        from your use of Software. 
+    c. Neither party shall use the name or trademarks of the other party or 
+        names of employees of the other party for commercial purposes without 
+        the prior written approval of the other party.   Notwithstanding the 
+        preceding statement, each party is free to 
+        publicize the fact and nature of this Agreement.
+
+6. PROPRIETARY AND CONFIDENTIAL UNIVERSITY INFORMATION 
+    a. You acknowledge that Software is Proprietary Information and property 
+        of the University. 
+    b. You shall take reasonable steps to protect against unauthorized access 
+        to, disclosure and use of Software, using at least the same degree 
+        of care to protect Software that you use to protect your own proprietary
+        information.   Specifically, You shall: 
+        i. Not disclose Software to any third party; and
+        ii. Limit disclosure of Software to those of Your officers and employees
+            who have a need to access Software, and You shall obtain their 
+            agreement to comply with the obligations under this Section.
+    c. The obligations set forth in this Section 7 shall last until such 
+        time that Software is released to the public domain. 
+    d. You acknowledge that any breach, threatened or actual, of this Section 7 
+        will cause irreparable injury to University that cannot be adequately 
+        compensated by monetary damages.  As a result, You agree University is 
+        entitled, in addition to any other available remedies, to seek and be 
+        awarded injunctive relief, without posting a bond.
+
+7. EXPORT CONTROL LAWS
+    a. Software is subject to United States export control laws and regulations
+    including the Arms Export Control Act and its implementing regulations; the
+    International Traffic in Arms Regulations and the Export Administration Act
+    and its implementing regulations; the Export Administration Regulations that
+    govern the export of specific technical data and technologies, including 
+    software, to foreign countries and to foreign nationals 
+    (“Export Control Laws”).    You agree to comply with Export Control Laws 
+    and hereby indemnify University with respect to any and all claims arising 
+    out of or related to Your violation of Export Control Laws.
+
+8. DISCLAIMER AND LIMITATION ON LIABILITY 
+    a. SOFTWARE IS MADE AVAILABLE ON AN "AS IS" BASIS. UNIVERSITY DISCLAIMS 
+        ANY AND ALL PROMISES, REPRESENTATIONS AND WARRANTIES – WHETHER EXPRESS 
+        OR IMPLIED, ORAL OR IN WRITING, IN FACT OR ARISING BY OPERATION OF LAW –
+        WITH RESPECT TO SOFTWARE, INCLUDING, BUT NOT LIMITED TO, THE WARRANTIES 
+        OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR 
+        PURPOSE, NONINFRINGEMENT OF THE INTELLECTUAL PROPERTY OR PROPRIETARY 
+        RIGHTS OF ANY THIRD PARTY, OR THOSE ARISING BY LAW, STATUTE, USAGE OF 
+        TRADE, OR COURSE OF DEALING. UNIVERSITY ALSO MAKES NO REPRESENTATION OR 
+        WARRANTY THAT THE SOFTWARE WILL OPERATE ERROR FREE OR IN AN 
+        UNINTERRUPTED FASHION OR THAT ANY DOWNLOADABLE FILES OR 
+        INFORMATION WILL BE FREE OF VIRUSES OR CONTAMINATION OR 
+        DESTRUCTIVE FEATURES.
+    b. WITHOUT LIMITING THE FOREGOING, IN NO EVENT SHALL UNIVERSITY BE 
+        LIABLE TO YOU FOR ANY BUSINESS EXPENSE OR INTERRUPTION; LOSS OF PROFITS,
+        AND/OR ANY INCIDENTAL, SPECIAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES OF 
+        ANY KIND, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH CLAIMS OR DEMANDS, 
+        HOWEVER CAUSED, ARISING IN CONNECTION WITH OR OUT OF THE FURNISHING, 
+        USE OR PERFORMANCE OF SOFTWARE PROVIDED HEREUNDER.  THIS LIMITATION 
+        UPON DAMAGES AND CLAIMS IS INTENDED TO APPLY WITHOUT REGARD TO 
+        WHETHER OTHER PROVISIONS OF THIS AGREEMENT HAVE BEEN BREACHED OR 
+        HAVE PROVEN INEFFECTIVE.  
+    c. IN NO EVENT WILL UNIVERSITY’S TOTAL LIABILITY FOR THE BREACH OR 
+        NONPERFORMANCE OF THIS AGREEMENT EXCEED THE LICENSE FEE PAID TO 
+        UNIVERSITY UNDER THIS AGREEMENT.
+
+9. INDEMNITY
+    a. You hereby agree to defend, indemnify, and hold harmless 
+        University and its employees, agents, directors, and officers from 
+        and against any and all claims, proceedings, damages, injuries, 
+        liabilities, losses, costs, and expenses (including reasonable 
+        attorneys’ fees and litigation expenses) relating to or arising 
+        out of Your use of Software or Your breach of any term in this EULA.
+
+10. TERM AND TERMINATION
+    a. This EULA and your right to use Software will take effect when you have 
+        paid the License Fee and either (i) "ACCEPT" the terms of this EULA by 
+        signing below or (ii) you install, access, or use the Software. 
+        This EULA is effective until copyright in the Software expires unless 
+        earlier terminated as set forth below.   
+    b. The University reserves the right at any time to terminate this 
+        Agreement when it has any reasonable belief of fraudulent or 
+        unlawful activity by You or Your employees or of a violation of any 
+        term or condition of this EULA. Termination will become effective 
+        upon your receipt of written notice of such a default.  
+    c. You may terminate this EULA at any time by ceasing to use the 
+        Software and providing written notice of the same to the University.  
+    d. University may terminate this EULA at any time upon 
+        fifteen (15) days written notice to You. 
+    e. Within thirty (30) days of any termination of this EULA, 
+        You must certify to the University that you have destroyed all 
+        copies of any aspect of the Software in your possession.
+    f. Sections 1, 4-9, 10e and 11 will survive the termination of this License.
+
+11. MISCELLANEOUS 
+    a. This EULA may be amended from time to time only by a written 
+        instrument signed by the Parties. 
+    b. No term or provision in this EULA will be waived and no breach 
+        excused unless such waiver or consent is in writing and signed by 
+        the Party claimed to have waived or consented.  Failure by either 
+        Party to insist on strict performance of any of the terms and 
+        conditions of this EULA will not operate as a waiver by either 
+        Party of that or any subsequent default or failure of performance.  
+    c. If any provision of this EULA is determined by a court of competent 
+        jurisdiction to be void, invalid, or otherwise unenforceable, 
+        such determination shall not affect the remaining provisions of this 
+        Agreement and the illegal, invalid, or unenforceable clause shall be 
+        modified in compliance with applicable law in a manner that most 
+        closely matches the intent of the original language.  
+    d. This Agreement does not create a joint venture, partnership, 
+        employment, or agency relationship between the Parties. 
+    e. No provision herein, express or implied, confers upon any person 
+        other than the Parties to this Agreement any rights, remedies, 
+        obligations, or liabilities hereunder. 
+    f. This EULA shall be binding upon and inure to the benefit of 
+        the Parties hereto.  You may not assign this agreement without the 
+        University’s prior written approval.
+    g. This EULA shall be governed by and interpreted in accordance with 
+        United States copyright law and the laws of the State of Maryland 
+        without reference to its conflicts of laws rules.  Nothing in this 
+        EULA is or shall be deemed to be a waiver by University of any of 
+        its rights or status as an agency and instrumentality of the 
+        State of Maryland. 
+    h. This EULA represents the entire agreement between You and the 
+        University with respect to the Software and supersedes all prior 
+        or contemporaneous communications and proposals, whether electronic, 
+        oral, or written between You and University regarding the Software.  
+        If You require use of a purchase order or similar document in order 
+        to pay the license fee, any terms on such a document are hereby 
+        rejected and null and void.  
