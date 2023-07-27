@@ -210,10 +210,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#install-julia" id="toc-install-julia" class="nav-link active" data-scroll-target="#install-julia">Install julia</a></li>
-  <li><a href="#setup-github-ssh-keys" id="toc-setup-github-ssh-keys" class="nav-link" data-scroll-target="#setup-github-ssh-keys">Setup GitHub ssh keys</a></li>
   <li><a href="#install-packages-needed-for-tutorials" id="toc-install-packages-needed-for-tutorials" class="nav-link" data-scroll-target="#install-packages-needed-for-tutorials">Install packages needed for tutorials</a></li>
   <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running tests</a></li>
-  <li><a href="#optional-step-install-vscode-and-julia-extension" id="toc-optional-step-install-vscode-and-julia-extension" class="nav-link" data-scroll-target="#optional-step-install-vscode-and-julia-extension">Optional step: install VSCode and julia extension</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/tutorials/1install.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -247,11 +245,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Commit e4ee485e909 (2023-07-05 09:39 UTC)
 Platform Info:
   OS: Linux (x86_64-linux-gnu)
-  CPU: 2 × Intel(R) Xeon(R) Platinum 8171M CPU @ 2.60GHz
+  CPU: 2 × Intel(R) Xeon(R) Platinum 8272CL CPU @ 2.60GHz
   WORD_SIZE: 64
   LIBM: libopenlibm
   LLVM: libLLVM-14.0.6 (ORCJIT, skylake-avx512)
-  Threads: 2 on 2 virtual cores</code></pre>
+  Threads: 2 on 2 virtual cores
+Environment:
+  JULIA_IMAGE_THREADS = 1</code></pre>
 </div>
 </div>
 <p>The tutorials should work on newer versions of julia, and on MacOS and Windows, please <a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new">create an issue</a> if you have a problem or question.</p>
@@ -259,30 +259,6 @@ Platform Info:
 <p>You can also download <a href="https://julialang.org/downloads/">julia here</a>.</p>
 <p>Do not install julia using <code>apt install julia</code> or <code>module load julia</code>, as these don’t have a recent version of julia.</p>
 <p>After installing julia, open the REPL with the <code>julia</code> command in terminal.</p>
-<p>Then type <code>]</code> to enter <code>pkg</code> mode.</p>
-<p>Next type <code>add Revise</code> and press enter to add the <code>Revise</code> package from the general registry.</p>
-<p>You can also run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg; </span>pkg<span class="st">"add Revise"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Next setup your <code>startup.jl</code> file. This file runs when you start julia.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>configpath <span class="op">=</span> <span class="fu">mkpath</span>(<span class="fu">joinpath</span>(<span class="cn">DEPOT_PATH</span>[<span class="fl">1</span>], <span class="st">"config"</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">open</span>(<span class="fu">joinpath</span>(configpath, <span class="st">"startup.jl"</span>), <span class="st">"a"</span>) <span class="cf">do</span> f</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(f, <span class="st">"""</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">    try</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">        using Revise</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    catch e</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">        @warn "Error initializing Revise" exception=(e, catch_backtrace())</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    end</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">    ENV["JULIA_PKG_USE_CLI_GIT"]= "true"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Finally close and restart the julia REPL for the next section.</p>
-</section>
-<section id="setup-github-ssh-keys" class="level2">
-<h2 class="anchored" data-anchor-id="setup-github-ssh-keys">Setup GitHub ssh keys</h2>
-<p>If you don’t have ssh keys set up with GitHub, follow these directions:</p>
-<p><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent" class="uri">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></p>
-<p>You will also need read access to <a href="https://github.com/medyan-dev/MEDYAN.jl" class="uri">https://github.com/medyan-dev/MEDYAN.jl</a> because it is currently a private repository.</p>
 </section>
 <section id="install-packages-needed-for-tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="install-packages-needed-for-tutorials">Install packages needed for tutorials</h2>
@@ -290,29 +266,19 @@ Platform Info:
 <p><a href="../medyan-tutorial.zip" download="">Click to Download</a></p>
 <p>Next extract this zip file and <code>cd</code> into the extracted directory.</p>
 <p>Now run</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span> <span class="at">-e</span> <span class="st">'import Pkg; Pkg.instantiate()'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span> <span class="at">-e</span> <span class="st">'import Pkg; Pkg.instantiate()'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To start the julia REPL in the correct environment to run the tutorials, use:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>From inside the <code>medyan-tutorial</code> directory.</p>
 <p>You can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.</p>
-<p>If you have issues installing:</p>
-<ol type="1">
-<li>Make sure your ssh key has been added to the <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">ssh agent</a>.</li>
-<li>Make sure you can <code>git clone git@github.com:medyan-dev/MEDYAN.jl.git</code></li>
-<li>Try <code>ENV["JULIA_PKG_USE_CLI_GIT"]= "false"</code> instead of <code>"true"</code> in your <code>startup.jl</code></li>
-</ol>
+<p><a href="https://code.visualstudio.com/docs/languages/julia" class="uri">https://code.visualstudio.com/docs/languages/julia</a></p>
 </section>
 <section id="running-tests" class="level2">
 <h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
 <p>These tests may take a few minutes to run.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"test MEDYAN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you have any errors or failing tests <a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new">create an issue</a></p>
-</section>
-<section id="optional-step-install-vscode-and-julia-extension" class="level2">
-<h2 class="anchored" data-anchor-id="optional-step-install-vscode-and-julia-extension">Optional step: install VSCode and julia extension</h2>
-<p>It may be convenient to run these tutorials in VSCode with the julia extension.</p>
-<p><a href="https://code.visualstudio.com/docs/languages/julia" class="uri">https://code.visualstudio.com/docs/languages/julia</a></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"test MEDYAN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have any errors or failing tests <a href="https://github.com/medyan-dev/medyan-public/issues/new">create an issue</a></p>
 
 
 </section>
