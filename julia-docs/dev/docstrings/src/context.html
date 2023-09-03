@@ -292,6 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
 <li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
 <li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>mon_link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>chem_max_search_dist::Float64</code></p></li>
 <li><p><code>decimated_2mon_sites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
 <li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
