@@ -216,9 +216,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#trajectory-output-directory" id="toc-trajectory-output-directory" class="nav-link active" data-scroll-target="#trajectory-output-directory">trajectory output directory</a></li>
-  <li><a href="#medyan_context-header-json-object." id="toc-medyan_context-header-json-object." class="nav-link" data-scroll-target="#medyan_context-header-json-object."><code>"medyan_context"</code> Header JSON object.</a>
+  <li><a href="#medyan-header-json-object." id="toc-medyan-header-json-object." class="nav-link" data-scroll-target="#medyan-header-json-object."><code>"medyan"</code> Header JSON object.</a>
   <ul class="collapse">
-  <li><a href="#example-header.json-medyan_context-value" id="toc-example-header.json-medyan_context-value" class="nav-link" data-scroll-target="#example-header.json-medyan_context-value">Example <code>header.json</code> <code>"medyan_context"</code> value</a></li>
+  <li><a href="#example-header.json-medyan-value" id="toc-example-header.json-medyan-value" class="nav-link" data-scroll-target="#example-header.json-medyan-value">Example <code>header.json</code> <code>"medyan"</code> value</a></li>
   </ul></li>
   <li><a href="#snapshot-group" id="toc-snapshot-group" class="nav-link" data-scroll-target="#snapshot-group">Snapshot group</a>
   <ul class="collapse">
@@ -265,18 +265,18 @@ Other Languages
 <section id="trajectory-output-directory" class="level2">
 <h2 class="anchored" data-anchor-id="trajectory-output-directory">trajectory output directory</h2>
 <p>Trajectory outputs and logs are stored in a directory.</p>
-<p>The folder contains a <code>header.json</code> file, a <code>list.txt</code> file, and a <code>snapshots</code> sub directory containing many <code>snapshot$(NUMBER).zarr.zip</code> files where <code>NUMBER</code> is the frame number of the snapshot.</p>
-<p>The initial state returned by <code>setup</code> is stored in <code>snapshot0.zarr.zip</code>.</p>
-<p>Inside the <code>snapshot$(NUMBER).zarr.zip</code> there is a <code>medyan_context</code> directory containing the snapshot of the <code>MEDYAN.Context</code> at the step. Other state may be stored in sibling directories to <code>medyan_context</code>.</p>
-<p>The <code>header.json</code> file also has a top level <code>"medyan_context"</code> key with a value describing the system being simulated.</p>
+<p>The output directory contains a <code>traj</code> sub directory with a <code>header.json</code> file, many <code>snap$(NUMBER).zarr.zip</code> files where <code>NUMBER</code> is the frame number of the snapshot, and finally a <code>footer.json</code>.</p>
+<p>The initial state returned by <code>setup</code> is stored in <code>snap0.zarr.zip</code>.</p>
+<p>Inside the <code>snap$(NUMBER).zarr.zip</code> there is a <code>snap/medyan</code> group containing the snapshot of the <code>MEDYAN.Context</code> at the step. Other state may be stored in child groups of <code>snap</code>.</p>
+<p>The <code>header.json</code> file also has a top level <code>"medyan"</code> key with a value describing the system being simulated.</p>
 <p>Other header information may be under other top level keys.</p>
-<p>See <a href="https://github.com/medyan-dev/MEDYANSimRunner.jl" class="uri">https://github.com/medyan-dev/MEDYANSimRunner.jl</a> for details on the structure of the <code>list.txt</code> file.</p>
+<p>See <a href="https://github.com/medyan-dev/MEDYANSimRunner.jl" class="uri">https://github.com/medyan-dev/MEDYANSimRunner.jl</a> for more details on the output directory structure.</p>
 </section>
-<section id="medyan_context-header-json-object." class="level2">
-<h2 class="anchored" data-anchor-id="medyan_context-header-json-object."><code>"medyan_context"</code> Header JSON object.</h2>
-<p><code>header.json["medyan_context"]</code> contains static metadata about the simulation that is constant over time.</p>
-<section id="example-header.json-medyan_context-value" class="level3">
-<h3 class="anchored" data-anchor-id="example-header.json-medyan_context-value">Example <code>header.json</code> <code>"medyan_context"</code> value</h3>
+<section id="medyan-header-json-object." class="level2">
+<h2 class="anchored" data-anchor-id="medyan-header-json-object."><code>"medyan"</code> Header JSON object.</h2>
+<p><code>header.json["medyan"]</code> contains static metadata about the simulation that is constant over time.</p>
+<section id="example-header.json-medyan-value" class="level3">
+<h3 class="anchored" data-anchor-id="example-header.json-medyan-value">Example <code>header.json</code> <code>"medyan"</code> value</h3>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">JSON3</span></span>
