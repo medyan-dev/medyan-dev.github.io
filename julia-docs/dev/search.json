@@ -1180,7 +1180,7 @@
     "href": "index.html#usage",
     "title": "MEDYAN.jl",
     "section": "Usage",
-    "text": "Usage\nFirst install and run Julia https://julialang.org/downloads/\nThen if you haven’t yet, set up ssh keys with github.\nAlso, currently you may have to install git and ensure you have a .julia/config/startup.jl with\nENV[\"JULIA_PKG_USE_CLI_GIT\"]= \"true\"\nFinally, to add the current MEDYAN.jl, in Julia run:\n] add git@github.com:medyan-dev/MEDYAN.jl.git\nTo add a specific commit id, for example 2d31e2a, in Julia run:\n] add \"git@github.com:medyan-dev/MEDYAN.jl.git\"#2d31e2a\nSee the docs for tutorials and more information."
+    "text": "Usage\nFirst install and run Julia https://julialang.org/downloads/\nNext download or clone this repository.\nFinally, to use MEDYAN.jl, in Julia run:\nusing Pkg; pkg\"dev &lt;path to repo&gt;\"\nWhere &lt;path to repo&gt; should be replaced with a local or absolute path to the repo.\n\nTutorials\nReference"
   },
   {
     "objectID": "index.html#authors",
@@ -1194,7 +1194,7 @@
     "href": "index.html#running-tests",
     "title": "MEDYAN.jl",
     "section": "Running tests",
-    "text": "Running tests\nIn shell:\ncd test\njulia --project -e 'using Pkg; Pkg.develop(PackageSpec(path=dirname(pwd()))); Pkg.instantiate()'\njulia --project\nIn julia repl:\ninclude(\"runtests.jl\")\nYou can also include individual test files to run just those tests."
+    "text": "Running tests\nIn shell:\ncd test\njulia install-deps.jl\njulia --project runtests.jl\nYou can also include individual test files to run just those tests."
   },
   {
     "objectID": "index.html#running-notebooks",
@@ -1278,14 +1278,14 @@
     "href": "tutorials/1install.html",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.9.3\nCommit bed2cd540a1 (2023-08-24 14:43 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LIBM: libopenlibm\n  LLVM: libLLVM-14.0.6 (ORCJIT, skylake)\n  Threads: 2 on 16 virtual cores\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal."
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.9.3\nCommit bed2cd540a1 (2023-08-24 14:43 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LIBM: libopenlibm\n  LLVM: libLLVM-14.0.6 (ORCJIT, skylake)\n  Threads: 2 on 16 virtual cores\nEnvironment:\n  JULIA_IMAGE_THREADS = 1\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal."
   },
   {
     "objectID": "tutorials/1install.html#install-julia",
     "href": "tutorials/1install.html#install-julia",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.9.3\nCommit bed2cd540a1 (2023-08-24 14:43 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LIBM: libopenlibm\n  LLVM: libLLVM-14.0.6 (ORCJIT, skylake)\n  Threads: 2 on 16 virtual cores\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal."
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.9.3\nCommit bed2cd540a1 (2023-08-24 14:43 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LIBM: libopenlibm\n  LLVM: libLLVM-14.0.6 (ORCJIT, skylake)\n  Threads: 2 on 16 virtual cores\nEnvironment:\n  JULIA_IMAGE_THREADS = 1\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal."
   },
   {
     "objectID": "tutorials/1install.html#install-packages-needed-for-tutorials",
