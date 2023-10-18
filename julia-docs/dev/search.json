@@ -378,179 +378,144 @@
     "text": "Remesh all membrane meshes."
   },
   {
-    "objectID": "docstrings/base.push--8715d52e2302aaeb.html",
-    "href": "docstrings/base.push--8715d52e2302aaeb.html",
-    "title": "Base.push!",
+    "objectID": "docstrings/medyan.fil_mon_states-3db9714621903b78.html",
+    "href": "docstrings/medyan.fil_mon_states-3db9714621903b78.html",
+    "title": "MEDYAN.fil_mon_states",
     "section": "",
-    "text": "Add a new index. Returns its ID."
+    "text": "fil_mon_states(\n    c::MEDYAN.Context,\n    ftid::Int64,\n    fil_id::Int64\n) -&gt; OffsetArrays.OffsetVector{UInt8, Vector{UInt8}}\nReturn a read only OffsetVector of monomer states on a filament.\nThis can be invalid after any mutations to context, so copy if needed."
   },
   {
-    "objectID": "docstrings/base.push--8715d52e2302aaeb.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "href": "docstrings/base.push--8715d52e2302aaeb.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "title": "Base.push!",
+    "objectID": "docstrings/medyan.fil_mon_states-3db9714621903b78.html#tuple-medyan.context--int64--int64--481ec25ee4de4849",
+    "href": "docstrings/medyan.fil_mon_states-3db9714621903b78.html#tuple-medyan.context--int64--int64--481ec25ee4de4849",
+    "title": "MEDYAN.fil_mon_states",
     "section": "",
-    "text": "Add a new index. Returns its ID."
+    "text": "fil_mon_states(\n    c::MEDYAN.Context,\n    ftid::Int64,\n    fil_id::Int64\n) -&gt; OffsetArrays.OffsetVector{UInt8, Vector{UInt8}}\nReturn a read only OffsetVector of monomer states on a filament.\nThis can be invalid after any mutations to context, so copy if needed."
   },
   {
-    "objectID": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html",
-    "href": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html",
-    "title": "MEDYAN.filter_grididat",
+    "objectID": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html",
+    "href": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html",
+    "title": "MEDYAN.add_filament_params!",
     "section": "",
-    "text": "filter_grididat(f,grid::CubicGrid,location)\nReturn the nearest grid id of location where f(id) evaluates to true. The origin is in the corner. errors if there is no id that evaluates to true. Returns a close by compartment if out of the grid"
+    "text": "add_filament_params!(s::SysDef, filament_name::Symbol, filament_params::FilamentMechParams)\nAdd the filament parameters to the system. Return s.\nSee MEDYAN.FilamentMechParams"
   },
   {
-    "objectID": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833",
-    "href": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833",
-    "title": "MEDYAN.filter_grididat",
+    "objectID": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
+    "href": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
+    "title": "MEDYAN.add_filament_params!",
     "section": "",
-    "text": "filter_grididat(f,grid::CubicGrid,location)\nReturn the nearest grid id of location where f(id) evaluates to true. The origin is in the corner. errors if there is no id that evaluates to true. Returns a close by compartment if out of the grid"
+    "text": "add_filament_params!(s::SysDef, filament_name::Symbol, filament_params::FilamentMechParams)\nAdd the filament parameters to the system. Return s.\nSee MEDYAN.FilamentMechParams"
   },
   {
-    "objectID": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html",
-    "href": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html",
-    "title": "MEDYAN.newfilament_rand!",
+    "objectID": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html",
+    "href": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html",
+    "title": "MEDYAN.Link2MonSiteMotorStall",
     "section": "",
-    "text": "newfilament_rand!(c::Context, monomerstates; iterations = 10^9, ftid = 1)\nAdd a filament with type id ftid to the Context with random center position and direction.\nReturn the filament id of a new filament.\nmonomerstates is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters."
+    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
   },
   {
-    "objectID": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "href": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "title": "MEDYAN.newfilament_rand!",
+    "objectID": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.Link2MonSiteMotorStall",
     "section": "",
-    "text": "newfilament_rand!(c::Context, monomerstates; iterations = 10^9, ftid = 1)\nAdd a filament with type id ftid to the Context with random center position and direction.\nReturn the filament id of a new filament.\nmonomerstates is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters."
+    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
   },
   {
-    "objectID": "docstrings/base.length-7ea31a421de7d258.html",
-    "href": "docstrings/base.length-7ea31a421de7d258.html",
-    "title": "Base.length",
+    "objectID": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html",
+    "href": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html",
+    "title": "MEDYAN.link_2mon_state",
     "section": "",
-    "text": "Total number of IDs in use.\n\n\n\n\n\n\n\n\n\n\n\n\nBase.length(grid::CubicGrid)\nTotal number of compartments in the grid"
+    "text": "link_2mon_state(\n    c::MEDYAN.Context,\n    ltid,\n    lid\n) -&gt; MEDYAN.Link2MonState\nReturn the Link2MonState of the link with type id ltid, and link id lid"
   },
   {
-    "objectID": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.stableindex--aec9c239cf42c0b9",
-    "href": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.stableindex--aec9c239cf42c0b9",
-    "title": "Base.length",
+    "objectID": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
+    "href": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
+    "title": "MEDYAN.link_2mon_state",
     "section": "",
-    "text": "Total number of IDs in use."
+    "text": "link_2mon_state(\n    c::MEDYAN.Context,\n    ltid,\n    lid\n) -&gt; MEDYAN.Link2MonState\nReturn the Link2MonState of the link with type id ltid, and link id lid"
   },
   {
-    "objectID": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "href": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "title": "Base.length",
+    "objectID": "docstrings/src/minimize_energy.html",
+    "href": "docstrings/src/minimize_energy.html",
+    "title": "src/minimize_energy.jl",
     "section": "",
-    "text": "Base.length(grid::CubicGrid)\nTotal number of compartments in the grid"
+    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF\n\n\n\n\n\n\n\n\n\n\n\n\nminimize_energy!(c::Context)\nMinimize mechanical energy of the context."
   },
   {
-    "objectID": "docstrings/src/mon_link_2mon_sites.html",
-    "href": "docstrings/src/mon_link_2mon_sites.html",
-    "title": "src/mon_link_2mon_sites.jl",
+    "objectID": "docstrings/src/minimize_energy.html#nlsolversbase.value---d4fdd3b317023c0e",
+    "href": "docstrings/src/minimize_energy.html#nlsolversbase.value---d4fdd3b317023c0e",
+    "title": "src/minimize_energy.jl",
+    "section": "",
+    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
+  },
+  {
+    "objectID": "docstrings/src/minimize_energy.html#medyan.minimize_energy--84c4aeab5457d3ee",
+    "href": "docstrings/src/minimize_energy.html#medyan.minimize_energy--84c4aeab5457d3ee",
+    "title": "src/minimize_energy.jl",
+    "section": "",
+    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+  },
+  {
+    "objectID": "docstrings/src/link_2mon_sites.html",
+    "href": "docstrings/src/link_2mon_sites.html",
+    "title": "src/link_2mon_sites.jl",
+    "section": "",
+    "text": "Always returns 1.0\n\n\n\n\n\n\n\n\n\n\n\n\nReturns link_2mon_state.chemstate.sitecount\n\n\n\n\n\n\n\n\n\n\n\n\nReturns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state\n\n\n\n\n\n\n\n\n\n\n\n\n\nModels unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.\n\nf0::Float64: The charicteristic force magnitude. Units of pN\nk0::Float64: Unbinding rate at zero force. Units of 1/s\nkmax::Float64: Maximum rate. Units of 1/s\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe catch-bond nature of myosin unbinding with multiple heads. Adopted from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the force increases, the motor unbinding rate decreases to a minimum of k0/10\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link2mon hasn’t been minimized yet. It assumes link2monstate.chemstate.numHeads exists for the link2mon.\n\nf0::Float64: single head characteristic unbinding force, units of pN/head\nonRate::Float64: single head binding rate, units of 1/s\noffRate::Float64: single head unbinding rate, units of 1/s\nβ::Float64: slope of head binding, units of (head)/(pN/head)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModels myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
+  },
+  {
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteone-9886bc1476194731",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteone-9886bc1476194731",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
     "text": "Always returns 1.0"
   },
   {
-    "objectID": "docstrings/src/mon_link_2mon_sites.html#medyan.monlink2monsiteone-77707f45e082c27e",
-    "href": "docstrings/src/mon_link_2mon_sites.html#medyan.monlink2monsiteone-77707f45e082c27e",
-    "title": "src/mon_link_2mon_sites.jl",
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitecount-ab4fcc1eb50c2313",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitecount-ab4fcc1eb50c2313",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
-    "text": "Always returns 1.0"
+    "text": "Returns link_2mon_state.chemstate.sitecount"
   },
   {
-    "objectID": "docstrings/src/decimated_2mon_sites.html",
-    "href": "docstrings/src/decimated_2mon_sites.html",
-    "title": "src/decimated_2mon_sites.jl",
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemonomerstatematch-c495443de74016ce",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemonomerstatematch-c495443de74016ce",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
-    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\n\n\n\n\n\n\n\n\n\n\n\n\n\nAny pair within max to min range are linkable if they have matching state with minusstate and plusstate and if both the angles between the filaments and line between the pair are greater than acos(cosminangle) for example if cosminangle is 1, all angles are ok, if cosminangle is sqrt(2)/2, and the line between the pair of monomers is parallel or anti parallel to either filament, it won’t be linkable.\nThis can be used to prevent link_2mons from binding both ends to the same filament.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\ncosminangle::Float64"
+    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
   },
   {
-    "objectID": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiterange-8afd8f3188bbcd4a",
-    "href": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiterange-8afd8f3188bbcd4a",
-    "title": "src/decimated_2mon_sites.jl",
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteslipbond-2cec57cbea12864e",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteslipbond-2cec57cbea12864e",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
-    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64"
+    "text": "Models unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.\n\nf0::Float64: The charicteristic force magnitude. Units of pN\nk0::Float64: Unbinding rate at zero force. Units of 1/s\nkmax::Float64: Maximum rate. Units of 1/s"
   },
   {
-    "objectID": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiteminanglerange-fc006e574376cfff",
-    "href": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiteminanglerange-fc006e574376cfff",
-    "title": "src/decimated_2mon_sites.jl",
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorcatch-0185d4c95b91e30b",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorcatch-0185d4c95b91e30b",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
-    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate and if both the angles between the filaments and line between the pair are greater than acos(cosminangle) for example if cosminangle is 1, all angles are ok, if cosminangle is sqrt(2)/2, and the line between the pair of monomers is parallel or anti parallel to either filament, it won’t be linkable.\nThis can be used to prevent link_2mons from binding both ends to the same filament.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\ncosminangle::Float64"
+    "text": "The catch-bond nature of myosin unbinding with multiple heads. Adopted from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the force increases, the motor unbinding rate decreases to a minimum of k0/10\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link2mon hasn’t been minimized yet. It assumes link2monstate.chemstate.numHeads exists for the link2mon.\n\nf0::Float64: single head characteristic unbinding force, units of pN/head\nonRate::Float64: single head binding rate, units of 1/s\noffRate::Float64: single head unbinding rate, units of 1/s\nβ::Float64: slope of head binding, units of (head)/(pN/head)"
   },
   {
-    "objectID": "docstrings/src/cadherins/possiblecadherinsite.html",
-    "href": "docstrings/src/cadherins/possiblecadherinsite.html",
-    "title": "src/cadherins/possiblecadherinsite.jl",
+    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorstall-deb10f7964d5bef9",
+    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorstall-deb10f7964d5bef9",
+    "title": "src/link_2mon_sites.jl",
     "section": "",
-    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
   },
   {
-    "objectID": "docstrings/src/cadherins/possiblecadherinsite.html#medyan.vertexstate-450b7005d2acebe8",
-    "href": "docstrings/src/cadherins/possiblecadherinsite.html#medyan.vertexstate-450b7005d2acebe8",
-    "title": "src/cadherins/possiblecadherinsite.jl",
+    "objectID": "docstrings/src/util/math/cuboidslicing.html",
+    "href": "docstrings/src/util/math/cuboidslicing.html",
+    "title": "src/util/math/cuboidslicing.jl",
     "section": "",
-    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
   },
   {
-    "objectID": "docstrings/src/util/stableindex.html",
-    "href": "docstrings/src/util/stableindex.html",
-    "title": "src/util/stableindex.jl",
+    "objectID": "docstrings/src/util/math/cuboidslicing.html#base.---a21e771ed8ea7d6f",
+    "href": "docstrings/src/util/math/cuboidslicing.html#base.---a21e771ed8ea7d6f",
+    "title": "src/util/math/cuboidslicing.jl",
     "section": "",
-    "text": "Whether an ID is in use.\n\n\n\n\n\n\n\n\n\n\n\n\nTotal number of IDs in use.\n\n\n\n\n\n\n\n\n\n\n\n\nGet index at ID.\n\n\n\n\n\n\n\n\n\n\n\n\nMap ID to a new index. The ID must be in use.\n\n\n\n\n\n\n\n\n\n\n\n\nAdd a new index. Returns its ID.\n\n\n\n\n\n\n\n\n\n\n\n\nRemove a recorded index at ID.\n\n\n\n\n\n\n\n\n\n\n\n\nClear all index records.\n\n\n\n\n\n\n\n\n\n\n\n\nIterates through valid IDs in the StableIndex."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.haskey-e7d3f961991e2663",
-    "href": "docstrings/src/util/stableindex.html#base.haskey-e7d3f961991e2663",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Whether an ID is in use."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.length-7ea31a421de7d258",
-    "href": "docstrings/src/util/stableindex.html#base.length-7ea31a421de7d258",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Total number of IDs in use."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.getindex-f593dde852851bc8",
-    "href": "docstrings/src/util/stableindex.html#base.getindex-f593dde852851bc8",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Get index at ID."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.setindex--725f722fff4cfa6d",
-    "href": "docstrings/src/util/stableindex.html#base.setindex--725f722fff4cfa6d",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Map ID to a new index. The ID must be in use."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.push--8715d52e2302aaeb",
-    "href": "docstrings/src/util/stableindex.html#base.push--8715d52e2302aaeb",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Add a new index. Returns its ID."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.delete--56ef520341df3c06",
-    "href": "docstrings/src/util/stableindex.html#base.delete--56ef520341df3c06",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Remove a recorded index at ID."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.empty--418304748816268d",
-    "href": "docstrings/src/util/stableindex.html#base.empty--418304748816268d",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Clear all index records."
-  },
-  {
-    "objectID": "docstrings/src/util/stableindex.html#base.iterate-5228367cd62c0bf2",
-    "href": "docstrings/src/util/stableindex.html#base.iterate-5228367cd62c0bf2",
-    "title": "src/util/stableindex.jl",
-    "section": "",
-    "text": "Iterates through valid IDs in the StableIndex."
+    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
   },
   {
     "objectID": "docstrings/src/trajectory-io/snapshot.html",
@@ -1369,7 +1334,7 @@
     "href": "docstrings.html",
     "title": "Docstrings",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.CadherinParams\n\n\n\n\nMEDYAN.CadherinState\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.Link2MonParams\n\n\n\n\nMEDYAN.Link2MonSiteCount\n\n\n\n\nMEDYAN.Link2MonSiteMonomerStateMatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorCatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorStall\n\n\n\n\nMEDYAN.Link2MonSiteOne\n\n\n\n\nMEDYAN.Link2MonSiteSlipBond\n\n\n\n\nMEDYAN.Link2MonState\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonLink2MonSiteOne\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_link_2mon!\n\n\n\n\nMEDYAN.add_link_2mon_site!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.addcadherin!\n\n\n\n\nMEDYAN.addcadherinsite!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.addunbindinglink_2mon_site!\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.chem_depolymerize!\n\n\n\n\nMEDYAN.chem_newfilament!\n\n\n\n\nMEDYAN.chem_newlink_2mon!\n\n\n\n\nMEDYAN.chem_polymerize!\n\n\n\n\nMEDYAN.chem_removefilament!\n\n\n\n\nMEDYAN.chem_removelink_2mon!\n\n\n\n\nMEDYAN.chem_setlink_2mon_state!\n\n\n\n\nMEDYAN.chem_setmonomerstate!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fil_num_unmin_ends\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.gen_citation\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.link_2mon_endnames\n\n\n\n\nMEDYAN.link_2mon_state\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_exists\n\n\n\n\nMEDYAN.mon_minimized\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newfilament_rand!\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_filtypes\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_filament!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filamentendsites.jl\n\n\n\n\nsrc/filamentsites.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/link_2mon_sites.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/mon_link_2mon_sites.jl\n\n\n\n\nsrc/sever_filament.jl\n\n\n\n\nsrc/sysdefs.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/bibliography.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.CadherinParams\n\n\n\n\nMEDYAN.CadherinState\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.Link2MonParams\n\n\n\n\nMEDYAN.Link2MonSiteCount\n\n\n\n\nMEDYAN.Link2MonSiteMonomerStateMatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorCatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorStall\n\n\n\n\nMEDYAN.Link2MonSiteOne\n\n\n\n\nMEDYAN.Link2MonSiteSlipBond\n\n\n\n\nMEDYAN.Link2MonState\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonLink2MonSiteOne\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_link_2mon!\n\n\n\n\nMEDYAN.add_link_2mon_site!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.addcadherin!\n\n\n\n\nMEDYAN.addcadherinsite!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.addunbindinglink_2mon_site!\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.chem_depolymerize!\n\n\n\n\nMEDYAN.chem_newfilament!\n\n\n\n\nMEDYAN.chem_newlink_2mon!\n\n\n\n\nMEDYAN.chem_polymerize!\n\n\n\n\nMEDYAN.chem_removefilament!\n\n\n\n\nMEDYAN.chem_removelink_2mon!\n\n\n\n\nMEDYAN.chem_setlink_2mon_state!\n\n\n\n\nMEDYAN.chem_setmonomerstate!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fil_num_unmin_ends\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.link_2mon_endnames\n\n\n\n\nMEDYAN.link_2mon_state\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_exists\n\n\n\n\nMEDYAN.mon_minimized\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newfilament_rand!\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_filtypes\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_filament!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filamentendsites.jl\n\n\n\n\nsrc/filamentsites.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/link_2mon_sites.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/mon_link_2mon_sites.jl\n\n\n\n\nsrc/sever_filament.jl\n\n\n\n\nsrc/sysdefs.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "reference/fileformats.html",
@@ -2107,172 +2072,179 @@
     "text": "randompoint(grid::CubicGrid,cid)::SVector{3,Float64}\nReturn a random point in a compartment\n\n\n\n\n\n\n\n\n\nrandompoint(grid::CubicGrid)::SVector{3,Float64}\nReturn a random point in the grid"
   },
   {
-    "objectID": "docstrings/src/util/bibliography.html",
-    "href": "docstrings/src/util/bibliography.html",
-    "title": "src/util/bibliography.jl",
+    "objectID": "docstrings/src/util/stableindex.html",
+    "href": "docstrings/src/util/stableindex.html",
+    "title": "src/util/stableindex.jl",
     "section": "",
-    "text": "gen_citation(C::Context; ...)\nGiven a context, generate the citations from used components.\nKeyword arguments:\n\nbibtex_file: If specified, will also save to this file using bibtex format."
+    "text": "Whether an ID is in use.\n\n\n\n\n\n\n\n\n\n\n\n\nTotal number of IDs in use.\n\n\n\n\n\n\n\n\n\n\n\n\nGet index at ID.\n\n\n\n\n\n\n\n\n\n\n\n\nMap ID to a new index. The ID must be in use.\n\n\n\n\n\n\n\n\n\n\n\n\nAdd a new index. Returns its ID.\n\n\n\n\n\n\n\n\n\n\n\n\nRemove a recorded index at ID.\n\n\n\n\n\n\n\n\n\n\n\n\nClear all index records.\n\n\n\n\n\n\n\n\n\n\n\n\nIterates through valid IDs in the StableIndex."
   },
   {
-    "objectID": "docstrings/src/util/bibliography.html#medyan.gen_citation-5a613a4d19801a8b",
-    "href": "docstrings/src/util/bibliography.html#medyan.gen_citation-5a613a4d19801a8b",
-    "title": "src/util/bibliography.jl",
+    "objectID": "docstrings/src/util/stableindex.html#base.haskey-e7d3f961991e2663",
+    "href": "docstrings/src/util/stableindex.html#base.haskey-e7d3f961991e2663",
+    "title": "src/util/stableindex.jl",
     "section": "",
-    "text": "gen_citation(C::Context; ...)\nGiven a context, generate the citations from used components.\nKeyword arguments:\n\nbibtex_file: If specified, will also save to this file using bibtex format."
+    "text": "Whether an ID is in use."
   },
   {
-    "objectID": "docstrings/src/util/math/cuboidslicing.html",
-    "href": "docstrings/src/util/math/cuboidslicing.html",
-    "title": "src/util/math/cuboidslicing.jl",
+    "objectID": "docstrings/src/util/stableindex.html#base.length-7ea31a421de7d258",
+    "href": "docstrings/src/util/stableindex.html#base.length-7ea31a421de7d258",
+    "title": "src/util/stableindex.jl",
     "section": "",
-    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
+    "text": "Total number of IDs in use."
   },
   {
-    "objectID": "docstrings/src/util/math/cuboidslicing.html#base.---a21e771ed8ea7d6f",
-    "href": "docstrings/src/util/math/cuboidslicing.html#base.---a21e771ed8ea7d6f",
-    "title": "src/util/math/cuboidslicing.jl",
+    "objectID": "docstrings/src/util/stableindex.html#base.getindex-f593dde852851bc8",
+    "href": "docstrings/src/util/stableindex.html#base.getindex-f593dde852851bc8",
+    "title": "src/util/stableindex.jl",
     "section": "",
-    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
+    "text": "Get index at ID."
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html",
-    "href": "docstrings/src/link_2mon_sites.html",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/src/util/stableindex.html#base.setindex--725f722fff4cfa6d",
+    "href": "docstrings/src/util/stableindex.html#base.setindex--725f722fff4cfa6d",
+    "title": "src/util/stableindex.jl",
     "section": "",
-    "text": "Always returns 1.0\n\n\n\n\n\n\n\n\n\n\n\n\nReturns link_2mon_state.chemstate.sitecount\n\n\n\n\n\n\n\n\n\n\n\n\nReturns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state\n\n\n\n\n\n\n\n\n\n\n\n\n\nModels unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.\n\nf0::Float64: The charicteristic force magnitude. Units of pN\nk0::Float64: Unbinding rate at zero force. Units of 1/s\nkmax::Float64: Maximum rate. Units of 1/s\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe catch-bond nature of myosin unbinding with multiple heads. Adopted from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the force increases, the motor unbinding rate decreases to a minimum of k0/10\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link2mon hasn’t been minimized yet. It assumes link2monstate.chemstate.numHeads exists for the link2mon.\n\nf0::Float64: single head characteristic unbinding force, units of pN/head\nonRate::Float64: single head binding rate, units of 1/s\noffRate::Float64: single head unbinding rate, units of 1/s\nβ::Float64: slope of head binding, units of (head)/(pN/head)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModels myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
+    "text": "Map ID to a new index. The ID must be in use."
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteone-9886bc1476194731",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteone-9886bc1476194731",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/src/util/stableindex.html#base.push--8715d52e2302aaeb",
+    "href": "docstrings/src/util/stableindex.html#base.push--8715d52e2302aaeb",
+    "title": "src/util/stableindex.jl",
+    "section": "",
+    "text": "Add a new index. Returns its ID."
+  },
+  {
+    "objectID": "docstrings/src/util/stableindex.html#base.delete--56ef520341df3c06",
+    "href": "docstrings/src/util/stableindex.html#base.delete--56ef520341df3c06",
+    "title": "src/util/stableindex.jl",
+    "section": "",
+    "text": "Remove a recorded index at ID."
+  },
+  {
+    "objectID": "docstrings/src/util/stableindex.html#base.empty--418304748816268d",
+    "href": "docstrings/src/util/stableindex.html#base.empty--418304748816268d",
+    "title": "src/util/stableindex.jl",
+    "section": "",
+    "text": "Clear all index records."
+  },
+  {
+    "objectID": "docstrings/src/util/stableindex.html#base.iterate-5228367cd62c0bf2",
+    "href": "docstrings/src/util/stableindex.html#base.iterate-5228367cd62c0bf2",
+    "title": "src/util/stableindex.jl",
+    "section": "",
+    "text": "Iterates through valid IDs in the StableIndex."
+  },
+  {
+    "objectID": "docstrings/src/cadherins/possiblecadherinsite.html",
+    "href": "docstrings/src/cadherins/possiblecadherinsite.html",
+    "title": "src/cadherins/possiblecadherinsite.jl",
+    "section": "",
+    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+  },
+  {
+    "objectID": "docstrings/src/cadherins/possiblecadherinsite.html#medyan.vertexstate-450b7005d2acebe8",
+    "href": "docstrings/src/cadherins/possiblecadherinsite.html#medyan.vertexstate-450b7005d2acebe8",
+    "title": "src/cadherins/possiblecadherinsite.jl",
+    "section": "",
+    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+  },
+  {
+    "objectID": "docstrings/src/decimated_2mon_sites.html",
+    "href": "docstrings/src/decimated_2mon_sites.html",
+    "title": "src/decimated_2mon_sites.jl",
+    "section": "",
+    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\n\n\n\n\n\n\n\n\n\n\n\n\n\nAny pair within max to min range are linkable if they have matching state with minusstate and plusstate and if both the angles between the filaments and line between the pair are greater than acos(cosminangle) for example if cosminangle is 1, all angles are ok, if cosminangle is sqrt(2)/2, and the line between the pair of monomers is parallel or anti parallel to either filament, it won’t be linkable.\nThis can be used to prevent link_2mons from binding both ends to the same filament.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\ncosminangle::Float64"
+  },
+  {
+    "objectID": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiterange-8afd8f3188bbcd4a",
+    "href": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiterange-8afd8f3188bbcd4a",
+    "title": "src/decimated_2mon_sites.jl",
+    "section": "",
+    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64"
+  },
+  {
+    "objectID": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiteminanglerange-fc006e574376cfff",
+    "href": "docstrings/src/decimated_2mon_sites.html#medyan.decimated2monsiteminanglerange-fc006e574376cfff",
+    "title": "src/decimated_2mon_sites.jl",
+    "section": "",
+    "text": "Any pair within max to min range are linkable if they have matching state with minusstate and plusstate and if both the angles between the filaments and line between the pair are greater than acos(cosminangle) for example if cosminangle is 1, all angles are ok, if cosminangle is sqrt(2)/2, and the line between the pair of monomers is parallel or anti parallel to either filament, it won’t be linkable.\nThis can be used to prevent link_2mons from binding both ends to the same filament.\n\nminusftid::Int64\nplusftid::Int64\nminusskip::Int64\nplusskip::Int64\nminusstate::UInt8\nplusstate::UInt8\nminrange::Float64\nmaxrange::Float64\ncosminangle::Float64"
+  },
+  {
+    "objectID": "docstrings/src/mon_link_2mon_sites.html",
+    "href": "docstrings/src/mon_link_2mon_sites.html",
+    "title": "src/mon_link_2mon_sites.jl",
     "section": "",
     "text": "Always returns 1.0"
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitecount-ab4fcc1eb50c2313",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitecount-ab4fcc1eb50c2313",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/src/mon_link_2mon_sites.html#medyan.monlink2monsiteone-77707f45e082c27e",
+    "href": "docstrings/src/mon_link_2mon_sites.html#medyan.monlink2monsiteone-77707f45e082c27e",
+    "title": "src/mon_link_2mon_sites.jl",
     "section": "",
-    "text": "Returns link_2mon_state.chemstate.sitecount"
+    "text": "Always returns 1.0"
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemonomerstatematch-c495443de74016ce",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemonomerstatematch-c495443de74016ce",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/base.length-7ea31a421de7d258.html",
+    "href": "docstrings/base.length-7ea31a421de7d258.html",
+    "title": "Base.length",
     "section": "",
-    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
+    "text": "Total number of IDs in use.\n\n\n\n\n\n\n\n\n\n\n\n\nBase.length(grid::CubicGrid)\nTotal number of compartments in the grid"
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteslipbond-2cec57cbea12864e",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsiteslipbond-2cec57cbea12864e",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.stableindex--aec9c239cf42c0b9",
+    "href": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.stableindex--aec9c239cf42c0b9",
+    "title": "Base.length",
     "section": "",
-    "text": "Models unbinding rates based on the following exponential form of Bell et al, 1978: min(k0*exp(f/f0), kmax) Where f is the magnitude of the force. So as to exponetially increase the unbinding with more force.\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link_2mon hasn’t been minimized yet.\n\nf0::Float64: The charicteristic force magnitude. Units of pN\nk0::Float64: Unbinding rate at zero force. Units of 1/s\nkmax::Float64: Maximum rate. Units of 1/s"
+    "text": "Total number of IDs in use."
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorcatch-0185d4c95b91e30b",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorcatch-0185d4c95b91e30b",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "href": "docstrings/base.length-7ea31a421de7d258.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "title": "Base.length",
     "section": "",
-    "text": "The catch-bond nature of myosin unbinding with multiple heads. Adopted from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the force increases, the motor unbinding rate decreases to a minimum of k0/10\nlink_2mon_sitecount returns the unbinding rate in units of 1/s It returns k0 if the link2mon hasn’t been minimized yet. It assumes link2monstate.chemstate.numHeads exists for the link2mon.\n\nf0::Float64: single head characteristic unbinding force, units of pN/head\nonRate::Float64: single head binding rate, units of 1/s\noffRate::Float64: single head unbinding rate, units of 1/s\nβ::Float64: slope of head binding, units of (head)/(pN/head)"
+    "text": "Base.length(grid::CubicGrid)\nTotal number of compartments in the grid"
   },
   {
-    "objectID": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorstall-deb10f7964d5bef9",
-    "href": "docstrings/src/link_2mon_sites.html#medyan.link2monsitemotorstall-deb10f7964d5bef9",
-    "title": "src/link_2mon_sites.jl",
+    "objectID": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html",
+    "href": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html",
+    "title": "MEDYAN.newfilament_rand!",
     "section": "",
-    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
+    "text": "newfilament_rand!(c::Context, monomerstates; iterations = 10^9, ftid = 1)\nAdd a filament with type id ftid to the Context with random center position and direction.\nReturn the filament id of a new filament.\nmonomerstates is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters."
   },
   {
-    "objectID": "docstrings/src/minimize_energy.html",
-    "href": "docstrings/src/minimize_energy.html",
-    "title": "src/minimize_energy.jl",
+    "objectID": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "href": "docstrings/medyan.newfilament_rand--432ec27232aad41e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "title": "MEDYAN.newfilament_rand!",
     "section": "",
-    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF\n\n\n\n\n\n\n\n\n\n\n\n\nminimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+    "text": "newfilament_rand!(c::Context, monomerstates; iterations = 10^9, ftid = 1)\nAdd a filament with type id ftid to the Context with random center position and direction.\nReturn the filament id of a new filament.\nmonomerstates is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters."
   },
   {
-    "objectID": "docstrings/src/minimize_energy.html#nlsolversbase.value---d4fdd3b317023c0e",
-    "href": "docstrings/src/minimize_energy.html#nlsolversbase.value---d4fdd3b317023c0e",
-    "title": "src/minimize_energy.jl",
+    "objectID": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html",
+    "href": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html",
+    "title": "MEDYAN.filter_grididat",
     "section": "",
-    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
+    "text": "filter_grididat(f,grid::CubicGrid,location)\nReturn the nearest grid id of location where f(id) evaluates to true. The origin is in the corner. errors if there is no id that evaluates to true. Returns a close by compartment if out of the grid"
   },
   {
-    "objectID": "docstrings/src/minimize_energy.html#medyan.minimize_energy--84c4aeab5457d3ee",
-    "href": "docstrings/src/minimize_energy.html#medyan.minimize_energy--84c4aeab5457d3ee",
-    "title": "src/minimize_energy.jl",
+    "objectID": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833",
+    "href": "docstrings/medyan.filter_grididat-58a94154d21e32b0.html#tuple-any--medyan.cubicgrid--any--68d3cc6d4c523833",
+    "title": "MEDYAN.filter_grididat",
     "section": "",
-    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+    "text": "filter_grididat(f,grid::CubicGrid,location)\nReturn the nearest grid id of location where f(id) evaluates to true. The origin is in the corner. errors if there is no id that evaluates to true. Returns a close by compartment if out of the grid"
   },
   {
-    "objectID": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html",
-    "href": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html",
-    "title": "MEDYAN.link_2mon_state",
+    "objectID": "docstrings/base.push--8715d52e2302aaeb.html",
+    "href": "docstrings/base.push--8715d52e2302aaeb.html",
+    "title": "Base.push!",
     "section": "",
-    "text": "link_2mon_state(\n    c::MEDYAN.Context,\n    ltid,\n    lid\n) -&gt; MEDYAN.Link2MonState\nReturn the Link2MonState of the link with type id ltid, and link id lid"
+    "text": "Add a new index. Returns its ID."
   },
   {
-    "objectID": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
-    "href": "docstrings/medyan.link_2mon_state-6d59dcd98ed7e303.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
-    "title": "MEDYAN.link_2mon_state",
+    "objectID": "docstrings/base.push--8715d52e2302aaeb.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "href": "docstrings/base.push--8715d52e2302aaeb.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "title": "Base.push!",
     "section": "",
-    "text": "link_2mon_state(\n    c::MEDYAN.Context,\n    ltid,\n    lid\n) -&gt; MEDYAN.Link2MonState\nReturn the Link2MonState of the link with type id ltid, and link id lid"
-  },
-  {
-    "objectID": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html",
-    "href": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html",
-    "title": "MEDYAN.Link2MonSiteMotorStall",
-    "section": "",
-    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
-  },
-  {
-    "objectID": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.link2monsitemotorstall-deb10f7964d5bef9.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.Link2MonSiteMotorStall",
-    "section": "",
-    "text": "Models myosin walking rates from the results of Erdmann et al. 2013. The parallel cluster model.\nAs the motor work per step increases, its walking rate goes to zero.\nReturns the walking rate of one end. The callback can then sample which end to move, or reject the move.\n\nfs::Float64: The stall force magnitude. Units of pN\nk0::Float64: Walking rate of one end at zero force. Units of 1/s\nα::Float64: Positive dimensionless parameter defining the steepness of the curve, smaller is more steep, if α is inf, the curve is linear\nwalking_direction::Int32: Motor walking direction, +1 is towards plus end, -1 is towards minus end\nisminusend::Bool: which motor end does this represent"
-  },
-  {
-    "objectID": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html",
-    "href": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html",
-    "title": "MEDYAN.add_filament_params!",
-    "section": "",
-    "text": "add_filament_params!(s::SysDef, filament_name::Symbol, filament_params::FilamentMechParams)\nAdd the filament parameters to the system. Return s.\nSee MEDYAN.FilamentMechParams"
-  },
-  {
-    "objectID": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
-    "href": "docstrings/medyan.add_filament_params--74c7d0081157ca31.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
-    "title": "MEDYAN.add_filament_params!",
-    "section": "",
-    "text": "add_filament_params!(s::SysDef, filament_name::Symbol, filament_params::FilamentMechParams)\nAdd the filament parameters to the system. Return s.\nSee MEDYAN.FilamentMechParams"
-  },
-  {
-    "objectID": "docstrings/medyan.fil_mon_states-3db9714621903b78.html",
-    "href": "docstrings/medyan.fil_mon_states-3db9714621903b78.html",
-    "title": "MEDYAN.fil_mon_states",
-    "section": "",
-    "text": "fil_mon_states(\n    c::MEDYAN.Context,\n    ftid::Int64,\n    fil_id::Int64\n) -&gt; OffsetArrays.OffsetVector{UInt8, Vector{UInt8}}\nReturn a read only OffsetVector of monomer states on a filament.\nThis can be invalid after any mutations to context, so copy if needed."
-  },
-  {
-    "objectID": "docstrings/medyan.fil_mon_states-3db9714621903b78.html#tuple-medyan.context--int64--int64--481ec25ee4de4849",
-    "href": "docstrings/medyan.fil_mon_states-3db9714621903b78.html#tuple-medyan.context--int64--int64--481ec25ee4de4849",
-    "title": "MEDYAN.fil_mon_states",
-    "section": "",
-    "text": "fil_mon_states(\n    c::MEDYAN.Context,\n    ftid::Int64,\n    fil_id::Int64\n) -&gt; OffsetArrays.OffsetVector{UInt8, Vector{UInt8}}\nReturn a read only OffsetVector of monomer states on a filament.\nThis can be invalid after any mutations to context, so copy if needed."
-  },
-  {
-    "objectID": "docstrings/medyan.gen_citation-5a613a4d19801a8b.html",
-    "href": "docstrings/medyan.gen_citation-5a613a4d19801a8b.html",
-    "title": "MEDYAN.gen_citation",
-    "section": "",
-    "text": "gen_citation(C::Context; ...)\nGiven a context, generate the citations from used components.\nKeyword arguments:\n\nbibtex_file: If specified, will also save to this file using bibtex format."
-  },
-  {
-    "objectID": "docstrings/medyan.gen_citation-5a613a4d19801a8b.html#tuple-any--78b262e45f77e7a2",
-    "href": "docstrings/medyan.gen_citation-5a613a4d19801a8b.html#tuple-any--78b262e45f77e7a2",
-    "title": "MEDYAN.gen_citation",
-    "section": "",
-    "text": "gen_citation(C::Context; ...)\nGiven a context, generate the citations from used components.\nKeyword arguments:\n\nbibtex_file: If specified, will also save to this file using bibtex format."
+    "text": "Add a new index. Returns its ID."
   },
   {
     "objectID": "docstrings/medyan.addmembranesite--892875b2c079002d.html",
