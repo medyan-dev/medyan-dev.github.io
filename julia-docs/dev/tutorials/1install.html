@@ -251,9 +251,7 @@ Platform Info:
   WORD_SIZE: 64
   LIBM: libopenlibm
   LLVM: libLLVM-14.0.6 (ORCJIT, skylake)
-  Threads: 2 on 16 virtual cores
-Environment:
-  JULIA_IMAGE_THREADS = 1</code></pre>
+  Threads: 2 on 16 virtual cores</code></pre>
 </div>
 </div>
 <p>The tutorials should work on newer versions of julia, and on MacOS and Windows, please <a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new">create an issue</a> if you have a problem or question.</p>
@@ -278,8 +276,8 @@ Environment:
 <section id="running-tests" class="level2">
 <h2 class="anchored" data-anchor-id="running-tests">Running tests</h2>
 <p>These tests may take a few minutes to run.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Pkg</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="st">"test MEDYAN"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> lib/MEDYAN/test/install-deps.jl</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span><span class="op">=</span>lib/MEDYAN/test lib/MEDYAN/test/runtests.jl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you have any errors or failing tests <a href="https://github.com/medyan-dev/medyan-public/issues/new">create an issue</a></p>
 
 
