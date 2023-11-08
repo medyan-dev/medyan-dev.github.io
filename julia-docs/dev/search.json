@@ -42,207 +42,214 @@
     "text": "chem_removelink_2mon!(c::Context, ltid::Int, lid::Int64)\nRemove a link_2mon of type id ltid with id lid.\nError if the specified link_2mon doesn’t exist.\nDon’t modify monomer states."
   },
   {
-    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
-    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
-    "title": "MEDYAN.minimize_energy!",
+    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
+    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
+    "title": "MEDYAN.boundary_cylinder",
     "section": "",
-    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.minimize_energy!",
+    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
+    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
+    "title": "MEDYAN.boundary_cylinder",
     "section": "",
-    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html",
-    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html",
-    "title": "MEDYAN.chem_newlink_2mon!",
+    "objectID": "docstrings/medyan.vertexstate-450b7005d2acebe8.html",
+    "href": "docstrings/medyan.vertexstate-450b7005d2acebe8.html",
+    "title": "MEDYAN.VertexState",
     "section": "",
-    "text": "chem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName}, link_2mon_state::Link2MonState;\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\n\nchem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName};\n    changedchemstate = (;),\n    changedmechstate = (;),\n    is_minimized = c.link_2mon_data[ltid].params.defaultstate.is_minimized,\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\nAdd a new link_2mon with type id ltid between monemers endnames.\nReturn the link_2mon id.\nError if a link_2mon of the same type links the same monomers in the same order.\nIf the link2mon state isn’t provided, c.link*2mon*data[ltid].params.defaultstate is new link2mon’s state, optionally modified by the changedchemstate, changedmechstate, and is_minimized keyword arguments.\nKeyword arguments changedchemstate and changedmechstate are namedtuples that shadow fields from the default chemstate and mechstate for the new link_2mon.\nKeyword argument is_minimized can be used to set the new link*2mon’s is*minimized state.\nKeyword argument new_lid can be optionally used to set the new link_2mon’s id, if this id is currently used, error.\n\n\nlid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
+    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
   },
   {
-    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--af1ad00950bd174d",
-    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--af1ad00950bd174d",
-    "title": "MEDYAN.chem_newlink_2mon!",
+    "objectID": "docstrings/medyan.vertexstate-450b7005d2acebe8.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.vertexstate-450b7005d2acebe8.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.VertexState",
     "section": "",
-    "text": "chem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName}, link_2mon_state::Link2MonState;\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\n\nchem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName};\n    changedchemstate = (;),\n    changedmechstate = (;),\n    is_minimized = c.link_2mon_data[ltid].params.defaultstate.is_minimized,\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\nAdd a new link_2mon with type id ltid between monemers endnames.\nReturn the link_2mon id.\nError if a link_2mon of the same type links the same monomers in the same order.\nIf the link2mon state isn’t provided, c.link*2mon*data[ltid].params.defaultstate is new link2mon’s state, optionally modified by the changedchemstate, changedmechstate, and is_minimized keyword arguments.\nKeyword arguments changedchemstate and changedmechstate are namedtuples that shadow fields from the default chemstate and mechstate for the new link_2mon.\nKeyword argument is_minimized can be used to set the new link*2mon’s is*minimized state.\nKeyword argument new_lid can be optionally used to set the new link_2mon’s id, if this id is currently used, error.\n\n\nlid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
+    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
   },
   {
-    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#example",
-    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#example",
-    "title": "MEDYAN.chem_newlink_2mon!",
+    "objectID": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html",
+    "href": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html",
+    "title": "MEDYAN.add_link_2mon_site!",
     "section": "",
-    "text": "lid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
+    "text": "add_link_2mon_site!(s::SysDef,link_2mon_typename::Symbol,link_2mon_sitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
-    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
-    "title": "MEDYAN.num_vertexwithstate",
+    "objectID": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "href": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "title": "MEDYAN.add_link_2mon_site!",
     "section": "",
-    "text": "Return the number of vertices with state 2. Check the number of vertices with state 2. The number should be constant."
+    "text": "add_link_2mon_site!(s::SysDef,link_2mon_typename::Symbol,link_2mon_sitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--uint8--249d6d475bef2173",
-    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--uint8--249d6d475bef2173",
-    "title": "MEDYAN.num_vertexwithstate",
+    "objectID": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html",
+    "href": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html",
+    "title": "MEDYAN.Link2MonState",
     "section": "",
-    "text": "Return the number of vertices with state 2. Check the number of vertices with state 2. The number should be constant."
+    "text": "There is one instance of this per link_2mon.\n\nchemstate::NamedTuple: Other state.\nmechstate::NamedTuple: Used in link_2mon force calculation.\nis_minimized::Bool: Set to true after minimization"
   },
   {
-    "objectID": "docstrings/medyan.monomername-bb517706cb60c4f5.html",
-    "href": "docstrings/medyan.monomername-bb517706cb60c4f5.html",
-    "title": "MEDYAN.MonomerName",
+    "objectID": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.Link2MonState",
     "section": "",
-    "text": "ftid::Int64: filament type id\nfid::Int64: filament id\nmid::Int64: monomer id"
+    "text": "There is one instance of this per link_2mon.\n\nchemstate::NamedTuple: Other state.\nmechstate::NamedTuple: Used in link_2mon force calculation.\nis_minimized::Bool: Set to true after minimization"
   },
   {
-    "objectID": "docstrings/medyan.monomername-bb517706cb60c4f5.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.monomername-bb517706cb60c4f5.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.MonomerName",
+    "objectID": "docstrings/medyan.mon_plusvector-b7271c7721602813.html",
+    "href": "docstrings/medyan.mon_plusvector-b7271c7721602813.html",
+    "title": "MEDYAN.mon_plusvector",
     "section": "",
-    "text": "ftid::Int64: filament type id\nfid::Int64: filament id\nmid::Int64: monomer id"
+    "text": "mon_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the unit vector toward the plus end of the filament."
   },
   {
-    "objectID": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html",
-    "href": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html",
-    "title": "MEDYAN.addcadherinsite!",
+    "objectID": "docstrings/medyan.mon_plusvector-b7271c7721602813.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "href": "docstrings/medyan.mon_plusvector-b7271c7721602813.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "title": "MEDYAN.mon_plusvector",
     "section": "",
-    "text": "addcadherinsite!(s::SysDef,cadherintypename::Symbol,cadherinsitename::Symbol,site)::SysDef"
+    "text": "mon_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the unit vector toward the plus end of the filament."
   },
   {
-    "objectID": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "href": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "title": "MEDYAN.addcadherinsite!",
+    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
+    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
+    "title": "MEDYAN.load_snapshot!",
     "section": "",
-    "text": "addcadherinsite!(s::SysDef,cadherintypename::Symbol,cadherinsitename::Symbol,site)::SysDef"
+    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
   },
   {
-    "objectID": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html",
-    "href": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html",
-    "title": "MEDYAN.MonLink2MonSiteOne",
+    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
+    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
+    "title": "MEDYAN.load_snapshot!",
     "section": "",
-    "text": "Always returns 1.0"
+    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
   },
   {
-    "objectID": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.MonLink2MonSiteOne",
+    "objectID": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html",
+    "href": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html",
+    "title": "MEDYAN.set_mechboundary!",
     "section": "",
-    "text": "Always returns 1.0"
+    "text": "set_mechboundary!(\n    c::MEDYAN.Context;\n    kwargs...\n) -&gt; MEDYAN.Boundary\nSee also Boundary"
   },
   {
-    "objectID": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html",
-    "href": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html",
-    "title": "MEDYAN.SysDef",
+    "objectID": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.set_mechboundary!",
     "section": "",
-    "text": "SysDef(agentnames::AgentNames)\nA mutable struct mapping names to id numbers in a simulation\n\nagentnames::MEDYAN.AgentNames\ndiffusing::MEDYAN.PropDictionary\ndiffusing_coeff::MEDYAN.PropDictionary\nbulkspecies_indexmap::MEDYAN.PropDictionary\nmembranediffusing::MEDYAN.PropDictionary\nfixedspecies::MEDYAN.PropDictionary\nfilament::MEDYAN.PropDictionary\nfilament_params::MEDYAN.PropDictionary\nvertex::MEDYAN.PropDictionary\nstate::MEDYAN.PropDictionary\nlink_2mon::MEDYAN.PropDictionary\nlink_2mon_params::MEDYAN.PropDictionary\ncadherin::MEDYAN.PropDictionary\ncadherinparams::MEDYAN.PropDictionary\nfilamentsite::MEDYAN.PropDictionary\nfilamentendsite::MEDYAN.PropDictionary\nmembranesite::MEDYAN.PropDictionary: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.\nlink_2mon_site::MEDYAN.PropDictionary\nmon_link_2mon_site::MEDYAN.PropDictionary\ndecimated_2mon_site::MEDYAN.PropDictionary\ncadherinsite::MEDYAN.PropDictionary\npossiblecadherinsite::MEDYAN.PropDictionary\nallfixedspeciesnames::Vector{String}\ncompartmentreactions::Vector{MEDYAN.CompartmentReaction}\ncompartmentreactioncallbacks::Vector{Any}\nbulkreactions::Vector{MEDYAN.BulkReaction}\nbulkreactioncallbacks::Vector{Any}: Context -&gt; Nothing"
+    "text": "set_mechboundary!(\n    c::MEDYAN.Context;\n    kwargs...\n) -&gt; MEDYAN.Boundary\nSee also Boundary"
   },
   {
-    "objectID": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.SysDef",
+    "objectID": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html",
+    "href": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html",
+    "title": "MEDYAN.is_chem_cache_valid",
     "section": "",
-    "text": "SysDef(agentnames::AgentNames)\nA mutable struct mapping names to id numbers in a simulation\n\nagentnames::MEDYAN.AgentNames\ndiffusing::MEDYAN.PropDictionary\ndiffusing_coeff::MEDYAN.PropDictionary\nbulkspecies_indexmap::MEDYAN.PropDictionary\nmembranediffusing::MEDYAN.PropDictionary\nfixedspecies::MEDYAN.PropDictionary\nfilament::MEDYAN.PropDictionary\nfilament_params::MEDYAN.PropDictionary\nvertex::MEDYAN.PropDictionary\nstate::MEDYAN.PropDictionary\nlink_2mon::MEDYAN.PropDictionary\nlink_2mon_params::MEDYAN.PropDictionary\ncadherin::MEDYAN.PropDictionary\ncadherinparams::MEDYAN.PropDictionary\nfilamentsite::MEDYAN.PropDictionary\nfilamentendsite::MEDYAN.PropDictionary\nmembranesite::MEDYAN.PropDictionary: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.\nlink_2mon_site::MEDYAN.PropDictionary\nmon_link_2mon_site::MEDYAN.PropDictionary\ndecimated_2mon_site::MEDYAN.PropDictionary\ncadherinsite::MEDYAN.PropDictionary\npossiblecadherinsite::MEDYAN.PropDictionary\nallfixedspeciesnames::Vector{String}\ncompartmentreactions::Vector{MEDYAN.CompartmentReaction}\ncompartmentreactioncallbacks::Vector{Any}\nbulkreactions::Vector{MEDYAN.BulkReaction}\nbulkreactioncallbacks::Vector{Any}: Context -&gt; Nothing"
+    "text": "is_chem_cache_valid(c::Context)::Bool\nReturn true if the chemistry cache is valid, false otherwise."
   },
   {
-    "objectID": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html",
-    "href": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html",
-    "title": "MEDYAN.chem_depolymerize!",
+    "objectID": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.is_chem_cache_valid",
     "section": "",
-    "text": "chem_depolymerize!(c::Context, ftid, fid, isminusend::Bool)\nRemove a monomer from the end of the filament with type id ftid and id fid.\nIf isminusend is true remove the monomer from the minus end of the filament, if false remove it from the plus end of the filament.\nThis doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.\nError if the filament isn’t initially over 2 monomers long.\nWarn if the old end monomer is referenced in a link2mon, and remove the link2mon.\nThe warning can be disabled by passing keyword argument warniflink_2mon_removed=false"
+    "text": "is_chem_cache_valid(c::Context)::Bool\nReturn true if the chemistry cache is valid, false otherwise."
   },
   {
-    "objectID": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html#tuple-medyan.context--int64--int64--bool--564746c220a20c60",
-    "href": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html#tuple-medyan.context--int64--int64--bool--564746c220a20c60",
-    "title": "MEDYAN.chem_depolymerize!",
+    "objectID": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html",
+    "href": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html",
+    "title": "NLSolversBase.value!!",
     "section": "",
-    "text": "chem_depolymerize!(c::Context, ftid, fid, isminusend::Bool)\nRemove a monomer from the end of the filament with type id ftid and id fid.\nIf isminusend is true remove the monomer from the minus end of the filament, if false remove it from the plus end of the filament.\nThis doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.\nError if the filament isn’t initially over 2 monomers long.\nWarn if the old end monomer is referenced in a link2mon, and remove the link2mon.\nThe warning can be disabled by passing keyword argument warniflink_2mon_removed=false"
+    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
   },
   {
-    "objectID": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html",
-    "href": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html",
-    "title": "MEDYAN.mon_minimized",
+    "objectID": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html#tuple-medyan.alwayscalcgrad--any--ff589defbddb5326",
+    "href": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html#tuple-medyan.alwayscalcgrad--any--ff589defbddb5326",
+    "title": "NLSolversBase.value!!",
     "section": "",
-    "text": "mon_minimized(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Bool\nReturn true iff the monomer has been minimized"
+    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
   },
   {
-    "objectID": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "href": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "title": "MEDYAN.mon_minimized",
+    "objectID": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html",
+    "href": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html",
+    "title": "MEDYAN.mon_position_plusvector",
     "section": "",
-    "text": "mon_minimized(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Bool\nReturn true iff the monomer has been minimized"
+    "text": "mon_position_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{StaticArraysCore.SVector{3, Float64}, StaticArraysCore.SVector{3, Float64}}\nReturn a tuple of position and plusvector at a monomer."
   },
   {
-    "objectID": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html",
-    "href": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html",
-    "title": "MEDYAN.defer_chem_caching!",
+    "objectID": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "href": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "title": "MEDYAN.mon_position_plusvector",
     "section": "",
-    "text": "defer_chem_caching!(c::Context)::Nothing\nThis should only be used for advanced optimizations.\nDuring chemistry, the context mutating functions will typically try to avoid invalidating various cached data needed to quickly sample sites.\nHowever, if you want to mutate the context outside of chemistry, for example right before or after minimization, you may not want to pay the cost of revalidating all the caches because minimization will already invalidate the caches. Caching will be enabled again and caches will be made valid the next time chemistry is run. Caching can also be manually refreshed and reenabled with: refresh_chem_cache!"
+    "text": "mon_position_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{StaticArraysCore.SVector{3, Float64}, StaticArraysCore.SVector{3, Float64}}\nReturn a tuple of position and plusvector at a monomer."
   },
   {
-    "objectID": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.defer_chem_caching!",
+    "objectID": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html",
+    "href": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html",
+    "title": "MEDYAN.resolve_all_filament_mesh_crossing!",
     "section": "",
-    "text": "defer_chem_caching!(c::Context)::Nothing\nThis should only be used for advanced optimizations.\nDuring chemistry, the context mutating functions will typically try to avoid invalidating various cached data needed to quickly sample sites.\nHowever, if you want to mutate the context outside of chemistry, for example right before or after minimization, you may not want to pay the cost of revalidating all the caches because minimization will already invalidate the caches. Caching will be enabled again and caches will be made valid the next time chemistry is run. Caching can also be manually refreshed and reenabled with: refresh_chem_cache!"
+    "text": "Given an AABB tree corresponding to up-to-date membrane mesh triangles, resolve all filament-membrane intersections.\nRequires\n\nup-to-date unit normals of all triangles in the meshes.\nup-to-date AABB tree corresponding to all membrane meshes."
   },
   {
-    "objectID": "docstrings/medyan.boundary_box-060d4c56df40146a.html",
-    "href": "docstrings/medyan.boundary_box-060d4c56df40146a.html",
-    "title": "MEDYAN.boundary_box",
+    "objectID": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5",
+    "href": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5",
+    "title": "MEDYAN.resolve_all_filament_mesh_crossing!",
     "section": "",
-    "text": "boundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
+    "text": "Given an AABB tree corresponding to up-to-date membrane mesh triangles, resolve all filament-membrane intersections.\nRequires\n\nup-to-date unit normals of all triangles in the meshes.\nup-to-date AABB tree corresponding to all membrane meshes."
   },
   {
-    "objectID": "docstrings/medyan.boundary_box-060d4c56df40146a.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "href": "docstrings/medyan.boundary_box-060d4c56df40146a.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "title": "MEDYAN.boundary_box",
+    "objectID": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html",
+    "href": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html",
+    "title": "MEDYAN.vertex_state",
     "section": "",
-    "text": "boundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
+    "text": "vertex_state(\n    c::MEDYAN.Context,\n    vertexname::MEDYAN.VertexName\n) -&gt; UInt8\nReturn the vertex state on a membrane."
   },
   {
-    "objectID": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html",
-    "href": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html",
-    "title": "MEDYAN.add_diffusion_coeff!",
+    "objectID": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html#tuple-medyan.context--medyan.vertexname--4f0d281e8576f34d",
+    "href": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html#tuple-medyan.context--medyan.vertexname--4f0d281e8576f34d",
+    "title": "MEDYAN.vertex_state",
     "section": "",
-    "text": "add_diffusion_coeff!(s::SysDef, diffusing_name::Symbol, diffusing_coeff::Float64)\nAdd the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s."
+    "text": "vertex_state(\n    c::MEDYAN.Context,\n    vertexname::MEDYAN.VertexName\n) -&gt; UInt8\nReturn the vertex state on a membrane."
   },
   {
-    "objectID": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html#tuple-medyan.sysdef--symbol--float64--936450f65416538e",
-    "href": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html#tuple-medyan.sysdef--symbol--float64--936450f65416538e",
-    "title": "MEDYAN.add_diffusion_coeff!",
+    "objectID": "docstrings/base.getindex-f593dde852851bc8.html",
+    "href": "docstrings/base.getindex-f593dde852851bc8.html",
+    "title": "Base.getindex",
     "section": "",
-    "text": "add_diffusion_coeff!(s::SysDef, diffusing_name::Symbol, diffusing_coeff::Float64)\nAdd the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s."
+    "text": "Get index at ID."
   },
   {
-    "objectID": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html",
-    "href": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html",
-    "title": "MEDYAN.chem_setmonomerstate!",
+    "objectID": "docstrings/base.getindex-f593dde852851bc8.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "href": "docstrings/base.getindex-f593dde852851bc8.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "title": "Base.getindex",
     "section": "",
-    "text": "chem_setmonomerstate!(c::Context, name::MonomerName, state::MonomerState)\nUpdate a monomer state."
+    "text": "Get index at ID."
   },
   {
-    "objectID": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html#tuple-medyan.context--medyan.monomername--uint8--e08e6835e9c3cbe8",
-    "href": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html#tuple-medyan.context--medyan.monomername--uint8--e08e6835e9c3cbe8",
-    "title": "MEDYAN.chem_setmonomerstate!",
+    "objectID": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html",
+    "href": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html",
+    "title": "MEDYAN.FilamentEndSiteGeneral",
     "section": "",
-    "text": "chem_setmonomerstate!(c::Context, name::MonomerName, state::MonomerState)\nUpdate a monomer state."
+    "text": "Filament end site that matches with a vector of monomer states.\n\nisminusend::Bool\nendstates::Vector{UInt8}\nspacing::Float64\nadded_monomers::Int64"
   },
   {
-    "objectID": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html",
-    "href": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html",
-    "title": "MEDYAN.Link2MonSiteMonomerStateMatch",
+    "objectID": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.FilamentEndSiteGeneral",
     "section": "",
-    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
+    "text": "Filament end site that matches with a vector of monomer states.\n\nisminusend::Bool\nendstates::Vector{UInt8}\nspacing::Float64\nadded_monomers::Int64"
   },
   {
-    "objectID": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.Link2MonSiteMonomerStateMatch",
+    "objectID": "docstrings/medyan.boundary_capsule-1700142f310bd9db.html",
+    "href": "docstrings/medyan.boundary_capsule-1700142f310bd9db.html",
+    "title": "MEDYAN.boundary_capsule",
     "section": "",
-    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
+    "text": "boundary_capsule(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a capsule boundary.\ncenter(nm): The center of the capsule.\naxis(nm): The direction and length of the capsule spine. The spine line segment goes from center - axis/2 to center + axis/2 If zero the capsule is a sphere.\nradius(nm): Radius of capsule, the full length of the capsule is norm(axis) + 2radius.\nstiffness(pN/nm): How strong the boundary is."
+  },
+  {
+    "objectID": "docstrings/medyan.boundary_capsule-1700142f310bd9db.html#tuple---3937a4f1811c9dc1",
+    "href": "docstrings/medyan.boundary_capsule-1700142f310bd9db.html#tuple---3937a4f1811c9dc1",
+    "title": "MEDYAN.boundary_capsule",
+    "section": "",
+    "text": "boundary_capsule(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a capsule boundary.\ncenter(nm): The center of the capsule.\naxis(nm): The direction and length of the capsule spine. The spine line segment goes from center - axis/2 to center + axis/2 If zero the capsule is a sphere.\nradius(nm): Radius of capsule, the full length of the capsule is norm(axis) + 2radius.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
     "objectID": "docstrings/base.delete--56ef520341df3c06.html",
@@ -473,7 +480,7 @@
     "href": "docstrings/src/boundary.html",
     "title": "src/boundary.jl",
     "section": "",
-    "text": "Mechanical boundary\nSee also boundary_box\n\nplanes::Vector{StaticArraysCore.SVector{4, Float64}}: Planes that make up the mechanical boundary of the simulation.\nE = 1//2 * relu(pos ⋅ planes[bi][1:3] - planes[bi][4])^2\nFor example, a mech bounding plane [1,0,0,3] would try and make x &lt; 3 nm with a spring constant of 1 pN/nm.\n2.0*[1,0,0,3] would try and make x &lt; 3 nm with a spring constant of 4 pN/nm.\ncapsules::Vector{StaticArraysCore.SVector{8, Float64}}: Capsules that make up the mechanical boundary of the simulation.\ncapsules[bi][1:3] is the starting point of the spine line segment (nm). capsules[bi][4:6] is the axis of the spine line segment (nm). capsules[bi][7] is the radius (nm). capsules[bi][8] is the spring constant (pN/nm).\nif capsules[bi][4:6] is zero then the capsule is a sphere. Capsule boundaries can be combined with plane boundaries to create cylinder boundaries.\nE = 1//2*k*relu(d - r0)^2 where:\n\nd is the distance of the point to the spine line segment described by capsules[bi][1:6].\nr0 is capsules[bi][7]\nk is capsules[bi][8]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nboundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
+    "text": "Mechanical boundary\nSee also boundary_box\n\nplanes::Vector{StaticArraysCore.SVector{4, Float64}}: Planes that make up the mechanical boundary of the simulation.\nE = 1//2 * relu(pos ⋅ planes[bi][1:3] - planes[bi][4])^2\nFor example, a mech bounding plane [1,0,0,3] would try and make x &lt; 3 nm with a spring constant of 1 pN/nm.\n2.0*[1,0,0,3] would try and make x &lt; 3 nm with a spring constant of 4 pN/nm.\ncapsules::Vector{StaticArraysCore.SVector{8, Float64}}: Capsules that make up the mechanical boundary of the simulation.\ncapsules[bi][1:3] is the starting point of the spine line segment (nm). capsules[bi][4:6] is the axis of the spine line segment (nm). capsules[bi][7] is the radius (nm). capsules[bi][8] is the spring constant (pN/nm).\nif capsules[bi][4:6] is zero then the capsule is a sphere. Capsule boundaries can be combined with plane boundaries to create cylinder boundaries.\nE = 1//2*k*relu(d - r0)^2 where:\n\nd is the distance of the point to the spine line segment described by capsules[bi][1:6].\nr0 is capsules[bi][7]\nk is capsules[bi][8]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nboundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is.\n\n\n\n\n\n\n\n\n\n\n\n\nboundary_capsule(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a capsule boundary.\ncenter(nm): The center of the capsule.\naxis(nm): The direction and length of the capsule spine. The spine line segment goes from center - axis/2 to center + axis/2 If zero the capsule is a sphere.\nradius(nm): Radius of capsule, the full length of the capsule is norm(axis) + 2radius.\nstiffness(pN/nm): How strong the boundary is.\n\n\n\n\n\n\n\n\n\n\n\n\nboundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
     "objectID": "docstrings/src/boundary.html#medyan.boundary-f1e7be79002a27f8",
@@ -488,6 +495,20 @@
     "title": "src/boundary.jl",
     "section": "",
     "text": "boundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
+  },
+  {
+    "objectID": "docstrings/src/boundary.html#medyan.boundary_capsule-1700142f310bd9db",
+    "href": "docstrings/src/boundary.html#medyan.boundary_capsule-1700142f310bd9db",
+    "title": "src/boundary.jl",
+    "section": "",
+    "text": "boundary_capsule(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a capsule boundary.\ncenter(nm): The center of the capsule.\naxis(nm): The direction and length of the capsule spine. The spine line segment goes from center - axis/2 to center + axis/2 If zero the capsule is a sphere.\nradius(nm): Radius of capsule, the full length of the capsule is norm(axis) + 2radius.\nstiffness(pN/nm): How strong the boundary is."
+  },
+  {
+    "objectID": "docstrings/src/boundary.html#medyan.boundary_cylinder-33a45da15f9672d3",
+    "href": "docstrings/src/boundary.html#medyan.boundary_cylinder-33a45da15f9672d3",
+    "title": "src/boundary.jl",
+    "section": "",
+    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
     "objectID": "docstrings/src/cadherins/possiblecadherinsite.html",
@@ -1306,7 +1327,7 @@
     "href": "docstrings.html",
     "title": "Docstrings",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\nMEDYAN.CadherinParams\n\n\n\n\nMEDYAN.CadherinState\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.Link2MonParams\n\n\n\n\nMEDYAN.Link2MonSiteCount\n\n\n\n\nMEDYAN.Link2MonSiteMonomerStateMatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorCatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorStall\n\n\n\n\nMEDYAN.Link2MonSiteOne\n\n\n\n\nMEDYAN.Link2MonSiteSlipBond\n\n\n\n\nMEDYAN.Link2MonState\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonLink2MonSiteOne\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_link_2mon!\n\n\n\n\nMEDYAN.add_link_2mon_site!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.addcadherin!\n\n\n\n\nMEDYAN.addcadherinsite!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.addunbindinglink_2mon_site!\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.chem_depolymerize!\n\n\n\n\nMEDYAN.chem_newfilament!\n\n\n\n\nMEDYAN.chem_newlink_2mon!\n\n\n\n\nMEDYAN.chem_polymerize!\n\n\n\n\nMEDYAN.chem_removefilament!\n\n\n\n\nMEDYAN.chem_removelink_2mon!\n\n\n\n\nMEDYAN.chem_setlink_2mon_state!\n\n\n\n\nMEDYAN.chem_setmonomerstate!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fil_num_unmin_ends\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.link_2mon_endnames\n\n\n\n\nMEDYAN.link_2mon_state\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_exists\n\n\n\n\nMEDYAN.mon_minimized\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newfilament_rand!\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_filtypes\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_filament!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/boundary.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filamentendsites.jl\n\n\n\n\nsrc/filamentsites.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/link_2mon_sites.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/mon_link_2mon_sites.jl\n\n\n\n\nsrc/sever_filament.jl\n\n\n\n\nsrc/sysdefs.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\nMEDYAN.CadherinParams\n\n\n\n\nMEDYAN.CadherinState\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.Link2MonParams\n\n\n\n\nMEDYAN.Link2MonSiteCount\n\n\n\n\nMEDYAN.Link2MonSiteMonomerStateMatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorCatch\n\n\n\n\nMEDYAN.Link2MonSiteMotorStall\n\n\n\n\nMEDYAN.Link2MonSiteOne\n\n\n\n\nMEDYAN.Link2MonSiteSlipBond\n\n\n\n\nMEDYAN.Link2MonState\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonLink2MonSiteOne\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_link_2mon!\n\n\n\n\nMEDYAN.add_link_2mon_site!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.addcadherin!\n\n\n\n\nMEDYAN.addcadherinsite!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.addunbindinglink_2mon_site!\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\nMEDYAN.boundary_capsule\n\n\n\n\nMEDYAN.boundary_cylinder\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.chem_depolymerize!\n\n\n\n\nMEDYAN.chem_newfilament!\n\n\n\n\nMEDYAN.chem_newlink_2mon!\n\n\n\n\nMEDYAN.chem_polymerize!\n\n\n\n\nMEDYAN.chem_removefilament!\n\n\n\n\nMEDYAN.chem_removelink_2mon!\n\n\n\n\nMEDYAN.chem_setlink_2mon_state!\n\n\n\n\nMEDYAN.chem_setmonomerstate!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fil_num_unmin_ends\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.link_2mon_endnames\n\n\n\n\nMEDYAN.link_2mon_state\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_exists\n\n\n\n\nMEDYAN.mon_minimized\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newfilament_rand!\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_filtypes\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_filament!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/boundary.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filamentendsites.jl\n\n\n\n\nsrc/filamentsites.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/link_2mon_sites.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/mon_link_2mon_sites.jl\n\n\n\n\nsrc/sever_filament.jl\n\n\n\n\nsrc/sysdefs.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tutorials/2rdme.html",
@@ -2436,186 +2457,207 @@
     "text": "Allows up to 1 membrane diffusing species as reactants. Also stores net stoich of membrane diffusing species.\n\nid_membranediffusing_reactant::Int64: Set to 0 if no membrane diffusing species is involved.\ncanchangerate_bypotentialenergy::Bool: Whether the reaction rate depends on reactant species potential energy.\nmembranediffusingnet_stoich::Vector{Pair{Int64, Int64}}: Pairs of membrane diffusing species index =&gt; Δcount"
   },
   {
-    "objectID": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html",
-    "href": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html",
-    "title": "MEDYAN.FilamentEndSiteGeneral",
+    "objectID": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html",
+    "href": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html",
+    "title": "MEDYAN.Link2MonSiteMonomerStateMatch",
     "section": "",
-    "text": "Filament end site that matches with a vector of monomer states.\n\nisminusend::Bool\nendstates::Vector{UInt8}\nspacing::Float64\nadded_monomers::Int64"
+    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
   },
   {
-    "objectID": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.filamentendsitegeneral-7a32ac96fb4364ea.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.FilamentEndSiteGeneral",
+    "objectID": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.link2monsitemonomerstatematch-c495443de74016ce.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.Link2MonSiteMonomerStateMatch",
     "section": "",
-    "text": "Filament end site that matches with a vector of monomer states.\n\nisminusend::Bool\nendstates::Vector{UInt8}\nspacing::Float64\nadded_monomers::Int64"
+    "text": "Returns 1.0 if the monomer states match, otherwise, returns 0.0.\n\nminusstate::Tuple{UInt8, UInt8, UInt8}: minus end monomer state\nplusstate::Tuple{UInt8, UInt8, UInt8}: plus end monomer state"
   },
   {
-    "objectID": "docstrings/base.getindex-f593dde852851bc8.html",
-    "href": "docstrings/base.getindex-f593dde852851bc8.html",
-    "title": "Base.getindex",
+    "objectID": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html",
+    "href": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html",
+    "title": "MEDYAN.chem_setmonomerstate!",
     "section": "",
-    "text": "Get index at ID."
+    "text": "chem_setmonomerstate!(c::Context, name::MonomerName, state::MonomerState)\nUpdate a monomer state."
   },
   {
-    "objectID": "docstrings/base.getindex-f593dde852851bc8.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "href": "docstrings/base.getindex-f593dde852851bc8.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "title": "Base.getindex",
+    "objectID": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html#tuple-medyan.context--medyan.monomername--uint8--e08e6835e9c3cbe8",
+    "href": "docstrings/medyan.chem_setmonomerstate--ed756af0de4db0ca.html#tuple-medyan.context--medyan.monomername--uint8--e08e6835e9c3cbe8",
+    "title": "MEDYAN.chem_setmonomerstate!",
     "section": "",
-    "text": "Get index at ID."
+    "text": "chem_setmonomerstate!(c::Context, name::MonomerName, state::MonomerState)\nUpdate a monomer state."
   },
   {
-    "objectID": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html",
-    "href": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html",
-    "title": "MEDYAN.vertex_state",
+    "objectID": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html",
+    "href": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html",
+    "title": "MEDYAN.add_diffusion_coeff!",
     "section": "",
-    "text": "vertex_state(\n    c::MEDYAN.Context,\n    vertexname::MEDYAN.VertexName\n) -&gt; UInt8\nReturn the vertex state on a membrane."
+    "text": "add_diffusion_coeff!(s::SysDef, diffusing_name::Symbol, diffusing_coeff::Float64)\nAdd the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s."
   },
   {
-    "objectID": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html#tuple-medyan.context--medyan.vertexname--4f0d281e8576f34d",
-    "href": "docstrings/medyan.vertex_state-aa3350c08b68b63a.html#tuple-medyan.context--medyan.vertexname--4f0d281e8576f34d",
-    "title": "MEDYAN.vertex_state",
+    "objectID": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html#tuple-medyan.sysdef--symbol--float64--936450f65416538e",
+    "href": "docstrings/medyan.add_diffusion_coeff--a77d1ef833cfdedd.html#tuple-medyan.sysdef--symbol--float64--936450f65416538e",
+    "title": "MEDYAN.add_diffusion_coeff!",
     "section": "",
-    "text": "vertex_state(\n    c::MEDYAN.Context,\n    vertexname::MEDYAN.VertexName\n) -&gt; UInt8\nReturn the vertex state on a membrane."
+    "text": "add_diffusion_coeff!(s::SysDef, diffusing_name::Symbol, diffusing_coeff::Float64)\nAdd the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s."
   },
   {
-    "objectID": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html",
-    "href": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html",
-    "title": "MEDYAN.resolve_all_filament_mesh_crossing!",
+    "objectID": "docstrings/medyan.boundary_box-060d4c56df40146a.html",
+    "href": "docstrings/medyan.boundary_box-060d4c56df40146a.html",
+    "title": "MEDYAN.boundary_box",
     "section": "",
-    "text": "Given an AABB tree corresponding to up-to-date membrane mesh triangles, resolve all filament-membrane intersections.\nRequires\n\nup-to-date unit normals of all triangles in the meshes.\nup-to-date AABB tree corresponding to all membrane meshes."
+    "text": "boundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5",
-    "href": "docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.html#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5",
-    "title": "MEDYAN.resolve_all_filament_mesh_crossing!",
+    "objectID": "docstrings/medyan.boundary_box-060d4c56df40146a.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "href": "docstrings/medyan.boundary_box-060d4c56df40146a.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "title": "MEDYAN.boundary_box",
     "section": "",
-    "text": "Given an AABB tree corresponding to up-to-date membrane mesh triangles, resolve all filament-membrane intersections.\nRequires\n\nup-to-date unit normals of all triangles in the meshes.\nup-to-date AABB tree corresponding to all membrane meshes."
+    "text": "boundary_box(\n    grid::MEDYAN.CubicGrid;\n    offset,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a box boundary at the edge of a grid.\noffset(nm): How far the bounding planes should be moved in from the edge of the grid. Positive is inside the grid, negative is outside the grid.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html",
-    "href": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html",
-    "title": "MEDYAN.mon_position_plusvector",
+    "objectID": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html",
+    "href": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html",
+    "title": "MEDYAN.defer_chem_caching!",
     "section": "",
-    "text": "mon_position_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{StaticArraysCore.SVector{3, Float64}, StaticArraysCore.SVector{3, Float64}}\nReturn a tuple of position and plusvector at a monomer."
+    "text": "defer_chem_caching!(c::Context)::Nothing\nThis should only be used for advanced optimizations.\nDuring chemistry, the context mutating functions will typically try to avoid invalidating various cached data needed to quickly sample sites.\nHowever, if you want to mutate the context outside of chemistry, for example right before or after minimization, you may not want to pay the cost of revalidating all the caches because minimization will already invalidate the caches. Caching will be enabled again and caches will be made valid the next time chemistry is run. Caching can also be manually refreshed and reenabled with: refresh_chem_cache!"
   },
   {
-    "objectID": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "href": "docstrings/medyan.mon_position_plusvector-927d0affbbdfef6f.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "title": "MEDYAN.mon_position_plusvector",
+    "objectID": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.defer_chem_caching!",
     "section": "",
-    "text": "mon_position_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{StaticArraysCore.SVector{3, Float64}, StaticArraysCore.SVector{3, Float64}}\nReturn a tuple of position and plusvector at a monomer."
+    "text": "defer_chem_caching!(c::Context)::Nothing\nThis should only be used for advanced optimizations.\nDuring chemistry, the context mutating functions will typically try to avoid invalidating various cached data needed to quickly sample sites.\nHowever, if you want to mutate the context outside of chemistry, for example right before or after minimization, you may not want to pay the cost of revalidating all the caches because minimization will already invalidate the caches. Caching will be enabled again and caches will be made valid the next time chemistry is run. Caching can also be manually refreshed and reenabled with: refresh_chem_cache!"
   },
   {
-    "objectID": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html",
-    "href": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html",
-    "title": "NLSolversBase.value!!",
+    "objectID": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html",
+    "href": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html",
+    "title": "MEDYAN.mon_minimized",
     "section": "",
-    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
+    "text": "mon_minimized(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Bool\nReturn true iff the monomer has been minimized"
   },
   {
-    "objectID": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html#tuple-medyan.alwayscalcgrad--any--ff589defbddb5326",
-    "href": "docstrings/nlsolversbase.value---d4fdd3b317023c0e.html#tuple-medyan.alwayscalcgrad--any--ff589defbddb5326",
-    "title": "NLSolversBase.value!!",
+    "objectID": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "href": "docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "title": "MEDYAN.mon_minimized",
     "section": "",
-    "text": "Force (re-)evaluation of the objective value at x. Returns f(x) and stores the value in obj.F also calculates the gradient and stores it in obj.DF"
+    "text": "mon_minimized(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Bool\nReturn true iff the monomer has been minimized"
   },
   {
-    "objectID": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html",
-    "href": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html",
-    "title": "MEDYAN.is_chem_cache_valid",
+    "objectID": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html",
+    "href": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html",
+    "title": "MEDYAN.chem_depolymerize!",
     "section": "",
-    "text": "is_chem_cache_valid(c::Context)::Bool\nReturn true if the chemistry cache is valid, false otherwise."
+    "text": "chem_depolymerize!(c::Context, ftid, fid, isminusend::Bool)\nRemove a monomer from the end of the filament with type id ftid and id fid.\nIf isminusend is true remove the monomer from the minus end of the filament, if false remove it from the plus end of the filament.\nThis doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.\nError if the filament isn’t initially over 2 monomers long.\nWarn if the old end monomer is referenced in a link2mon, and remove the link2mon.\nThe warning can be disabled by passing keyword argument warniflink_2mon_removed=false"
   },
   {
-    "objectID": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.is_chem_cache_valid-8336a8adc58a252f.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.is_chem_cache_valid",
+    "objectID": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html#tuple-medyan.context--int64--int64--bool--564746c220a20c60",
+    "href": "docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html#tuple-medyan.context--int64--int64--bool--564746c220a20c60",
+    "title": "MEDYAN.chem_depolymerize!",
     "section": "",
-    "text": "is_chem_cache_valid(c::Context)::Bool\nReturn true if the chemistry cache is valid, false otherwise."
+    "text": "chem_depolymerize!(c::Context, ftid, fid, isminusend::Bool)\nRemove a monomer from the end of the filament with type id ftid and id fid.\nIf isminusend is true remove the monomer from the minus end of the filament, if false remove it from the plus end of the filament.\nThis doesn’t affect the other monomer states, positions, linked link_2mons, or change any of the monomer names.\nError if the filament isn’t initially over 2 monomers long.\nWarn if the old end monomer is referenced in a link2mon, and remove the link2mon.\nThe warning can be disabled by passing keyword argument warniflink_2mon_removed=false"
   },
   {
-    "objectID": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html",
-    "href": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html",
-    "title": "MEDYAN.set_mechboundary!",
+    "objectID": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html",
+    "href": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html",
+    "title": "MEDYAN.SysDef",
     "section": "",
-    "text": "set_mechboundary!(\n    c::MEDYAN.Context;\n    kwargs...\n) -&gt; MEDYAN.Boundary\nSee also Boundary"
+    "text": "SysDef(agentnames::AgentNames)\nA mutable struct mapping names to id numbers in a simulation\n\nagentnames::MEDYAN.AgentNames\ndiffusing::MEDYAN.PropDictionary\ndiffusing_coeff::MEDYAN.PropDictionary\nbulkspecies_indexmap::MEDYAN.PropDictionary\nmembranediffusing::MEDYAN.PropDictionary\nfixedspecies::MEDYAN.PropDictionary\nfilament::MEDYAN.PropDictionary\nfilament_params::MEDYAN.PropDictionary\nvertex::MEDYAN.PropDictionary\nstate::MEDYAN.PropDictionary\nlink_2mon::MEDYAN.PropDictionary\nlink_2mon_params::MEDYAN.PropDictionary\ncadherin::MEDYAN.PropDictionary\ncadherinparams::MEDYAN.PropDictionary\nfilamentsite::MEDYAN.PropDictionary\nfilamentendsite::MEDYAN.PropDictionary\nmembranesite::MEDYAN.PropDictionary: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.\nlink_2mon_site::MEDYAN.PropDictionary\nmon_link_2mon_site::MEDYAN.PropDictionary\ndecimated_2mon_site::MEDYAN.PropDictionary\ncadherinsite::MEDYAN.PropDictionary\npossiblecadherinsite::MEDYAN.PropDictionary\nallfixedspeciesnames::Vector{String}\ncompartmentreactions::Vector{MEDYAN.CompartmentReaction}\ncompartmentreactioncallbacks::Vector{Any}\nbulkreactions::Vector{MEDYAN.BulkReaction}\nbulkreactioncallbacks::Vector{Any}: Context -&gt; Nothing"
   },
   {
-    "objectID": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.set_mechboundary--b5e26b6b690256aa.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.set_mechboundary!",
+    "objectID": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.SysDef",
     "section": "",
-    "text": "set_mechboundary!(\n    c::MEDYAN.Context;\n    kwargs...\n) -&gt; MEDYAN.Boundary\nSee also Boundary"
+    "text": "SysDef(agentnames::AgentNames)\nA mutable struct mapping names to id numbers in a simulation\n\nagentnames::MEDYAN.AgentNames\ndiffusing::MEDYAN.PropDictionary\ndiffusing_coeff::MEDYAN.PropDictionary\nbulkspecies_indexmap::MEDYAN.PropDictionary\nmembranediffusing::MEDYAN.PropDictionary\nfixedspecies::MEDYAN.PropDictionary\nfilament::MEDYAN.PropDictionary\nfilament_params::MEDYAN.PropDictionary\nvertex::MEDYAN.PropDictionary\nstate::MEDYAN.PropDictionary\nlink_2mon::MEDYAN.PropDictionary\nlink_2mon_params::MEDYAN.PropDictionary\ncadherin::MEDYAN.PropDictionary\ncadherinparams::MEDYAN.PropDictionary\nfilamentsite::MEDYAN.PropDictionary\nfilamentendsite::MEDYAN.PropDictionary\nmembranesite::MEDYAN.PropDictionary: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.\nlink_2mon_site::MEDYAN.PropDictionary\nmon_link_2mon_site::MEDYAN.PropDictionary\ndecimated_2mon_site::MEDYAN.PropDictionary\ncadherinsite::MEDYAN.PropDictionary\npossiblecadherinsite::MEDYAN.PropDictionary\nallfixedspeciesnames::Vector{String}\ncompartmentreactions::Vector{MEDYAN.CompartmentReaction}\ncompartmentreactioncallbacks::Vector{Any}\nbulkreactions::Vector{MEDYAN.BulkReaction}\nbulkreactioncallbacks::Vector{Any}: Context -&gt; Nothing"
   },
   {
-    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
-    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
-    "title": "MEDYAN.load_snapshot!",
+    "objectID": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html",
+    "href": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html",
+    "title": "MEDYAN.MonLink2MonSiteOne",
     "section": "",
-    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
+    "text": "Always returns 1.0"
   },
   {
-    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
-    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
-    "title": "MEDYAN.load_snapshot!",
+    "objectID": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.monlink2monsiteone-77707f45e082c27e.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.MonLink2MonSiteOne",
     "section": "",
-    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
+    "text": "Always returns 1.0"
   },
   {
-    "objectID": "docstrings/medyan.mon_plusvector-b7271c7721602813.html",
-    "href": "docstrings/medyan.mon_plusvector-b7271c7721602813.html",
-    "title": "MEDYAN.mon_plusvector",
+    "objectID": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html",
+    "href": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html",
+    "title": "MEDYAN.addcadherinsite!",
     "section": "",
-    "text": "mon_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the unit vector toward the plus end of the filament."
+    "text": "addcadherinsite!(s::SysDef,cadherintypename::Symbol,cadherinsitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.mon_plusvector-b7271c7721602813.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "href": "docstrings/medyan.mon_plusvector-b7271c7721602813.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "title": "MEDYAN.mon_plusvector",
+    "objectID": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "href": "docstrings/medyan.addcadherinsite--9e21ac42968d0196.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "title": "MEDYAN.addcadherinsite!",
     "section": "",
-    "text": "mon_plusvector(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the unit vector toward the plus end of the filament."
+    "text": "addcadherinsite!(s::SysDef,cadherintypename::Symbol,cadherinsitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html",
-    "href": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html",
-    "title": "MEDYAN.Link2MonState",
+    "objectID": "docstrings/medyan.monomername-bb517706cb60c4f5.html",
+    "href": "docstrings/medyan.monomername-bb517706cb60c4f5.html",
+    "title": "MEDYAN.MonomerName",
     "section": "",
-    "text": "There is one instance of this per link_2mon.\n\nchemstate::NamedTuple: Other state.\nmechstate::NamedTuple: Used in link_2mon force calculation.\nis_minimized::Bool: Set to true after minimization"
+    "text": "ftid::Int64: filament type id\nfid::Int64: filament id\nmid::Int64: monomer id"
   },
   {
-    "objectID": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.link2monstate-9845e7e08620ea8a.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.Link2MonState",
+    "objectID": "docstrings/medyan.monomername-bb517706cb60c4f5.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.monomername-bb517706cb60c4f5.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.MonomerName",
     "section": "",
-    "text": "There is one instance of this per link_2mon.\n\nchemstate::NamedTuple: Other state.\nmechstate::NamedTuple: Used in link_2mon force calculation.\nis_minimized::Bool: Set to true after minimization"
+    "text": "ftid::Int64: filament type id\nfid::Int64: filament id\nmid::Int64: monomer id"
   },
   {
-    "objectID": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html",
-    "href": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html",
-    "title": "MEDYAN.add_link_2mon_site!",
+    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
+    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
+    "title": "MEDYAN.num_vertexwithstate",
     "section": "",
-    "text": "add_link_2mon_site!(s::SysDef,link_2mon_typename::Symbol,link_2mon_sitename::Symbol,site)::SysDef"
+    "text": "Return the number of vertices with state 2. Check the number of vertices with state 2. The number should be constant."
   },
   {
-    "objectID": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "href": "docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "title": "MEDYAN.add_link_2mon_site!",
+    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--uint8--249d6d475bef2173",
+    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--uint8--249d6d475bef2173",
+    "title": "MEDYAN.num_vertexwithstate",
     "section": "",
-    "text": "add_link_2mon_site!(s::SysDef,link_2mon_typename::Symbol,link_2mon_sitename::Symbol,site)::SysDef"
+    "text": "Return the number of vertices with state 2. Check the number of vertices with state 2. The number should be constant."
   },
   {
-    "objectID": "docstrings/medyan.vertexstate-450b7005d2acebe8.html",
-    "href": "docstrings/medyan.vertexstate-450b7005d2acebe8.html",
-    "title": "MEDYAN.VertexState",
+    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html",
+    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html",
+    "title": "MEDYAN.chem_newlink_2mon!",
     "section": "",
-    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+    "text": "chem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName}, link_2mon_state::Link2MonState;\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\n\nchem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName};\n    changedchemstate = (;),\n    changedmechstate = (;),\n    is_minimized = c.link_2mon_data[ltid].params.defaultstate.is_minimized,\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\nAdd a new link_2mon with type id ltid between monemers endnames.\nReturn the link_2mon id.\nError if a link_2mon of the same type links the same monomers in the same order.\nIf the link2mon state isn’t provided, c.link*2mon*data[ltid].params.defaultstate is new link2mon’s state, optionally modified by the changedchemstate, changedmechstate, and is_minimized keyword arguments.\nKeyword arguments changedchemstate and changedmechstate are namedtuples that shadow fields from the default chemstate and mechstate for the new link_2mon.\nKeyword argument is_minimized can be used to set the new link*2mon’s is*minimized state.\nKeyword argument new_lid can be optionally used to set the new link_2mon’s id, if this id is currently used, error.\n\n\nlid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
   },
   {
-    "objectID": "docstrings/medyan.vertexstate-450b7005d2acebe8.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.vertexstate-450b7005d2acebe8.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.VertexState",
+    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--af1ad00950bd174d",
+    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#tuple-medyan.context--int64--pair-medyan.monomername--medyan.monomername---medyan.link2monstate--af1ad00950bd174d",
+    "title": "MEDYAN.chem_newlink_2mon!",
     "section": "",
-    "text": "Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with vertexstate and monomerstate."
+    "text": "chem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName}, link_2mon_state::Link2MonState;\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\n\nchem_newlink_2mon!(c::Context, ltid::Int, endnames::Pair{MonomerName,MonomerName};\n    changedchemstate = (;),\n    changedmechstate = (;),\n    is_minimized = c.link_2mon_data[ltid].params.defaultstate.is_minimized,\n    new_lid::Union{Nothing,Int64} = nothing,\n)::Int64\nAdd a new link_2mon with type id ltid between monemers endnames.\nReturn the link_2mon id.\nError if a link_2mon of the same type links the same monomers in the same order.\nIf the link2mon state isn’t provided, c.link*2mon*data[ltid].params.defaultstate is new link2mon’s state, optionally modified by the changedchemstate, changedmechstate, and is_minimized keyword arguments.\nKeyword arguments changedchemstate and changedmechstate are namedtuples that shadow fields from the default chemstate and mechstate for the new link_2mon.\nKeyword argument is_minimized can be used to set the new link*2mon’s is*minimized state.\nKeyword argument new_lid can be optionally used to set the new link_2mon’s id, if this id is currently used, error.\n\n\nlid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
+  },
+  {
+    "objectID": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#example",
+    "href": "docstrings/medyan.chem_newlink_2mon--e4f84fe5cfa9a727.html#example",
+    "title": "MEDYAN.chem_newlink_2mon!",
+    "section": "",
+    "text": "lid = chem_newlink_2mon!(c, g.ltid, minusname=&gt;plusname;\n        changedmechstate = (L0 = dist,),\n        changedchemstate = (numHeads = rand(g.numHeadsMin:g.numHeadsMax),),\n    )"
+  },
+  {
+    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
+    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
+    "title": "MEDYAN.minimize_energy!",
+    "section": "",
+    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
+  },
+  {
+    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.minimize_energy!",
+    "section": "",
+    "text": "minimize_energy!(c::Context)\nMinimize mechanical energy of the context."
   },
   {
     "objectID": "docstrings/medyan.fil_node_positions-618a66637eb50781.html",
