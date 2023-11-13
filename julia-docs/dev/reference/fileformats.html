@@ -377,6 +377,7 @@ Other Languages
 <h2 class="anchored" data-anchor-id="snapshot-group">Snapshot group</h2>
 <p>A snapshot describes the state of a <code>Context</code> at a single point in time.</p>
 <p>A snapshot can be used to set the state of a <code>Context</code> if it was constructed with the same system and parameters as the <code>Context</code> used to create the snapshot. Trying to load a snapshot into a <code>Context</code> constructed with a different system or parameters may lead to unexpected results.</p>
+<p>By default units are in nm, pN, and s. Coordinates are relative to the corner of the grid.</p>
 <p>The snapshot doesn’t hold the exact full state of a <code>Context</code>, simulations restarted from a snapshot may not have the exact same results because:</p>
 <ol type="1">
 <li>The snapshot doesn’t store the state of the random number generator.</li>
@@ -1180,7 +1181,7 @@ optional 🔢 copynumbers
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>3×980 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  1  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
 </div>
 </div>
