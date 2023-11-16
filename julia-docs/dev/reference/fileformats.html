@@ -377,7 +377,7 @@ Other Languages
 <h2 class="anchored" data-anchor-id="snapshot-group">Snapshot group</h2>
 <p>A snapshot describes the state of a <code>Context</code> at a single point in time.</p>
 <p>A snapshot can be used to set the state of a <code>Context</code> if it was constructed with the same system and parameters as the <code>Context</code> used to create the snapshot. Trying to load a snapshot into a <code>Context</code> constructed with a different system or parameters may lead to unexpected results.</p>
-<p>By default units are in nm, pN, and s. Coordinates are relative to the corner of the grid.</p>
+<p>By default units are in nm, pN, and s. Coordinates are relative to the center of the grid.</p>
 <p>The snapshot doesn’t hold the exact full state of a <code>Context</code>, simulations restarted from a snapshot may not have the exact same results because:</p>
 <ol type="1">
 <li>The snapshot doesn’t store the state of the random number generator.</li>
@@ -393,7 +393,7 @@ Other Languages
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>MEDYAN.SNAPSHOT_VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>v"0.7.1"</code></pre>
+<pre><code>v"0.8.0"</code></pre>
 </div>
 </div>
 <p>Currently before snapshot version 1.0.0 anything goes.</p>
@@ -461,7 +461,7 @@ version
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group)[<span class="st">"version"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>"0.7.1"</code></pre>
+<pre><code>"0.8.0"</code></pre>
 </div>
 </div>
 <p>Default: No change<br>
@@ -587,10 +587,10 @@ Each column of the dataset is a capsule.
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"chemboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>4×6 Matrix{Float64}:
- -10.0     10.0    0.0     0.0    0.0     0.0
-   0.0      0.0  -10.0    10.0    0.0     0.0
-   0.0      0.0    0.0     0.0  -10.0    10.0
-   0.0  20000.0    0.0  5000.0    0.0  5000.0</code></pre>
+   -10.0     10.0     0.0     0.0     0.0     0.0
+     0.0      0.0   -10.0    10.0     0.0     0.0
+     0.0      0.0     0.0     0.0   -10.0    10.0
+ 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0</code></pre>
 </div>
 </div>
 <p>Default: Empty</p>
@@ -771,10 +771,10 @@ The monomer id with parenthesis (M) will in <code>node_mids</code>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/nodepositions"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>4×3 Matrix{Float64}:
- 470.0  200.0  200.0
- 560.0  200.0  200.0
- 480.0  201.0  200.0
- 570.0  201.0  200.0</code></pre>
+ -530.0  -50.0  -50.0
+ -440.0  -50.0  -50.0
+ -520.0  -49.0  -50.0
+ -430.0  -49.0  -50.0</code></pre>
 </div>
 </div>
 Each row is a node position in nm.
@@ -997,10 +997,10 @@ Each column of the dataset is a capsule.
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"mechboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>4×6 Matrix{Float64}:
- -10.0     10.0    0.0     0.0    0.0     0.0
-   0.0      0.0  -10.0    10.0    0.0     0.0
-   0.0      0.0    0.0     0.0  -10.0    10.0
-   0.0  20000.0    0.0  5000.0    0.0  5000.0</code></pre>
+   -10.0     10.0     0.0     0.0     0.0     0.0
+     0.0      0.0   -10.0    10.0     0.0     0.0
+     0.0      0.0     0.0     0.0   -10.0    10.0
+ 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0</code></pre>
 </div>
 </div>
 <p>Default: Empty</p>
@@ -1127,9 +1127,9 @@ Each column is the 3 vertex indexes of a triangle. Indexes are one based, and fo
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/vertlist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>3×980 Matrix{Float64}:
- 889.75   531.25   548.5     629.75   …  1235.88   290.125  383.125  631.125
- 725.125  191.75   425.875   512.125      256.375  232.5    126.375  685.0
- 284.875  692.375  669.375  -155.0        145.0    436.25   560.125  459.625</code></pre>
+ -110.25   -468.75   -451.5    -370.25   …  -709.875  -616.875  -368.875
+  475.125   -58.25    175.875   262.125      -17.5    -123.625   435.0
+   34.875   442.375   419.375  -405.0        186.25    310.125   209.625</code></pre>
 </div>
 </div>
 Each column is a vertex coordinate in nm.
@@ -1181,7 +1181,7 @@ optional 🔢 copynumbers
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>3×980 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  1  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
 </div>
 </div>
