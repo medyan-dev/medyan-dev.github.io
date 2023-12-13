@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MEDYAN.jl – sysdefs</title>
+<title>MEDYAN.jl – sys_def</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#srcsysdefs.jl" id="toc-srcsysdefs.jl" class="nav-link active" data-scroll-target="#srcsysdefs.jl">src/sysdefs.jl</a>
+  <li><a href="#srcsys_def.jl" id="toc-srcsys_def.jl" class="nav-link active" data-scroll-target="#srcsys_def.jl">src/sys_def.jl</a>
   <ul class="collapse">
   <li><a href="#medyan.agentnames-948e6a24b4fb0cb5" id="toc-medyan.agentnames-948e6a24b4fb0cb5" class="nav-link" data-scroll-target="#medyan.agentnames-948e6a24b4fb0cb5"><code>MEDYAN.AgentNames</code></a></li>
   <li><a href="#medyan.monomername-bb517706cb60c4f5" id="toc-medyan.monomername-bb517706cb60c4f5" class="nav-link" data-scroll-target="#medyan.monomername-bb517706cb60c4f5"><code>MEDYAN.MonomerName</code></a></li>
@@ -202,15 +202,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.add_membranesitereaction--59d1fe245302e071" id="toc-medyan.add_membranesitereaction--59d1fe245302e071" class="nav-link" data-scroll-target="#medyan.add_membranesitereaction--59d1fe245302e071"><code>MEDYAN.add_membranesitereaction!</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/sysdefs.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/sys_def.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="srcsysdefs.jl" class="level1">
-<h1>src/sysdefs.jl</h1>
+<section id="srcsys_def.jl" class="level1">
+<h1>src/sys_def.jl</h1>
 <section id="medyan.agentnames-948e6a24b4fb0cb5" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.agentnames-948e6a24b4fb0cb5"><a href="../../docstrings/medyan.agentnames-948e6a24b4fb0cb5.html"><code>MEDYAN.AgentNames</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -346,10 +346,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SysDef</span>(agentnames<span class="op">::</span><span class="dt">AgentNames</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SysDef</span>(agent_names<span class="op">::</span><span class="dt">AgentNames</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A mutable struct mapping names to id numbers in a simulation</p>
 <ul>
-<li><code>agentnames::MEDYAN.AgentNames</code></li>
+<li><code>agent_names::MEDYAN.AgentNames</code></li>
 <li><code>diffusing::MEDYAN.PropDictionary</code></li>
 <li><code>diffusing_coeff::MEDYAN.PropDictionary</code></li>
 <li><code>bulkspecies_indexmap::MEDYAN.PropDictionary</code></li>
@@ -636,7 +636,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="examples" class="level1">
 <h1>Examples</h1>
 <div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>agentnames <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>a,</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>b,</span>
@@ -644,7 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agentnames)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>ab,</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b], <span class="fl">1</span>,</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
@@ -684,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="examples-1" class="level1">
 <h1>Examples</h1>
 <div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>agentnames <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    diffusingspeciesnames<span class="op">=</span> [<span class="op">:</span>a,],</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>plus,</span>
@@ -693,7 +693,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agentnames)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>monomerspacing<span class="op">=</span> <span class="fl">2.7</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#minus end polymerization</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>pm, <span class="cn">true</span>,</span>
