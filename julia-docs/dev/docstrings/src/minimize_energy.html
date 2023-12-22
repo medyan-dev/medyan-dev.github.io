@@ -210,8 +210,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minimize_energy!</span>(c<span class="op">::</span><span class="dt">Context</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minimize_energy!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">MinimizeEnergyResults</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Minimize mechanical energy of the context.</p>
+<section id="keyword-arguments" class="level1">
+<h1>Keyword Arguments</h1>
+<ul>
+<li><code>check_closest_cylinders::Bool=true</code>:</li>
+</ul>
+<p>If true, the function will warn if two cylinders get too close during minimization.</p>
+<ul>
+<li><code>brownian_motion_time::Float64=Inf</code>: This parameter is used to simulate the effect</li>
+</ul>
+<p>of Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.</p>
+</section>
 </div>
 </div>
 </div>
