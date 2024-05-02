@@ -215,6 +215,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>brownian_motion_time::Float64=Inf</code>: This parameter is used to simulate the effect</li>
 </ul>
 <p>of Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.</p>
+<ul>
+<li><code>g_tol::Union{Float64, Nothing}=nothing</code>: Overshadow the value of <code>g_tol</code> in <code>c</code></li>
+</ul>
+<p>This represents the acceptable maximum residual force on any degree of freedom in pN.</p>
 </section>
 </div>
 </div>
