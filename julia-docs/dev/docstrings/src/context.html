@@ -291,6 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>largestfilamentid::Vector{Int64}</code>: The largest filament id, indexed by filament type id</p></li>
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
+<li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
 <li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
 <li><p><code>decimated_2mon_site_managers::Tuple{Vararg{MEDYAN.AbstractDecimated2MonSiteManager}}</code>: Site managers, indexed by site id</p></li>
 <li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Int64}}}</code>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon ids that reference the monomer name</p></li>
@@ -338,7 +339,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
 <li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
 <li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
-<li><p><code>fila_tip_tags::MEDYAN.TagManager{MEDYAN.FilaTipIdx}</code>: Filament tip tags</p></li>
 </ul>
 </div>
 </div>
