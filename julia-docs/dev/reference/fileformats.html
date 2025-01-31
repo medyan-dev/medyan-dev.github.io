@@ -274,7 +274,7 @@ Other Languages
 <p><code>header.json["medyan"]</code> contains static metadata about the simulation.</p>
 <section id="example-header.json-medyan-value" class="level3">
 <h3 class="anchored" data-anchor-id="example-header.json-medyan-value">Example <code>header.json</code> <code>"medyan"</code> value</h3>
-<div id="f26fca23" class="cell" data-execution_count="2">
+<div id="4" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">JSON3</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cinit, s <span class="op">=</span> MEDYAN.<span class="fu">example_all_sites_context</span>()</span>
@@ -440,10 +440,10 @@ Other Languages
 <section id="snapshot-versioning" class="level3">
 <h3 class="anchored" data-anchor-id="snapshot-versioning">Snapshot Versioning</h3>
 <p>The snapshot format is versioned by the “version” attribute. The current snapshot version is:</p>
-<div id="c6350fee" class="cell" data-execution_count="3">
+<div id="6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>MEDYAN.SNAPSHOT_VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>v"0.9.0"</code></pre>
 </div>
 </div>
@@ -462,7 +462,7 @@ Other Languages
 </section>
 <section id="example-snapshot" class="level3">
 <h3 class="anchored" data-anchor-id="example-snapshot">Example snapshot</h3>
-<div id="b7b271f5" class="cell" data-execution_count="4">
+<div id="8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SmallZarrGroups</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>cinit, s <span class="op">=</span> MEDYAN.<span class="fu">example_all_sites_context</span>()</span>
@@ -496,9 +496,9 @@ Snapshot 📂
 <summary>
 time (s)
 </summary>
-<div id="a80d0b9d" class="cell" data-execution_count="5">
+<div id="10" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group)[<span class="st">"time (s)"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>0.0</code></pre>
 </div>
 </div>
@@ -509,9 +509,9 @@ See <a href="../docstrings/medyan.set_time--a6dd8f73f68a3759.html"><code>MEDYAN.
 <summary>
 version
 </summary>
-<div id="ef94a632" class="cell" data-execution_count="6">
+<div id="12" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group)[<span class="st">"version"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"0.9.0"</code></pre>
 </div>
 </div>
@@ -522,9 +522,9 @@ See <a href="#snapshot-versioning">Snapshot Versioning</a></div>
 <summary>
 uuid
 </summary>
-<div id="6df7806d" class="cell" data-execution_count="7">
+<div id="14" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group)[<span class="st">"uuid"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>"37eee81f-88ae-4d11-b6b3-d38e1ccf0a08"</code></pre>
 </div>
 </div>
@@ -550,9 +550,9 @@ to be considered a valid MEDYAN snapshot.</div>
 <summary>
 diffusingcounts
 </summary>
-<div id="b3a26877" class="cell" data-execution_count="8">
+<div id="16" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"diffusingcounts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×4 Matrix{Int32}:
  0   100   40  0
  0  1000  400  0</code></pre>
@@ -566,9 +566,9 @@ See <a href="../docstrings/medyan.chem_adddiffusingcount--2264be341b81a600.html"
 <summary>
 fixedcounts
 </summary>
-<div id="f763f9d6" class="cell" data-execution_count="9">
+<div id="18" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"fixedcounts"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×4 Matrix{Float64}:
  10.25  0.0  0.0   0.0
   0.0   0.0  0.0  20.25</code></pre>
@@ -613,9 +613,9 @@ chemboundary
 <summary>
 🔢 capsules
 </summary>
-<div id="4a577217" class="cell" data-execution_count="10">
+<div id="20" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"chemboundary/capsules"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>8×1 Matrix{Float64}:
      0.0
      0.0
@@ -634,9 +634,9 @@ Each column of the dataset is a capsule.
 <summary>
 🔢 planes
 </summary>
-<div id="fdb30ad8" class="cell" data-execution_count="11">
+<div id="22" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"chemboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×6 Matrix{Float64}:
    -10.0     10.0     0.0     0.0     0.0     0.0
      0.0      0.0   -10.0    10.0     0.0     0.0
@@ -681,9 +681,9 @@ filaments
 <summary>
 position_scale
 </summary>
-<div id="63253c80" class="cell" data-execution_count="12">
+<div id="24" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"filaments"</span>])[<span class="st">"position_scale"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3</code></pre>
 </div>
 </div>
@@ -712,9 +712,9 @@ Filament positions were rounded to the nearest 2^-position_scale nm when saved.
 <summary>
 🔢 endloadforces
 </summary>
-<div id="bc0cc2d9" class="cell" data-execution_count="13">
+<div id="26" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/endloadforces"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×2 Matrix{Float64}:
  0.0  0.0
  0.0  0.0</code></pre>
@@ -727,9 +727,9 @@ Each row is the load force on the minus and plus ends of a filament.
 <summary>
 🔢 fids
 </summary>
-<div id="fbfe21f1" class="cell" data-execution_count="14">
+<div id="28" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/fids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  1
  2</code></pre>
@@ -741,9 +741,9 @@ Filament ids.
 <summary>
 🔢 minusend_num_notminimized
 </summary>
-<div id="966cc9c6" class="cell" data-execution_count="15">
+<div id="30" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/minusend_num_notminimized"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  0
  0</code></pre>
@@ -755,9 +755,9 @@ Number of newly added monomers to the filament minus ends since last minimizatio
 <summary>
 🔢 plusend_num_notminimized
 </summary>
-<div id="d68bb301" class="cell" data-execution_count="16">
+<div id="32" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/plusend_num_notminimized"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  0
  0</code></pre>
@@ -769,9 +769,9 @@ Number of newly added monomers to the filament plus ends since last minimization
 <summary>
 🔢 num_cylinders
 </summary>
-<div id="962e6354" class="cell" data-execution_count="17">
+<div id="34" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/num_cylinders"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  1
  1</code></pre>
@@ -783,9 +783,9 @@ Number of cylinders per filament.
 <summary>
 🔢 num_monomers
 </summary>
-<div id="321810b7" class="cell" data-execution_count="18">
+<div id="36" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/num_monomers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  9
  9</code></pre>
@@ -797,9 +797,9 @@ Number of monomers per filament.
 <summary>
 🔢 node_mids
 </summary>
-<div id="2b79fa3d" class="cell" data-execution_count="19">
+<div id="38" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/node_mids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int32}:
  1
  1</code></pre>
@@ -818,9 +818,9 @@ The monomer id with parenthesis (M) will in <code>node_mids</code>
 <summary>
 🔢 nodepositions
 </summary>
-<div id="1c13c19d" class="cell" data-execution_count="20">
+<div id="40" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/nodepositions"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×3 Matrix{Float64}:
  -530.0  -50.0  -50.0
  -440.0  -50.0  -50.0
@@ -834,9 +834,9 @@ Each row is a node position in nm.
 <summary>
 🔢 monomerstates
 </summary>
-<div id="99f28764" class="cell" data-execution_count="21">
+<div id="42" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"filaments/1/monomerstates"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>18-element Vector{UInt8}:
  0x01
  0x02
@@ -911,9 +911,9 @@ link_2mons
 <summary>
 num_link_2mons
 </summary>
-<div id="b1fc4c81" class="cell" data-execution_count="22">
+<div id="44" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"link_2mons/1"</span>])[<span class="st">"num_link_2mons"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -923,9 +923,9 @@ Number of link_2mons of this type.
 <summary>
 next_lid
 </summary>
-<div id="4c727cc0" class="cell" data-execution_count="23">
+<div id="46" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"link_2mons/1"</span>])[<span class="st">"next_lid"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3</code></pre>
 </div>
 </div>
@@ -939,9 +939,9 @@ This should be greater than all the existing lids.
 <summary>
 🔢 endnames
 </summary>
-<div id="20f2b364" class="cell" data-execution_count="24">
+<div id="48" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"link_2mons/1/endnames"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×6 Matrix{Int64}:
  1  1  2  1  1  2
  1  1  2  1  2  2</code></pre>
@@ -962,9 +962,9 @@ This should be greater than all the existing lids.
 <summary>
 🔢 lids
 </summary>
-<div id="391fc80d" class="cell" data-execution_count="25">
+<div id="50" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"link_2mons/1/lids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Int64}:
  1
  2</code></pre>
@@ -980,9 +980,9 @@ Links retain their ids while they remain bound.
 <p>Default: default link_2mon_state</p>
 <p>See <a href="../docstrings/medyan.chem_setlink_2mon_state--82213403237b28e5.html"><code>MEDYAN.chem_setlink_2mon_state!</code></a> and <a href="../docstrings/medyan.link2monstate-9845e7e08620ea8a.html"><code>MEDYAN.Link2MonState</code></a></p>
 <p>The state of a link_2mon, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
-<div id="fd54bb1a" class="cell" data-execution_count="26">
+<div id="52" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"link_2mons/1/state"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 ├─ 📂 1 🏷️ name =&gt; "chemstate",
 |  ├─ 🔢 1: 2 Int64  🏷️ name =&gt; "a",
@@ -1017,7 +1017,7 @@ links
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>There is a subgroup for each link type with at least one current or past ling. The subgroups are named by their link_2mon type id.</p>
+<p>There is a subgroup for each link type with at least one current or past link. The subgroups are named by their link type id.</p>
 <!-- Attributes -->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
@@ -1035,9 +1035,9 @@ links
 <summary>
 version
 </summary>
-<div id="27ac454b" class="cell" data-execution_count="27">
+<div id="54" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"links"</span>])[<span class="st">"version"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>1</code></pre>
 </div>
 </div>
@@ -1077,9 +1077,9 @@ link data major version, version 1 is described here.
 <summary>
 num_links
 </summary>
-<div id="8f8f1d20" class="cell" data-execution_count="28">
+<div id="56" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"links/8"</span>])[<span class="st">"num_links"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4</code></pre>
 </div>
 </div>
@@ -1089,9 +1089,9 @@ Number of links of this type.
 <summary>
 next_lid
 </summary>
-<div id="475a241b" class="cell" data-execution_count="29">
+<div id="58" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"links/8"</span>])[<span class="st">"next_lid"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5</code></pre>
 </div>
 </div>
@@ -1105,9 +1105,9 @@ This should be greater than all the existing link ids of this type.
 <summary>
 🔢 be
 </summary>
-<div id="77df7c88" class="cell" data-execution_count="30">
+<div id="60" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"links/8/be"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×1 Matrix{Bool}:
  1
  1
@@ -1122,9 +1122,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <summary>
 🔢 ids
 </summary>
-<div id="5b3c64cf" class="cell" data-execution_count="31">
+<div id="62" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"links/8/ids"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4-element Vector{Int64}:
  1
  2
@@ -1138,9 +1138,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <summary>
 🔢 im
 </summary>
-<div id="58249ebf" class="cell" data-execution_count="32">
+<div id="64" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"links/8/im"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4-element Vector{Bool}:
  0
  0
@@ -1154,9 +1154,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <summary>
 🔢 re
 </summary>
-<div id="cd51581b" class="cell" data-execution_count="33">
+<div id="66" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"links/8/re"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×4 Matrix{Bool}:
  1  1  1  1
  1  1  1  1
@@ -1171,9 +1171,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <summary>
 🔢 tags
 </summary>
-<div id="e86dec85" class="cell" data-execution_count="34">
+<div id="68" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"links/8/tags"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×4 Matrix{UInt32}:
  0x00000001  0x00000001  0x00000001  0x00000001
  0x00000005  0x00000001  0x00000006  0x00000001
@@ -1192,9 +1192,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <p>Default: default bond states</p>
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.qmd"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
-<div id="a8145584" class="cell" data-execution_count="35">
+<div id="70" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/bs"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 └─ 📂 1 🏷️ name =&gt; "1",
    ├─ 🔢 1: 4 Float64  🏷️ name =&gt; "k",
@@ -1209,9 +1209,9 @@ Each row of this matrix represents a link, each column represents a bond.
 <p>Default: default states</p>
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.qmd"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
-<div id="da3fd87a" class="cell" data-execution_count="36">
+<div id="72" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/s"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 ├─ 🔢 1: 4 Int64  🏷️ name =&gt; "a",
 └─ 🔢 2: 4 Float64  🏷️ name =&gt; "b",</code></pre>
@@ -1245,9 +1245,9 @@ mechboundary
 <summary>
 🔢 capsules
 </summary>
-<div id="d5d860e5" class="cell" data-execution_count="37">
+<div id="74" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"mechboundary/capsules"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>8×1 Matrix{Float64}:
      0.0
      0.0
@@ -1266,9 +1266,9 @@ Each column of the dataset is a capsule.
 <summary>
 🔢 planes
 </summary>
-<div id="a279b831" class="cell" data-execution_count="38">
+<div id="76" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"mechboundary/planes"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>4×6 Matrix{Float64}:
    -10.0     10.0     0.0     0.0     0.0     0.0
      0.0      0.0   -10.0    10.0     0.0     0.0
@@ -1312,9 +1312,9 @@ membranes
 <summary>
 num_membranes
 </summary>
-<div id="3f6f36ab" class="cell" data-execution_count="39">
+<div id="78" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"membranes"</span>])[<span class="st">"num_membranes"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>1</code></pre>
 </div>
 </div>
@@ -1324,9 +1324,9 @@ Total number of membranes.
 <summary>
 position_scale
 </summary>
-<div id="2e845f46" class="cell" data-execution_count="40">
+<div id="80" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"membranes"</span>])[<span class="st">"position_scale"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3</code></pre>
 </div>
 </div>
@@ -1366,9 +1366,9 @@ Positions were rounded to the nearest 2^-position_scale nm when saved.
 <summary>
 type_id
 </summary>
-<div id="a53ac9f6" class="cell" data-execution_count="41">
+<div id="82" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attrs</span>(group[<span class="st">"membranes/1"</span>])[<span class="st">"type_id"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>1</code></pre>
 </div>
 </div>
@@ -1381,9 +1381,9 @@ This membrane’s type id.
 <summary>
 🔢 trilist
 </summary>
-<div id="7f7d54a2" class="cell" data-execution_count="42">
+<div id="84" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/trilist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×1914 Matrix{Int64}:
    2  871  836  517  520  462  409  416  …  792  688  226  201  450  326  164
  848  807  732  412  362  635  656  845     913  354  652  920  923  956  781
@@ -1396,9 +1396,9 @@ Each column is the 3 vertex indexes of a triangle. Indexes are one based, and fo
 <summary>
 🔢 vertlist
 </summary>
-<div id="84ad1387" class="cell" data-execution_count="43">
+<div id="86" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/vertlist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×959 Matrix{Float64}:
   115.0   -590.25   -552.0    226.75  …  182.375  -316.125   157.75
  -222.75  -232.875  -193.125  137.5      238.125  -429.875   -34.5
@@ -1411,9 +1411,9 @@ Each column is a vertex coordinate in nm.
 <summary>
 🔢 id
 </summary>
-<div id="4d2b3cda" class="cell" data-execution_count="44">
+<div id="88" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/id"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>959-element Vector{Int64}:
   7814
  10608
@@ -1425,13 +1425,7 @@ Each column is a vertex coordinate in nm.
   2092
   9775
     10
- 12855
- 12136
-  1949
      ⋮
-  3653
-  5295
-  3951
   8003
  14307
  12258
@@ -1449,12 +1443,12 @@ Array of vertex IDs. Each vertex has an id which is assigned upon initialization
 <summary>
 optional 🔢 copynumbers
 </summary>
-<div id="fcf13900" class="cell" data-execution_count="45">
+<div id="90" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/copynumbers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×959 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  1  0     0  0  1  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
 </div>
 </div>
@@ -1498,9 +1492,9 @@ Tags
 <summary>
 🔢 p_1
 </summary>
-<div id="5559caae" class="cell" data-execution_count="46">
+<div id="92" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"tags/fila_mono/p_1"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>16-element Vector{UInt64}:
  0x0000000100000002
  0x0000000100000004
@@ -1541,9 +1535,9 @@ Tags
 <summary>
 🔢 p_1
 </summary>
-<div id="4dfcd128" class="cell" data-execution_count="47">
+<div id="94" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"tags/fila_tip/p_1"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>8-element Vector{UInt64}:
  0x0000000100000003
  0x0000000100000002

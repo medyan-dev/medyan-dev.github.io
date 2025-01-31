@@ -215,39 +215,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#install-julia" id="toc-install-julia" class="nav-link active" data-scroll-target="#install-julia">Install julia</a></li>
+  <li><a href="#installing-medyan.jl" id="toc-installing-medyan.jl" class="nav-link active" data-scroll-target="#installing-medyan.jl">1. Installing MEDYAN.jl</a>
+  <ul class="collapse">
+  <li><a href="#install-julia" id="toc-install-julia" class="nav-link" data-scroll-target="#install-julia">Install julia</a></li>
   <li><a href="#install-packages-needed-for-tutorials" id="toc-install-packages-needed-for-tutorials" class="nav-link" data-scroll-target="#install-packages-needed-for-tutorials">Install packages needed for tutorials</a></li>
   <li><a href="#running-tests" id="toc-running-tests" class="nav-link" data-scroll-target="#running-tests">Running tests</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/tutorials/1install.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">1. Installing MEDYAN.jl</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="installing-medyan.jl" class="level1">
+<h1>1. Installing MEDYAN.jl</h1>
 <section id="install-julia" class="level2">
 <h2 class="anchored" data-anchor-id="install-julia">Install julia</h2>
 <p>MEDYAN.jl is a julia package so first install the julia programming language.</p>
 <p>This tutorial was generated using:</p>
-<div id="c6d9c247" class="cell" data-execution_count="1">
+<div id="2" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>Julia Version 1.11.3
 Commit d63adeda50d (2025-01-21 19:42 UTC)
@@ -260,7 +249,9 @@ Platform Info:
   LLVM: libLLVM-16.0.6 (ORCJIT, skylake)
 Threads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)
 Environment:
-  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.3/x64/bin/../lib/julia:/home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.3/x64/bin/../lib</code></pre>
+  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner4/_work/_tool/julia/1.11.3/x64/bin/../lib/julia:/home/gh-actions1/actions-runner4/_work/_tool/julia/1.11.3/x64/bin/../lib
+  JULIA_PROJECT = @.
+  JULIA_LOAD_PATH = @:@stdlib</code></pre>
 </div>
 </div>
 <p>The tutorials should work on newer versions of julia, and on MacOS and Windows, please <a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new">create an issue</a> if you have a problem or question.</p>
@@ -290,6 +281,7 @@ Environment:
 <p>If you have any errors or failing tests <a href="https://github.com/medyan-dev/medyan-public/issues/new">create an issue</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
