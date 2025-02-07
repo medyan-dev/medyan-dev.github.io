@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.fil_node_positions-618a66637eb50781" id="toc-medyan.fil_node_positions-618a66637eb50781" class="nav-link" data-scroll-target="#medyan.fil_node_positions-618a66637eb50781"><code>MEDYAN.fil_node_positions</code></a></li>
   <li><a href="#medyan.fil_node_mon_ids-b1d3d66a81296343" id="toc-medyan.fil_node_mon_ids-b1d3d66a81296343" class="nav-link" data-scroll-target="#medyan.fil_node_mon_ids-b1d3d66a81296343"><code>MEDYAN.fil_node_mon_ids</code></a></li>
   <li><a href="#medyan.fil_mon_states-3db9714621903b78" id="toc-medyan.fil_mon_states-3db9714621903b78" class="nav-link" data-scroll-target="#medyan.fil_mon_states-3db9714621903b78"><code>MEDYAN.fil_mon_states</code></a></li>
-  <li><a href="#medyan.fil_num_unmin_ends-813ffc641f9ac9da" id="toc-medyan.fil_num_unmin_ends-813ffc641f9ac9da" class="nav-link" data-scroll-target="#medyan.fil_num_unmin_ends-813ffc641f9ac9da"><code>MEDYAN.fil_num_unmin_ends</code></a></li>
+  <li><a href="#medyan.fila_num_unmin_ends-09448ccb823dbeac" id="toc-medyan.fila_num_unmin_ends-09448ccb823dbeac" class="nav-link" data-scroll-target="#medyan.fila_num_unmin_ends-09448ccb823dbeac"><code>MEDYAN.fila_num_unmin_ends</code></a></li>
   <li><a href="#medyan.vertex_state-aa3350c08b68b63a" id="toc-medyan.vertex_state-aa3350c08b68b63a" class="nav-link" data-scroll-target="#medyan.vertex_state-aa3350c08b68b63a"><code>MEDYAN.vertex_state</code></a></li>
   <li><a href="#medyan.mon_exists-898c415a5eddc619" id="toc-medyan.mon_exists-898c415a5eddc619" class="nav-link" data-scroll-target="#medyan.mon_exists-898c415a5eddc619"><code>MEDYAN.mon_exists</code></a></li>
   <li><a href="#medyan.mon_minimized-5b17adaf7d8a4f62" id="toc-medyan.mon_minimized-5b17adaf7d8a4f62" class="nav-link" data-scroll-target="#medyan.mon_minimized-5b17adaf7d8a4f62"><code>MEDYAN.mon_minimized</code></a></li>
@@ -443,19 +443,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.fil_num_unmin_ends-813ffc641f9ac9da" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.fil_num_unmin_ends-813ffc641f9ac9da"><a href="../../docstrings/medyan.fil_num_unmin_ends-813ffc641f9ac9da.html"><code>MEDYAN.fil_num_unmin_ends</code></a></h2>
+<section id="medyan.fila_num_unmin_ends-09448ccb823dbeac" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.fila_num_unmin_ends-09448ccb823dbeac"><a href="../../docstrings/medyan.fila_num_unmin_ends-09448ccb823dbeac.html"><code>MEDYAN.fila_num_unmin_ends</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fil_num_unmin_ends</span>(</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_num_unmin_ends</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ftid<span class="op">::</span><span class="dt">Int64</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    fil_id<span class="op">::</span><span class="dt">Int64</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    fila_idx<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Tuple</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a tuple (minus, plus) of the number of unminimized monomers on the minus and plus end of a filament.</p>
 <p>This will be reset to (0, 0) by <a href="../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
 <p>When an end is depolymerized this will decrease, but saturate at 0. When an end is polymerized this will increase.</p>
