@@ -201,32 +201,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#built-in-filament-end-sites" id="toc-built-in-filament-end-sites" class="nav-link" data-scroll-target="#built-in-filament-end-sites">Built-in filament end sites</a></li>
   <li><a href="#related-functions-and-fields-1" id="toc-related-functions-and-fields-1" class="nav-link" data-scroll-target="#related-functions-and-fields-1">Related Functions and Fields</a></li>
   </ul></li>
-  <li><a href="#link_2mon-sites" id="toc-link_2mon-sites" class="nav-link" data-scroll-target="#link_2mon-sites">link_2mon sites</a>
-  <ul class="collapse">
-  <li><a href="#required-functions-2" id="toc-required-functions-2" class="nav-link" data-scroll-target="#required-functions-2">Required Functions</a></li>
-  <li><a href="#built-in-link_2mon-sites" id="toc-built-in-link_2mon-sites" class="nav-link" data-scroll-target="#built-in-link_2mon-sites">Built-in link_2mon sites</a></li>
-  <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
-  </ul></li>
   <li><a href="#decimated_2mon-sites" id="toc-decimated_2mon-sites" class="nav-link" data-scroll-target="#decimated_2mon-sites">decimated_2mon sites</a>
   <ul class="collapse">
-  <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
+  <li><a href="#required-functions-2" id="toc-required-functions-2" class="nav-link" data-scroll-target="#required-functions-2">Required Functions</a></li>
   <li><a href="#built-in-decimated_2mon-sites" id="toc-built-in-decimated_2mon-sites" class="nav-link" data-scroll-target="#built-in-decimated_2mon-sites">Built-in decimated_2mon sites</a></li>
-  <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
+  <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#experimental-sites" id="toc-experimental-sites" class="nav-link" data-scroll-target="#experimental-sites">Experimental Sites</a>
   <ul class="collapse">
-  <li><a href="#mon_link_2mon-sites" id="toc-mon_link_2mon-sites" class="nav-link" data-scroll-target="#mon_link_2mon-sites">mon_link_2mon sites</a>
-  <ul class="collapse">
-  <li><a href="#required-functions-4" id="toc-required-functions-4" class="nav-link" data-scroll-target="#required-functions-4">Required Functions</a></li>
-  <li><a href="#built-in-mon_link_2mon-sites" id="toc-built-in-mon_link_2mon-sites" class="nav-link" data-scroll-target="#built-in-mon_link_2mon-sites">Built-in mon_link_2mon sites</a></li>
-  <li><a href="#related-functions-and-fields-4" id="toc-related-functions-and-fields-4" class="nav-link" data-scroll-target="#related-functions-and-fields-4">Related Functions and Fields</a></li>
-  </ul></li>
   <li><a href="#cadherin-sites" id="toc-cadherin-sites" class="nav-link" data-scroll-target="#cadherin-sites">cadherin sites</a>
   <ul class="collapse">
-  <li><a href="#required-functions-5" id="toc-required-functions-5" class="nav-link" data-scroll-target="#required-functions-5">Required Functions</a></li>
+  <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
   <li><a href="#built-in-cadherin-sites" id="toc-built-in-cadherin-sites" class="nav-link" data-scroll-target="#built-in-cadherin-sites">Built-in cadherin sites</a></li>
-  <li><a href="#related-functions-and-fields-5" id="toc-related-functions-and-fields-5" class="nav-link" data-scroll-target="#related-functions-and-fields-5">Related Functions and Fields</a></li>
+  <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -330,42 +318,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 </section>
-<section id="link_2mon-sites" class="level2">
-<h2 class="anchored" data-anchor-id="link_2mon-sites">link_2mon sites</h2>
-<p>Link_2mon sites can only be associated with one link_2mon type. They can represent propensities for reactions to happen to a link_2mon attached to two monomers, like unbinding or motor walking, or a site for a diffusing species to interact with a bound link_2mon.</p>
-<section id="required-functions-2" class="level3">
-<h3 class="anchored" data-anchor-id="required-functions-2">Required Functions</h3>
-<p>A type <code>T</code> must implement the following functions to be a link_2mon site.</p>
-<section id="link_2mon_sitecountsitet-link_2mon_statelink2monstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64" class="level4">
-<h4 class="anchored" data-anchor-id="link_2mon_sitecountsitet-link_2mon_statelink2monstate-mechparams-minusftid-plusftid-minusmonomerstates-plusmonomerstates-m_pos-p_pos-m_plusv-p_plusvfloat64"><code>link_2mon_sitecount(site::T, link_2mon_state::Link2MonState, mechparams, minusftid, plusftid, minusmonomerstates, plusmonomerstates, m_pos, p_pos, m_plusv, p_plusv)::Float64</code></h4>
-<p>Return the site count given the state of the link_2mon, the <code>minusftid</code>, <code>plusftid</code> filament type ids, the <code>minusmonomerstates</code>, <code>plusmonomerstates</code> monomer states, and the positions and orientations of the two monomers.</p>
-<p><code>minusmonomerstates</code> and <code>plusmonomerstates</code> should be collections of 3 <code>MonomerState</code> ordered from minus to plus end, with the link_2mon attached to the center monomer.</p>
-<p>If a monomer doesn’t exist, its state should be input as zero.</p>
-<p>The site count gets put in the chemistry voxel of the minus end of the link_2mon.</p>
-</section>
-</section>
-<section id="built-in-link_2mon-sites" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-link_2mon-sites"><a href="../docstrings/src/link_2mon_sites.html">Built-in link_2mon sites</a></h3>
-</section>
-<section id="related-functions-and-fields-2" class="level3">
-<h3 class="anchored" data-anchor-id="related-functions-and-fields-2">Related Functions and Fields</h3>
-<section id="context-2" class="level4">
-<h4 class="anchored" data-anchor-id="context-2"><code>Context</code></h4>
-<p><a href="../docstrings/medyan.pickrandomlink_2mon_site-092086bb001f05e1.qmd"><code>MEDYAN.pickrandomlink_2mon_site</code></a></p>
-<p><a href="../docstrings/medyan.context-736368ed32b08894.html#link_2mon_sites-23355f2263657e52"><code>MEDYAN.Context#link_2mon_sites</code></a> field</p>
-</section>
-<section id="sysdef-2" class="level4">
-<h4 class="anchored" data-anchor-id="sysdef-2"><code>SysDef</code></h4>
-<p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#link_2mon_site-6a258c45253c3738"><code>MEDYAN.SysDef#link_2mon_site</code></a> field</p>
-<p><a href="../docstrings/medyan.add_link_2mon_site--b9548c4a2d23aac9.html"><code>MEDYAN.add_link_2mon_site!</code></a></p>
-</section>
-</section>
-</section>
 <section id="decimated_2mon-sites" class="level2">
 <h2 class="anchored" data-anchor-id="decimated_2mon-sites">decimated_2mon sites</h2>
-<p>Decimated_2mon sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the chemistry voxel of the potential monomer that could attach to the minus end of the link_2mon.</p>
-<section id="required-functions-3" class="level3">
-<h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
+<p>Decimated_2mon sites represent a potential link between two monomers, potentially on two different filaments. The site count is added to the chemistry voxel of the potential monomer that could attach to the minus end of the link.</p>
+<section id="required-functions-2" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions-2">Required Functions</h3>
 <p>A type <code>T</code> must implement the following functions to be a decimated_2mon site.</p>
 <section id="cutoff_distancesitetfloat64" class="level4">
 <h4 class="anchored" data-anchor-id="cutoff_distancesitetfloat64"><code>cutoff_distance(site::T)::Float64</code></h4>
@@ -397,15 +354,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="built-in-decimated_2mon-sites" class="level3">
 <h3 class="anchored" data-anchor-id="built-in-decimated_2mon-sites"><a href="../docstrings/src/decimated_2mon_sites.html">Built-in decimated_2mon sites</a></h3>
 </section>
-<section id="related-functions-and-fields-3" class="level3">
-<h3 class="anchored" data-anchor-id="related-functions-and-fields-3">Related Functions and Fields</h3>
-<section id="context-3" class="level4">
-<h4 class="anchored" data-anchor-id="context-3"><code>Context</code></h4>
+<section id="related-functions-and-fields-2" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields-2">Related Functions and Fields</h3>
+<section id="context-2" class="level4">
+<h4 class="anchored" data-anchor-id="context-2"><code>Context</code></h4>
 <p><a href="../docstrings/medyan.pickrandom_decimated_2mon_site-57ad10bb1f9030b8.qmd"><code>MEDYAN.pickrandom_decimated_2mon_site</code></a></p>
 <p><a href="../docstrings/medyan.context-736368ed32b08894.html#decimated_2mon_sites-876040b7c781b914"><code>MEDYAN.Context#decimated_2mon_sites</code></a> field</p>
 </section>
-<section id="sysdef-3" class="level4">
-<h4 class="anchored" data-anchor-id="sysdef-3"><code>SysDef</code></h4>
+<section id="sysdef-2" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef-2"><code>SysDef</code></h4>
 <p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#decimated_2mon_site-6f0b89b126f52094"><code>MEDYAN.SysDef#decimated_2mon_site</code></a> field</p>
 <p><a href="../docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html"><code>MEDYAN.add_decimated_2mon_site!</code></a></p>
 </section>
@@ -414,48 +371,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="experimental-sites" class="level1">
 <h1>Experimental Sites</h1>
-<section id="mon_link_2mon-sites" class="level2">
-<h2 class="anchored" data-anchor-id="mon_link_2mon-sites">mon_link_2mon sites</h2>
-<p>Mon_link_2mon sites can only be associated with one link_2mon type. They can represent propensities for reactions to happen between a link_2mon attached to two monomers and another nearby monomer, like cross linking.</p>
-<section id="required-functions-4" class="level3">
-<h3 class="anchored" data-anchor-id="required-functions-4">Required Functions</h3>
-<p>A type <code>T</code> must implement the following functions to be a mon_link_2mon site.</p>
-<section id="cutoff_distancesitetfloat64-1" class="level4">
-<h4 class="anchored" data-anchor-id="cutoff_distancesitetfloat64-1"><code>cutoff_distance(site::T)::Float64</code></h4>
-<p>Return the maximum distance in nm of a site. The nearby monomer must be within this distance of the minus end of the link to be counted.</p>
-</section>
-<section id="getftidsitetinteger" class="level4">
-<h4 class="anchored" data-anchor-id="getftidsitetinteger"><code>getftid(site::T)::Integer</code></h4>
-<p>Return the required filament type id of the nearby monomers.</p>
-</section>
-<section id="mon_link_2mon_sitecountsitet-link_2mon_statelink2monstatefloat64" class="level4">
-<h4 class="anchored" data-anchor-id="mon_link_2mon_sitecountsitet-link_2mon_statelink2monstatefloat64"><code>mon_link_2mon_sitecount(site::T, link_2mon_state::Link2MonState)::Float64</code></h4>
-<p>Return the site count that should be added for each monomer of the required filament type in the cutoff distance.</p>
-<p>The site count gets put in the chemistry voxel of the minus end of the link_2mon.</p>
-</section>
-</section>
-<section id="built-in-mon_link_2mon-sites" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-mon_link_2mon-sites"><a href="../docstrings/src/mon_link_2mon_sites.html">Built-in mon_link_2mon sites</a></h3>
-</section>
-<section id="related-functions-and-fields-4" class="level3">
-<h3 class="anchored" data-anchor-id="related-functions-and-fields-4">Related Functions and Fields</h3>
-<section id="context-4" class="level4">
-<h4 class="anchored" data-anchor-id="context-4"><code>Context</code></h4>
-<p><a href="../docstrings/medyan.pickrandommon_link_2mon_site-f0762beb7a928466.qmd"><code>MEDYAN.pickrandommon_link_2mon_site</code></a></p>
-<p><a href="../docstrings/medyan.context-736368ed32b08894.html#mon_link_2mon_sites-a2f2cf5e6b71e1ec"><code>MEDYAN.Context#mon_link_2mon_sites</code></a> field</p>
-</section>
-<section id="sysdef-4" class="level4">
-<h4 class="anchored" data-anchor-id="sysdef-4"><code>SysDef</code></h4>
-<p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#mon_link_2mon_site-6b930b00ae00f13a"><code>MEDYAN.SysDef#mon_link_2mon_site</code></a> field</p>
-<p><a href="../docstrings/medyan.add_mon_link_2mon_site--44592a9b9d307101.qmd"><code>MEDYAN.add_mon_link_2mon_site!</code></a></p>
-</section>
-</section>
-</section>
 <section id="cadherin-sites" class="level2">
 <h2 class="anchored" data-anchor-id="cadherin-sites">cadherin sites</h2>
 <p>Cadherin sites can only be associated with the cadherin type. They can represent propensities for reactions to happen to a cadherin between one monomer and one membrane vertex.</p>
-<section id="required-functions-5" class="level3">
-<h3 class="anchored" data-anchor-id="required-functions-5">Required Functions</h3>
+<section id="required-functions-3" class="level3">
+<h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
 <p>A type <code>T</code> must implement the following functions to be a cadherin site.</p>
 <section id="cadherin_sitecountsitet-cadherin_statecadherinstate-mechparams-vid-ftid-vertexstate-monomerstates-v_pos-m_pos-m_plusvfloat64" class="level4">
 <h4 class="anchored" data-anchor-id="cadherin_sitecountsitet-cadherin_statecadherinstate-mechparams-vid-ftid-vertexstate-monomerstates-v_pos-m_pos-m_plusvfloat64"><code>cadherin_sitecount(site::T, cadherin_state::CadherinState, mechparams, vid, ftid, vertexstate, monomerstates, v_pos, m_pos, m_plusv)::Float64</code></h4>
@@ -469,14 +389,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="built-in-cadherin-sites" class="level3">
 <h3 class="anchored" data-anchor-id="built-in-cadherin-sites"><a href="../docstrings/src/cadherin_sites.qmd">Built-in cadherin sites</a></h3>
 </section>
-<section id="related-functions-and-fields-5" class="level3">
-<h3 class="anchored" data-anchor-id="related-functions-and-fields-5">Related Functions and Fields</h3>
-<section id="context-5" class="level4">
-<h4 class="anchored" data-anchor-id="context-5"><code>Context</code></h4>
+<section id="related-functions-and-fields-3" class="level3">
+<h3 class="anchored" data-anchor-id="related-functions-and-fields-3">Related Functions and Fields</h3>
+<section id="context-3" class="level4">
+<h4 class="anchored" data-anchor-id="context-3"><code>Context</code></h4>
 <p><a href="../docstrings/medyan.context-736368ed32b08894.html#cadherinsites-9a82e0d01961cff1"><code>MEDYAN.Context#cadherinsites</code></a> field</p>
 </section>
-<section id="sysdef-5" class="level4">
-<h4 class="anchored" data-anchor-id="sysdef-5"><code>SysDef</code></h4>
+<section id="sysdef-3" class="level4">
+<h4 class="anchored" data-anchor-id="sysdef-3"><code>SysDef</code></h4>
 <p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#cadherinsite-73c7b7e209606263"><code>MEDYAN.SysDef#cadherinsite</code></a> field</p>
 <p><a href="../docstrings/medyan.addcadherinsite--9e21ac42968d0196.html"><code>MEDYAN.addcadherinsite!</code></a></p>
 

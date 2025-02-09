@@ -220,18 +220,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
 <li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
-<li><p><code>link_2mon_data::Tuple{Vararg{MEDYAN.Link2MonData}}</code>: The linked link<em>2mon parameters, indexed by link</em>2mon type id, to give a Link2MonData</p></li>
 <li><p><code>decimated_2mon_site_managers::Tuple{Vararg{MEDYAN.AbstractDecimated2MonSiteManager}}</code>: Site managers, indexed by site id</p></li>
-<li><p><code>linked_monomers::Dictionaries.Dictionary{MEDYAN.MonomerName, Vector{Vector{Int64}}}</code>: Dictionary of all monomers that have a bound link<em>2mon. indexed by monomer name, then link</em>2mon<em>typeid, to give a vector of unique link</em>2mon ids that reference the monomer name</p></li>
 <li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
 <li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
-<li><p><code>link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>mon_link_2mon_sites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: Site definitions, indexed by link_2mon type id, site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>chem_max_search_dist::Float64</code></p></li>
 <li><p><code>decimated_2mon_sites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
 <li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>

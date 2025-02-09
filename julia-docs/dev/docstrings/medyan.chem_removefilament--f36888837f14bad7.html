@@ -206,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removefilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, fid<span class="op">=</span><span class="fu">maximum</span>(<span class="fu">filtype_fil_ids</span>(c, ftid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>By default the last added filament with type id <code>ftid</code> is removed.</p>
-<p>Warn if any monomers on the filament are referenced by any link<em>2mons, and remove those link</em>2mons.</p>
+<p>Warn if any monomers on the filament are referenced by any link, and remove the places from the links.</p>
 <p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
 </div>
 </div>
