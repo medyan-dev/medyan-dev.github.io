@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.sever_filament--a0475617dc0fbf93 – MEDYAN.jl</title>
+<title>medyan.sever_fila--161c869bc5d06d6a – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -180,12 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.sever_filament" id="toc-medyan.sever_filament" class="nav-link active" data-scroll-target="#medyan.sever_filament"><code>MEDYAN.sever_filament!</code></a>
+  <li><a href="#medyan.sever_fila" id="toc-medyan.sever_fila" class="nav-link active" data-scroll-target="#medyan.sever_fila"><code>MEDYAN.sever_fila!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--medyan.monomername--ebde317b37bce68d" id="toc-tuple-medyan.context--medyan.monomername--ebde317b37bce68d" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.monomername--ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></a></li>
+  <li><a href="#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" id="toc-tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.sever_filament--a0475617dc0fbf93.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.sever_fila--161c869bc5d06d6a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -193,21 +193,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.sever_filament" class="level1">
-<h1><code>MEDYAN.sever_filament!</code></h1>
-<section id="tuple-medyan.context--medyan.monomername--ebde317b37bce68d" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.monomername--ebde317b37bce68d"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.MonomerName}</code></h2>
+<section id="medyan.sever_fila" class="level1">
+<h1><code>MEDYAN.sever_fila!</code></h1>
+<section id="tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_filament!</span>(c<span class="op">::</span><span class="dt">Context</span>, mon_name<span class="op">::</span><span class="dt">MonomerName</span>)<span class="op">::</span><span class="dt">Int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Return the new filament id of the minus end filament.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, place<span class="op">::</span><span class="dt">FilaMonoIdx</span>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return the tag of the new filament plus end.</p>
 <p>Calling this will invalidate the chem cache.</p>
-<p>The split will happen between <code>mon_name</code> and the monomer slightly towards the minus end.</p>
-<p>The plus end will keep the same <code>fil_id</code>, the minus end will get a new <code>fil_id</code>.</p>
+<p>The split will happen between <code>place</code> and the monomer slightly towards the minus end.</p>
 <p>The split cannot create a filament with less than 2 monomers.</p>
 </div>
 </div>
@@ -640,4 +639,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.sever_filament--a0475617dc0fbf93.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.sever_fila--161c869bc5d06d6a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
