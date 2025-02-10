@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.fila_num_unmin_ends-09448ccb823dbeac" id="toc-medyan.fila_num_unmin_ends-09448ccb823dbeac" class="nav-link" data-scroll-target="#medyan.fila_num_unmin_ends-09448ccb823dbeac"><code>MEDYAN.fila_num_unmin_ends</code></a></li>
   <li><a href="#medyan.vertex_state-aa3350c08b68b63a" id="toc-medyan.vertex_state-aa3350c08b68b63a" class="nav-link" data-scroll-target="#medyan.vertex_state-aa3350c08b68b63a"><code>MEDYAN.vertex_state</code></a></li>
   <li><a href="#medyan.mon_exists-898c415a5eddc619" id="toc-medyan.mon_exists-898c415a5eddc619" class="nav-link" data-scroll-target="#medyan.mon_exists-898c415a5eddc619"><code>MEDYAN.mon_exists</code></a></li>
-  <li><a href="#medyan.mon_minimized-5b17adaf7d8a4f62" id="toc-medyan.mon_minimized-5b17adaf7d8a4f62" class="nav-link" data-scroll-target="#medyan.mon_minimized-5b17adaf7d8a4f62"><code>MEDYAN.mon_minimized</code></a></li>
+  <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
   <li><a href="#medyan.mon_3states-6c16efb303a60058" id="toc-medyan.mon_3states-6c16efb303a60058" class="nav-link" data-scroll-target="#medyan.mon_3states-6c16efb303a60058"><code>MEDYAN.mon_3states</code></a></li>
   <li><a href="#medyan.mon_position-83983d8916347411" id="toc-medyan.mon_position-83983d8916347411" class="nav-link" data-scroll-target="#medyan.mon_position-83983d8916347411"><code>MEDYAN.mon_position</code></a></li>
   <li><a href="#medyan.mon_plusvector-b7271c7721602813" id="toc-medyan.mon_plusvector-b7271c7721602813" class="nav-link" data-scroll-target="#medyan.mon_plusvector-b7271c7721602813"><code>MEDYAN.mon_plusvector</code></a></li>
@@ -287,14 +287,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
 <li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
-<li><p><code>decimated_2mon_site_managers::Tuple{Vararg{MEDYAN.AbstractDecimated2MonSiteManager}}</code>: Site managers, indexed by site id</p></li>
+<li><p><code>decimated_2mon_site_managers::Vector{MEDYAN.AbstractDecimated2MonSiteManager}</code>: Site managers, indexed by site id</p></li>
 <li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
 <li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
-<li><p><code>decimated_2mon_sites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>decimated_2mon_sites::Vector{MEDYAN.SiteData}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
 <li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
 <li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code>: Site managers, indexed by site id</p></li>
@@ -487,17 +487,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.mon_minimized-5b17adaf7d8a4f62" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.mon_minimized-5b17adaf7d8a4f62"><a href="../../docstrings/medyan.mon_minimized-5b17adaf7d8a4f62.html"><code>MEDYAN.mon_minimized</code></a></h2>
+<section id="medyan.is_minimized-ff3858ada5447c46" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.is_minimized-ff3858ada5447c46"><a href="../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>MEDYAN.is_minimized</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mon_minimized</span>(</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.MonomerName</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    monomer<span class="op">::</span><span class="dt">MEDYAN.FilaMonoIdx</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return true iff the monomer has been minimized</p>
 </div>
