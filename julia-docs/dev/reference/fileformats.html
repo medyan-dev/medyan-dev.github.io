@@ -403,6 +403,12 @@ Other Languages
                 "fila_mono",
                 "fila_mono"
             ]
+        },
+        {
+            "name": "memb_vert_restraint",
+            "places": [
+                "memb_vert"
+            ]
         }
     ]
 }</code></pre>
@@ -1234,10 +1240,10 @@ This membrane’s type id.
 <div id="74" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/trilist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>3×1914 Matrix{Int64}:
-   2  871  836  517  520  462  409  416  …  792  688  226  201  450  326  164
- 848  807  732  412  362  635  656  845     913  354  652  920  923  956  781
- 238  630  203  190  623  853  733  608     875  944  373  958  958  959  959</code></pre>
+<pre><code>3×1954 Matrix{Int64}:
+ 490  680  317  602  572  565  448  286  …  688  972  447  552   53  635  354
+  42  418  518  398  288  279   82  624     166  581  460  293  898   49  397
+ 182  711  808  792  978  958  501  172     371  216  343  355  782  979  979</code></pre>
 </div>
 </div>
 Each column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.
@@ -1249,10 +1255,10 @@ Each column is the 3 vertex indexes of a triangle. Indexes are one based, and fo
 <div id="76" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/vertlist"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>3×959 Matrix{Float64}:
-  115.0   -590.25   -552.0    226.75  …  182.375  -316.125   157.75
- -222.75  -232.875  -193.125  137.5      238.125  -429.875   -34.5
- -252.25   275.25   -343.25   -15.5      -49.125  -237.875  -279.875</code></pre>
+<pre><code>3×979 Matrix{Float64}:
+ -395.375  228.25   -631.625    32.125  …  -566.0   -344.5    -556.875
+ -266.125  124.875   234.0    -184.875      367.25   205.375   341.5
+  393.25    38.5     212.0    -364.0        103.25  -441.625  -189.0</code></pre>
 </div>
 </div>
 Each column is a vertex coordinate in nm.
@@ -1264,27 +1270,27 @@ Each column is a vertex coordinate in nm.
 <div id="78" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/id"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>959-element Vector{Int64}:
-  7814
- 10608
-  3334
- 14756
- 12541
-  9498
- 10903
-  2092
-  9775
+<pre><code>979-element Vector{Int64}:
+  4702
+ 14762
+ 10420
+ 11066
+  6022
+  2495
+  1262
+  5013
+ 11796
     10
      ⋮
-  8003
- 14307
- 12258
-  7204
-  4182
-  7834
-  9058
-  6485
- 10738</code></pre>
+ 12731
+  5861
+ 10661
+   974
+  1224
+  5415
+  3107
+  9714
+ 12351</code></pre>
 </div>
 </div>
 Array of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.
@@ -1296,7 +1302,7 @@ optional 🔢 copynumbers
 <div id="80" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect</span>(group[<span class="st">"membranes/1/copynumbers"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>3×959 Matrix{Int64}:
+<pre><code>3×979 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
