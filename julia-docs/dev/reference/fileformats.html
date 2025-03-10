@@ -1304,7 +1304,7 @@ optional 🔢 copynumbers
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×979 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  1
+ 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
 </div>
 </div>
@@ -1370,7 +1370,7 @@ Tags
  0x0000000000000012</code></pre>
 </div>
 </div>
-<p>The filament monomer places for each tag stored as a vector of <code>UInt64</code>. Not all monomers will have tags. For tag <code>i</code> of <code>n</code> total tags, <code>p_1[i]&gt;&gt;&gt;32</code> is the filament type id, <code>(p_1[i]%UInt32)&gt;&gt;1</code> is the filament index, and <code>p_1[i+n]</code> is the zigzag encoded monomer index.</p>
+<p>The filament monomer places for each tag stored as a vector of <code>UInt64</code>. Not all monomers will have tags. For tag <code>i</code> of <code>n</code> total tags, <code>p_1[i]&gt;&gt;&gt;32</code> is the filament type id, <code>(p_1[i]%UInt32)&gt;&gt;1</code> is the filament index, and <code>p_1[i+n]</code> is the zigzag encoded monomer id.</p>
 </details>
 </div>
 </div>
