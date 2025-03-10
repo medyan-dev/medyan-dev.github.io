@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.chem_removefilament--f36888837f14bad7 – MEDYAN.jl</title>
+<title>remove_fila – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a4a3b7a6065249bebe1876db41b38155.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a4a3b7a6065249bebe1876db41b38155.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
@@ -123,23 +123,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tutorials/1install.html"> 
+    <a class="nav-link" href="../../../tutorials/1install.html"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../howto/index.html"> 
+    <a class="nav-link" href="../../../howto/index.html"> 
 <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../explanations.html"> 
+    <a class="nav-link" href="../../../explanations.html"> 
 <span class="menu-text">Explanations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reference/index.html"> 
+    <a class="nav-link" href="../../../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -155,11 +155,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="../../dev/">
+    <a class="dropdown-item" href="../../../../dev/">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../stable/">
+    <a class="dropdown-item" href="../../../../stable/">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
@@ -180,12 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.chem_removefilament" id="toc-medyan.chem_removefilament" class="nav-link active" data-scroll-target="#medyan.chem_removefilament"><code>MEDYAN.chem_removefilament!</code></a>
+  <li><a href="#srcfilamentremove_fila.jl" id="toc-srcfilamentremove_fila.jl" class="nav-link active" data-scroll-target="#srcfilamentremove_fila.jl">src/filament/remove_fila.jl</a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
+  <li><a href="#medyan.remove_fila--9938182befad3cb9" id="toc-medyan.remove_fila--9938182befad3cb9" class="nav-link" data-scroll-target="#medyan.remove_fila--9938182befad3cb9"><code>MEDYAN.remove_fila!</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.chem_removefilament--f36888837f14bad7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/remove_fila.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -193,21 +193,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.chem_removefilament" class="level1">
-<h1><code>MEDYAN.chem_removefilament!</code></h1>
-<section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
+<section id="srcfilamentremove_fila.jl" class="level1">
+<h1>src/filament/remove_fila.jl</h1>
+<section id="medyan.remove_fila--9938182befad3cb9" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.remove_fila--9938182befad3cb9"><a href="../../../docstrings/medyan.remove_fila--9938182befad3cb9.html"><code>MEDYAN.remove_fila!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removefilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, fid<span class="op">=</span><span class="fu">maximum</span>(<span class="fu">filtype_fil_ids</span>(c, ftid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
-<p>By default the last added filament with type id <code>ftid</code> is removed.</p>
-<p>Warn if any monomers on the filament are referenced by any link, and remove the places from the links.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, filaidx<span class="op">::</span><span class="dt">Union{FilaIdx, Tag}</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remove the filament.</p>
+<p>Unlink any monomers or tips on the filament are referenced by any links. The links will not be removed, but will have a null reference.</p>
 </div>
 </div>
 </div>
@@ -639,4 +637,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.chem_removefilament--f36888837f14bad7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/remove_fila.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -192,7 +192,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.chem_setmonomerstate--ed756af0de4db0ca" id="toc-medyan.chem_setmonomerstate--ed756af0de4db0ca" class="nav-link" data-scroll-target="#medyan.chem_setmonomerstate--ed756af0de4db0ca"><code>MEDYAN.chem_setmonomerstate!</code></a></li>
   <li><a href="#medyan.chem_polymerize--7a5e88ac36e4ccbf" id="toc-medyan.chem_polymerize--7a5e88ac36e4ccbf" class="nav-link" data-scroll-target="#medyan.chem_polymerize--7a5e88ac36e4ccbf"><code>MEDYAN.chem_polymerize!</code></a></li>
   <li><a href="#medyan.chem_depolymerize--a5f262191e484dd4" id="toc-medyan.chem_depolymerize--a5f262191e484dd4" class="nav-link" data-scroll-target="#medyan.chem_depolymerize--a5f262191e484dd4"><code>MEDYAN.chem_depolymerize!</code></a></li>
-  <li><a href="#medyan.chem_removefilament--f36888837f14bad7" id="toc-medyan.chem_removefilament--f36888837f14bad7" class="nav-link" data-scroll-target="#medyan.chem_removefilament--f36888837f14bad7"><code>MEDYAN.chem_removefilament!</code></a></li>
   <li><a href="#medyan.sever_fila--161c869bc5d06d6a" id="toc-medyan.sever_fila--161c869bc5d06d6a" class="nav-link" data-scroll-target="#medyan.sever_fila--161c869bc5d06d6a"><code>MEDYAN.sever_fila!</code></a></li>
   </ul></li>
   </ul>
@@ -379,23 +378,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.chem_removefilament--f36888837f14bad7" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.chem_removefilament--f36888837f14bad7"><a href="../../../docstrings/medyan.chem_removefilament--f36888837f14bad7.html"><code>MEDYAN.chem_removefilament!</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_removefilament!</span>(c<span class="op">::</span><span class="dt">Context</span>; ftid<span class="op">=</span><span class="fl">1</span>, fid<span class="op">=</span><span class="fu">maximum</span>(<span class="fu">filtype_fil_ids</span>(c, ftid)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
-<p>By default the last added filament with type id <code>ftid</code> is removed.</p>
-<p>Warn if any monomers on the filament are referenced by any link, and remove the places from the links.</p>
-<p>The warning can be disabled by passing keyword argument <code>warniflink_2mon_removed=false</code></p>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.sever_fila--161c869bc5d06d6a" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.sever_fila--161c869bc5d06d6a"><a href="../../../docstrings/medyan.sever_fila--161c869bc5d06d6a.html"><code>MEDYAN.sever_fila!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -404,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, place<span class="op">::</span><span class="dt">FilaMonoIdx</span>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, place<span class="op">::</span><span class="dt">FilaMonoIdx</span>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the tag of the new filament plus end.</p>
 <p>Calling this will invalidate the chem cache.</p>
 <p>The split will happen between <code>place</code> and the monomer slightly towards the minus end.</p>
