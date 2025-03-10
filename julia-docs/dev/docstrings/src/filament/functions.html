@@ -189,7 +189,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.fila_node_mids-35de9fc339cbec42" id="toc-medyan.fila_node_mids-35de9fc339cbec42" class="nav-link" data-scroll-target="#medyan.fila_node_mids-35de9fc339cbec42"><code>MEDYAN.fila_node_mids</code></a></li>
   <li><a href="#medyan.fila_node_positions-f4c5bac0dcb570ff" id="toc-medyan.fila_node_positions-f4c5bac0dcb570ff" class="nav-link" data-scroll-target="#medyan.fila_node_positions-f4c5bac0dcb570ff"><code>MEDYAN.fila_node_positions</code></a></li>
   <li><a href="#medyan.fila_tip_tags-f05dfa7a845b20ea" id="toc-medyan.fila_tip_tags-f05dfa7a845b20ea" class="nav-link" data-scroll-target="#medyan.fila_tip_tags-f05dfa7a845b20ea"><code>MEDYAN.fila_tip_tags</code></a></li>
-  <li><a href="#medyan.chem_polymerize--7a5e88ac36e4ccbf" id="toc-medyan.chem_polymerize--7a5e88ac36e4ccbf" class="nav-link" data-scroll-target="#medyan.chem_polymerize--7a5e88ac36e4ccbf"><code>MEDYAN.chem_polymerize!</code></a></li>
   <li><a href="#medyan.chem_depolymerize--a5f262191e484dd4" id="toc-medyan.chem_depolymerize--a5f262191e484dd4" class="nav-link" data-scroll-target="#medyan.chem_depolymerize--a5f262191e484dd4"><code>MEDYAN.chem_depolymerize!</code></a></li>
   <li><a href="#medyan.sever_fila--161c869bc5d06d6a" id="toc-medyan.sever_fila--161c869bc5d06d6a" class="nav-link" data-scroll-target="#medyan.sever_fila--161c869bc5d06d6a"><code>MEDYAN.sever_fila!</code></a></li>
   </ul></li>
@@ -328,22 +327,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.chem_polymerize--7a5e88ac36e4ccbf" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.chem_polymerize--7a5e88ac36e4ccbf"><a href="../../../docstrings/medyan.chem_polymerize--7a5e88ac36e4ccbf.html"><code>MEDYAN.chem_polymerize!</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_polymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>, newstate<span class="op">::</span><span class="dt">MonomerState</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Add a monomer with state <code>newstate</code> to the end of the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
-<p>If <code>isminusend</code> is <code>true</code> add the monomer to the minus end of the filament, if <code>false</code> add it to the plus end of the filament.</p>
-<p>This doesn’t affect the other monomer states, positions, or change any of the monomer names. New monomers are not linkable until after minimization.</p>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.chem_depolymerize--a5f262191e484dd4" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.chem_depolymerize--a5f262191e484dd4"><a href="../../../docstrings/medyan.chem_depolymerize--a5f262191e484dd4.html"><code>MEDYAN.chem_depolymerize!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -352,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_depolymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_depolymerize!</span>(c<span class="op">::</span><span class="dt">Context</span>, ftid, fid, isminusend<span class="op">::</span><span class="dt">Bool</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remove a monomer from the end of the filament with type id <code>ftid</code> and id <code>fid</code>.</p>
 <p>If <code>isminusend</code> is <code>true</code> remove the monomer from the minus end of the filament, if <code>false</code> remove it from the plus end of the filament.</p>
 <p>This doesn’t affect the other monomer states, positions, or change any of the monomer names.</p>
@@ -371,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, place<span class="op">::</span><span class="dt">FilaMonoIdx</span>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sever_fila!</span>(c<span class="op">::</span><span class="dt">Context</span>, place<span class="op">::</span><span class="dt">FilaMonoIdx</span>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return the tag of the new filament plus end.</p>
 <p>Calling this will invalidate the chem cache.</p>
 <p>The split will happen between <code>place</code> and the monomer slightly towards the minus end.</p>
