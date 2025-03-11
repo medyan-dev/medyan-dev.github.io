@@ -262,9 +262,9 @@ Other Languages
 <section id="trajectory-output-directory" class="level2">
 <h2 class="anchored" data-anchor-id="trajectory-output-directory">trajectory output directory</h2>
 <p>Trajectory outputs and logs are stored in a directory.</p>
-<p>The output directory contains a <code>traj</code> sub directory with a <code>header.json</code> file, many <code>snap$(NUMBER).zarr.zip</code> files where <code>NUMBER</code> is the frame number of the snapshot, and finally a <code>footer.json</code>.</p>
-<p>The initial state returned by <code>setup</code> is stored in <code>snap0.zarr.zip</code>.</p>
-<p>Inside the <code>snap$(NUMBER).zarr.zip</code> there is a <code>snap/medyan</code> group containing the snapshot of the <code>MEDYAN.Context</code> at the step. Other state may be stored in child groups of <code>snap</code>.</p>
+<p>The output directory contains a <code>traj</code> sub directory with a <code>header.json</code> file, many <code>$(most significant digits)/$(3 least significant digits).zip</code> files, and finally a <code>footer.json</code>.</p>
+<p>The initial state returned by <code>setup</code> is stored in <code>traj/0/000.zip</code>.</p>
+<p>Inside the <code>traj/$(i)/$(j).zip</code> there is a <code>snap/medyan</code> group containing the snapshot of the <code>MEDYAN.Context</code> after the step. Other state may be stored in child groups of <code>snap</code>.</p>
 <p>The <code>header.json</code> file also has a top level <code>"medyan"</code> key with a value describing the system being simulated.</p>
 <p>Other header information may be under other top level keys.</p>
 <p>See <a href="https://github.com/medyan-dev/MEDYANSimRunner.jl" class="uri">https://github.com/medyan-dev/MEDYANSimRunner.jl</a> for more details on the output directory structure.</p>
@@ -1304,7 +1304,7 @@ optional 🔢 copynumbers
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>3×979 Matrix{Int64}:
  0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0
- 0  0  1  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0
  0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0</code></pre>
 </div>
 </div>
