@@ -208,15 +208,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#related-functions-and-fields-2" id="toc-related-functions-and-fields-2" class="nav-link" data-scroll-target="#related-functions-and-fields-2">Related Functions and Fields</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#experimental-sites" id="toc-experimental-sites" class="nav-link" data-scroll-target="#experimental-sites">Experimental Sites</a>
-  <ul class="collapse">
-  <li><a href="#cadherin-sites" id="toc-cadherin-sites" class="nav-link" data-scroll-target="#cadherin-sites">cadherin sites</a>
-  <ul class="collapse">
-  <li><a href="#required-functions-3" id="toc-required-functions-3" class="nav-link" data-scroll-target="#required-functions-3">Required Functions</a></li>
-  <li><a href="#built-in-cadherin-sites" id="toc-built-in-cadherin-sites" class="nav-link" data-scroll-target="#built-in-cadherin-sites">Built-in cadherin sites</a></li>
-  <li><a href="#related-functions-and-fields-3" id="toc-related-functions-and-fields-3" class="nav-link" data-scroll-target="#related-functions-and-fields-3">Related Functions and Fields</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#experimental-sites" id="toc-experimental-sites" class="nav-link" data-scroll-target="#experimental-sites">Experimental Sites</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/reference/sitesinfo.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -371,39 +363,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="experimental-sites" class="level1">
 <h1>Experimental Sites</h1>
-<section id="cadherin-sites" class="level2">
-<h2 class="anchored" data-anchor-id="cadherin-sites">cadherin sites</h2>
-<p>Cadherin sites can only be associated with the cadherin type. They can represent propensities for reactions to happen to a cadherin between one monomer and one membrane vertex.</p>
-<section id="required-functions-3" class="level3">
-<h3 class="anchored" data-anchor-id="required-functions-3">Required Functions</h3>
-<p>A type <code>T</code> must implement the following functions to be a cadherin site.</p>
-<section id="cadherin_sitecountsitet-cadherin_statecadherinstate-mechparams-vid-ftid-vertexstate-monomerstates-v_pos-m_pos-m_plusvfloat64" class="level4">
-<h4 class="anchored" data-anchor-id="cadherin_sitecountsitet-cadherin_statecadherinstate-mechparams-vid-ftid-vertexstate-monomerstates-v_pos-m_pos-m_plusvfloat64"><code>cadherin_sitecount(site::T, cadherin_state::CadherinState, mechparams, vid, ftid, vertexstate, monomerstates, v_pos, m_pos, m_plusv)::Float64</code></h4>
-<p>Return the site count given the state of the cadherin, the <code>vid</code> vertex id, the <code>ftid</code> filament type id, the <code>vertexstate</code> vertex state, the <code>monomerstates</code> monomer states, the positions of vertex and the monomer, and the orientation of the monomer.</p>
-<p><code>vertexstate</code> should be the state of vertex on the one end of cadherin, when <code>monomerstates</code> should be the collection of 3 <code>MonomerState</code> ordered from minus to plus end, with the other end of cadherin attached to the center monomer.</p>
-<p>Vertex state is defined to denote the reaction activity of vertices. The default state of vertex is one, which means the vertex is inert to chemical reaction.</p>
-<p>If a monomer or a vertex doesn’t exist, its state should be input as zero.</p>
-<p>The site count gets put in the chemistry voxel with the vertex.</p>
-</section>
-</section>
-<section id="built-in-cadherin-sites" class="level3">
-<h3 class="anchored" data-anchor-id="built-in-cadherin-sites"><a href="../docstrings/src/cadherin_sites.qmd">Built-in cadherin sites</a></h3>
-</section>
-<section id="related-functions-and-fields-3" class="level3">
-<h3 class="anchored" data-anchor-id="related-functions-and-fields-3">Related Functions and Fields</h3>
-<section id="context-3" class="level4">
-<h4 class="anchored" data-anchor-id="context-3"><code>Context</code></h4>
-<p><a href="../docstrings/medyan.context-736368ed32b08894.html#cadherinsites-9a82e0d01961cff1"><code>MEDYAN.Context#cadherinsites</code></a> field</p>
-</section>
-<section id="sysdef-3" class="level4">
-<h4 class="anchored" data-anchor-id="sysdef-3"><code>SysDef</code></h4>
-<p><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html#cadherinsite-73c7b7e209606263"><code>MEDYAN.SysDef#cadherinsite</code></a> field</p>
-<p><a href="../docstrings/medyan.addcadherinsite--9e21ac42968d0196.html"><code>MEDYAN.addcadherinsite!</code></a></p>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

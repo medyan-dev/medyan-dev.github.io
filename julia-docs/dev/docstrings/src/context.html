@@ -287,10 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
 <li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
 <li><p><code>decimated_2mon_sites::Vector{MEDYAN.SiteData}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>cadherinsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code></p></li>
-<li><p><code>cadherindata::Tuple{Vararg{MEDYAN.CadherinData}}</code></p></li>
 <li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code>: Site managers, indexed by site id</p></li>
-<li><p><code>cadherinlinked_vertices::Dictionaries.Dictionary{MEDYAN.VertexName, Vector{Vector{Pair{MEDYAN.VertexName, MEDYAN.MonomerName}}}}</code>: Dictionary of all vertices that have a bound cadherin. indexed by vertex name, then cadherintypeid, to give a vector of unique cadherin endnames that reference the monomer name and vertex name</p></li>
 <li><p><code>check_sitecount_error::Bool</code>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
 <li><p><code>compartmentreactioncallbacks::Any</code></p></li>
 <li><p><code>bulkreactioncallbacks::Any</code></p></li>
@@ -755,7 +752,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">empty!</span>(c<span class="op">::</span><span class="dt">Context</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remove all filaments, membranes, links, cadherins, diffusing species, fixed species, bulk species, chemboundary, and mechboundary.</p>
+<p>Remove all filaments, membranes, links, diffusing species, fixed species, bulk species, chemboundary, and mechboundary.</p>
 </div>
 </div>
 </div>

@@ -185,8 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.agentnames-948e6a24b4fb0cb5" id="toc-medyan.agentnames-948e6a24b4fb0cb5" class="nav-link" data-scroll-target="#medyan.agentnames-948e6a24b4fb0cb5"><code>MEDYAN.AgentNames</code></a></li>
   <li><a href="#medyan.monomername-bb517706cb60c4f5" id="toc-medyan.monomername-bb517706cb60c4f5" class="nav-link" data-scroll-target="#medyan.monomername-bb517706cb60c4f5"><code>MEDYAN.MonomerName</code></a></li>
   <li><a href="#medyan.vertexname-2d87a6a86cabc4f5" id="toc-medyan.vertexname-2d87a6a86cabc4f5" class="nav-link" data-scroll-target="#medyan.vertexname-2d87a6a86cabc4f5"><code>MEDYAN.VertexName</code></a></li>
-  <li><a href="#medyan.cadherinstate-0cd5353e58a90ec2" id="toc-medyan.cadherinstate-0cd5353e58a90ec2" class="nav-link" data-scroll-target="#medyan.cadherinstate-0cd5353e58a90ec2"><code>MEDYAN.CadherinState</code></a></li>
-  <li><a href="#medyan.cadherinparams-b70febdaf4c8fba5" id="toc-medyan.cadherinparams-b70febdaf4c8fba5" class="nav-link" data-scroll-target="#medyan.cadherinparams-b70febdaf4c8fba5"><code>MEDYAN.CadherinParams</code></a></li>
   <li><a href="#medyan.sysdef-c0c4da7a2b3d4fef" id="toc-medyan.sysdef-c0c4da7a2b3d4fef" class="nav-link" data-scroll-target="#medyan.sysdef-c0c4da7a2b3d4fef"><code>MEDYAN.SysDef</code></a></li>
   </ul></li>
   </ul>
@@ -216,7 +214,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>fixedspeciesnames::Vector{Symbol}</code></li>
 <li><code>filamentnames::Vector{Tuple{Symbol, Vector{Symbol}}}</code></li>
 <li><code>vertexnames::Vector{Symbol}</code></li>
-<li><code>cadherinnames::Vector{Symbol}</code></li>
 </ul>
 </div>
 </div>
@@ -255,41 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.cadherinstate-0cd5353e58a90ec2" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.cadherinstate-0cd5353e58a90ec2"><a href="../../docstrings/medyan.cadherinstate-0cd5353e58a90ec2.html"><code>MEDYAN.CadherinState</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>There is one instance of this per cadherin.</p>
-<ul>
-<li><code>chemstate::NamedTuple</code>: Other state.</li>
-<li><code>mechstate::NamedTuple</code>: Used in link force calculation.</li>
-<li><code>is_minimized::Bool</code>: Set to true after minimization</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="medyan.cadherinparams-b70febdaf4c8fba5" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.cadherinparams-b70febdaf4c8fba5"><a href="../../docstrings/medyan.cadherinparams-b70febdaf4c8fba5.html"><code>MEDYAN.CadherinParams</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Cadherin Parameters, there is one instance of this per cadherin type</p>
-<ul>
-<li><code>defaultstate::MEDYAN.CadherinState</code></li>
-<li><code>mechparams::Any</code></li>
-</ul>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.sysdef-c0c4da7a2b3d4fef" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.sysdef-c0c4da7a2b3d4fef"><a href="../../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html"><code>MEDYAN.SysDef</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -311,13 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>filament_params::MEDYAN.PropDictionary</code></li>
 <li><code>vertex::MEDYAN.PropDictionary</code></li>
 <li><code>state::MEDYAN.PropDictionary</code></li>
-<li><code>cadherin::MEDYAN.PropDictionary</code></li>
-<li><code>cadherinparams::MEDYAN.PropDictionary</code></li>
 <li><code>filamentsite::MEDYAN.PropDictionary</code></li>
 <li><code>filamentendsite::MEDYAN.PropDictionary</code></li>
 <li><code>membranesite::MEDYAN.PropDictionary</code>: Each membrane site represents the membrane patches in each compartment together with some membrane diffusing species.</li>
 <li><code>decimated_2mon_site::MEDYAN.PropDictionary</code></li>
-<li><code>cadherinsite::MEDYAN.PropDictionary</code></li>
 <li><code>possiblecadherinsite::MEDYAN.PropDictionary</code></li>
 <li><code>allfixedspeciesnames::Vector{String}</code></li>
 <li><code>compartmentreactions::Vector{MEDYAN.CompartmentReaction}</code></li>
