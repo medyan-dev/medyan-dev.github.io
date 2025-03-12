@@ -987,284 +987,298 @@
     "text": "newmembrane!(c::MEDYAN.Context; type, meshinit)\nAdd a new membrane to the system.\n\n\n\nmeshinit is structure containing mesh shape initialization information, such as a named tuple (vertlist, trilist) containing vertex coordinates and triangle list, MeshInitEllipsoid, MeshInitPlane or a general MeshInitSurfaceFunc."
   },
   {
-    "objectID": "docstrings/src/links/place-indexes.html",
-    "href": "docstrings/src/links/place-indexes.html",
-    "title": "src/links/place-indexes.jl",
+    "objectID": "docstrings/src/links/link-chemistry.html",
+    "href": "docstrings/src/links/link-chemistry.html",
+    "title": "src/links/link-chemistry.jl",
     "section": "",
-    "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place."
+    "text": "get_link_mechanics(c::Context, link::Link, [d::LinkData])\nReturn a NamedTuple of (;energy, inputs, forces, torques) of the link. Throw an error if link doesn’t exist. Parts of inputs that do not exist will be set to NaN."
   },
   {
-    "objectID": "docstrings/src/links/place-indexes.html#medyan.num_directions-89697a0fca8de12f",
-    "href": "docstrings/src/links/place-indexes.html#medyan.num_directions-89697a0fca8de12f",
-    "title": "src/links/place-indexes.jl",
+    "objectID": "docstrings/src/links/link-chemistry.html#medyan.get_link_mechanics-57ba2f1a141d0156",
+    "href": "docstrings/src/links/link-chemistry.html#medyan.get_link_mechanics-57ba2f1a141d0156",
+    "title": "src/links/link-chemistry.jl",
     "section": "",
-    "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place."
+    "text": "get_link_mechanics(c::Context, link::Link, [d::LinkData])\nReturn a NamedTuple of (;energy, inputs, forces, torques) of the link. Throw an error if link doesn’t exist. Parts of inputs that do not exist will be set to NaN."
   },
   {
-    "objectID": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html",
-    "href": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html",
-    "title": "MEDYAN.make_fila_rand!",
+    "objectID": "docstrings/src/links/places.html",
+    "href": "docstrings/src/links/places.html",
+    "title": "src/links/places.jl",
     "section": "",
-    "text": "make_fila_rand!(c::Context, mono_states; iterations = 10^9, type = 1)::Tag{FilaTipIdx}\nAdd a filament to the Context with random center position and direction.\nReturn the tag of the plus tip of the new filament.\nmono_states is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters.\n\n\n\ntype=1: filament type id or symbol.\niterations = 10^9: number of positions to try before failing with an error."
+    "text": "place_exists(c::Context, p::Place)::Bool\nReturn true iff place p exists in context c. Otherwise return false."
   },
   {
-    "objectID": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "href": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "title": "MEDYAN.make_fila_rand!",
+    "objectID": "docstrings/src/links/places.html#medyan.place_exists-fcab2f7674b282f4",
+    "href": "docstrings/src/links/places.html#medyan.place_exists-fcab2f7674b282f4",
+    "title": "src/links/places.jl",
     "section": "",
-    "text": "make_fila_rand!(c::Context, mono_states; iterations = 10^9, type = 1)::Tag{FilaTipIdx}\nAdd a filament to the Context with random center position and direction.\nReturn the tag of the plus tip of the new filament.\nmono_states is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters.\n\n\n\ntype=1: filament type id or symbol.\niterations = 10^9: number of positions to try before failing with an error."
+    "text": "place_exists(c::Context, p::Place)::Bool\nReturn true iff place p exists in context c. Otherwise return false."
   },
   {
-    "objectID": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html",
-    "href": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html",
-    "title": "MEDYAN.add_membranesitereaction!",
+    "objectID": "docstrings/medyan.mon_3states-6c16efb303a60058.html",
+    "href": "docstrings/medyan.mon_3states-6c16efb303a60058.html",
+    "title": "MEDYAN.mon_3states",
     "section": "",
-    "text": "Add a membrane site with the corresponding reaction with callback.\nKeyword arguments:\n\ns: SysDef.\nname_newmembranesite: Symbol.\nmembranediffusingreactants: Vector of symbols as membrane reactants. 0 or 1 reactant is currently supported.\nmembranediffusingproducts: Vector of symbols as membrane products.\nreactionexpr_extra: Reaction expression for other species involved.\nrate: Float.\nchangerage_bypotentialenergy: Whether the rate is affected by potential energy.\ninvvolumepower: rate scaling with compartment volume.\n\nNotes:\n\nIf error occurs, this function does not ensure that s is unchanged."
+    "text": "mon_3states(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{UInt8, UInt8, UInt8}\nReturn a tuple of three monomer states centered at a monomer.\nIf a monomer doesn’t exist, its state will be zero. The filament must exist."
   },
   {
-    "objectID": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html#tuple---3937a4f1811c9dc1",
-    "href": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html#tuple---3937a4f1811c9dc1",
-    "title": "MEDYAN.add_membranesitereaction!",
+    "objectID": "docstrings/medyan.mon_3states-6c16efb303a60058.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "href": "docstrings/medyan.mon_3states-6c16efb303a60058.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "title": "MEDYAN.mon_3states",
     "section": "",
-    "text": "Add a membrane site with the corresponding reaction with callback.\nKeyword arguments:\n\ns: SysDef.\nname_newmembranesite: Symbol.\nmembranediffusingreactants: Vector of symbols as membrane reactants. 0 or 1 reactant is currently supported.\nmembranediffusingproducts: Vector of symbols as membrane products.\nreactionexpr_extra: Reaction expression for other species involved.\nrate: Float.\nchangerage_bypotentialenergy: Whether the rate is affected by potential energy.\ninvvolumepower: rate scaling with compartment volume.\n\nNotes:\n\nIf error occurs, this function does not ensure that s is unchanged."
+    "text": "mon_3states(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{UInt8, UInt8, UInt8}\nReturn a tuple of three monomer states centered at a monomer.\nIf a monomer doesn’t exist, its state will be zero. The filament must exist."
   },
   {
-    "objectID": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html",
-    "href": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html",
-    "title": "MEDYAN.fila_node_positions",
+    "objectID": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html",
+    "href": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html",
+    "title": "MEDYAN.set_enable_cylinder_volume_exclusion!",
     "section": "",
-    "text": "fila_node_positions(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Vector{StaticArraysCore.SVector{3, Float64}}\nReturn the mechanical node positions of the filament."
+    "text": "set_enable_cylinder_volume_exclusion!(\n    c::MEDYAN.Context,\n    x::Bool\n) -&gt; Bool\nAre cylinder volume exclusion forces calculated."
   },
   {
-    "objectID": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
-    "href": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
-    "title": "MEDYAN.fila_node_positions",
+    "objectID": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html#tuple-medyan.context--bool--89b229b1eef6a22c",
+    "href": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html#tuple-medyan.context--bool--89b229b1eef6a22c",
+    "title": "MEDYAN.set_enable_cylinder_volume_exclusion!",
     "section": "",
-    "text": "fila_node_positions(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Vector{StaticArraysCore.SVector{3, Float64}}\nReturn the mechanical node positions of the filament."
+    "text": "set_enable_cylinder_volume_exclusion!(\n    c::MEDYAN.Context,\n    x::Bool\n) -&gt; Bool\nAre cylinder volume exclusion forces calculated."
   },
   {
-    "objectID": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html",
-    "href": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html",
-    "title": "MEDYAN.add_decimated_2mon_site!",
+    "objectID": "docstrings/medyan.place2tag-9d62565424ca3705.html",
+    "href": "docstrings/medyan.place2tag-9d62565424ca3705.html",
+    "title": "MEDYAN.place2tag",
     "section": "",
-    "text": "add_decimated_2mon_site!(s::SysDef,decimated_2mon_sitename::Symbol,site)::SysDef"
+    "text": "place2tag(c::Context, p::Place)::Tag\nReturn the tag of the place. Throw an error if !has_tag(p)."
   },
   {
-    "objectID": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
-    "href": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
-    "title": "MEDYAN.add_decimated_2mon_site!",
+    "objectID": "docstrings/medyan.place2tag-9d62565424ca3705.html#union-tuple-p---tuple-medyan.context--p---where-p--medyan.place-316eaf4f0092762b",
+    "href": "docstrings/medyan.place2tag-9d62565424ca3705.html#union-tuple-p---tuple-medyan.context--p---where-p--medyan.place-316eaf4f0092762b",
+    "title": "MEDYAN.place2tag",
     "section": "",
-    "text": "add_decimated_2mon_site!(s::SysDef,decimated_2mon_sitename::Symbol,site)::SysDef"
+    "text": "place2tag(c::Context, p::Place)::Tag\nReturn the tag of the place. Throw an error if !has_tag(p)."
   },
   {
-    "objectID": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html",
-    "href": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html",
-    "title": "MEDYAN.adddiffusingcount_rand!",
+    "objectID": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html",
+    "href": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html",
+    "title": "MEDYAN.compute_all_membrane_geometry!_system",
     "section": "",
-    "text": "adddiffusingcount_rand!(c::Context, dsid, inccount)\nDistribute the added diffusing species count randomly to compartments weighted by volume.\n\ndsid: diffusing species id.\ninccount: amount to add."
+    "text": "Updates all membrane geometries used across various parts of MEDYAN.\nThe list of all items can be found in the document for MEDYAN.compute_geometry!_system function.\nKeyword parameters:\n\ninclude_ff::Bool: If true, compute_geometry! used in energy computations will be applied as well, requiring vectorization of the membrane. This happens before system geometry computation in case some fields are overriden."
   },
   {
-    "objectID": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
-    "href": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
-    "title": "MEDYAN.adddiffusingcount_rand!",
+    "objectID": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.compute_all_membrane_geometry!_system",
     "section": "",
-    "text": "adddiffusingcount_rand!(c::Context, dsid, inccount)\nDistribute the added diffusing species count randomly to compartments weighted by volume.\n\ndsid: diffusing species id.\ninccount: amount to add."
+    "text": "Updates all membrane geometries used across various parts of MEDYAN.\nThe list of all items can be found in the document for MEDYAN.compute_geometry!_system function.\nKeyword parameters:\n\ninclude_ff::Bool: If true, compute_geometry! used in energy computations will be applied as well, requiring vectorization of the membrane. This happens before system geometry computation in case some fields are overriden."
   },
   {
-    "objectID": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html",
-    "href": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html",
-    "title": "MEDYAN.num_fila_types",
+    "objectID": "docstrings/base.haskey-e7d3f961991e2663.html",
+    "href": "docstrings/base.haskey-e7d3f961991e2663.html",
+    "title": "Base.haskey",
     "section": "",
-    "text": "num_fila_types(c::MEDYAN.Context) -&gt; Int64\nReturn the number of filament types."
+    "text": "Whether an ID is in use."
   },
   {
-    "objectID": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.num_fila_types",
+    "objectID": "docstrings/base.haskey-e7d3f961991e2663.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "href": "docstrings/base.haskey-e7d3f961991e2663.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
+    "title": "Base.haskey",
     "section": "",
-    "text": "num_fila_types(c::MEDYAN.Context) -&gt; Int64\nReturn the number of filament types."
+    "text": "Whether an ID is in use."
   },
   {
-    "objectID": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html",
-    "href": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html",
-    "title": "MEDYAN.CubicGrid",
+    "objectID": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html",
+    "href": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html",
+    "title": "MEDYAN.run_chemistry!",
     "section": "",
-    "text": "CubicGrid(num_voxels::SVector{3,Int}, compartmentsize::Float64)\n\nn::StaticArraysCore.SVector{3, Int64}\ncompartmentsize::Float64"
+    "text": "run_chemistry!(c::Context, Δt)\nRun chemistry for Δt time.\nUpdate c.time."
   },
   {
-    "objectID": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.CubicGrid",
+    "objectID": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "href": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "title": "MEDYAN.run_chemistry!",
     "section": "",
-    "text": "CubicGrid(num_voxels::SVector{3,Int}, compartmentsize::Float64)\n\nn::StaticArraysCore.SVector{3, Int64}\ncompartmentsize::Float64"
+    "text": "run_chemistry!(c::Context, Δt)\nRun chemistry for Δt time.\nUpdate c.time."
   },
   {
-    "objectID": "docstrings/base.iterate-5228367cd62c0bf2.html",
-    "href": "docstrings/base.iterate-5228367cd62c0bf2.html",
-    "title": "Base.iterate",
+    "objectID": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html",
+    "href": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html",
+    "title": "MEDYAN.addfilamentendsite!",
     "section": "",
-    "text": "Iterates through valid IDs in the StableIndex."
+    "text": "addfilamentendsite!(s::SysDef,filamenttypename::Symbol,filamentendsitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/base.iterate-5228367cd62c0bf2.html#tuple-medyan.stableindex--namedtuple--21f3937ad430e895",
-    "href": "docstrings/base.iterate-5228367cd62c0bf2.html#tuple-medyan.stableindex--namedtuple--21f3937ad430e895",
-    "title": "Base.iterate",
+    "objectID": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "href": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "title": "MEDYAN.addfilamentendsite!",
     "section": "",
-    "text": "Iterates through valid IDs in the StableIndex."
+    "text": "addfilamentendsite!(s::SysDef,filamenttypename::Symbol,filamentendsitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html",
-    "href": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html",
-    "title": "MEDYAN.refresh_chem_cache!",
+    "objectID": "docstrings/medyan.mon_position-83983d8916347411.html",
+    "href": "docstrings/medyan.mon_position-83983d8916347411.html",
+    "title": "MEDYAN.mon_position",
     "section": "",
-    "text": "refresh_chem_cache!(c::Context)::Nothing\nNormally this isn’t needed as it will happen automatically."
+    "text": "mon_position(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the monomer position."
   },
   {
-    "objectID": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.refresh_chem_cache!",
+    "objectID": "docstrings/medyan.mon_position-83983d8916347411.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "href": "docstrings/medyan.mon_position-83983d8916347411.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
+    "title": "MEDYAN.mon_position",
     "section": "",
-    "text": "refresh_chem_cache!(c::Context)::Nothing\nNormally this isn’t needed as it will happen automatically."
+    "text": "mon_position(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the monomer position."
   },
   {
-    "objectID": "docstrings/medyan.tag2place-68ab43363a4c1760.html",
-    "href": "docstrings/medyan.tag2place-68ab43363a4c1760.html",
-    "title": "MEDYAN.tag2place",
+    "objectID": "docstrings/medyan.link_exists-0f95437072169f8d.html",
+    "href": "docstrings/medyan.link_exists-0f95437072169f8d.html",
+    "title": "MEDYAN.link_exists",
     "section": "",
-    "text": "tag2place(c::Context, t::Tag)::Place\nReturn the place of the tag. Throw an error if !tag_exists(t)."
+    "text": "link_exists(c::Context, link::Link)::Bool\nReturn true iff link exists in context c. Otherwise return false."
   },
   {
-    "objectID": "docstrings/medyan.tag2place-68ab43363a4c1760.html#union-tuple-p---tuple-medyan.context--medyan.tag-p----where-p-f3255fd0d268d21a",
-    "href": "docstrings/medyan.tag2place-68ab43363a4c1760.html#union-tuple-p---tuple-medyan.context--medyan.tag-p----where-p-f3255fd0d268d21a",
-    "title": "MEDYAN.tag2place",
+    "objectID": "docstrings/medyan.link_exists-0f95437072169f8d.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
+    "href": "docstrings/medyan.link_exists-0f95437072169f8d.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
+    "title": "MEDYAN.link_exists",
     "section": "",
-    "text": "tag2place(c::Context, t::Tag)::Place\nReturn the place of the tag. Throw an error if !tag_exists(t)."
+    "text": "link_exists(c::Context, link::Link)::Bool\nReturn true iff link exists in context c. Otherwise return false."
   },
   {
-    "objectID": "docstrings/medyan.polymerize_fila--ef96193868627e48.html",
-    "href": "docstrings/medyan.polymerize_fila--ef96193868627e48.html",
-    "title": "MEDYAN.polymerize_fila!",
+    "objectID": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html",
+    "href": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html",
+    "title": "MEDYAN.get_reaction_enabled",
     "section": "",
-    "text": "polymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx, newstate::Union{Symbol,MonomerState})\nAdd a monomer with state newstate to the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids. New monomers are not linkable until after minimization."
+    "text": "get_reaction_enabled(c::Context, link::Link, [d::LinkData])\nReturn the reaction_enabled flags of the link. Throw an error if link doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.polymerize_fila--ef96193868627e48.html#tuple-medyan.context--medyan.filatipidx--union-uint8--symbol---0e9280d25a5258b3",
-    "href": "docstrings/medyan.polymerize_fila--ef96193868627e48.html#tuple-medyan.context--medyan.filatipidx--union-uint8--symbol---0e9280d25a5258b3",
-    "title": "MEDYAN.polymerize_fila!",
+    "objectID": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "href": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "title": "MEDYAN.get_reaction_enabled",
     "section": "",
-    "text": "polymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx, newstate::Union{Symbol,MonomerState})\nAdd a monomer with state newstate to the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids. New monomers are not linkable until after minimization."
+    "text": "get_reaction_enabled(c::Context, link::Link, [d::LinkData])\nReturn the reaction_enabled flags of the link. Throw an error if link doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html",
-    "href": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html",
-    "title": "MEDYAN.fila_tip_tags",
+    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html",
+    "href": "docstrings/medyan.randompoint-83e939bdee528294.html",
+    "title": "MEDYAN.randompoint",
     "section": "",
-    "text": "fila_tip_tags(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Pair{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}\nReturn the pair of minus end, plus end filament tip tags."
+    "text": "randompoint(grid::CubicGrid,cid)::SVector{3,Float64}\nReturn a random point in a voxel Note, due to floating point rounding, there is a small chance the returned point may be in a nearby voxel.\n\n\n\n\n\n\n\n\n\n\n\n\nrandompoint(grid::CubicGrid)::SVector{3,Float64}\nReturn a random point in the grid"
   },
   {
-    "objectID": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
-    "href": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
-    "title": "MEDYAN.fila_tip_tags",
+    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
+    "href": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
+    "title": "MEDYAN.randompoint",
     "section": "",
-    "text": "fila_tip_tags(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Pair{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}\nReturn the pair of minus end, plus end filament tip tags."
+    "text": "randompoint(grid::CubicGrid,cid)::SVector{3,Float64}\nReturn a random point in a voxel Note, due to floating point rounding, there is a small chance the returned point may be in a nearby voxel."
   },
   {
-    "objectID": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html",
-    "href": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html",
-    "title": "MEDYAN.get_bond_states",
+    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "href": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "title": "MEDYAN.randompoint",
     "section": "",
-    "text": "get_bond_states(c::Context, link::Link, [d::LinkData])\nReturn the bond_states of the link. Throw an error if link doesn’t exist."
+    "text": "randompoint(grid::CubicGrid)::SVector{3,Float64}\nReturn a random point in the grid"
   },
   {
-    "objectID": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "href": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "title": "MEDYAN.get_bond_states",
+    "objectID": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html",
+    "href": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html",
+    "title": "MEDYAN.VertexName",
     "section": "",
-    "text": "get_bond_states(c::Context, link::Link, [d::LinkData])\nReturn the bond_states of the link. Throw an error if link doesn’t exist."
+    "text": "membraneindex::Int64: membrane index\nvid::Int64: vertex id"
   },
   {
-    "objectID": "docstrings/medyan.remove_link--01531e04ef5077e7.html",
-    "href": "docstrings/medyan.remove_link--01531e04ef5077e7.html",
-    "title": "MEDYAN.remove_link!",
+    "objectID": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.VertexName",
     "section": "",
-    "text": "remove_link!(c::Context, link::Link)::Nothing\nRemove the link."
+    "text": "membraneindex::Int64: membrane index\nvid::Int64: vertex id"
   },
   {
-    "objectID": "docstrings/medyan.remove_link--01531e04ef5077e7.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
-    "href": "docstrings/medyan.remove_link--01531e04ef5077e7.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
-    "title": "MEDYAN.remove_link!",
+    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html",
+    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html",
+    "title": "MEDYAN.addreactioncallback!",
     "section": "",
-    "text": "remove_link!(c::Context, link::Link)::Nothing\nRemove the link."
+    "text": "addreactioncallback!(s::SysDef, reaction::CompartmentReaction, callback)::SysDef\naddreactioncallback!(s::SysDef, reactantexpr::AbstractString, rate::Float64, invvolumepower::Int, callback)::SysDef\nLike addreaction! but also adds callback. callback is called when the reaction happens with input of MEDYAN.Context and Int the compartment id where the reaction happened.\nThe reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an AbstractString is passed instead of a CompartmentReaction for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.\nMEDYAN.errorcheck_addcallback(callback,s::SysDef) can optionally be overloaded to add errorchecking when the callback is added.\n\n\n\n\n\n\n\n\n\n\n\n\nCallback for bulk reactions: Context -&gt; Nothing."
   },
   {
-    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html",
-    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html",
-    "title": "MEDYAN.centerof",
+    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.compartmentreaction--any--36763138c31ba7fa",
+    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.compartmentreaction--any--36763138c31ba7fa",
+    "title": "MEDYAN.addreactioncallback!",
     "section": "",
-    "text": "centerof(grid::CubicGrid, cid)\nReturn the location of the center of a grid id The origin is in the center.\n\n\n\n\n\n\n\n\n\n\n\n\ncenterof(grid::CubicGrid)\nReturn the location of the center the grid The origin is in the center."
+    "text": "addreactioncallback!(s::SysDef, reaction::CompartmentReaction, callback)::SysDef\naddreactioncallback!(s::SysDef, reactantexpr::AbstractString, rate::Float64, invvolumepower::Int, callback)::SysDef\nLike addreaction! but also adds callback. callback is called when the reaction happens with input of MEDYAN.Context and Int the compartment id where the reaction happened.\nThe reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an AbstractString is passed instead of a CompartmentReaction for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.\nMEDYAN.errorcheck_addcallback(callback,s::SysDef) can optionally be overloaded to add errorchecking when the callback is added."
   },
   {
-    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
-    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
-    "title": "MEDYAN.centerof",
+    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.bulkreaction--any--bad9b85c7303199e",
+    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.bulkreaction--any--bad9b85c7303199e",
+    "title": "MEDYAN.addreactioncallback!",
     "section": "",
-    "text": "centerof(grid::CubicGrid, cid)\nReturn the location of the center of a grid id The origin is in the center."
+    "text": "Callback for bulk reactions: Context -&gt; Nothing."
   },
   {
-    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "title": "MEDYAN.centerof",
+    "objectID": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html",
+    "href": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html",
+    "title": "MEDYAN.addmembranediffusingcount_rand!",
     "section": "",
-    "text": "centerof(grid::CubicGrid)\nReturn the location of the center the grid The origin is in the center."
+    "text": "addmembranediffusingcount_rand!(\n    c::MEDYAN.Context,\n    membraneindex::Int64,\n    speciesindex::Int64,\n    addcount::Int64\n)\nDistribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity."
   },
   {
-    "objectID": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html",
-    "href": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html",
-    "title": "MEDYAN.addfilament_reaction!",
+    "objectID": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html#tuple-medyan.context--int64--int64--int64--c6aa1d407904887b",
+    "href": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html#tuple-medyan.context--int64--int64--int64--c6aa1d407904887b",
+    "title": "MEDYAN.addmembranediffusingcount_rand!",
     "section": "",
-    "text": "Add filament reaction. Return s. Add a filamentsite and reaction with callback to change the monomer state. This can be used for filament aging, filament catalyzed reactions, or simple binding reactions.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentsitename::Symbol: the new name of the filamentsite added. This can be used as a catalyst in other reactions.\nchangedstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the monomer states, the first is the states to match. The second is the new monomer states after the reaction. both should be the same length. Ordered minus end first.\ncenter::Int: Which index of changedstatenames.first is the actual location of the filamentsite. Used for determining what compartment the reaction goes in.\nreactantexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentsite.$(filamenttypename).$(filamentsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the compartment in nm³. volumefactor only applies to this reaction not any other reaction using filamentsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    filamentnames= [(:filname,[\n                            :a,\n                            :b,\n                            :c,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\naddfilament_reaction!(s, :filname, :ab,\n    [:a]=&gt;[:b], 1,\n    \"--&gt;\", 1.75E-3, 0,\n)\naddfilament_reaction!(s, :filname, :aabc,\n    [:a,:a]=&gt;[:b,:c], 2,\n    \"--&gt;\", 1.75E-3, 0,\n)"
+    "text": "addmembranediffusingcount_rand!(\n    c::MEDYAN.Context,\n    membraneindex::Int64,\n    speciesindex::Int64,\n    addcount::Int64\n)\nDistribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity."
   },
   {
-    "objectID": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html#tuple-medyan.sysdef--symbol--symbol--pair-vector-symbol---vector-symbol----int64--abstractstring--float64--int64--51c2a9e2acbeb27c",
-    "href": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html#tuple-medyan.sysdef--symbol--symbol--pair-vector-symbol---vector-symbol----int64--abstractstring--float64--int64--51c2a9e2acbeb27c",
-    "title": "MEDYAN.addfilament_reaction!",
+    "objectID": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html",
+    "href": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html",
+    "title": "MEDYAN.FilamentSiteGeneral",
     "section": "",
-    "text": "Add filament reaction. Return s. Add a filamentsite and reaction with callback to change the monomer state. This can be used for filament aging, filament catalyzed reactions, or simple binding reactions.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentsitename::Symbol: the new name of the filamentsite added. This can be used as a catalyst in other reactions.\nchangedstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the monomer states, the first is the states to match. The second is the new monomer states after the reaction. both should be the same length. Ordered minus end first.\ncenter::Int: Which index of changedstatenames.first is the actual location of the filamentsite. Used for determining what compartment the reaction goes in.\nreactantexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentsite.$(filamenttypename).$(filamentsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the compartment in nm³. volumefactor only applies to this reaction not any other reaction using filamentsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    filamentnames= [(:filname,[\n                            :a,\n                            :b,\n                            :c,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\naddfilament_reaction!(s, :filname, :ab,\n    [:a]=&gt;[:b], 1,\n    \"--&gt;\", 1.75E-3, 0,\n)\naddfilament_reaction!(s, :filname, :aabc,\n    [:a,:a]=&gt;[:b,:c], 2,\n    \"--&gt;\", 1.75E-3, 0,\n)"
+    "text": "General filament site just matches monomer states\n\ncenter::Int64: index of center monomer in states\nstates::Vector{UInt8}: monomer states to match"
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.FilamentSiteGeneral",
     "section": "",
-    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
+    "text": "General filament site just matches monomer states\n\ncenter::Int64: index of center monomer in states\nstates::Vector{UInt8}: monomer states to match"
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html",
+    "href": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html",
+    "title": "MEDYAN.num_link_types",
     "section": "",
-    "text": "scale the volume and area"
+    "text": "num_link_types(c::Context)::Int\nReturn the number of link types."
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.num_link_types",
     "section": "",
-    "text": "scale the volume and area by different amounts in each direction"
+    "text": "num_link_types(c::Context)::Int\nReturn the number of link types."
   },
   {
-    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
-    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
-    "title": "MEDYAN.addfilamentsite!",
+    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
+    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
+    "title": "MEDYAN.addfilamentend_reaction!",
     "section": "",
-    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
+    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "title": "MEDYAN.addfilamentsite!",
+    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
+    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
+    "title": "MEDYAN.addfilamentend_reaction!",
     "section": "",
-    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
+    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
+  },
+  {
+    "objectID": "docstrings/base.setindex--725f722fff4cfa6d.html",
+    "href": "docstrings/base.setindex--725f722fff4cfa6d.html",
+    "title": "Base.setindex!",
+    "section": "",
+    "text": "Map ID to a new index. The ID must be in use."
+  },
+  {
+    "objectID": "docstrings/base.setindex--725f722fff4cfa6d.html#tuple-medyan.stableindex--integer--integer--808485796eb5543d",
+    "href": "docstrings/base.setindex--725f722fff4cfa6d.html#tuple-medyan.stableindex--integer--integer--808485796eb5543d",
+    "title": "Base.setindex!",
+    "section": "",
+    "text": "Map ID to a new index. The ID must be in use."
   },
   {
     "objectID": "docstrings/medyan.has_tag-d550430128572035.html",
@@ -1313,7 +1327,7 @@
     "href": "reference/fileformats.html",
     "title": "File Formats",
     "section": "",
-    "text": "MEDYAN.jl uses Zarr v2 zip store for saving snapshots.\n\n\n\n\n\n\nOther Languages\n\n\n\nTo open the snapshots in python use zarr\n\n\n\n\nTrajectory outputs and logs are stored in a directory.\nThe output directory contains a traj sub directory with a header.json file, many $(most significant digits)/$(3 least significant digits).zip files, and finally a footer.json.\nThe initial state returned by setup is stored in traj/0/000.zip.\nInside the traj/$(i)/$(j).zip there is a snap/medyan group containing the snapshot of the MEDYAN.Context after the step. Other state may be stored in child groups of snap.\nThe header.json file also has a top level \"medyan\" key with a value describing the system being simulated.\nOther header information may be under other top level keys.\nSee https://github.com/medyan-dev/MEDYANSimRunner.jl for more details on the output directory structure.\n\n\n\nheader.json[\"medyan\"] contains static metadata about the simulation.\n\n\n\nusing MEDYAN\nimport JSON3\ncinit, s = MEDYAN.example_all_sites_context()\nJSON3.pretty(MEDYAN.header(cinit); allow_inf = true)\n\n{\n    \"version\": \"0.11.0\",\n    \"medyanInfo\": {\n        \"title\": \"MEDYAN.jl\",\n        \"version\": \"0.2.1\",\n        \"sourceCodeUrl\": \"https://github.com/medyan-dev/MEDYAN.jl\"\n    },\n    \"size\": {\n        \"x(nm)\": 2000,\n        \"y(nm)\": 500,\n        \"z(nm)\": 500\n    },\n    \"chem_grid_size\": {\n        \"nx\": 4,\n        \"ny\": 1,\n        \"nz\": 1,\n        \"voxel_x(nm)\": 500,\n        \"voxel_y(nm)\": 500,\n        \"voxel_z(nm)\": 500\n    },\n    \"diffusing_species\": [\n        {\n            \"name\": \"b\"\n        },\n        {\n            \"name\": \"c\"\n        }\n    ],\n    \"membrane_diffusing_species\": [\n        {\n            \"name\": \"ma\"\n        },\n        {\n            \"name\": \"mb\"\n        },\n        {\n            \"name\": \"mc\"\n        }\n    ],\n    \"fixed_species\": [\n        {\n            \"name\": \"d\"\n        },\n        {\n            \"name\": \"a\"\n        }\n    ],\n    \"filaments\": [\n        {\n            \"name\": \"a\",\n            \"radius(nm)\": 3,\n            \"monomerstates\": [\n                \"me\",\n                \"a\",\n                \"b\",\n                \"c\",\n                \"pe\"\n            ]\n        },\n        {\n            \"name\": \"b\",\n            \"radius(nm)\": 3,\n            \"monomerstates\": [\n                \"me\",\n                \"a\",\n                \"b\",\n                \"c\",\n                \"pe\"\n            ]\n        }\n    ],\n    \"links\": [\n        {\n            \"name\": \"fila_tip_restraint\",\n            \"places\": [\n                \"fila_tip\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_restraint\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_dummy\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_2bonds\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_distance_bond\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"a\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"b\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"c\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"memb_vert_restraint\",\n            \"places\": [\n                \"memb_vert\"\n            ]\n        }\n    ]\n}\n\n\n\n\n\n\nA snapshot describes the state of a Context at a single point in time.\nA snapshot can be used to set the state of a Context if it was constructed with the same system and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nBy default units are in nm, pN, and s. Coordinates are relative to the center of the grid.\nThe snapshot doesn’t hold the exact full state of a Context, simulations restarted from a snapshot may not have the exact same results because:\n\nThe snapshot doesn’t store the state of the random number generator.\nCoordinates may be rounded to save disk space.\nDictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.\nMultithreading may be non deterministic.\n\nBut if rounding isn’t too extreme, the reloaded Context should have the same statistics.\n\n\nThe snapshot format is versioned by the “version” attribute. The current snapshot version is:\n\nusing MEDYAN\nMEDYAN.SNAPSHOT_VERSION\n\nv\"0.11.0\"\n\n\nCurrently before snapshot version 1.0.0 anything goes.\nAfter snapshot version 1.0.0 is released.\nSnapshots written with a previous snapshot version above v\"1\" should be readable. Snapshots written with a newer snapshot version are generally not readable.\nIf new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.\nIf new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.\nIf the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.\n\n\nAny group, dataset, or attribute name prefixed with with “#” can change format or be removed without changing the snapshot version.\n“#experimental” is used for saving new types of agents or other data that doesn’t have a stable format yet.\n“#comment” is used for saving human readable comments that could change in format or wording.\n\n\n\n\n\nusing MEDYAN\nusing SmallZarrGroups\ncinit, s = MEDYAN.example_all_sites_context()\ngroup = MEDYAN.snapshot(cinit)\n\n\n\n\n\n\n\nSnapshot 📂\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntime (s)\n\n\nattrs(group)[\"time (s)\"]\n\n0.0\n\n\nDefault: No change\nSee MEDYAN.set_time!\n\n\n\nversion\n\n\nattrs(group)[\"version\"]\n\n\"0.11.0\"\n\n\nDefault: No change\nSee Snapshot Versioning\n\n\n\nuuid\n\n\nattrs(group)[\"uuid\"]\n\n\"37eee81f-88ae-4d11-b6b3-d38e1ccf0a08\"\n\n\nMust be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08”\nto be considered a valid MEDYAN snapshot.\n\n\n\n\n\n\n\n\n\n\n🔢\n\n\n\n\n\n\n\ndiffusingcounts\n\n\ncollect(group[\"diffusingcounts\"])\n\n2×4 Matrix{Int32}:\n 0   100   40  0\n 0  1000  400  0\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_adddiffusingcount!\n\n\n\nfixedcounts\n\n\ncollect(group[\"fixedcounts\"])\n\n2×4 Matrix{Float64}:\n 10.25  0.0  0.0   0.0\n  0.0   0.0  0.0  20.25\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_addfixedcount!\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\n\n\n\n\nchemboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"chemboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"chemboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nfilaments\n\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nposition_scale\n\n\nattrs(group[\"filaments\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nFilament positions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\n\nThere is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n🔢 endloadforces\n\n\ncollect(group[\"filaments/1/endloadforces\"])\n\n2×2 Matrix{Float64}:\n 0.0  0.0\n 0.0  0.0\n\n\nFilament end load forces (pN).\nEach row is the load force on the minus and plus ends of a filament.\n\n\n\n🔢 fids\n\n\ncollect(group[\"filaments/1/fids\"])\n\n2-element Vector{Int32}:\n 1\n 2\n\n\nFilament ids.\n\n\n\n🔢 minusend_num_notminimized\n\n\ncollect(group[\"filaments/1/minusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament minus ends since last minimization.\n\n\n\n🔢 plusend_num_notminimized\n\n\ncollect(group[\"filaments/1/plusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament plus ends since last minimization.\n\n\n\n🔢 num_cylinders\n\n\ncollect(group[\"filaments/1/num_cylinders\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nNumber of cylinders per filament.\n\n\n\n🔢 num_monomers\n\n\ncollect(group[\"filaments/1/num_monomers\"])\n\n2-element Vector{Int32}:\n 9\n 9\n\n\nNumber of monomers per filament.\n\n\n\n🔢 node_mids\n\n\ncollect(group[\"filaments/1/node_mids\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nThe monomer ids at the minus ends of the cylinders.\n                                   |\n                        -----+-----|-----+-----\n    minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end\n                        -----+-----|-----+-----\n                                   |\n                                   ^ A nodeposition is indicated by the line.\nThe monomer id with parenthesis (M) will in node_mids\n\n\n\n🔢 nodepositions\n\n\ncollect(group[\"filaments/1/nodepositions\"])\n\n4×3 Matrix{Float64}:\n -530.0  -50.0  -50.0\n -440.0  -50.0  -50.0\n -520.0  -49.0  -50.0\n -430.0  -49.0  -50.0\n\n\nEach row is a node position in nm.\n\n\n\n🔢 monomerstates\n\n\ncollect(group[\"filaments/1/monomerstates\"])\n\n18-element Vector{UInt8}:\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n\n\nMonomer states.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinks\n\n\n\n\n\nThere is a subgroup for each link type with at least one current or past link. The subgroups are named by their link type id.\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nversion\n\n\nattrs(group[\"links\"])[\"version\"]\n\n1\n\n\nlink data major version, version 1 is described here.\n\n\n\n\n\nFor example:\n\n\n\n\n\n\n\n📂 8\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_links\n\n\nattrs(group[\"links/8\"])[\"num_links\"]\n\n4\n\n\nNumber of links of this type.\n\n\n\nnext_lid\n\n\nattrs(group[\"links/8\"])[\"next_lid\"]\n\n5\n\n\nThe default next link id for new links.\nThis should be greater than all the existing link ids of this type.\n\n\n\n\n\n\n🔢 be\n\n\ncollect(group[\"links/8/be\"])\n\n4×1 Matrix{Bool}:\n 1\n 1\n 1\n 1\n\n\nThe bonds that are enabled.\nEach row of this matrix represents a link, each column represents a bond.\n\n\n\n🔢 ids\n\n\ncollect(group[\"links/8/ids\"])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\nThe link ids.\n\n\n\n🔢 im\n\n\ncollect(group[\"links/8/im\"])\n\n4-element Vector{Bool}:\n 0\n 0\n 0\n 1\n\n\nIs the link minimized. A link is marked as not minimized when created, and then marked as minimized after running mechanics.\n\n\n\n🔢 re\n\n\ncollect(group[\"links/8/re\"])\n\n4×6 Matrix{Bool}:\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n\n\nThe reactions that are enabled.\nEach row of this matrix represents a link, each column represents a reaction.\n\n\n\n🔢 tags\n\n\ncollect(group[\"links/8/tags\"])\n\n4×4 Matrix{UInt32}:\n 0x00000001  0x00000001  0x00000001  0x00000001\n 0x00000005  0x00000001  0x00000006  0x00000001\n 0x00000000  0x00000000  0x00000006  0x00000001\n 0x00000005  0x00000001  0x00000001  0x00000001\n\n\nThe tags of the places the links are attached to.\nEach row of this matrix represents a link.\nEach place has two adjacent columns. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.\n\n\n\n📂 bs\n\nDefault: default bond states\nSee MEDYAN.update_link!.\nThe state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/bs\"]\n\n📂\n└─ 📂 1 🏷️ name =&gt; \"1\",\n   ├─ 🔢 1: 4 Float64  🏷️ name =&gt; \"k\",\n   └─ 🔢 2: 4 Float64  🏷️ name =&gt; \"L0\",\n\n\n\n\n\n📂 s\n\nDefault: default states\nSee MEDYAN.update_link!.\nThe state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/s\"]\n\n📂\n├─ 🔢 1: 4 Int64  🏷️ name =&gt; \"a\",\n└─ 🔢 2: 4 Float64  🏷️ name =&gt; \"b\",\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmechboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"mechboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"mechboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nmembranes\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_membranes\n\n\nattrs(group[\"membranes\"])[\"num_membranes\"]\n\n1\n\n\nTotal number of membranes.\n\n\n\nposition_scale\n\n\nattrs(group[\"membranes\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nPositions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\nThere is a subgroup for each membrane. The subgroups are named by the membrane index. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntypeid\n\n\nattrs(group[\"membranes/1\"])[\"typeid\"]\n\n1\n\n\nThis membrane’s type id.\n\n\n\n\n\n\n🔢 trilist\n\n\ncollect(group[\"membranes/1/trilist\"])\n\n3×1954 Matrix{Int64}:\n 490  680  317  602  572  565  448  286  …  688  972  447  552   53  635  354\n  42  418  518  398  288  279   82  624     166  581  460  293  898   49  397\n 182  711  808  792  978  958  501  172     371  216  343  355  782  979  979\n\n\nEach column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.\n\n\n\n🔢 vertlist\n\n\ncollect(group[\"membranes/1/vertlist\"])\n\n3×979 Matrix{Float64}:\n -395.375  228.25   -631.625    32.125  …  -566.0   -344.5    -556.875\n -266.125  124.875   234.0    -184.875      367.25   205.375   341.5\n  393.25    38.5     212.0    -364.0        103.25  -441.625  -189.0\n\n\nEach column is a vertex coordinate in nm.\n\n\n\n🔢 id\n\n\ncollect(group[\"membranes/1/id\"])\n\n979-element Vector{Int64}:\n  4702\n 14762\n 10420\n 11066\n  6022\n  2495\n  1262\n  5013\n 11796\n    10\n     ⋮\n 12731\n  5861\n 10661\n   974\n  1224\n  5415\n  3107\n  9714\n 12351\n\n\nArray of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.\n\n\n\noptional 🔢 copynumbers\n\n\ncollect(group[\"membranes/1/copynumbers\"])\n\n3×979 Matrix{Int64}:\n 0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n\n\nArray of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTags\n\n\n\n\n\nThere is a subgroup for each tag type with at least one current or past tag. Each tag type stores tag generations as a vector of UInt32 in g and packed places in p_n where n is the packed format version. If the generation is odd the tag is valid. otherwise the tag is an empty slot à la https://docs.rs/slotmap/latest/slotmap/.\n\n\n\n\n\n\n📂 fila_mono\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_mono/p_1\"])\n\n16-element Vector{UInt64}:\n 0x0000000100000002\n 0x0000000100000004\n 0x0000000200000002\n 0x0000000200000002\n 0x0000000100000002\n 0x0000000100000002\n 0x0000000200000004\n 0x0000000200000004\n 0x0000000000000004\n 0x0000000000000004\n 0x0000000000000008\n 0x000000000000000a\n 0x0000000000000002\n 0x0000000000000012\n 0x0000000000000002\n 0x0000000000000012\n\n\nThe filament monomer places for each tag stored as a vector of UInt64. Not all monomers will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i+n] is the zigzag encoded monomer id.\n\n\n\n\n\n\n\n\n\n\n📂 fila_tip\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_tip/p_1\"])\n\n8-element Vector{UInt64}:\n 0x0000000100000003\n 0x0000000100000002\n 0x0000000100000005\n 0x0000000100000004\n 0x0000000200000003\n 0x0000000200000002\n 0x0000000200000005\n 0x0000000200000004\n\n\nThe filament tip places for each tag stored as a vector of UInt64. All filament tips will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i] is odd for the minus end of the filament and even for the plus end.",
+    "text": "MEDYAN.jl uses Zarr v2 zip store for saving snapshots.\n\n\n\n\n\n\nOther Languages\n\n\n\nTo open the snapshots in python use zarr\n\n\n\n\nTrajectory outputs and logs are stored in a directory.\nThe output directory contains a traj sub directory with a header.json file, many $(most significant digits)/$(3 least significant digits).zip files, and finally a footer.json.\nThe initial state returned by setup is stored in traj/0/000.zip.\nInside the traj/$(i)/$(j).zip there is a snap/medyan group containing the snapshot of the MEDYAN.Context after the step. Other state may be stored in child groups of snap.\nThe header.json file also has a top level \"medyan\" key with a value describing the system being simulated.\nOther header information may be under other top level keys.\nSee https://github.com/medyan-dev/MEDYANSimRunner.jl for more details on the output directory structure.\n\n\n\nheader.json[\"medyan\"] contains static metadata about the simulation.\n\n\n\nusing MEDYAN\nimport JSON3\ncinit, s = MEDYAN.example_all_sites_context()\nJSON3.pretty(MEDYAN.header(cinit); allow_inf = true)\n\n{\n    \"version\": \"0.11.0\",\n    \"medyanInfo\": {\n        \"title\": \"MEDYAN.jl\",\n        \"version\": \"0.2.1\",\n        \"sourceCodeUrl\": \"https://github.com/medyan-dev/MEDYAN.jl\"\n    },\n    \"size\": {\n        \"x(nm)\": 2000,\n        \"y(nm)\": 500,\n        \"z(nm)\": 500\n    },\n    \"chem_grid_size\": {\n        \"nx\": 4,\n        \"ny\": 1,\n        \"nz\": 1,\n        \"voxel_x(nm)\": 500,\n        \"voxel_y(nm)\": 500,\n        \"voxel_z(nm)\": 500\n    },\n    \"diffusing_species\": [\n        {\n            \"name\": \"b\"\n        },\n        {\n            \"name\": \"c\"\n        }\n    ],\n    \"membrane_diffusing_species\": [\n        {\n            \"name\": \"ma\"\n        },\n        {\n            \"name\": \"mb\"\n        },\n        {\n            \"name\": \"mc\"\n        }\n    ],\n    \"fixed_species\": [\n        {\n            \"name\": \"d\"\n        },\n        {\n            \"name\": \"a\"\n        }\n    ],\n    \"filaments\": [\n        {\n            \"name\": \"a\",\n            \"radius(nm)\": 3,\n            \"monomerstates\": [\n                \"me\",\n                \"a\",\n                \"b\",\n                \"c\",\n                \"pe\"\n            ]\n        },\n        {\n            \"name\": \"b\",\n            \"radius(nm)\": 3,\n            \"monomerstates\": [\n                \"me\",\n                \"a\",\n                \"b\",\n                \"c\",\n                \"pe\"\n            ]\n        }\n    ],\n    \"links\": [\n        {\n            \"name\": \"fila_tip_restraint\",\n            \"places\": [\n                \"fila_tip\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_restraint\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_dummy\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_2bonds\",\n            \"places\": [\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"fila_mono_distance_bond\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"a\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"b\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"c\",\n            \"places\": [\n                \"fila_mono\",\n                \"fila_mono\"\n            ]\n        },\n        {\n            \"name\": \"memb_vert_restraint\",\n            \"places\": [\n                \"memb_vert\"\n            ]\n        }\n    ]\n}\n\n\n\n\n\n\nA snapshot describes the state of a Context at a single point in time.\nA snapshot can be used to set the state of a Context if it was constructed with the same system and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nBy default units are in nm, pN, and s. Coordinates are relative to the center of the grid.\nThe snapshot doesn’t hold the exact full state of a Context, simulations restarted from a snapshot may not have the exact same results because:\n\nThe snapshot doesn’t store the state of the random number generator.\nCoordinates may be rounded to save disk space.\nDictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.\nMultithreading may be non deterministic.\n\nBut if rounding isn’t too extreme, the reloaded Context should have the same statistics.\n\n\nThe snapshot format is versioned by the “version” attribute. The current snapshot version is:\n\nusing MEDYAN\nMEDYAN.SNAPSHOT_VERSION\n\nv\"0.11.0\"\n\n\nCurrently before snapshot version 1.0.0 anything goes.\nAfter snapshot version 1.0.0 is released.\nSnapshots written with a previous snapshot version above v\"1\" should be readable. Snapshots written with a newer snapshot version are generally not readable.\nIf new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.\nIf new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.\nIf the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.\n\n\nAny group, dataset, or attribute name prefixed with with “#” can change format or be removed without changing the snapshot version.\n“#experimental” is used for saving new types of agents or other data that doesn’t have a stable format yet.\n“#comment” is used for saving human readable comments that could change in format or wording.\n\n\n\n\n\nusing MEDYAN\nusing SmallZarrGroups\ncinit, s = MEDYAN.example_all_sites_context()\ngroup = MEDYAN.snapshot(cinit)\n\n\n\n\n\n\n\nSnapshot 📂\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntime (s)\n\n\nattrs(group)[\"time (s)\"]\n\n0.0\n\n\nDefault: No change\nSee MEDYAN.set_time!\n\n\n\nversion\n\n\nattrs(group)[\"version\"]\n\n\"0.11.0\"\n\n\nDefault: No change\nSee Snapshot Versioning\n\n\n\nuuid\n\n\nattrs(group)[\"uuid\"]\n\n\"37eee81f-88ae-4d11-b6b3-d38e1ccf0a08\"\n\n\nMust be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08”\nto be considered a valid MEDYAN snapshot.\n\n\n\n\n\n\n\n\n\n\n🔢\n\n\n\n\n\n\n\ndiffusingcounts\n\n\ncollect(group[\"diffusingcounts\"])\n\n2×4 Matrix{Int32}:\n 0   100   40  0\n 0  1000  400  0\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_adddiffusingcount!\n\n\n\nfixedcounts\n\n\ncollect(group[\"fixedcounts\"])\n\n2×4 Matrix{Float64}:\n 10.25  0.0  0.0   0.0\n  0.0   0.0  0.0  20.25\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_addfixedcount!\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\n\n\n\n\nchemboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"chemboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"chemboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nfilaments\n\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nposition_scale\n\n\nattrs(group[\"filaments\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nFilament positions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\n\nThere is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n🔢 endloadforces\n\n\ncollect(group[\"filaments/1/endloadforces\"])\n\n2×2 Matrix{Float64}:\n 0.0  0.0\n 0.0  0.0\n\n\nFilament end load forces (pN).\nEach row is the load force on the minus and plus ends of a filament.\n\n\n\n🔢 fids\n\n\ncollect(group[\"filaments/1/fids\"])\n\n2-element Vector{Int32}:\n 1\n 2\n\n\nFilament ids.\n\n\n\n🔢 minusend_num_notminimized\n\n\ncollect(group[\"filaments/1/minusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament minus ends since last minimization.\n\n\n\n🔢 plusend_num_notminimized\n\n\ncollect(group[\"filaments/1/plusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament plus ends since last minimization.\n\n\n\n🔢 num_cylinders\n\n\ncollect(group[\"filaments/1/num_cylinders\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nNumber of cylinders per filament.\n\n\n\n🔢 num_monomers\n\n\ncollect(group[\"filaments/1/num_monomers\"])\n\n2-element Vector{Int32}:\n 9\n 9\n\n\nNumber of monomers per filament.\n\n\n\n🔢 node_mids\n\n\ncollect(group[\"filaments/1/node_mids\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nThe monomer ids at the minus ends of the cylinders.\n                                   |\n                        -----+-----|-----+-----\n    minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end\n                        -----+-----|-----+-----\n                                   |\n                                   ^ A nodeposition is indicated by the line.\nThe monomer id with parenthesis (M) will in node_mids\n\n\n\n🔢 nodepositions\n\n\ncollect(group[\"filaments/1/nodepositions\"])\n\n4×3 Matrix{Float64}:\n -530.0  -50.0  -50.0\n -440.0  -50.0  -50.0\n -520.0  -49.0  -50.0\n -430.0  -49.0  -50.0\n\n\nEach row is a node position in nm.\n\n\n\n🔢 monomerstates\n\n\ncollect(group[\"filaments/1/monomerstates\"])\n\n18-element Vector{UInt8}:\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n\n\nMonomer states.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinks\n\n\n\n\n\nThere is a subgroup for each link type with at least one current or past link. The subgroups are named by their link type id.\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nversion\n\n\nattrs(group[\"links\"])[\"version\"]\n\n1\n\n\nlink data major version, version 1 is described here.\n\n\n\n\n\nFor example:\n\n\n\n\n\n\n\n📂 8\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_links\n\n\nattrs(group[\"links/8\"])[\"num_links\"]\n\n4\n\n\nNumber of links of this type.\n\n\n\nnext_lid\n\n\nattrs(group[\"links/8\"])[\"next_lid\"]\n\n5\n\n\nThe default next link id for new links.\nThis should be greater than all the existing link ids of this type.\n\n\n\n\n\n\n🔢 be\n\n\ncollect(group[\"links/8/be\"])\n\n4×1 Matrix{Bool}:\n 1\n 1\n 1\n 1\n\n\nThe bonds that are enabled.\nEach row of this matrix represents a link, each column represents a bond.\n\n\n\n🔢 ids\n\n\ncollect(group[\"links/8/ids\"])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\nThe link ids.\n\n\n\n🔢 im\n\n\ncollect(group[\"links/8/im\"])\n\n4-element Vector{Bool}:\n 0\n 0\n 0\n 1\n\n\nIs the link minimized. A link is marked as not minimized when created, and then marked as minimized after running mechanics.\n\n\n\n🔢 re\n\n\ncollect(group[\"links/8/re\"])\n\n4×6 Matrix{Bool}:\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n\n\nThe reactions that are enabled.\nEach row of this matrix represents a link, each column represents a reaction.\n\n\n\n🔢 tags\n\n\ncollect(group[\"links/8/tags\"])\n\n4×4 Matrix{UInt32}:\n 0x00000001  0x00000001  0x00000001  0x00000001\n 0x00000005  0x00000001  0x00000006  0x00000001\n 0x00000000  0x00000000  0x00000006  0x00000001\n 0x00000005  0x00000001  0x00000001  0x00000001\n\n\nThe tags of the places the links are attached to.\nEach row of this matrix represents a link.\nEach place has two adjacent columns. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.\n\n\n\n📂 bs\n\nDefault: default bond states\nSee MEDYAN.update_link!.\nThe state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/bs\"]\n\n📂\n└─ 📂 1 🏷️ name =&gt; \"1\",\n   ├─ 🔢 1: 4 Float64  🏷️ name =&gt; \"k\",\n   └─ 🔢 2: 4 Float64  🏷️ name =&gt; \"L0\",\n\n\n\n\n\n📂 s\n\nDefault: default states\nSee MEDYAN.update_link!.\nThe state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/s\"]\n\n📂\n├─ 🔢 1: 4 Int64  🏷️ name =&gt; \"a\",\n└─ 🔢 2: 4 Float64  🏷️ name =&gt; \"b\",\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmechboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"mechboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"mechboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nmembranes\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_membranes\n\n\nattrs(group[\"membranes\"])[\"num_membranes\"]\n\n1\n\n\nTotal number of membranes.\n\n\n\nposition_scale\n\n\nattrs(group[\"membranes\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nPositions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\nThere is a subgroup for each membrane. The subgroups are named by the membrane index. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntypeid\n\n\nattrs(group[\"membranes/1\"])[\"typeid\"]\n\n1\n\n\nThis membrane’s type id.\n\n\n\n\n\n\n🔢 trilist\n\n\ncollect(group[\"membranes/1/trilist\"])\n\n3×1954 Matrix{Int64}:\n 490  680  317  602  572  565  448  286  …  688  972  447  552   53  635  354\n  42  418  518  398  288  279   82  624     166  581  460  293  898   49  397\n 182  711  808  792  978  958  501  172     371  216  343  355  782  979  979\n\n\nEach column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.\n\n\n\n🔢 vertlist\n\n\ncollect(group[\"membranes/1/vertlist\"])\n\n3×979 Matrix{Float64}:\n -395.375  228.25   -631.625    32.125  …  -566.0   -344.5    -556.875\n -266.125  124.875   234.0    -184.875      367.25   205.375   341.5\n  393.25    38.5     212.0    -364.0        103.25  -441.625  -189.0\n\n\nEach column is a vertex coordinate in nm.\n\n\n\n🔢 id\n\n\ncollect(group[\"membranes/1/id\"])\n\n979-element Vector{Int64}:\n  4702\n 14762\n 10420\n 11066\n  6022\n  2495\n  1262\n  5013\n 11796\n    10\n     ⋮\n 12731\n  5861\n 10661\n   974\n  1224\n  5415\n  3107\n  9714\n 12351\n\n\nArray of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.\n\n\n\noptional 🔢 copynumbers\n\n\ncollect(group[\"membranes/1/copynumbers\"])\n\n3×979 Matrix{Int64}:\n 0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  1  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n\n\nArray of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTags\n\n\n\n\n\nThere is a subgroup for each tag type with at least one current or past tag. Each tag type stores tag generations as a vector of UInt32 in g and packed places in p_n where n is the packed format version. If the generation is odd the tag is valid. otherwise the tag is an empty slot à la https://docs.rs/slotmap/latest/slotmap/.\n\n\n\n\n\n\n📂 fila_mono\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_mono/p_1\"])\n\n16-element Vector{UInt64}:\n 0x0000000100000002\n 0x0000000100000004\n 0x0000000200000002\n 0x0000000200000002\n 0x0000000100000002\n 0x0000000100000002\n 0x0000000200000004\n 0x0000000200000004\n 0x0000000000000004\n 0x0000000000000004\n 0x0000000000000008\n 0x000000000000000a\n 0x0000000000000002\n 0x0000000000000012\n 0x0000000000000002\n 0x0000000000000012\n\n\nThe filament monomer places for each tag stored as a vector of UInt64. Not all monomers will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i+n] is the zigzag encoded monomer id.\n\n\n\n\n\n\n\n\n\n\n📂 fila_tip\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_tip/p_1\"])\n\n8-element Vector{UInt64}:\n 0x0000000100000003\n 0x0000000100000002\n 0x0000000100000005\n 0x0000000100000004\n 0x0000000200000003\n 0x0000000200000002\n 0x0000000200000005\n 0x0000000200000004\n\n\nThe filament tip places for each tag stored as a vector of UInt64. All filament tips will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i] is odd for the minus end of the filament and even for the plus end.",
     "crumbs": [
       "Reference",
       "File Formats"
@@ -1346,7 +1360,7 @@
     "href": "reference/fileformats.html#snapshot-group",
     "title": "File Formats",
     "section": "",
-    "text": "A snapshot describes the state of a Context at a single point in time.\nA snapshot can be used to set the state of a Context if it was constructed with the same system and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nBy default units are in nm, pN, and s. Coordinates are relative to the center of the grid.\nThe snapshot doesn’t hold the exact full state of a Context, simulations restarted from a snapshot may not have the exact same results because:\n\nThe snapshot doesn’t store the state of the random number generator.\nCoordinates may be rounded to save disk space.\nDictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.\nMultithreading may be non deterministic.\n\nBut if rounding isn’t too extreme, the reloaded Context should have the same statistics.\n\n\nThe snapshot format is versioned by the “version” attribute. The current snapshot version is:\n\nusing MEDYAN\nMEDYAN.SNAPSHOT_VERSION\n\nv\"0.11.0\"\n\n\nCurrently before snapshot version 1.0.0 anything goes.\nAfter snapshot version 1.0.0 is released.\nSnapshots written with a previous snapshot version above v\"1\" should be readable. Snapshots written with a newer snapshot version are generally not readable.\nIf new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.\nIf new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.\nIf the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.\n\n\nAny group, dataset, or attribute name prefixed with with “#” can change format or be removed without changing the snapshot version.\n“#experimental” is used for saving new types of agents or other data that doesn’t have a stable format yet.\n“#comment” is used for saving human readable comments that could change in format or wording.\n\n\n\n\n\nusing MEDYAN\nusing SmallZarrGroups\ncinit, s = MEDYAN.example_all_sites_context()\ngroup = MEDYAN.snapshot(cinit)\n\n\n\n\n\n\n\nSnapshot 📂\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntime (s)\n\n\nattrs(group)[\"time (s)\"]\n\n0.0\n\n\nDefault: No change\nSee MEDYAN.set_time!\n\n\n\nversion\n\n\nattrs(group)[\"version\"]\n\n\"0.11.0\"\n\n\nDefault: No change\nSee Snapshot Versioning\n\n\n\nuuid\n\n\nattrs(group)[\"uuid\"]\n\n\"37eee81f-88ae-4d11-b6b3-d38e1ccf0a08\"\n\n\nMust be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08”\nto be considered a valid MEDYAN snapshot.\n\n\n\n\n\n\n\n\n\n\n🔢\n\n\n\n\n\n\n\ndiffusingcounts\n\n\ncollect(group[\"diffusingcounts\"])\n\n2×4 Matrix{Int32}:\n 0   100   40  0\n 0  1000  400  0\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_adddiffusingcount!\n\n\n\nfixedcounts\n\n\ncollect(group[\"fixedcounts\"])\n\n2×4 Matrix{Float64}:\n 10.25  0.0  0.0   0.0\n  0.0   0.0  0.0  20.25\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_addfixedcount!\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\n\n\n\n\nchemboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"chemboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"chemboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nfilaments\n\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nposition_scale\n\n\nattrs(group[\"filaments\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nFilament positions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\n\nThere is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n🔢 endloadforces\n\n\ncollect(group[\"filaments/1/endloadforces\"])\n\n2×2 Matrix{Float64}:\n 0.0  0.0\n 0.0  0.0\n\n\nFilament end load forces (pN).\nEach row is the load force on the minus and plus ends of a filament.\n\n\n\n🔢 fids\n\n\ncollect(group[\"filaments/1/fids\"])\n\n2-element Vector{Int32}:\n 1\n 2\n\n\nFilament ids.\n\n\n\n🔢 minusend_num_notminimized\n\n\ncollect(group[\"filaments/1/minusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament minus ends since last minimization.\n\n\n\n🔢 plusend_num_notminimized\n\n\ncollect(group[\"filaments/1/plusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament plus ends since last minimization.\n\n\n\n🔢 num_cylinders\n\n\ncollect(group[\"filaments/1/num_cylinders\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nNumber of cylinders per filament.\n\n\n\n🔢 num_monomers\n\n\ncollect(group[\"filaments/1/num_monomers\"])\n\n2-element Vector{Int32}:\n 9\n 9\n\n\nNumber of monomers per filament.\n\n\n\n🔢 node_mids\n\n\ncollect(group[\"filaments/1/node_mids\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nThe monomer ids at the minus ends of the cylinders.\n                                   |\n                        -----+-----|-----+-----\n    minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end\n                        -----+-----|-----+-----\n                                   |\n                                   ^ A nodeposition is indicated by the line.\nThe monomer id with parenthesis (M) will in node_mids\n\n\n\n🔢 nodepositions\n\n\ncollect(group[\"filaments/1/nodepositions\"])\n\n4×3 Matrix{Float64}:\n -530.0  -50.0  -50.0\n -440.0  -50.0  -50.0\n -520.0  -49.0  -50.0\n -430.0  -49.0  -50.0\n\n\nEach row is a node position in nm.\n\n\n\n🔢 monomerstates\n\n\ncollect(group[\"filaments/1/monomerstates\"])\n\n18-element Vector{UInt8}:\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n\n\nMonomer states.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinks\n\n\n\n\n\nThere is a subgroup for each link type with at least one current or past link. The subgroups are named by their link type id.\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nversion\n\n\nattrs(group[\"links\"])[\"version\"]\n\n1\n\n\nlink data major version, version 1 is described here.\n\n\n\n\n\nFor example:\n\n\n\n\n\n\n\n📂 8\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_links\n\n\nattrs(group[\"links/8\"])[\"num_links\"]\n\n4\n\n\nNumber of links of this type.\n\n\n\nnext_lid\n\n\nattrs(group[\"links/8\"])[\"next_lid\"]\n\n5\n\n\nThe default next link id for new links.\nThis should be greater than all the existing link ids of this type.\n\n\n\n\n\n\n🔢 be\n\n\ncollect(group[\"links/8/be\"])\n\n4×1 Matrix{Bool}:\n 1\n 1\n 1\n 1\n\n\nThe bonds that are enabled.\nEach row of this matrix represents a link, each column represents a bond.\n\n\n\n🔢 ids\n\n\ncollect(group[\"links/8/ids\"])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\nThe link ids.\n\n\n\n🔢 im\n\n\ncollect(group[\"links/8/im\"])\n\n4-element Vector{Bool}:\n 0\n 0\n 0\n 1\n\n\nIs the link minimized. A link is marked as not minimized when created, and then marked as minimized after running mechanics.\n\n\n\n🔢 re\n\n\ncollect(group[\"links/8/re\"])\n\n4×6 Matrix{Bool}:\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n\n\nThe reactions that are enabled.\nEach row of this matrix represents a link, each column represents a reaction.\n\n\n\n🔢 tags\n\n\ncollect(group[\"links/8/tags\"])\n\n4×4 Matrix{UInt32}:\n 0x00000001  0x00000001  0x00000001  0x00000001\n 0x00000005  0x00000001  0x00000006  0x00000001\n 0x00000000  0x00000000  0x00000006  0x00000001\n 0x00000005  0x00000001  0x00000001  0x00000001\n\n\nThe tags of the places the links are attached to.\nEach row of this matrix represents a link.\nEach place has two adjacent columns. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.\n\n\n\n📂 bs\n\nDefault: default bond states\nSee MEDYAN.update_link!.\nThe state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/bs\"]\n\n📂\n└─ 📂 1 🏷️ name =&gt; \"1\",\n   ├─ 🔢 1: 4 Float64  🏷️ name =&gt; \"k\",\n   └─ 🔢 2: 4 Float64  🏷️ name =&gt; \"L0\",\n\n\n\n\n\n📂 s\n\nDefault: default states\nSee MEDYAN.update_link!.\nThe state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/s\"]\n\n📂\n├─ 🔢 1: 4 Int64  🏷️ name =&gt; \"a\",\n└─ 🔢 2: 4 Float64  🏷️ name =&gt; \"b\",\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmechboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"mechboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"mechboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nmembranes\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_membranes\n\n\nattrs(group[\"membranes\"])[\"num_membranes\"]\n\n1\n\n\nTotal number of membranes.\n\n\n\nposition_scale\n\n\nattrs(group[\"membranes\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nPositions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\nThere is a subgroup for each membrane. The subgroups are named by the membrane index. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntypeid\n\n\nattrs(group[\"membranes/1\"])[\"typeid\"]\n\n1\n\n\nThis membrane’s type id.\n\n\n\n\n\n\n🔢 trilist\n\n\ncollect(group[\"membranes/1/trilist\"])\n\n3×1954 Matrix{Int64}:\n 490  680  317  602  572  565  448  286  …  688  972  447  552   53  635  354\n  42  418  518  398  288  279   82  624     166  581  460  293  898   49  397\n 182  711  808  792  978  958  501  172     371  216  343  355  782  979  979\n\n\nEach column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.\n\n\n\n🔢 vertlist\n\n\ncollect(group[\"membranes/1/vertlist\"])\n\n3×979 Matrix{Float64}:\n -395.375  228.25   -631.625    32.125  …  -566.0   -344.5    -556.875\n -266.125  124.875   234.0    -184.875      367.25   205.375   341.5\n  393.25    38.5     212.0    -364.0        103.25  -441.625  -189.0\n\n\nEach column is a vertex coordinate in nm.\n\n\n\n🔢 id\n\n\ncollect(group[\"membranes/1/id\"])\n\n979-element Vector{Int64}:\n  4702\n 14762\n 10420\n 11066\n  6022\n  2495\n  1262\n  5013\n 11796\n    10\n     ⋮\n 12731\n  5861\n 10661\n   974\n  1224\n  5415\n  3107\n  9714\n 12351\n\n\nArray of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.\n\n\n\noptional 🔢 copynumbers\n\n\ncollect(group[\"membranes/1/copynumbers\"])\n\n3×979 Matrix{Int64}:\n 0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n\n\nArray of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTags\n\n\n\n\n\nThere is a subgroup for each tag type with at least one current or past tag. Each tag type stores tag generations as a vector of UInt32 in g and packed places in p_n where n is the packed format version. If the generation is odd the tag is valid. otherwise the tag is an empty slot à la https://docs.rs/slotmap/latest/slotmap/.\n\n\n\n\n\n\n📂 fila_mono\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_mono/p_1\"])\n\n16-element Vector{UInt64}:\n 0x0000000100000002\n 0x0000000100000004\n 0x0000000200000002\n 0x0000000200000002\n 0x0000000100000002\n 0x0000000100000002\n 0x0000000200000004\n 0x0000000200000004\n 0x0000000000000004\n 0x0000000000000004\n 0x0000000000000008\n 0x000000000000000a\n 0x0000000000000002\n 0x0000000000000012\n 0x0000000000000002\n 0x0000000000000012\n\n\nThe filament monomer places for each tag stored as a vector of UInt64. Not all monomers will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i+n] is the zigzag encoded monomer id.\n\n\n\n\n\n\n\n\n\n\n📂 fila_tip\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_tip/p_1\"])\n\n8-element Vector{UInt64}:\n 0x0000000100000003\n 0x0000000100000002\n 0x0000000100000005\n 0x0000000100000004\n 0x0000000200000003\n 0x0000000200000002\n 0x0000000200000005\n 0x0000000200000004\n\n\nThe filament tip places for each tag stored as a vector of UInt64. All filament tips will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i] is odd for the minus end of the filament and even for the plus end.",
+    "text": "A snapshot describes the state of a Context at a single point in time.\nA snapshot can be used to set the state of a Context if it was constructed with the same system and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nBy default units are in nm, pN, and s. Coordinates are relative to the center of the grid.\nThe snapshot doesn’t hold the exact full state of a Context, simulations restarted from a snapshot may not have the exact same results because:\n\nThe snapshot doesn’t store the state of the random number generator.\nCoordinates may be rounded to save disk space.\nDictionaries and other internal data structures may get reordered and or resorted when the snapshot is loaded.\nMultithreading may be non deterministic.\n\nBut if rounding isn’t too extreme, the reloaded Context should have the same statistics.\n\n\nThe snapshot format is versioned by the “version” attribute. The current snapshot version is:\n\nusing MEDYAN\nMEDYAN.SNAPSHOT_VERSION\n\nv\"0.11.0\"\n\n\nCurrently before snapshot version 1.0.0 anything goes.\nAfter snapshot version 1.0.0 is released.\nSnapshots written with a previous snapshot version above v\"1\" should be readable. Snapshots written with a newer snapshot version are generally not readable.\nIf new agent types are added to MEDYAN.jl, usually only the minor version needs to be updated, as nothing special needs to be done to read older snapshot versions without that added agent type.\nIf new data is added to an existing agent type, also usually only the minor version needs to be increment, though the case of the new data not existing must be handled with some default.\nIf the way an existing agent type is stored significantly changes, such that external code analyzing the snapshot would need to be modified, the major version must be incremented. Also if possible there should be a function to update a snapshot from the old version to the new version.\n\n\nAny group, dataset, or attribute name prefixed with with “#” can change format or be removed without changing the snapshot version.\n“#experimental” is used for saving new types of agents or other data that doesn’t have a stable format yet.\n“#comment” is used for saving human readable comments that could change in format or wording.\n\n\n\n\n\nusing MEDYAN\nusing SmallZarrGroups\ncinit, s = MEDYAN.example_all_sites_context()\ngroup = MEDYAN.snapshot(cinit)\n\n\n\n\n\n\n\nSnapshot 📂\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntime (s)\n\n\nattrs(group)[\"time (s)\"]\n\n0.0\n\n\nDefault: No change\nSee MEDYAN.set_time!\n\n\n\nversion\n\n\nattrs(group)[\"version\"]\n\n\"0.11.0\"\n\n\nDefault: No change\nSee Snapshot Versioning\n\n\n\nuuid\n\n\nattrs(group)[\"uuid\"]\n\n\"37eee81f-88ae-4d11-b6b3-d38e1ccf0a08\"\n\n\nMust be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08”\nto be considered a valid MEDYAN snapshot.\n\n\n\n\n\n\n\n\n\n\n🔢\n\n\n\n\n\n\n\ndiffusingcounts\n\n\ncollect(group[\"diffusingcounts\"])\n\n2×4 Matrix{Int32}:\n 0   100   40  0\n 0  1000  400  0\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_adddiffusingcount!\n\n\n\nfixedcounts\n\n\ncollect(group[\"fixedcounts\"])\n\n2×4 Matrix{Float64}:\n 10.25  0.0  0.0   0.0\n  0.0   0.0  0.0  20.25\n\n\nDefault: Empty\nIndexed by [species id, compartment id] to give count.\nSee MEDYAN.chem_addfixedcount!\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\n\n\n\n\nchemboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"chemboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"chemboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nfilaments\n\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nposition_scale\n\n\nattrs(group[\"filaments\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nFilament positions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\n\nThere is a subgroup for each filament type with at least one filament. The subgroups are named by their filament type id. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n🔢 endloadforces\n\n\ncollect(group[\"filaments/1/endloadforces\"])\n\n2×2 Matrix{Float64}:\n 0.0  0.0\n 0.0  0.0\n\n\nFilament end load forces (pN).\nEach row is the load force on the minus and plus ends of a filament.\n\n\n\n🔢 fids\n\n\ncollect(group[\"filaments/1/fids\"])\n\n2-element Vector{Int32}:\n 1\n 2\n\n\nFilament ids.\n\n\n\n🔢 minusend_num_notminimized\n\n\ncollect(group[\"filaments/1/minusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament minus ends since last minimization.\n\n\n\n🔢 plusend_num_notminimized\n\n\ncollect(group[\"filaments/1/plusend_num_notminimized\"])\n\n2-element Vector{Int32}:\n 0\n 0\n\n\nNumber of newly added monomers to the filament plus ends since last minimization.\n\n\n\n🔢 num_cylinders\n\n\ncollect(group[\"filaments/1/num_cylinders\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nNumber of cylinders per filament.\n\n\n\n🔢 num_monomers\n\n\ncollect(group[\"filaments/1/num_monomers\"])\n\n2-element Vector{Int32}:\n 9\n 9\n\n\nNumber of monomers per filament.\n\n\n\n🔢 node_mids\n\n\ncollect(group[\"filaments/1/node_mids\"])\n\n2-element Vector{Int32}:\n 1\n 1\n\n\nThe monomer ids at the minus ends of the cylinders.\n                                   |\n                        -----+-----|-----+-----\n    minus end &lt;----       M  |  M  | (M) |  M        ----&gt; plus end\n                        -----+-----|-----+-----\n                                   |\n                                   ^ A nodeposition is indicated by the line.\nThe monomer id with parenthesis (M) will in node_mids\n\n\n\n🔢 nodepositions\n\n\ncollect(group[\"filaments/1/nodepositions\"])\n\n4×3 Matrix{Float64}:\n -530.0  -50.0  -50.0\n -440.0  -50.0  -50.0\n -520.0  -49.0  -50.0\n -430.0  -49.0  -50.0\n\n\nEach row is a node position in nm.\n\n\n\n🔢 monomerstates\n\n\ncollect(group[\"filaments/1/monomerstates\"])\n\n18-element Vector{UInt8}:\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n 0x01\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x02\n 0x05\n\n\nMonomer states.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinks\n\n\n\n\n\nThere is a subgroup for each link type with at least one current or past link. The subgroups are named by their link type id.\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nversion\n\n\nattrs(group[\"links\"])[\"version\"]\n\n1\n\n\nlink data major version, version 1 is described here.\n\n\n\n\n\nFor example:\n\n\n\n\n\n\n\n📂 8\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_links\n\n\nattrs(group[\"links/8\"])[\"num_links\"]\n\n4\n\n\nNumber of links of this type.\n\n\n\nnext_lid\n\n\nattrs(group[\"links/8\"])[\"next_lid\"]\n\n5\n\n\nThe default next link id for new links.\nThis should be greater than all the existing link ids of this type.\n\n\n\n\n\n\n🔢 be\n\n\ncollect(group[\"links/8/be\"])\n\n4×1 Matrix{Bool}:\n 1\n 1\n 1\n 1\n\n\nThe bonds that are enabled.\nEach row of this matrix represents a link, each column represents a bond.\n\n\n\n🔢 ids\n\n\ncollect(group[\"links/8/ids\"])\n\n4-element Vector{Int64}:\n 1\n 2\n 3\n 4\n\n\nThe link ids.\n\n\n\n🔢 im\n\n\ncollect(group[\"links/8/im\"])\n\n4-element Vector{Bool}:\n 0\n 0\n 0\n 1\n\n\nIs the link minimized. A link is marked as not minimized when created, and then marked as minimized after running mechanics.\n\n\n\n🔢 re\n\n\ncollect(group[\"links/8/re\"])\n\n4×6 Matrix{Bool}:\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n 1  1  1  1  1  1\n\n\nThe reactions that are enabled.\nEach row of this matrix represents a link, each column represents a reaction.\n\n\n\n🔢 tags\n\n\ncollect(group[\"links/8/tags\"])\n\n4×4 Matrix{UInt32}:\n 0x00000001  0x00000001  0x00000001  0x00000001\n 0x00000005  0x00000001  0x00000006  0x00000001\n 0x00000000  0x00000000  0x00000006  0x00000001\n 0x00000005  0x00000001  0x00000001  0x00000001\n\n\nThe tags of the places the links are attached to.\nEach row of this matrix represents a link.\nEach place has two adjacent columns. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.\n\n\n\n📂 bs\n\nDefault: default bond states\nSee MEDYAN.update_link!.\nThe state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/bs\"]\n\n📂\n└─ 📂 1 🏷️ name =&gt; \"1\",\n   ├─ 🔢 1: 4 Float64  🏷️ name =&gt; \"k\",\n   └─ 🔢 2: 4 Float64  🏷️ name =&gt; \"L0\",\n\n\n\n\n\n📂 s\n\nDefault: default states\nSee MEDYAN.update_link!.\nThe state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the StructArray Any property in the default state that isn’t in the snapshot will stay at its default value.\n\ngroup[\"links/8/s\"]\n\n📂\n├─ 🔢 1: 4 Int64  🏷️ name =&gt; \"a\",\n└─ 🔢 2: 4 Float64  🏷️ name =&gt; \"b\",\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmechboundary\n\n\n\n\n\nThere is a dataset for each type of boundary, the total boundary is an intersection of the following.\nSee MEDYAN.Boundary\n\n\n🔢 capsules\n\n\ncollect(group[\"mechboundary/capsules\"])\n\n8×1 Matrix{Float64}:\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n     0.0\n 10000.0\n     1.0\n\n\nDefault: Empty\nEach column of the dataset is a capsule.\n\n\n\n🔢 planes\n\n\ncollect(group[\"mechboundary/planes\"])\n\n4×6 Matrix{Float64}:\n   -10.0     10.0     0.0     0.0     0.0     0.0\n     0.0      0.0   -10.0    10.0     0.0     0.0\n     0.0      0.0     0.0     0.0   -10.0    10.0\n 10000.0  10000.0  2500.0  2500.0  2500.0  2500.0\n\n\nDefault: Empty\nEach column of the dataset is a plane.\n\n\n\n\n\n\n\n\n\n\n\n\nmembranes\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\nnum_membranes\n\n\nattrs(group[\"membranes\"])[\"num_membranes\"]\n\n1\n\n\nTotal number of membranes.\n\n\n\nposition_scale\n\n\nattrs(group[\"membranes\"])[\"position_scale\"]\n\n3\n\n\nDefault: No effect\nPositions were rounded to the nearest 2^-position_scale nm when saved.\n\n\n\n\nThere is a subgroup for each membrane. The subgroups are named by the membrane index. For example:\n\n\n\n\n\n\n\n📂 1\n\n\n\n\n\n\n\n\n\n\n\n🏷️\n\n\n\n\n\n\n\ntypeid\n\n\nattrs(group[\"membranes/1\"])[\"typeid\"]\n\n1\n\n\nThis membrane’s type id.\n\n\n\n\n\n\n🔢 trilist\n\n\ncollect(group[\"membranes/1/trilist\"])\n\n3×1954 Matrix{Int64}:\n 490  680  317  602  572  565  448  286  …  688  972  447  552   53  635  354\n  42  418  518  398  288  279   82  624     166  581  460  293  898   49  397\n 182  711  808  792  978  958  501  172     371  216  343  355  782  979  979\n\n\nEach column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.\n\n\n\n🔢 vertlist\n\n\ncollect(group[\"membranes/1/vertlist\"])\n\n3×979 Matrix{Float64}:\n -395.375  228.25   -631.625    32.125  …  -566.0   -344.5    -556.875\n -266.125  124.875   234.0    -184.875      367.25   205.375   341.5\n  393.25    38.5     212.0    -364.0        103.25  -441.625  -189.0\n\n\nEach column is a vertex coordinate in nm.\n\n\n\n🔢 id\n\n\ncollect(group[\"membranes/1/id\"])\n\n979-element Vector{Int64}:\n  4702\n 14762\n 10420\n 11066\n  6022\n  2495\n  1262\n  5013\n 11796\n    10\n     ⋮\n 12731\n  5861\n 10661\n   974\n  1224\n  5415\n  3107\n  9714\n 12351\n\n\nArray of vertex IDs. Each vertex has an id which is assigned upon initialization and persists throughout its lifetime.\n\n\n\noptional 🔢 copynumbers\n\n\ncollect(group[\"membranes/1/copynumbers\"])\n\n3×979 Matrix{Int64}:\n 0  0  0  0  0  0  0  0  0  0  0  0  0  …  0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  1  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n 0  0  0  0  0  0  0  0  0  0  0  0  0     0  0  0  0  0  0  0  0  0  0  0  0\n\n\nArray of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTags\n\n\n\n\n\nThere is a subgroup for each tag type with at least one current or past tag. Each tag type stores tag generations as a vector of UInt32 in g and packed places in p_n where n is the packed format version. If the generation is odd the tag is valid. otherwise the tag is an empty slot à la https://docs.rs/slotmap/latest/slotmap/.\n\n\n\n\n\n\n📂 fila_mono\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_mono/p_1\"])\n\n16-element Vector{UInt64}:\n 0x0000000100000002\n 0x0000000100000004\n 0x0000000200000002\n 0x0000000200000002\n 0x0000000100000002\n 0x0000000100000002\n 0x0000000200000004\n 0x0000000200000004\n 0x0000000000000004\n 0x0000000000000004\n 0x0000000000000008\n 0x000000000000000a\n 0x0000000000000002\n 0x0000000000000012\n 0x0000000000000002\n 0x0000000000000012\n\n\nThe filament monomer places for each tag stored as a vector of UInt64. Not all monomers will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i+n] is the zigzag encoded monomer id.\n\n\n\n\n\n\n\n\n\n\n📂 fila_tip\n\n\n\n\n\n\n\n🔢 p_1\n\n\ncollect(group[\"tags/fila_tip/p_1\"])\n\n8-element Vector{UInt64}:\n 0x0000000100000003\n 0x0000000100000002\n 0x0000000100000005\n 0x0000000100000004\n 0x0000000200000003\n 0x0000000200000002\n 0x0000000200000005\n 0x0000000200000004\n\n\nThe filament tip places for each tag stored as a vector of UInt64. All filament tips will have tags. For tag i of n total tags, p_1[i]&gt;&gt;&gt;32 is the filament type id, (p_1[i]%UInt32)&gt;&gt;1 is the filament index, and p_1[i] is odd for the minus end of the filament and even for the plus end.",
     "crumbs": [
       "Reference",
       "File Formats"
@@ -1357,7 +1371,7 @@
     "href": "docstrings.html",
     "title": "Docstrings",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\nMEDYAN.boundary_capsule\n\n\n\n\nMEDYAN.boundary_cylinder\n\n\n\n\nMEDYAN.boundary_plane\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.depolymerize_fila!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fila_mono_states\n\n\n\n\nMEDYAN.fila_node_mids\n\n\n\n\nMEDYAN.fila_node_positions\n\n\n\n\nMEDYAN.fila_num_nodes\n\n\n\n\nMEDYAN.fila_num_unmin_ends\n\n\n\n\nMEDYAN.fila_tip_tags\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.get_all_links\n\n\n\n\nMEDYAN.get_all_tags\n\n\n\n\nMEDYAN.get_bond_enabled\n\n\n\n\nMEDYAN.get_bond_states\n\n\n\n\nMEDYAN.get_chem_state\n\n\n\n\nMEDYAN.get_directions\n\n\n\n\nMEDYAN.get_position\n\n\n\n\nMEDYAN.get_reaction_enabled\n\n\n\n\nMEDYAN.get_state\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.has_tag\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.is_minimized\n\n\n\n\nMEDYAN.link2tags\n\n\n\n\nMEDYAN.link_exists\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.make_fila!\n\n\n\n\nMEDYAN.make_fila_rand!\n\n\n\n\nMEDYAN.make_link!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_directions\n\n\n\n\nMEDYAN.num_fila\n\n\n\n\nMEDYAN.num_fila_types\n\n\n\n\nMEDYAN.num_link_types\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.place2links\n\n\n\n\nMEDYAN.place2tag\n\n\n\n\nMEDYAN.place_exists\n\n\n\n\nMEDYAN.polymerize_fila!\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.remove_fila!\n\n\n\n\nMEDYAN.remove_link!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_fila!\n\n\n\n\nMEDYAN.tag!\n\n\n\n\nMEDYAN.tag2links\n\n\n\n\nMEDYAN.tag2place\n\n\n\n\nMEDYAN.tag_exists\n\n\n\n\nMEDYAN.update_fila_mono_state!\n\n\n\n\nMEDYAN.update_link!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/boundary.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filament/depolymerize_fila.jl\n\n\n\n\nsrc/filament/endsites.jl\n\n\n\n\nsrc/filament/functions.jl\n\n\n\n\nsrc/filament/make_fila.jl\n\n\n\n\nsrc/filament/make_fila_rand.jl\n\n\n\n\nsrc/filament/polymerize_fila.jl\n\n\n\n\nsrc/filament/remove_fila.jl\n\n\n\n\nsrc/filament/sever_fila.jl\n\n\n\n\nsrc/filament/sites.jl\n\n\n\n\nsrc/filament/update_fila_mono_state.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/links/link-manager.jl\n\n\n\n\nsrc/links/place-indexes.jl\n\n\n\n\nsrc/links/places.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/sys_def-types.jl\n\n\n\n\nsrc/sys_def.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\n\n\n\n\nBase.:*\n\n\n\n\nBase.copy\n\n\n\n\nBase.delete!\n\n\n\n\nBase.empty!\n\n\n\n\nBase.getindex\n\n\n\n\nBase.haskey\n\n\n\n\nBase.iterate\n\n\n\n\nBase.length\n\n\n\n\nBase.push!\n\n\n\n\nBase.setindex!\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\nMEDYAN.Context\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\nMEDYAN.MonomerName\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\nMEDYAN.VertexState\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\nMEDYAN.boundary_capsule\n\n\n\n\nMEDYAN.boundary_cylinder\n\n\n\n\nMEDYAN.boundary_plane\n\n\n\n\nMEDYAN.centerof\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\nMEDYAN.depolymerize_fila!\n\n\n\n\nMEDYAN.fil_mon_states\n\n\n\n\nMEDYAN.fil_node_mon_ids\n\n\n\n\nMEDYAN.fil_node_positions\n\n\n\n\nMEDYAN.fila_mono_states\n\n\n\n\nMEDYAN.fila_node_mids\n\n\n\n\nMEDYAN.fila_node_positions\n\n\n\n\nMEDYAN.fila_num_nodes\n\n\n\n\nMEDYAN.fila_num_unmin_ends\n\n\n\n\nMEDYAN.fila_tip_tags\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\nMEDYAN.filtype_fil_ids\n\n\n\n\nMEDYAN.get_all_links\n\n\n\n\nMEDYAN.get_all_tags\n\n\n\n\nMEDYAN.get_bond_enabled\n\n\n\n\nMEDYAN.get_bond_states\n\n\n\n\nMEDYAN.get_chem_state\n\n\n\n\nMEDYAN.get_directions\n\n\n\n\nMEDYAN.get_link_mechanics\n\n\n\n\nMEDYAN.get_position\n\n\n\n\nMEDYAN.get_reaction_enabled\n\n\n\n\nMEDYAN.get_state\n\n\n\n\nMEDYAN.grididat\n\n\n\n\nMEDYAN.has_tag\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\nMEDYAN.is_minimized\n\n\n\n\nMEDYAN.link2tags\n\n\n\n\nMEDYAN.link_exists\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\nMEDYAN.make_fila!\n\n\n\n\nMEDYAN.make_fila_rand!\n\n\n\n\nMEDYAN.make_link!\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\nMEDYAN.mon_3states\n\n\n\n\nMEDYAN.mon_plusvector\n\n\n\n\nMEDYAN.mon_position\n\n\n\n\nMEDYAN.mon_position_plusvector\n\n\n\n\nMEDYAN.newmembrane!\n\n\n\n\nMEDYAN.num_directions\n\n\n\n\nMEDYAN.num_fila\n\n\n\n\nMEDYAN.num_fila_types\n\n\n\n\nMEDYAN.num_link_types\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\nMEDYAN.place2links\n\n\n\n\nMEDYAN.place2tag\n\n\n\n\nMEDYAN.place_exists\n\n\n\n\nMEDYAN.polymerize_fila!\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\nMEDYAN.remove_fila!\n\n\n\n\nMEDYAN.remove_link!\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\nMEDYAN.set_chemboundary!\n\n\n\n\nMEDYAN.set_enable_cylinder_volume_exclusion!\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\nMEDYAN.sever_fila!\n\n\n\n\nMEDYAN.tag!\n\n\n\n\nMEDYAN.tag2links\n\n\n\n\nMEDYAN.tag2place\n\n\n\n\nMEDYAN.tag_exists\n\n\n\n\nMEDYAN.update_fila_mono_state!\n\n\n\n\nMEDYAN.update_link!\n\n\n\n\nMEDYAN.vertex_state\n\n\n\n\nNLSolversBase.value!!\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\nsrc/boundary.jl\n\n\n\n\nsrc/cadherins/possiblecadherinsite.jl\n\n\n\n\nsrc/context.jl\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\nsrc/filament/depolymerize_fila.jl\n\n\n\n\nsrc/filament/endsites.jl\n\n\n\n\nsrc/filament/functions.jl\n\n\n\n\nsrc/filament/make_fila.jl\n\n\n\n\nsrc/filament/make_fila_rand.jl\n\n\n\n\nsrc/filament/polymerize_fila.jl\n\n\n\n\nsrc/filament/remove_fila.jl\n\n\n\n\nsrc/filament/sever_fila.jl\n\n\n\n\nsrc/filament/sites.jl\n\n\n\n\nsrc/filament/update_fila_mono_state.jl\n\n\n\n\nsrc/grids.jl\n\n\n\n\nsrc/links/link-chemistry.jl\n\n\n\n\nsrc/links/link-manager.jl\n\n\n\n\nsrc/links/place-indexes.jl\n\n\n\n\nsrc/links/places.jl\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\nsrc/sys_def-types.jl\n\n\n\n\nsrc/sys_def.jl\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Reference",
       "Docstrings"
@@ -1467,7 +1481,7 @@
     "href": "tutorials/1install.html",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.11.4\nCommit 8561cc3d68d (2025-03-10 11:36 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-16.0.6 (ORCJIT, skylake)\nThreads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner2/_work/_tool/julia/1.11.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner2/_work/_tool/julia/1.11.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.\n\n\n\nDownload the exact julia environment used to generate the tutorials.\nClick to Download\nNext extract this zip file and cd into the extracted directory.\nNow run\njulia --project -e 'import Pkg; Pkg.instantiate()'\nTo start the julia REPL in the correct environment to run the tutorials, use:\njulia --project\nFrom inside the medyan-tutorial directory.\nYou can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.\nhttps://code.visualstudio.com/docs/languages/julia\n\n\n\nThese tests may take a few minutes to run.\njulia lib/MEDYAN/test/install-deps.jl\njulia --project=lib/MEDYAN/test lib/MEDYAN/test/runtests.jl\nIf you have any errors or failing tests create an issue",
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.11.4\nCommit 8561cc3d68d (2025-03-10 11:36 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-16.0.6 (ORCJIT, skylake)\nThreads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.\n\n\n\nDownload the exact julia environment used to generate the tutorials.\nClick to Download\nNext extract this zip file and cd into the extracted directory.\nNow run\njulia --project -e 'import Pkg; Pkg.instantiate()'\nTo start the julia REPL in the correct environment to run the tutorials, use:\njulia --project\nFrom inside the medyan-tutorial directory.\nYou can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.\nhttps://code.visualstudio.com/docs/languages/julia\n\n\n\nThese tests may take a few minutes to run.\njulia lib/MEDYAN/test/install-deps.jl\njulia --project=lib/MEDYAN/test lib/MEDYAN/test/runtests.jl\nIf you have any errors or failing tests create an issue",
     "crumbs": [
       "Tutorials",
       "1. Installing MEDYAN.jl"
@@ -1478,7 +1492,7 @@
     "href": "tutorials/1install.html#install-julia",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.11.4\nCommit 8561cc3d68d (2025-03-10 11:36 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-16.0.6 (ORCJIT, skylake)\nThreads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner2/_work/_tool/julia/1.11.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner2/_work/_tool/julia/1.11.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.",
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.11.4\nCommit 8561cc3d68d (2025-03-10 11:36 UTC)\nBuild Info:\n  Official https://julialang.org/ release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-16.0.6 (ORCJIT, skylake)\nThreads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner3/_work/_tool/julia/1.11.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.",
     "crumbs": [
       "Tutorials",
       "1. Installing MEDYAN.jl"
@@ -1666,7 +1680,7 @@
     "href": "reference/index.html",
     "title": "Table of Contents",
     "section": "",
-    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_cylinder_volume_exclusion!\nset_chemboundary!\nset_mechboundary!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\n\n\n\n\n\nnum_fila_types\nnum_fila\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags \n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\n\n\n\n\n\nnum_link_types\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\n\n\n\n\n\nfiltype_fil_ids\nfil_node_positions\nfil_node_mon_ids\nfil_mon_states\nfila_num_unmin_ends\nis_minimized\nmon_position\nmon_plusvector\nmon_position_plusvector\nmon_3states\n\n\n\n\n\nrun_chemistry!\nminimize_energy!\n\n\n\n\n\n\n\n\n\n\nfilament sites\nfilament end sites\ndecimated_2mon sites\n\n\n\n\n\n\n\n\n\n\nCubicGrid\nMEDYAN.grididat\nMEDYAN.filter_grididat\nMEDYAN.centerof",
+    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_cylinder_volume_exclusion!\nset_chemboundary!\nset_mechboundary!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\n\n\n\n\n\nnum_fila_types\nnum_fila\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags \n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\n\n\n\n\n\nnum_link_types\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\nfiltype_fil_ids\nfil_node_positions\nfil_node_mon_ids\nfil_mon_states\nfila_num_unmin_ends\nis_minimized\nmon_position\nmon_plusvector\nmon_position_plusvector\nmon_3states\n\n\n\n\n\nrun_chemistry!\nminimize_energy!\n\n\n\n\n\n\n\n\n\n\nfilament sites\nfilament end sites\ndecimated_2mon sites\n\n\n\n\n\n\n\n\n\n\nCubicGrid\nMEDYAN.grididat\nMEDYAN.filter_grididat\nMEDYAN.centerof",
     "crumbs": [
       "Reference",
       "Table of Contents"
@@ -1677,7 +1691,7 @@
     "href": "reference/index.html#functions",
     "title": "Table of Contents",
     "section": "",
-    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_cylinder_volume_exclusion!\nset_chemboundary!\nset_mechboundary!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\n\n\n\n\n\nnum_fila_types\nnum_fila\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags \n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\n\n\n\n\n\nnum_link_types\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\n\n\n\n\n\nfiltype_fil_ids\nfil_node_positions\nfil_node_mon_ids\nfil_mon_states\nfila_num_unmin_ends\nis_minimized\nmon_position\nmon_plusvector\nmon_position_plusvector\nmon_3states\n\n\n\n\n\nrun_chemistry!\nminimize_energy!",
+    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_cylinder_volume_exclusion!\nset_chemboundary!\nset_mechboundary!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\n\n\n\n\n\nnum_fila_types\nnum_fila\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags \n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\n\n\n\n\n\nnum_link_types\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\nfiltype_fil_ids\nfil_node_positions\nfil_node_mon_ids\nfil_mon_states\nfila_num_unmin_ends\nis_minimized\nmon_position\nmon_plusvector\nmon_position_plusvector\nmon_3states\n\n\n\n\n\nrun_chemistry!\nminimize_energy!",
     "crumbs": [
       "Reference",
       "Table of Contents"
@@ -1792,284 +1806,298 @@
     "text": "get_position(c::Context, x::Union{Tag, Place})::SVector{3, Float64}\nReturn the position of x. Throw an error if x doesn’t exist."
   },
   {
-    "objectID": "docstrings/base.setindex--725f722fff4cfa6d.html",
-    "href": "docstrings/base.setindex--725f722fff4cfa6d.html",
-    "title": "Base.setindex!",
+    "objectID": "docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html",
+    "href": "docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html",
+    "title": "MEDYAN.get_link_mechanics",
     "section": "",
-    "text": "Map ID to a new index. The ID must be in use."
+    "text": "get_link_mechanics(c::Context, link::Link, [d::LinkData])\nReturn a NamedTuple of (;energy, inputs, forces, torques) of the link. Throw an error if link doesn’t exist. Parts of inputs that do not exist will be set to NaN."
   },
   {
-    "objectID": "docstrings/base.setindex--725f722fff4cfa6d.html#tuple-medyan.stableindex--integer--integer--808485796eb5543d",
-    "href": "docstrings/base.setindex--725f722fff4cfa6d.html#tuple-medyan.stableindex--integer--integer--808485796eb5543d",
-    "title": "Base.setindex!",
+    "objectID": "docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--medyan.linkdata---c8d94eda9cfd0bb4",
+    "href": "docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--medyan.linkdata---c8d94eda9cfd0bb4",
+    "title": "MEDYAN.get_link_mechanics",
     "section": "",
-    "text": "Map ID to a new index. The ID must be in use."
+    "text": "get_link_mechanics(c::Context, link::Link, [d::LinkData])\nReturn a NamedTuple of (;energy, inputs, forces, torques) of the link. Throw an error if link doesn’t exist. Parts of inputs that do not exist will be set to NaN."
   },
   {
-    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
-    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
-    "title": "MEDYAN.addfilamentend_reaction!",
+    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
+    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
+    "title": "MEDYAN.addfilamentsite!",
     "section": "",
-    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
+    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
-    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
-    "title": "MEDYAN.addfilamentend_reaction!",
+    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "title": "MEDYAN.addfilamentsite!",
     "section": "",
-    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
+    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
   },
   {
-    "objectID": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html",
-    "href": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html",
-    "title": "MEDYAN.num_link_types",
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html",
+    "title": "Base.:*",
     "section": "",
-    "text": "num_link_types(c::Context)::Int\nReturn the number of link types."
+    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
   },
   {
-    "objectID": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.num_link_types-2d203a5799bbfdcc.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.num_link_types",
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
+    "title": "Base.:*",
     "section": "",
-    "text": "num_link_types(c::Context)::Int\nReturn the number of link types."
+    "text": "scale the volume and area"
   },
   {
-    "objectID": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html",
-    "href": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html",
-    "title": "MEDYAN.FilamentSiteGeneral",
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
+    "title": "Base.:*",
     "section": "",
-    "text": "General filament site just matches monomer states\n\ncenter::Int64: index of center monomer in states\nstates::Vector{UInt8}: monomer states to match"
+    "text": "scale the volume and area by different amounts in each direction"
   },
   {
-    "objectID": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.FilamentSiteGeneral",
+    "objectID": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html",
+    "href": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html",
+    "title": "MEDYAN.addfilament_reaction!",
     "section": "",
-    "text": "General filament site just matches monomer states\n\ncenter::Int64: index of center monomer in states\nstates::Vector{UInt8}: monomer states to match"
+    "text": "Add filament reaction. Return s. Add a filamentsite and reaction with callback to change the monomer state. This can be used for filament aging, filament catalyzed reactions, or simple binding reactions.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentsitename::Symbol: the new name of the filamentsite added. This can be used as a catalyst in other reactions.\nchangedstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the monomer states, the first is the states to match. The second is the new monomer states after the reaction. both should be the same length. Ordered minus end first.\ncenter::Int: Which index of changedstatenames.first is the actual location of the filamentsite. Used for determining what compartment the reaction goes in.\nreactantexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentsite.$(filamenttypename).$(filamentsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the compartment in nm³. volumefactor only applies to this reaction not any other reaction using filamentsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    filamentnames= [(:filname,[\n                            :a,\n                            :b,\n                            :c,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\naddfilament_reaction!(s, :filname, :ab,\n    [:a]=&gt;[:b], 1,\n    \"--&gt;\", 1.75E-3, 0,\n)\naddfilament_reaction!(s, :filname, :aabc,\n    [:a,:a]=&gt;[:b,:c], 2,\n    \"--&gt;\", 1.75E-3, 0,\n)"
   },
   {
-    "objectID": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html",
-    "href": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html",
-    "title": "MEDYAN.addmembranediffusingcount_rand!",
+    "objectID": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html#tuple-medyan.sysdef--symbol--symbol--pair-vector-symbol---vector-symbol----int64--abstractstring--float64--int64--51c2a9e2acbeb27c",
+    "href": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html#tuple-medyan.sysdef--symbol--symbol--pair-vector-symbol---vector-symbol----int64--abstractstring--float64--int64--51c2a9e2acbeb27c",
+    "title": "MEDYAN.addfilament_reaction!",
     "section": "",
-    "text": "addmembranediffusingcount_rand!(\n    c::MEDYAN.Context,\n    membraneindex::Int64,\n    speciesindex::Int64,\n    addcount::Int64\n)\nDistribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity."
+    "text": "Add filament reaction. Return s. Add a filamentsite and reaction with callback to change the monomer state. This can be used for filament aging, filament catalyzed reactions, or simple binding reactions.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentsitename::Symbol: the new name of the filamentsite added. This can be used as a catalyst in other reactions.\nchangedstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the monomer states, the first is the states to match. The second is the new monomer states after the reaction. both should be the same length. Ordered minus end first.\ncenter::Int: Which index of changedstatenames.first is the actual location of the filamentsite. Used for determining what compartment the reaction goes in.\nreactantexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentsite.$(filamenttypename).$(filamentsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the compartment in nm³. volumefactor only applies to this reaction not any other reaction using filamentsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    filamentnames= [(:filname,[\n                            :a,\n                            :b,\n                            :c,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\naddfilament_reaction!(s, :filname, :ab,\n    [:a]=&gt;[:b], 1,\n    \"--&gt;\", 1.75E-3, 0,\n)\naddfilament_reaction!(s, :filname, :aabc,\n    [:a,:a]=&gt;[:b,:c], 2,\n    \"--&gt;\", 1.75E-3, 0,\n)"
   },
   {
-    "objectID": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html#tuple-medyan.context--int64--int64--int64--c6aa1d407904887b",
-    "href": "docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html#tuple-medyan.context--int64--int64--int64--c6aa1d407904887b",
-    "title": "MEDYAN.addmembranediffusingcount_rand!",
+    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html",
+    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html",
+    "title": "MEDYAN.centerof",
     "section": "",
-    "text": "addmembranediffusingcount_rand!(\n    c::MEDYAN.Context,\n    membraneindex::Int64,\n    speciesindex::Int64,\n    addcount::Int64\n)\nDistribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity."
+    "text": "centerof(grid::CubicGrid, cid)\nReturn the location of the center of a grid id The origin is in the center.\n\n\n\n\n\n\n\n\n\n\n\n\ncenterof(grid::CubicGrid)\nReturn the location of the center the grid The origin is in the center."
   },
   {
-    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html",
-    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html",
-    "title": "MEDYAN.addreactioncallback!",
+    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
+    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
+    "title": "MEDYAN.centerof",
     "section": "",
-    "text": "addreactioncallback!(s::SysDef, reaction::CompartmentReaction, callback)::SysDef\naddreactioncallback!(s::SysDef, reactantexpr::AbstractString, rate::Float64, invvolumepower::Int, callback)::SysDef\nLike addreaction! but also adds callback. callback is called when the reaction happens with input of MEDYAN.Context and Int the compartment id where the reaction happened.\nThe reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an AbstractString is passed instead of a CompartmentReaction for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.\nMEDYAN.errorcheck_addcallback(callback,s::SysDef) can optionally be overloaded to add errorchecking when the callback is added.\n\n\n\n\n\n\n\n\n\n\n\n\nCallback for bulk reactions: Context -&gt; Nothing."
+    "text": "centerof(grid::CubicGrid, cid)\nReturn the location of the center of a grid id The origin is in the center."
   },
   {
-    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.compartmentreaction--any--36763138c31ba7fa",
-    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.compartmentreaction--any--36763138c31ba7fa",
-    "title": "MEDYAN.addreactioncallback!",
+    "objectID": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "href": "docstrings/medyan.centerof-e902b9bb7b2a6caf.html#tuple-medyan.cubicgrid--0971be2da0774049",
+    "title": "MEDYAN.centerof",
     "section": "",
-    "text": "addreactioncallback!(s::SysDef, reaction::CompartmentReaction, callback)::SysDef\naddreactioncallback!(s::SysDef, reactantexpr::AbstractString, rate::Float64, invvolumepower::Int, callback)::SysDef\nLike addreaction! but also adds callback. callback is called when the reaction happens with input of MEDYAN.Context and Int the compartment id where the reaction happened.\nThe reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an AbstractString is passed instead of a CompartmentReaction for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.\nMEDYAN.errorcheck_addcallback(callback,s::SysDef) can optionally be overloaded to add errorchecking when the callback is added."
+    "text": "centerof(grid::CubicGrid)\nReturn the location of the center the grid The origin is in the center."
   },
   {
-    "objectID": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.bulkreaction--any--bad9b85c7303199e",
-    "href": "docstrings/medyan.addreactioncallback--9c9d46adeded2d88.html#tuple-medyan.sysdef--medyan.bulkreaction--any--bad9b85c7303199e",
-    "title": "MEDYAN.addreactioncallback!",
+    "objectID": "docstrings/medyan.remove_link--01531e04ef5077e7.html",
+    "href": "docstrings/medyan.remove_link--01531e04ef5077e7.html",
+    "title": "MEDYAN.remove_link!",
     "section": "",
-    "text": "Callback for bulk reactions: Context -&gt; Nothing."
+    "text": "remove_link!(c::Context, link::Link)::Nothing\nRemove the link."
   },
   {
-    "objectID": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html",
-    "href": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html",
-    "title": "MEDYAN.VertexName",
+    "objectID": "docstrings/medyan.remove_link--01531e04ef5077e7.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
+    "href": "docstrings/medyan.remove_link--01531e04ef5077e7.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
+    "title": "MEDYAN.remove_link!",
     "section": "",
-    "text": "membraneindex::Int64: membrane index\nvid::Int64: vertex id"
+    "text": "remove_link!(c::Context, link::Link)::Nothing\nRemove the link."
   },
   {
-    "objectID": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html#union---b2cfd89fb0d1b9c6",
-    "href": "docstrings/medyan.vertexname-2d87a6a86cabc4f5.html#union---b2cfd89fb0d1b9c6",
-    "title": "MEDYAN.VertexName",
+    "objectID": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html",
+    "href": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html",
+    "title": "MEDYAN.get_bond_states",
     "section": "",
-    "text": "membraneindex::Int64: membrane index\nvid::Int64: vertex id"
+    "text": "get_bond_states(c::Context, link::Link, [d::LinkData])\nReturn the bond_states of the link. Throw an error if link doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html",
-    "href": "docstrings/medyan.randompoint-83e939bdee528294.html",
-    "title": "MEDYAN.randompoint",
+    "objectID": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "href": "docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "title": "MEDYAN.get_bond_states",
     "section": "",
-    "text": "randompoint(grid::CubicGrid,cid)::SVector{3,Float64}\nReturn a random point in a voxel Note, due to floating point rounding, there is a small chance the returned point may be in a nearby voxel.\n\n\n\n\n\n\n\n\n\n\n\n\nrandompoint(grid::CubicGrid)::SVector{3,Float64}\nReturn a random point in the grid"
+    "text": "get_bond_states(c::Context, link::Link, [d::LinkData])\nReturn the bond_states of the link. Throw an error if link doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
-    "href": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--any--1be3c03f7960c1a3",
-    "title": "MEDYAN.randompoint",
+    "objectID": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html",
+    "href": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html",
+    "title": "MEDYAN.fila_tip_tags",
     "section": "",
-    "text": "randompoint(grid::CubicGrid,cid)::SVector{3,Float64}\nReturn a random point in a voxel Note, due to floating point rounding, there is a small chance the returned point may be in a nearby voxel."
+    "text": "fila_tip_tags(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Pair{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}\nReturn the pair of minus end, plus end filament tip tags."
   },
   {
-    "objectID": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "href": "docstrings/medyan.randompoint-83e939bdee528294.html#tuple-medyan.cubicgrid--0971be2da0774049",
-    "title": "MEDYAN.randompoint",
+    "objectID": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
+    "href": "docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
+    "title": "MEDYAN.fila_tip_tags",
     "section": "",
-    "text": "randompoint(grid::CubicGrid)::SVector{3,Float64}\nReturn a random point in the grid"
+    "text": "fila_tip_tags(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Pair{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}\nReturn the pair of minus end, plus end filament tip tags."
   },
   {
-    "objectID": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html",
-    "href": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html",
-    "title": "MEDYAN.get_reaction_enabled",
+    "objectID": "docstrings/medyan.polymerize_fila--ef96193868627e48.html",
+    "href": "docstrings/medyan.polymerize_fila--ef96193868627e48.html",
+    "title": "MEDYAN.polymerize_fila!",
     "section": "",
-    "text": "get_reaction_enabled(c::Context, link::Link, [d::LinkData])\nReturn the reaction_enabled flags of the link. Throw an error if link doesn’t exist."
+    "text": "polymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx, newstate::Union{Symbol,MonomerState})\nAdd a monomer with state newstate to the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids. New monomers are not linkable until after minimization."
   },
   {
-    "objectID": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "href": "docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "title": "MEDYAN.get_reaction_enabled",
+    "objectID": "docstrings/medyan.polymerize_fila--ef96193868627e48.html#tuple-medyan.context--medyan.filatipidx--union-uint8--symbol---0e9280d25a5258b3",
+    "href": "docstrings/medyan.polymerize_fila--ef96193868627e48.html#tuple-medyan.context--medyan.filatipidx--union-uint8--symbol---0e9280d25a5258b3",
+    "title": "MEDYAN.polymerize_fila!",
     "section": "",
-    "text": "get_reaction_enabled(c::Context, link::Link, [d::LinkData])\nReturn the reaction_enabled flags of the link. Throw an error if link doesn’t exist."
+    "text": "polymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx, newstate::Union{Symbol,MonomerState})\nAdd a monomer with state newstate to the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids. New monomers are not linkable until after minimization."
   },
   {
-    "objectID": "docstrings/medyan.link_exists-0f95437072169f8d.html",
-    "href": "docstrings/medyan.link_exists-0f95437072169f8d.html",
-    "title": "MEDYAN.link_exists",
+    "objectID": "docstrings/medyan.tag2place-68ab43363a4c1760.html",
+    "href": "docstrings/medyan.tag2place-68ab43363a4c1760.html",
+    "title": "MEDYAN.tag2place",
     "section": "",
-    "text": "link_exists(c::Context, link::Link)::Bool\nReturn true iff link exists in context c. Otherwise return false."
+    "text": "tag2place(c::Context, t::Tag)::Place\nReturn the place of the tag. Throw an error if !tag_exists(t)."
   },
   {
-    "objectID": "docstrings/medyan.link_exists-0f95437072169f8d.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
-    "href": "docstrings/medyan.link_exists-0f95437072169f8d.html#tuple-medyan.context--medyan.link--d37b229d2ebf6962",
-    "title": "MEDYAN.link_exists",
+    "objectID": "docstrings/medyan.tag2place-68ab43363a4c1760.html#union-tuple-p---tuple-medyan.context--medyan.tag-p----where-p-f3255fd0d268d21a",
+    "href": "docstrings/medyan.tag2place-68ab43363a4c1760.html#union-tuple-p---tuple-medyan.context--medyan.tag-p----where-p-f3255fd0d268d21a",
+    "title": "MEDYAN.tag2place",
     "section": "",
-    "text": "link_exists(c::Context, link::Link)::Bool\nReturn true iff link exists in context c. Otherwise return false."
+    "text": "tag2place(c::Context, t::Tag)::Place\nReturn the place of the tag. Throw an error if !tag_exists(t)."
   },
   {
-    "objectID": "docstrings/medyan.mon_position-83983d8916347411.html",
-    "href": "docstrings/medyan.mon_position-83983d8916347411.html",
-    "title": "MEDYAN.mon_position",
+    "objectID": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html",
+    "href": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html",
+    "title": "MEDYAN.refresh_chem_cache!",
     "section": "",
-    "text": "mon_position(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the monomer position."
+    "text": "refresh_chem_cache!(c::Context)::Nothing\nNormally this isn’t needed as it will happen automatically."
   },
   {
-    "objectID": "docstrings/medyan.mon_position-83983d8916347411.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "href": "docstrings/medyan.mon_position-83983d8916347411.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "title": "MEDYAN.mon_position",
+    "objectID": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.refresh_chem_cache!",
     "section": "",
-    "text": "mon_position(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; StaticArraysCore.SVector{3, Float64}\nReturn the monomer position."
+    "text": "refresh_chem_cache!(c::Context)::Nothing\nNormally this isn’t needed as it will happen automatically."
   },
   {
-    "objectID": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html",
-    "href": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html",
-    "title": "MEDYAN.addfilamentendsite!",
+    "objectID": "docstrings/base.iterate-5228367cd62c0bf2.html",
+    "href": "docstrings/base.iterate-5228367cd62c0bf2.html",
+    "title": "Base.iterate",
     "section": "",
-    "text": "addfilamentendsite!(s::SysDef,filamenttypename::Symbol,filamentendsitename::Symbol,site)::SysDef"
+    "text": "Iterates through valid IDs in the StableIndex."
   },
   {
-    "objectID": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "href": "docstrings/medyan.addfilamentendsite--95612d72d1fda05f.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "title": "MEDYAN.addfilamentendsite!",
+    "objectID": "docstrings/base.iterate-5228367cd62c0bf2.html#tuple-medyan.stableindex--namedtuple--21f3937ad430e895",
+    "href": "docstrings/base.iterate-5228367cd62c0bf2.html#tuple-medyan.stableindex--namedtuple--21f3937ad430e895",
+    "title": "Base.iterate",
     "section": "",
-    "text": "addfilamentendsite!(s::SysDef,filamenttypename::Symbol,filamentendsitename::Symbol,site)::SysDef"
+    "text": "Iterates through valid IDs in the StableIndex."
   },
   {
-    "objectID": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html",
-    "href": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html",
-    "title": "MEDYAN.run_chemistry!",
+    "objectID": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html",
+    "href": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html",
+    "title": "MEDYAN.CubicGrid",
     "section": "",
-    "text": "run_chemistry!(c::Context, Δt)\nRun chemistry for Δt time.\nUpdate c.time."
+    "text": "CubicGrid(num_voxels::SVector{3,Int}, compartmentsize::Float64)\n\nn::StaticArraysCore.SVector{3, Int64}\ncompartmentsize::Float64"
   },
   {
-    "objectID": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "href": "docstrings/medyan.run_chemistry--dda22fac5c555b9e.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
-    "title": "MEDYAN.run_chemistry!",
+    "objectID": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.CubicGrid",
     "section": "",
-    "text": "run_chemistry!(c::Context, Δt)\nRun chemistry for Δt time.\nUpdate c.time."
+    "text": "CubicGrid(num_voxels::SVector{3,Int}, compartmentsize::Float64)\n\nn::StaticArraysCore.SVector{3, Int64}\ncompartmentsize::Float64"
   },
   {
-    "objectID": "docstrings/base.haskey-e7d3f961991e2663.html",
-    "href": "docstrings/base.haskey-e7d3f961991e2663.html",
-    "title": "Base.haskey",
+    "objectID": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html",
+    "href": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html",
+    "title": "MEDYAN.num_fila_types",
     "section": "",
-    "text": "Whether an ID is in use."
+    "text": "num_fila_types(c::MEDYAN.Context) -&gt; Int64\nReturn the number of filament types."
   },
   {
-    "objectID": "docstrings/base.haskey-e7d3f961991e2663.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "href": "docstrings/base.haskey-e7d3f961991e2663.html#tuple-medyan.stableindex--integer--14e9a5b3c446a8fc",
-    "title": "Base.haskey",
+    "objectID": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.num_fila_types-1698969c2a51ad88.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.num_fila_types",
     "section": "",
-    "text": "Whether an ID is in use."
+    "text": "num_fila_types(c::MEDYAN.Context) -&gt; Int64\nReturn the number of filament types."
   },
   {
-    "objectID": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html",
-    "href": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html",
-    "title": "MEDYAN.compute_all_membrane_geometry!_system",
+    "objectID": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html",
+    "href": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html",
+    "title": "MEDYAN.adddiffusingcount_rand!",
     "section": "",
-    "text": "Updates all membrane geometries used across various parts of MEDYAN.\nThe list of all items can be found in the document for MEDYAN.compute_geometry!_system function.\nKeyword parameters:\n\ninclude_ff::Bool: If true, compute_geometry! used in energy computations will be applied as well, requiring vectorization of the membrane. This happens before system geometry computation in case some fields are overriden."
+    "text": "adddiffusingcount_rand!(c::Context, dsid, inccount)\nDistribute the added diffusing species count randomly to compartments weighted by volume.\n\ndsid: diffusing species id.\ninccount: amount to add."
   },
   {
-    "objectID": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.compute_all_membrane_geometry-_system-05b4d2a32e31560c.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.compute_all_membrane_geometry!_system",
+    "objectID": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
+    "href": "docstrings/medyan.adddiffusingcount_rand--9d3ddfabbceeef92.html#tuple-medyan.context--any--any--0ecbb5ec6f703ddd",
+    "title": "MEDYAN.adddiffusingcount_rand!",
     "section": "",
-    "text": "Updates all membrane geometries used across various parts of MEDYAN.\nThe list of all items can be found in the document for MEDYAN.compute_geometry!_system function.\nKeyword parameters:\n\ninclude_ff::Bool: If true, compute_geometry! used in energy computations will be applied as well, requiring vectorization of the membrane. This happens before system geometry computation in case some fields are overriden."
+    "text": "adddiffusingcount_rand!(c::Context, dsid, inccount)\nDistribute the added diffusing species count randomly to compartments weighted by volume.\n\ndsid: diffusing species id.\ninccount: amount to add."
   },
   {
-    "objectID": "docstrings/medyan.place2tag-9d62565424ca3705.html",
-    "href": "docstrings/medyan.place2tag-9d62565424ca3705.html",
-    "title": "MEDYAN.place2tag",
+    "objectID": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html",
+    "href": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html",
+    "title": "MEDYAN.add_decimated_2mon_site!",
     "section": "",
-    "text": "place2tag(c::Context, p::Place)::Tag\nReturn the tag of the place. Throw an error if !has_tag(p)."
+    "text": "add_decimated_2mon_site!(s::SysDef,decimated_2mon_sitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.place2tag-9d62565424ca3705.html#union-tuple-p---tuple-medyan.context--p---where-p--medyan.place-316eaf4f0092762b",
-    "href": "docstrings/medyan.place2tag-9d62565424ca3705.html#union-tuple-p---tuple-medyan.context--p---where-p--medyan.place-316eaf4f0092762b",
-    "title": "MEDYAN.place2tag",
+    "objectID": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
+    "href": "docstrings/medyan.add_decimated_2mon_site--ad56e7ee56067940.html#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1",
+    "title": "MEDYAN.add_decimated_2mon_site!",
     "section": "",
-    "text": "place2tag(c::Context, p::Place)::Tag\nReturn the tag of the place. Throw an error if !has_tag(p)."
+    "text": "add_decimated_2mon_site!(s::SysDef,decimated_2mon_sitename::Symbol,site)::SysDef"
   },
   {
-    "objectID": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html",
-    "href": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html",
-    "title": "MEDYAN.set_enable_cylinder_volume_exclusion!",
+    "objectID": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html",
+    "href": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html",
+    "title": "MEDYAN.fila_node_positions",
     "section": "",
-    "text": "set_enable_cylinder_volume_exclusion!(\n    c::MEDYAN.Context,\n    x::Bool\n) -&gt; Bool\nAre cylinder volume exclusion forces calculated."
+    "text": "fila_node_positions(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Vector{StaticArraysCore.SVector{3, Float64}}\nReturn the mechanical node positions of the filament."
   },
   {
-    "objectID": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html#tuple-medyan.context--bool--89b229b1eef6a22c",
-    "href": "docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html#tuple-medyan.context--bool--89b229b1eef6a22c",
-    "title": "MEDYAN.set_enable_cylinder_volume_exclusion!",
+    "objectID": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
+    "href": "docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html#tuple-medyan.context--medyan.filaidx--5b8fb92ab95a2b00",
+    "title": "MEDYAN.fila_node_positions",
     "section": "",
-    "text": "set_enable_cylinder_volume_exclusion!(\n    c::MEDYAN.Context,\n    x::Bool\n) -&gt; Bool\nAre cylinder volume exclusion forces calculated."
+    "text": "fila_node_positions(\n    c::MEDYAN.Context,\n    f::MEDYAN.FilaIdx\n) -&gt; Vector{StaticArraysCore.SVector{3, Float64}}\nReturn the mechanical node positions of the filament."
   },
   {
-    "objectID": "docstrings/medyan.mon_3states-6c16efb303a60058.html",
-    "href": "docstrings/medyan.mon_3states-6c16efb303a60058.html",
-    "title": "MEDYAN.mon_3states",
+    "objectID": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html",
+    "href": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html",
+    "title": "MEDYAN.add_membranesitereaction!",
     "section": "",
-    "text": "mon_3states(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{UInt8, UInt8, UInt8}\nReturn a tuple of three monomer states centered at a monomer.\nIf a monomer doesn’t exist, its state will be zero. The filament must exist."
+    "text": "Add a membrane site with the corresponding reaction with callback.\nKeyword arguments:\n\ns: SysDef.\nname_newmembranesite: Symbol.\nmembranediffusingreactants: Vector of symbols as membrane reactants. 0 or 1 reactant is currently supported.\nmembranediffusingproducts: Vector of symbols as membrane products.\nreactionexpr_extra: Reaction expression for other species involved.\nrate: Float.\nchangerage_bypotentialenergy: Whether the rate is affected by potential energy.\ninvvolumepower: rate scaling with compartment volume.\n\nNotes:\n\nIf error occurs, this function does not ensure that s is unchanged."
   },
   {
-    "objectID": "docstrings/medyan.mon_3states-6c16efb303a60058.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "href": "docstrings/medyan.mon_3states-6c16efb303a60058.html#tuple-medyan.context--medyan.monomername--ebde317b37bce68d",
-    "title": "MEDYAN.mon_3states",
+    "objectID": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html#tuple---3937a4f1811c9dc1",
+    "href": "docstrings/medyan.add_membranesitereaction--59d1fe245302e071.html#tuple---3937a4f1811c9dc1",
+    "title": "MEDYAN.add_membranesitereaction!",
     "section": "",
-    "text": "mon_3states(\n    c::MEDYAN.Context,\n    monomer::MEDYAN.MonomerName\n) -&gt; Tuple{UInt8, UInt8, UInt8}\nReturn a tuple of three monomer states centered at a monomer.\nIf a monomer doesn’t exist, its state will be zero. The filament must exist."
+    "text": "Add a membrane site with the corresponding reaction with callback.\nKeyword arguments:\n\ns: SysDef.\nname_newmembranesite: Symbol.\nmembranediffusingreactants: Vector of symbols as membrane reactants. 0 or 1 reactant is currently supported.\nmembranediffusingproducts: Vector of symbols as membrane products.\nreactionexpr_extra: Reaction expression for other species involved.\nrate: Float.\nchangerage_bypotentialenergy: Whether the rate is affected by potential energy.\ninvvolumepower: rate scaling with compartment volume.\n\nNotes:\n\nIf error occurs, this function does not ensure that s is unchanged."
   },
   {
-    "objectID": "docstrings/src/links/places.html",
-    "href": "docstrings/src/links/places.html",
-    "title": "src/links/places.jl",
+    "objectID": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html",
+    "href": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html",
+    "title": "MEDYAN.make_fila_rand!",
     "section": "",
-    "text": "place_exists(c::Context, p::Place)::Bool\nReturn true iff place p exists in context c. Otherwise return false."
+    "text": "make_fila_rand!(c::Context, mono_states; iterations = 10^9, type = 1)::Tag{FilaTipIdx}\nAdd a filament to the Context with random center position and direction.\nReturn the tag of the plus tip of the new filament.\nmono_states is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters.\n\n\n\ntype=1: filament type id or symbol.\niterations = 10^9: number of positions to try before failing with an error."
   },
   {
-    "objectID": "docstrings/src/links/places.html#medyan.place_exists-fcab2f7674b282f4",
-    "href": "docstrings/src/links/places.html#medyan.place_exists-fcab2f7674b282f4",
-    "title": "src/links/places.jl",
+    "objectID": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "href": "docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html#tuple-medyan.context--any--86fc06bb8cbd13e8",
+    "title": "MEDYAN.make_fila_rand!",
     "section": "",
-    "text": "place_exists(c::Context, p::Place)::Bool\nReturn true iff place p exists in context c. Otherwise return false."
+    "text": "make_fila_rand!(c::Context, mono_states; iterations = 10^9, type = 1)::Tag{FilaTipIdx}\nAdd a filament to the Context with random center position and direction.\nReturn the tag of the plus tip of the new filament.\nmono_states is a collection of the MonomerState of the monomers in the new filament.\nThe filament will be inside the mech boundary.\nErrors if it fails to add a filament.\nThe monomer are spaced by the value in the filament type’s mechanical parameters.\n\n\n\ntype=1: filament type id or symbol.\niterations = 10^9: number of positions to try before failing with an error."
+  },
+  {
+    "objectID": "docstrings/src/links/place-indexes.html",
+    "href": "docstrings/src/links/place-indexes.html",
+    "title": "src/links/place-indexes.jl",
+    "section": "",
+    "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place."
+  },
+  {
+    "objectID": "docstrings/src/links/place-indexes.html#medyan.num_directions-89697a0fca8de12f",
+    "href": "docstrings/src/links/place-indexes.html#medyan.num_directions-89697a0fca8de12f",
+    "title": "src/links/place-indexes.jl",
+    "section": "",
+    "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place."
   },
   {
     "objectID": "docstrings/src/links/link-manager.html",
