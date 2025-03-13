@@ -189,6 +189,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.fila_node_mids-35de9fc339cbec42" id="toc-medyan.fila_node_mids-35de9fc339cbec42" class="nav-link" data-scroll-target="#medyan.fila_node_mids-35de9fc339cbec42"><code>MEDYAN.fila_node_mids</code></a></li>
   <li><a href="#medyan.fila_node_positions-f4c5bac0dcb570ff" id="toc-medyan.fila_node_positions-f4c5bac0dcb570ff" class="nav-link" data-scroll-target="#medyan.fila_node_positions-f4c5bac0dcb570ff"><code>MEDYAN.fila_node_positions</code></a></li>
   <li><a href="#medyan.fila_tip_tags-f05dfa7a845b20ea" id="toc-medyan.fila_tip_tags-f05dfa7a845b20ea" class="nav-link" data-scroll-target="#medyan.fila_tip_tags-f05dfa7a845b20ea"><code>MEDYAN.fila_tip_tags</code></a></li>
+  <li><a href="#medyan.fila_num_unmin_ends-09448ccb823dbeac" id="toc-medyan.fila_num_unmin_ends-09448ccb823dbeac" class="nav-link" data-scroll-target="#medyan.fila_num_unmin_ends-09448ccb823dbeac"><code>MEDYAN.fila_num_unmin_ends</code></a></li>
+  <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
   <li><a href="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1" id="toc-medyan.pick_rand_fila_mono_site-6641f66ed8873af1" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1"><code>MEDYAN.pick_rand_fila_mono_site</code></a></li>
   <li><a href="#medyan.pick_rand_fila_tip_site-d1418d43027273e9" id="toc-medyan.pick_rand_fila_tip_site-d1418d43027273e9" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_tip_site-d1418d43027273e9"><code>MEDYAN.pick_rand_fila_tip_site</code></a></li>
   </ul></li>
@@ -327,6 +329,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="medyan.fila_num_unmin_ends-09448ccb823dbeac" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.fila_num_unmin_ends-09448ccb823dbeac"><a href="../../../docstrings/medyan.fila_num_unmin_ends-09448ccb823dbeac.html"><code>MEDYAN.fila_num_unmin_ends</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_num_unmin_ends</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    fila_idx<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return a pair (minus =&gt; plus) of the number of unminimized monomers on the minus and plus end of a filament.</p>
+<p>This will be reset to (0 =&gt; 0) by <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
+<p>When an end is depolymerized this will decrease, but saturate at 0. When an end is polymerized this will increase.</p>
+<p>For example if after minimization a filament has a plus end depolymerization, this function will return (0 =&gt; 0). Then if a plus end polymerization happens, this function will return (0 =&gt; 1), even though the net change in filament length is zero.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.is_minimized-ff3858ada5447c46" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.is_minimized-ff3858ada5447c46"><a href="../../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>MEDYAN.is_minimized</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Union{FilaMonoIdx, FilaTipIdx, Tag}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return true iff the monomer or tip has been minimized. Throw an error if <code>p</code> doesn’t exist.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.pick_rand_fila_mono_site-6641f66ed8873af1" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.pick_rand_fila_mono_site-6641f66ed8873af1"><a href="../../../docstrings/medyan.pick_rand_fila_mono_site-6641f66ed8873af1.html"><code>MEDYAN.pick_rand_fila_mono_site</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -335,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_mono_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaMonoIdx, Nothing}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_mono_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaMonoIdx, Nothing}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a <code>FilaMonoIdx</code> of a random fila<em>mono</em>site, or return nothing if rejected weighted by counts, using the default RNG.</p>
 </div>
 </div>
@@ -349,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_tip_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaTipIdx, Nothing}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_tip_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaTipIdx, Nothing}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Return a <code>FilaTipIdx</code> of a random fila<em>tip</em>site, or return nothing if rejected weighted by counts, using the default RNG.</p>
 </div>
 </div>
