@@ -184,7 +184,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#srcminimize_energy.jl" id="toc-srcminimize_energy.jl" class="nav-link active" data-scroll-target="#srcminimize_energy.jl">src/minimize_energy.jl</a>
   <ul class="collapse">
-  <li><a href="#nlsolversbase.value---d4fdd3b317023c0e" id="toc-nlsolversbase.value---d4fdd3b317023c0e" class="nav-link" data-scroll-target="#nlsolversbase.value---d4fdd3b317023c0e"><code>NLSolversBase.value!!</code></a></li>
   <li><a href="#medyan.minimize_energy--84c4aeab5457d3ee" id="toc-medyan.minimize_energy--84c4aeab5457d3ee" class="nav-link" data-scroll-target="#medyan.minimize_energy--84c4aeab5457d3ee"><code>MEDYAN.minimize_energy!</code></a></li>
   </ul></li>
   </ul>
@@ -198,19 +197,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="srcminimize_energy.jl" class="level1">
 <h1>src/minimize_energy.jl</h1>
-<section id="nlsolversbase.value---d4fdd3b317023c0e" class="level2">
-<h2 class="anchored" data-anchor-id="nlsolversbase.value---d4fdd3b317023c0e"><a href="../../docstrings/nlsolversbase.value---d4fdd3b317023c0e.html"><code>NLSolversBase.value!!</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Force (re-)evaluation of the objective value at <code>x</code>. Returns <code>f(x)</code> and stores the value in <code>obj.F</code> also calculates the gradient and stores it in obj.DF</p>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.minimize_energy--84c4aeab5457d3ee" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.minimize_energy--84c4aeab5457d3ee"><a href="../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>MEDYAN.minimize_energy!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -232,9 +218,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>of Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.</p>
 <ul>
-<li><code>g_tol::Union{Float64, Nothing}=nothing</code>: Overshadow the value of <code>g_tol</code> in <code>c</code></li>
+<li><code>g_tol::Float64=c.g_tol</code>: The acceptable maximum residual force on any degree of freedom in pN.</li>
+<li><code>iter_max::Int=c.iter_max_cg_minimization</code>: The maximum number of congugate gradient iterations to do before exiting.</li>
 </ul>
-<p>This represents the acceptable maximum residual force on any degree of freedom in pN.</p>
 </section>
 </div>
 </div>
