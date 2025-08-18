@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>g_tol::Float64</code>: maximum force magnitude after minimization (pN)</p></li>
 <li><p><code>nforce_fractbit::Int64</code>: number of fractional bits used to scale force values into Int64</p></li>
 <li><p><code>nenergy_fractbit::Int64</code>: number of fractional bits used to scale energy values into Int64</p></li>
-<li><p><code>shake_before_minimization::Bool</code>: If true, add noise to coordinates before starting minimization.</p></li>
+<li><p><code>shake_before_minimization::Float64</code>: Standard deviation of noise added to coordinates before starting minimization.</p></li>
 <li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
 <li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
 <li><p><code>max_cylinder_force::Float64</code>: max cylinder force when two cylinders are at zero distance (pN)</p></li>
