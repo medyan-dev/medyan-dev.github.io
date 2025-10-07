@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-7129cb2321b72433b9a823d145863dcb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,6 +115,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
@@ -216,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_diffusion_coeff!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, diffusing_name<span class="op">::</span><span class="dt">Symbol</span>, diffusing_coeff<span class="op">::</span><span class="dt">Float64</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_diffusion_coeff!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, diffusing_name<span class="op">::</span><span class="dt">Symbol</span>, diffusing_coeff<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s.</p>
 </div>
 </div>
@@ -230,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_filament_params!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, filament_name<span class="op">::</span><span class="dt">Symbol</span>, filament_params<span class="op">::</span><span class="dt">FilamentMechParams</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_filament_params!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, filament_name<span class="op">::</span><span class="dt">Symbol</span>, filament_params<span class="op">::</span><span class="dt">FilamentMechParams</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add the filament parameters to the system. Return s.</p>
 <p>See <a href="../../docstrings/medyan.filamentmechparams-003aa222b98c6481.qmd"><code>MEDYAN.FilamentMechParams</code></a></p>
 </div>
@@ -245,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,filamenttypename<span class="op">::</span><span class="dt">Symbol</span>,filamentsitename<span class="op">::</span><span class="dt">Symbol</span>,site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,filamenttypename<span class="op">::</span><span class="dt">Symbol</span>,filamentsitename<span class="op">::</span><span class="dt">Symbol</span>,site)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -258,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentendsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,filamenttypename<span class="op">::</span><span class="dt">Symbol</span>,filamentendsitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentendsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,filamenttypename<span class="op">::</span><span class="dt">Symbol</span>,filamentendsitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -271,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_decimated_2mon_site!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,decimated_2mon_sitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_decimated_2mon_site!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,decimated_2mon_sitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -284,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addpossiblecadherinsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,possiblecadherinsitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addpossiblecadherinsite!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,possiblecadherinsitename<span class="op">::</span><span class="dt">Symbol</span>,site)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -297,11 +300,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmembranesite!</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmembranesite!</span>(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    s<span class="op">::</span><span class="dt">MEDYAN.SysDef</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    membranesitename<span class="op">::</span><span class="dt">Symbol</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    site</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.SysDef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.SysDef</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a new site with a specified name. During this process, a new fixed species is created suffixed with “membranesite.”.</p>
 </div>
 </div>
@@ -315,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -325,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reactionexpr<span class="op">::</span><span class="dt">AbstractString</span>,rate<span class="op">::</span><span class="dt">Float64</span>,invvolumepower<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reactionexpr<span class="op">::</span><span class="dt">AbstractString</span>,rate<span class="op">::</span><span class="dt">Float64</span>,invvolumepower<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a reaction to the system. Return s</p>
 <p><code>reactionexpr</code> is a string describing the reaction stoichiometry</p>
 <p><code>reactionexpr</code> is comprised of reactant and product parts seperated by a <code>"--&gt;"</code></p>
@@ -339,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="example-good-reactionexpr" class="level1">
 <h1>Example good <code>reactionexpr</code></h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; diffusing.c"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; diffusing.c"</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.c --&gt; diffusing.a + diffusing.b"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">"+ + diffusing.c + --&gt; + diffusing.a + + diffusing.b + +"</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">" --&gt; diffusing.a + diffusing.b"</span></span>
@@ -357,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.MT.d + diffusing.a --&gt; filamentsite.MT.d"</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g --&gt; diffusing.a"</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a --&gt; fixedspecies.g"</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.actin.pm + diffusing.a --&gt; filamentsite.actin.pm"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.actin.pm + diffusing.a --&gt; filamentsite.actin.pm"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -371,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Like <a href="../../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>addreaction!</code></a> but also adds <code>callback</code>. <code>callback</code> is called when the reaction happens with input of <code>MEDYAN.Context</code> and <code>Int</code> the compartment id where the reaction happened.</p>
 <p>The reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an <code>AbstractString</code> is passed instead of a <code>CompartmentReaction</code> for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.</p>
 <p><code>MEDYAN.errorcheck_addcallback(callback,s::SysDef)</code> can optionally be overloaded to add errorchecking when the callback is added.</p>
@@ -414,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="examples" class="level1">
 <h1>Examples</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>a,</span>
@@ -431,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>aabc,</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a,<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b,<span class="op">:</span>c], <span class="fl">2</span>,</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -462,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="examples-1" class="level1">
 <h1>Examples</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    diffusingspeciesnames<span class="op">=</span> [<span class="op">:</span>a,],</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
@@ -483,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>dpp, <span class="cn">false</span>,</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>mid,<span class="op">:</span>plus]<span class="op">=&gt;</span>[<span class="op">:</span>plus], <span class="fl">0.0</span>,</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt; diffusing.a"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -573,13 +576,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
