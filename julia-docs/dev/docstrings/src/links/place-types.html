@@ -188,6 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#srclinksplace-types.jl" id="toc-srclinksplace-types.jl" class="nav-link active" data-scroll-target="#srclinksplace-types.jl">src/links/place-types.jl</a>
   <ul class="collapse">
   <li><a href="#medyan.num_directions-89697a0fca8de12f" id="toc-medyan.num_directions-89697a0fca8de12f" class="nav-link" data-scroll-target="#medyan.num_directions-89697a0fca8de12f"><code>MEDYAN.num_directions</code></a></li>
+  <li><a href="#medyan.anchor-0dc7f056c6ce8b51" id="toc-medyan.anchor-0dc7f056c6ce8b51" class="nav-link" data-scroll-target="#medyan.anchor-0dc7f056c6ce8b51"><code>MEDYAN.Anchor</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/links/place-types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -210,6 +211,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_directions</span>(<span class="op">::</span><span class="dt">Union{Place, Type{&lt;:Place}}</span>)<span class="op">::</span><span class="dt">Int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the number of directions associated with a place.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.anchor-0dc7f056c6ce8b51" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.anchor-0dc7f056c6ce8b51"><a href="../../../docstrings/medyan.anchor-0dc7f056c6ce8b51.html"><code>MEDYAN.Anchor</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Anchor <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.</p>
+<section id="constructors" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>Anchor()</code>: Creates a null anchor with NaN position, NaN directions, and state 0</li>
+<li><code>Anchor(pos::SVector{3, Float64})</code>: Creates an anchor at the given position with NaN directions and state 0</li>
+<li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}})</code>: Creates an anchor at the given position with specified directions and state 0</li>
+<li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64)</code>: Full constructor with position, directions, and state</li>
+</ul>
+</section>
+<section id="fields" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>pos::SVector{3, Float64}</code>: 3D position coordinates</li>
+<li><code>dirs::SVector{2, SVector{3, Float64}}</code>: Two direction vectors</li>
+<li><code>state::Int64</code>: State identifier for chemical reactions</li>
+</ul>
+</section>
 </div>
 </div>
 </div>
