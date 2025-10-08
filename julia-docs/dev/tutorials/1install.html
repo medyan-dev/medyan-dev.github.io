@@ -247,18 +247,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This tutorial was generated using:</p>
 <div id="2" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
-<pre><code>Julia Version 1.11.7
-Commit f2b3dbda30a (2025-09-08 12:10 UTC)
+<pre><code>Julia Version 1.12.0
+Commit b907bd0600f (2025-10-07 15:42 UTC)
 Build Info:
-  Official https://julialang.org/ release
+  Official https://julialang.org release
 Platform Info:
   OS: Linux (x86_64-linux-gnu)
   CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz
   WORD_SIZE: 64
-  LLVM: libLLVM-16.0.6 (ORCJIT, skylake)
-Threads: 1 default, 0 interactive, 1 GC (on 16 virtual cores)
+  LLVM: libLLVM-18.1.7 (ORCJIT, skylake)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 16 virtual cores)
 Environment:
-  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner1/_work/_tool/julia/1.11.7/x64/bin/../lib/julia:/home/gh-actions1/actions-runner1/_work/_tool/julia/1.11.7/x64/bin/../lib
+  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner4/_work/_tool/julia/1.12.0/x64/bin/../lib/julia:/home/gh-actions1/actions-runner4/_work/_tool/julia/1.12.0/x64/bin/../lib
   JULIA_PROJECT = @.
   JULIA_LOAD_PATH = @:@stdlib</code></pre>
 </div>
@@ -274,7 +275,8 @@ Environment:
 <p>Download the exact julia environment used to generate the tutorials.</p>
 <p><a href="../medyan-tutorial.zip" download="">Click to Download</a></p>
 <p>Next extract this zip file and <code>cd</code> into the extracted directory.</p>
-<p>Now run</p>
+<p>Next add a copy of <code>MEDYAN</code> to the directory.</p>
+<p>Now run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span> <span class="at">-e</span> <span class="st">'import Pkg; Pkg.instantiate()'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To start the julia REPL in the correct environment to run the tutorials, use:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">julia</span> <span class="at">--project</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
