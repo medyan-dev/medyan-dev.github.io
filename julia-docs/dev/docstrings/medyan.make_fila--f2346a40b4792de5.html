@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Keyword Arguments</h1>
 <ul>
 <li><p><code>type=1</code>: filament type id or symbol.</p></li>
-<li><p><code>mono_states</code>: Collection of the <code>MonomerState</code> of the monomers in the new filament. In order from minus end to plus end. <code>length(mono_states)&gt;1</code></p></li>
+<li><p><code>mono_states</code>: Collection of the <code>MonomerState</code> or <code>Symbol</code> of the monomers in the new filament. In order from minus end to plus end. <code>length(mono_states)&gt;1</code></p></li>
 <li><p><code>node_positions</code>: Collection of <code>SVector{3,Float64}</code>. The positions of the nodes, monomers are between nodes.</p></li>
 <li><p><code>node_mids</code>: Collection of <code>Integer</code>. The monomer ids at (slightly plus side of) the <code>node_positions</code> | ––-+––-|––-+––- minus end &lt;–– M | M | (M) | M ––&gt; plus end ––-+––-|––-+––- | ^ A node_position is indicated by the line.</p>
 <p>The monomer id with parenthesis (M) will in <code>node_mids</code> <code>length(node_mids) == length(node_positions) - 1</code></p></li>

@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#medyan.link_type_name" id="toc-medyan.link_type_name" class="nav-link active" data-scroll-target="#medyan.link_type_name"><code>MEDYAN.link_type_name</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--integer--db97adaa913606b0" id="toc-tuple-medyan.context--integer--db97adaa913606b0" class="nav-link" data-scroll-target="#tuple-medyan.context--integer--db97adaa913606b0"><code data-shortcodes="false">Tuple{MEDYAN.Context, Integer}</code></a></li>
+  <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.link_type_name-275d5954d07419f4.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -200,8 +200,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="medyan.link_type_name" class="level1">
 <h1><code>MEDYAN.link_type_name</code></h1>
-<section id="tuple-medyan.context--integer--db97adaa913606b0" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--integer--db97adaa913606b0"><code data-shortcodes="false">Tuple{MEDYAN.Context, Integer}</code></h2>
+<section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -209,8 +209,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">link_type_name</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>)<span class="op">::</span><span class="dt">Symbol</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">link_type_name</span>(c<span class="op">::</span><span class="dt">Context</span>, link_typeid<span class="op">::</span><span class="dt">Integer</span>)<span class="op">::</span><span class="dt">Symbol</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the name of the <code>link</code>’s type, or the name associated with <code>link_typeid</code></p>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">link_type_name</span>(c<span class="op">::</span><span class="dt">Context</span>; <span class="kw">type</span><span class="op">::</span><span class="dt">Union{Symbol, Integer}</span>)<span class="op">::</span><span class="dt">Symbol</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the name of the <code>link</code>’s type, or the name associated with <code>type</code></p>
 </div>
 </div>
 </div>
