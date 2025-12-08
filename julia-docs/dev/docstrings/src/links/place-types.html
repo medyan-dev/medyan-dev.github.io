@@ -189,6 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#medyan.num_directions-89697a0fca8de12f" id="toc-medyan.num_directions-89697a0fca8de12f" class="nav-link" data-scroll-target="#medyan.num_directions-89697a0fca8de12f"><code>MEDYAN.num_directions</code></a></li>
   <li><a href="#medyan.anchor-0dc7f056c6ce8b51" id="toc-medyan.anchor-0dc7f056c6ce8b51" class="nav-link" data-scroll-target="#medyan.anchor-0dc7f056c6ce8b51"><code>MEDYAN.Anchor</code></a></li>
+  <li><a href="#medyan.ballidx-5a4aba766d557d6a" id="toc-medyan.ballidx-5a4aba766d557d6a" class="nav-link" data-scroll-target="#medyan.ballidx-5a4aba766d557d6a"><code>MEDYAN.BallIdx</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/links/place-types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -241,6 +242,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>dirs::SVector{2, SVector{3, Float64}}</code>: Two direction vectors</li>
 <li><code>state::Int64</code>: State identifier for chemical reactions</li>
 </ul>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.ballidx-5a4aba766d557d6a" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.ballidx-5a4aba766d557d6a"><a href="../../../docstrings/medyan.ballidx-5a4aba766d557d6a.html"><code>MEDYAN.BallIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index referring to a ball (spherical particle) in the simulation. Balls are stored in the <code>balls</code> vector of the <code>Context</code> and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.</p>
+<section id="constructors-1" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>BallIdx()</code>: Creates a null ball index with idx 0</li>
+<li><code>BallIdx(idx::Int64)</code>: Creates a ball index pointing to the ball at position <code>idx</code> in the context’s balls vector</li>
+</ul>
+</section>
+<section id="fields-1" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>idx::Int64</code>: Index of the ball in the context’s <code>balls</code> vector</li>
+</ul>
+</section>
+<section id="related-functions" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, and <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a> for creating, removing, and modifying balls.</p>
 </section>
 </div>
 </div>

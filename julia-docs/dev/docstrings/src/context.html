@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.context-736368ed32b08894" id="toc-medyan.context-736368ed32b08894" class="nav-link" data-scroll-target="#medyan.context-736368ed32b08894"><code>MEDYAN.Context</code></a></li>
   <li><a href="#medyan.set_time--a6dd8f73f68a3759" id="toc-medyan.set_time--a6dd8f73f68a3759" class="nav-link" data-scroll-target="#medyan.set_time--a6dd8f73f68a3759"><code>MEDYAN.set_time!</code></a></li>
   <li><a href="#medyan.get_time-6e9303598ae0437c" id="toc-medyan.get_time-6e9303598ae0437c" class="nav-link" data-scroll-target="#medyan.get_time-6e9303598ae0437c"><code>MEDYAN.get_time</code></a></li>
-  <li><a href="#medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a" id="toc-medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a" class="nav-link" data-scroll-target="#medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a"><code>MEDYAN.set_enable_cylinder_volume_exclusion!</code></a></li>
+  <li><a href="#medyan.set_enable_collision--ff3352f0a3c63ab0" id="toc-medyan.set_enable_collision--ff3352f0a3c63ab0" class="nav-link" data-scroll-target="#medyan.set_enable_collision--ff3352f0a3c63ab0"><code>MEDYAN.set_enable_collision!</code></a></li>
   <li><a href="#medyan.set_chemboundary--0aa6e4e95c60f9f7" id="toc-medyan.set_chemboundary--0aa6e4e95c60f9f7" class="nav-link" data-scroll-target="#medyan.set_chemboundary--0aa6e4e95c60f9f7"><code>MEDYAN.set_chemboundary!</code></a></li>
   <li><a href="#medyan.set_mechboundary--b5e26b6b690256aa" id="toc-medyan.set_mechboundary--b5e26b6b690256aa" class="nav-link" data-scroll-target="#medyan.set_mechboundary--b5e26b6b690256aa"><code>MEDYAN.set_mechboundary!</code></a></li>
   <li><a href="#medyan.chem_adddiffusingcount--2264be341b81a600" id="toc-medyan.chem_adddiffusingcount--2264be341b81a600" class="nav-link" data-scroll-target="#medyan.chem_adddiffusingcount--2264be341b81a600"><code>MEDYAN.chem_adddiffusingcount!</code></a></li>
@@ -258,6 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>min_compartment_volume_ratio::Float64</code>: Smallest volume a compartment can have before being deactivated as a ratio to a full compartment volume.</p></li>
 <li><p><code>chemistryengine::MEDYAN.RDMESampler</code>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
+<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, state::Vector{StaticArraysCore.SVector{3, Int64}}}, Int64}</code></p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
 <li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
 <li><p><code>decimated_2mon_site_managers::Vector{MEDYAN.AbstractDecimated2MonSiteManager}</code>: Site managers, indexed by site id</p></li>
@@ -280,17 +281,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>shake_before_minimization::Float64</code>: Standard deviation of noise added to coordinates before starting minimization.</p></li>
 <li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
 <li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
-<li><p><code>max_cylinder_force::Float64</code>: max cylinder force when two cylinders are at zero distance (pN)</p></li>
 <li><p><code>check_neighborlist_error::Bool</code>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
 <li><p><code>nthreads::Int64</code>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
-<li><p><code>enable_cylinder_volume_exclusion::Ref{Bool}</code>: Are cylinder volume exclusion forces calculated</p></li>
-<li><p><code>enable_triangle_bead_volume_exclusion::Bool</code>: Are triangle-bead volume exclusion forces calculated.</p></li>
-<li><p><code>cylinder_skin_radius::Float64</code>: Extra cell list cutoff radius in nm. The cell lists are reset after a bead moves over this amount</p></li>
+<li><p><code>enable_collision::Ref{Bool}</code>: Are collision forces calculated</p></li>
+<li><p><code>collision_skin::Float64</code>: Extra collision neighbor list cutoff radius in nm. The neighbor lists are reset after something moves over this amount</p></li>
+<li><p><code>collision_switchover_scale_unitless::Float32</code>: Smoothing scale to avoid sharp forces when two cylinders are collinear</p></li>
 <li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code>: The filament mechanical parameters, indexed by filament type id</p></li>
 <li><p><code>membranemechparams::Vector{MEDYAN.MembraneMechParams}</code>: Membrane mechanical parameters, indexed by membrane type id.</p></li>
 <li><p><code>func_membranespeciespotentialenergy::Any</code>: Membrane species potential energy function. See docs on default function for more info.</p></li>
-<li><p><code>membranefilamentmechparams::MEDYAN.MembraneFilamentMechParams</code>: Membrane-filament mechanical interaction parameters.</p></li>
-<li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a mutating function taking a <code>(fc::MEDYAN.ForceContext)</code>, which adds to <code>fc.forces, fc.energies, and fc.energy</code>. The energy and force must be consistent, and this is not checked. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
+<li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a mutating function taking a <code>(fc::MEDYAN.ForceContext, vectorized_x)</code>, which adds to <code>fc.forces, fc.energies, and fc.energy</code>. The energy and force must be consistent, and this is not checked. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
 <li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
 <li><p><code>meshindex_as_chemboundary::Ref{Int64}</code>: The membrane index used as chemical boundary. If values other than 0 is used, the actual interior region of the chemical boundary is the intersection between</p>
 <ul>
@@ -335,19 +334,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a"><a href="../../docstrings/medyan.set_enable_cylinder_volume_exclusion--38c20ab68ab8bf1a.html"><code>MEDYAN.set_enable_cylinder_volume_exclusion!</code></a></h2>
+<section id="medyan.set_enable_collision--ff3352f0a3c63ab0" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.set_enable_collision--ff3352f0a3c63ab0"><a href="../../docstrings/medyan.set_enable_collision--ff3352f0a3c63ab0.html"><code>MEDYAN.set_enable_collision!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_enable_cylinder_volume_exclusion!</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">::</span><span class="dt">Bool</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Are cylinder volume exclusion forces calculated.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_enable_collision!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>, x<span class="op">::</span><span class="dt">Bool</span>) <span class="op">-&gt;</span> <span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Are repulsive forces calculated.</p>
 </div>
 </div>
 </div>
@@ -368,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Set chemical boundary and update compartment volumes and diffusion rates. Note, the chemboundary should be outside the mechboundary so that it is rare for filaments to go outside the chemboundary.</p>
 <p>Calling this will invalidate the chem cache.</p>
 <p>See also <a href="../../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a></p>
-<section id="keywords" class="level1">
-<h1>Keywords</h1>
+<section id="keyword-arguments" class="level1">
+<h1>Keyword Arguments</h1>
 <ul>
 <li><code>planes::Vector{SVector{4,Float64}} = []</code></li>
 </ul>
@@ -571,8 +567,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">newmembrane!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; <span class="kw">type</span>, meshinit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a new membrane to the system.</p>
-<section id="keyword-arguments" class="level1">
-<h1>Keyword arguments</h1>
+<section id="keyword-arguments-1" class="level1">
+<h1>Keyword Arguments</h1>
 <ul>
 <li><code>meshinit</code> is structure containing mesh shape initialization information, such as a named tuple <code>(vertlist, trilist)</code> containing vertex coordinates and triangle list, <code>MeshInitEllipsoid</code>, <code>MeshInitPlane</code> or a general <code>MeshInitSurfaceFunc</code>.</li>
 </ul>
