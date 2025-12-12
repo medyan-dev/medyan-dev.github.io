@@ -565,12 +565,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">newmembrane!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; <span class="kw">type</span>, meshinit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">newmembrane!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; <span class="kw">type</span>, meshinit, mechparams)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a new membrane to the system.</p>
 <section id="keyword-arguments-1" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
-<li><code>meshinit</code> is structure containing mesh shape initialization information, such as a named tuple <code>(vertlist, trilist)</code> containing vertex coordinates and triangle list, <code>MeshInitEllipsoid</code>, <code>MeshInitPlane</code> or a general <code>MeshInitSurfaceFunc</code>.</li>
+<li><code>type::Int</code>: Membrane type index (must have corresponding entry in <code>c.membranemechparams</code>)</li>
+<li><code>meshinit</code>: Structure containing mesh shape initialization information, such as a named tuple <code>(vertlist, trilist)</code> containing vertex coordinates and triangle list, <code>MeshInitEllipsoid</code>, <code>MeshInitPlane</code> or a general <code>MeshInitSurfaceFunc</code>.</li>
+<li><code>mechparams::Union{Nothing, MembraneMechParams}=nothing</code>: Mechanical parameters for this membrane. If <code>nothing</code>, copies from <code>c.membranemechparams[type]</code>.</li>
 </ul>
 </section>
 </div>
