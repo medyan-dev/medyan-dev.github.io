@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.vertexstate-450b7005d2acebe8 – MEDYAN.jl</title>
+<title>medyan.make_memb--3b9234d85f7612ed – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -150,12 +185,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.vertexstate" id="toc-medyan.vertexstate" class="nav-link active" data-scroll-target="#medyan.vertexstate"><code>MEDYAN.VertexState</code></a>
+  <li><a href="#medyan.make_memb" id="toc-medyan.make_memb" class="nav-link active" data-scroll-target="#medyan.make_memb"><code>MEDYAN.make_memb!</code></a>
   <ul class="collapse">
-  <li><a href="#union---b2cfd89fb0d1b9c6" id="toc-union---b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
+  <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.vertexstate-450b7005d2acebe8.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_memb--3b9234d85f7612ed.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -163,17 +198,35 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="medyan.vertexstate" class="level1">
-<h1><code>MEDYAN.VertexState</code></h1>
-<section id="union---b2cfd89fb0d1b9c6" class="level2">
-<h2 class="anchored" data-anchor-id="union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
+<section id="medyan.make_memb" class="level1">
+<h1><code>MEDYAN.make_memb!</code></h1>
+<section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Possible Cadherin Site: one end fixed on vertex, other end on filament. For fend within max to min range are linkable. If they have matching state with <code>vertexstate</code> and <code>monomerstate</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_memb!</span>(c<span class="op">::</span><span class="dt">Context</span>; vertex_positions, triangles)<span class="op">::</span><span class="dt">MembId</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return a membrane identifier of the newly created membrane.</p>
+<section id="keyword-arguments" class="level1">
+<h1>Keyword Arguments</h1>
+<ul>
+<li><p><code>vertex_positions</code>: Each element is a vertex position (nm).</p></li>
+<li><p><code>triangles::Vector{SVector{3, Int}}</code>: Each element is the 3 vertex indexes of a triangle.</p>
+<p>Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.</p></li>
+<li><p><code>vertex_states::Union{Vector{Int64}, Nothing} = nothing</code>: Each element is a vertex state.</p>
+<p>By default vertices have a state of zero. If a vertex has a non zero state, it will not be removed during mesh adaption.</p></li>
+<li><p><code>mech_params::MembraneMechParams = MembraneMechParams()</code>: Mechanical parameters for membrane mechanics</p></li>
+<li><p><code>area0::Union{Float64, Nothing} = nothing</code>: Reference area (if <code>nothing</code>, computed from initial mesh) (nm^2)</p></li>
+<li><p><code>volume0::Union{Float64, Nothing} = nothing</code>: Reference volume (if <code>nothing</code>, computed from initial mesh) (nm^3)</p></li>
+<li><p><code>offset_volume::Float64=0.0</code>: Actual volume is cone volume with the origin plus the offset (nm^3)</p></li>
+<li><p><code>type::Int=1</code>: Membrane type index</p></li>
+<li><p><code>chem_boundary::Bool = false</code>: If <code>true</code>, the membrane acts as a boundary for 3D diffusing species.</p></li>
+<li><p><code>chem_boundary_exterior::Bool = false</code>: If <code>true</code>, the confined chemical domain is the exterior; otherwise the confined domain is the interior.</p></li>
+</ul>
+</section>
 </div>
 </div>
 </div>
@@ -588,4 +641,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.vertexstate-450b7005d2acebe8.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_memb--3b9234d85f7612ed.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

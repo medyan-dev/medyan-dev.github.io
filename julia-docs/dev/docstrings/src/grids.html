@@ -213,10 +213,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CubicGrid</span>(num_voxels<span class="op">::</span><span class="dt">SVector{3,Int}</span>, compartmentsize<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CubicGrid</span>(num_voxels<span class="op">::</span><span class="dt">SVector{3,Int}</span>, spacing<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>n::StaticArraysCore.SVector{3, Int64}</code></li>
-<li><code>compartmentsize::Float64</code></li>
+<li><code>spacing::Float64</code></li>
 </ul>
 </div>
 </div>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Base</span>.<span class="fu">length</span>(grid<span class="op">::</span><span class="dt">CubicGrid</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Total number of compartments in the grid</p>
+<p>Total number of voxels in the grid</p>
 </div>
 </div>
 </div>

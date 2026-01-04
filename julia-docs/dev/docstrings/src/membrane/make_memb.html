@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.newmembrane--a714b4a1c87062be – MEDYAN.jl</title>
+<title>make_memb – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,24 +58,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -115,9 +115,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
@@ -128,23 +128,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tutorials/1install.html"> 
+    <a class="nav-link" href="../../../tutorials/1install.html"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../howto/index.html"> 
+    <a class="nav-link" href="../../../howto/index.html"> 
 <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../explanations.html"> 
+    <a class="nav-link" href="../../../explanations.html"> 
 <span class="menu-text">Explanations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reference/index.html"> 
+    <a class="nav-link" href="../../../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -160,11 +160,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="../../dev/">
+    <a class="dropdown-item" href="../../../../dev/">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../stable/">
+    <a class="dropdown-item" href="../../../../stable/">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.newmembrane" id="toc-medyan.newmembrane" class="nav-link active" data-scroll-target="#medyan.newmembrane"><code>MEDYAN.newmembrane!</code></a>
+  <li><a href="#srcmembranemake_memb.jl" id="toc-srcmembranemake_memb.jl" class="nav-link active" data-scroll-target="#srcmembranemake_memb.jl">src/membrane/make_memb.jl</a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
+  <li><a href="#medyan.make_memb--3b9234d85f7612ed" id="toc-medyan.make_memb--3b9234d85f7612ed" class="nav-link" data-scroll-target="#medyan.make_memb--3b9234d85f7612ed"><code>MEDYAN.make_memb!</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.newmembrane--a714b4a1c87062be.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/membrane/make_memb.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,24 +198,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.newmembrane" class="level1">
-<h1><code>MEDYAN.newmembrane!</code></h1>
-<section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
+<section id="srcmembranemake_memb.jl" class="level1">
+<h1>src/membrane/make_memb.jl</h1>
+<section id="medyan.make_memb--3b9234d85f7612ed" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.make_memb--3b9234d85f7612ed"><a href="../../../docstrings/medyan.make_memb--3b9234d85f7612ed.html"><code>MEDYAN.make_memb!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">newmembrane!</span>(c<span class="op">::</span><span class="dt">MEDYAN.Context</span>; <span class="kw">type</span>, meshinit, mechparams)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add a new membrane to the system.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_memb!</span>(c<span class="op">::</span><span class="dt">Context</span>; vertex_positions, triangles)<span class="op">::</span><span class="dt">MembId</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return a membrane identifier of the newly created membrane.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
-<li><code>type::Int</code>: Membrane type index (must have corresponding entry in <code>c.membranemechparams</code>)</li>
-<li><code>meshinit</code>: Structure containing mesh shape initialization information, such as a named tuple <code>(vertlist, trilist)</code> containing vertex coordinates and triangle list, <code>MeshInitEllipsoid</code>, <code>MeshInitPlane</code> or a general <code>MeshInitSurfaceFunc</code>.</li>
-<li><code>mechparams::Union{Nothing, MembraneMechParams}=nothing</code>: Mechanical parameters for this membrane. If <code>nothing</code>, copies from <code>c.membranemechparams[type]</code>.</li>
+<li><p><code>vertex_positions</code>: Each element is a vertex position (nm).</p></li>
+<li><p><code>triangles::Vector{SVector{3, Int}}</code>: Each element is the 3 vertex indexes of a triangle.</p>
+<p>Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.</p></li>
+<li><p><code>vertex_states::Union{Vector{Int64}, Nothing} = nothing</code>: Each element is a vertex state.</p>
+<p>By default vertices have a state of zero. If a vertex has a non zero state, it will not be removed during mesh adaption.</p></li>
+<li><p><code>mech_params::MembraneMechParams = MembraneMechParams()</code>: Mechanical parameters for membrane mechanics</p></li>
+<li><p><code>area0::Union{Float64, Nothing} = nothing</code>: Reference area (if <code>nothing</code>, computed from initial mesh) (nm^2)</p></li>
+<li><p><code>volume0::Union{Float64, Nothing} = nothing</code>: Reference volume (if <code>nothing</code>, computed from initial mesh) (nm^3)</p></li>
+<li><p><code>offset_volume::Float64=0.0</code>: Actual volume is cone volume with the origin plus the offset (nm^3)</p></li>
+<li><p><code>type::Int=1</code>: Membrane type index</p></li>
+<li><p><code>chem_boundary::Bool = false</code>: If <code>true</code>, the membrane acts as a boundary for 3D diffusing species.</p></li>
+<li><p><code>chem_boundary_exterior::Bool = false</code>: If <code>true</code>, the confined chemical domain is the exterior; otherwise the confined domain is the interior.</p></li>
 </ul>
 </section>
 </div>
@@ -632,4 +641,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.newmembrane--a714b4a1c87062be.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/membrane/make_memb.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

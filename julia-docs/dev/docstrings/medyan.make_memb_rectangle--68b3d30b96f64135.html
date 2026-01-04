@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.set_chemboundary--0aa6e4e95c60f9f7 – MEDYAN.jl</title>
+<title>medyan.make_memb_rectangle--68b3d30b96f64135 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.set_chemboundary" id="toc-medyan.set_chemboundary" class="nav-link active" data-scroll-target="#medyan.set_chemboundary"><code>MEDYAN.set_chemboundary!</code></a>
+  <li><a href="#medyan.make_memb_rectangle" id="toc-medyan.make_memb_rectangle" class="nav-link active" data-scroll-target="#medyan.make_memb_rectangle"><code>MEDYAN.make_memb_rectangle!</code></a>
   <ul class="collapse">
   <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_chemboundary--0aa6e4e95c60f9f7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,8 +198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.set_chemboundary" class="level1">
-<h1><code>MEDYAN.set_chemboundary!</code></h1>
+<section id="medyan.make_memb_rectangle" class="level1">
+<h1><code>MEDYAN.make_memb_rectangle!</code></h1>
 <section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -208,33 +208,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chemboundary!</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    meshindex_as_chemboundary,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    kwargs<span class="op">...</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Set chemical boundary and update compartment volumes and diffusion rates. Note, the chemboundary should be outside the mechboundary so that it is rare for filaments to go outside the chemboundary.</p>
-<p>Calling this will invalidate the chem cache.</p>
-<p>See also <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_memb_rectangle!</span>(c<span class="op">::</span><span class="dt">Context</span>; width, height<span class="op">=</span>width, center<span class="op">=</span>SA[<span class="fl">0.0</span>,<span class="fl">0.0</span>,<span class="fl">0.0</span>])<span class="op">::</span><span class="dt">MembId</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create a new rectangular membrane in the simulation context and return its membrane identifier.</p>
+<p>The membrane is by default in the X-Y plane, and the outside of the membrane is on the +Z side.</p>
+<p>The mesh is then scaled by <code>width</code> in the X direction, <code>height</code> in the Y direction, rotated by <code>rotation</code>, and translated to <code>center</code>.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
-<li><code>planes::Vector{SVector{4,Float64}} = []</code></li>
+<li><code>width::Float64</code>: The length of the membrane in the X direction (nm)</li>
+<li><code>height::Float64=width</code>: The length of the membrane in the Y direction (nm)</li>
+<li><code>center::SVector{3,Float64}=SA[0.0,0.0,0.0]</code>: Center of the sphere (nm)</li>
+<li><code>rotation=I</code>: 3x3 matrix to rotate the sphere around its center</li>
+<li><code>mech_params::MembraneMechParams = MembraneMechParams()</code>: Mechanical parameters for membrane mechanics</li>
+<li><code>area0::Union{Float64, Nothing} = nothing</code>: Reference area (if <code>nothing</code>, computed from initial mesh) (nm^2)</li>
+<li><code>volume0::Union{Float64, Nothing} = nothing</code>: Reference volume (if <code>nothing</code>, computed from initial mesh) (nm^3)</li>
+<li><code>offset_volume::Float64=0.0</code>: Actual volume is cone volume with the origin plus the offset (nm^3)</li>
+<li><code>type::Int=1</code>: Membrane type index</li>
+<li><code>chem_boundary::Bool = false</code>: If <code>true</code>, the membrane acts as a boundary for 3D diffusing species.</li>
+<li><code>chem_boundary_exterior::Bool = false</code>: If <code>true</code>, the confined chemical domain is the exterior; otherwise the confined domain is the interior.</li>
 </ul>
-<p>Planes that make up the chemical boundary of the simulation</p>
-<p><code>inside = signbit(pos ⋅ planes[bi][1:3] - planes[bi][4])</code></p>
-<p>For example, a plane <code>[1,0,0,3]</code> is inside if x &lt; 3 nm.</p>
-<p><code>2.0*[1,0,0,3]</code> is also inside if x &lt; 3 nm.</p>
-<ul>
-<li><code>capsules::Vector{SVector{8,Float64}} = []</code></li>
-</ul>
-<p>Capsules that make up the chemical boundary of the simulation.</p>
-<p><code>capsules[bi][1:3]</code> is the starting point of the spine line segment (nm). <code>capsules[bi][4:6]</code> is the axis of the spine line segment (nm). <code>capsules[bi][7]</code> is the radius (nm). <code>capsules[bi][8]</code> is ignored.</p>
-<p>if <code>capsules[bi][4:6]</code> is zero then the capsule is a sphere. Capsule boundaries can be combined with plane boundaries to create cylinder boundaries.</p>
-<ul>
-<li><code>meshindex_as_chemboundary::Int = 0</code>: Index of membrane mesh that further restricts the chem boundary. 0 for none.</li>
-</ul>
-<p>The system geometry information must be up-to-date. This mesh index is not stored in the boundary object, but is directly set in the context.</p>
 </section>
 </div>
 </div>
@@ -650,4 +642,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_chemboundary--0aa6e4e95c60f9f7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
