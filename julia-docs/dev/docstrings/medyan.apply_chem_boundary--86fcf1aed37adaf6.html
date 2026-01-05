@@ -208,10 +208,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply_chem_boundary!</span>(c<span class="op">::</span><span class="dt">Context</span>; oversampling_factor<span class="op">::</span><span class="dt">Int</span>=<span class="fl">16</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply_chem_boundary!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update chem voxel volumes and diffusion rates.</p>
 <p>The chem boundary is the intersection of any boundary set by <a href="../docstrings/medyan.set_chem_boundary--8446b49a230e3146.html"><code>set_chem_boundary!</code></a> and membranes with <code>chem_boundary=true</code>.</p>
-<p><code>oversampling_factor</code> can be increased to improve the accuracy at the expense of increased memory use.</p>
+<p><a href="../docstrings/medyan.set_chem_boundary_oversampling_factor--dd246eef62c89b5f.html"><code>set_chem_boundary_oversampling_factor!</code></a> can be used to increase the boundary sampling resolution at the expense of increased memory use.</p>
 <p>Calling this will invalidate the chem cache.</p>
 </div>
 </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.context-736368ed32b08894 – MEDYAN.jl</title>
+<title>medyan.set_chem_boundary_tsdf_max_distance--6d2b2e3f7c85a2e1 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.context" id="toc-medyan.context" class="nav-link active" data-scroll-target="#medyan.context"><code>MEDYAN.Context</code></a>
+  <li><a href="#medyan.set_chem_boundary_tsdf_max_distance" id="toc-medyan.set_chem_boundary_tsdf_max_distance" class="nav-link active" data-scroll-target="#medyan.set_chem_boundary_tsdf_max_distance"><code>MEDYAN.set_chem_boundary_tsdf_max_distance!</code></a>
   <ul class="collapse">
-  <li><a href="#union---b2cfd89fb0d1b9c6" id="toc-union---b2cfd89fb0d1b9c6" class="nav-link" data-scroll-target="#union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></a></li>
+  <li><a href="#tuple-medyan.context--float64--5f0fd8a48f76a337" id="toc-tuple-medyan.context--float64--5f0fd8a48f76a337" class="nav-link" data-scroll-target="#tuple-medyan.context--float64--5f0fd8a48f76a337"><code data-shortcodes="false">Tuple{MEDYAN.Context, Float64}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.context-736368ed32b08894.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_chem_boundary_tsdf_max_distance--6d2b2e3f7c85a2e1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,75 +198,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.context" class="level1">
-<h1><code>MEDYAN.Context</code></h1>
-<section id="union---b2cfd89fb0d1b9c6" class="level2">
-<h2 class="anchored" data-anchor-id="union---b2cfd89fb0d1b9c6"><code data-shortcodes="false">Union{}</code></h2>
+<section id="medyan.set_chem_boundary_tsdf_max_distance" class="level1">
+<h1><code>MEDYAN.set_chem_boundary_tsdf_max_distance!</code></h1>
+<section id="tuple-medyan.context--float64--5f0fd8a48f76a337" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--float64--5f0fd8a48f76a337"><code data-shortcodes="false">Tuple{MEDYAN.Context, Float64}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Context</span>(sys_def<span class="op">::</span><span class="dt">SysDef</span>, grid<span class="op">::</span><span class="dt">CubicGrid</span>; kwargs<span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p><code>agent_names::MEDYAN.AgentNames</code></p></li>
-<li><p><code>sys_def::MEDYAN.SysDef</code></p></li>
-<li><p><code>compartments::Vector{MEDYAN.Compartment}</code></p></li>
-<li><p><code>grid::MEDYAN.CubicGrid</code></p></li>
-<li><p><code>time::Float64</code>: time (s)</p></li>
-<li><p><code>stats::MEDYAN.PerformanceStats</code></p></li>
-<li><p><code>β::Float64</code>: inverse kT (1/(nm*pN))</p></li>
-<li><p><code>base_diffusion_coeffs::Vector{Float64}</code>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p></li>
-<li><p><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code>: Membrane species parameters indexed by membrane diffusing species id.</p></li>
-<li><p><code>min_chem_voxel_volume_ratio::Float64</code>: Smallest volume a chem voxel can have before being deactivated as a ratio to a full chem voxel volume.</p></li>
-<li><p><code>chemistryengine::MEDYAN.RDMESampler</code>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
-<li><p><code>chem_voxel_volumes::Array{Float64, 3}</code>: Volume of each chemical voxel</p></li>
-<li><p><code>chem_voxel_areas::Array{Float64, 4}</code>: Areas of (-x, -y, -z) faces of each chemical voxel</p></li>
-<li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
-<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, state::Vector{StaticArraysCore.SVector{3, Int64}}}, Int64}</code></p></li>
-<li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
-<li><p><code>next_membid::Ref{MEDYAN.MembId}</code>: Next memb id</p></li>
-<li><p><code>membid2membidx::Dict{MEDYAN.MembId, UInt32}</code>: map from memb id to index memb indexes can change whenever a memb is removed, but id’s are stable</p></li>
-<li><p><code>membidx2membid::Vector{MEDYAN.MembId}</code>: map from memb index to id</p></li>
-<li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
-<li><p><code>decimated_2mon_site_managers::Vector{MEDYAN.AbstractDecimated2MonSiteManager}</code>: Site managers, indexed by site id</p></li>
-<li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
-<li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
-<li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
-<li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
-<li><p><code>decimated_2mon_sites::Vector{MEDYAN.SiteData}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code>: Site managers, indexed by site id</p></li>
-<li><p><code>check_sitecount_error::Bool</code>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
-<li><p><code>compartmentreactioncallbacks::Any</code></p></li>
-<li><p><code>bulkreactioncallbacks::Any</code></p></li>
-<li><p><code>memdiff_bulks_index::Int64</code>: Mock bulk species index for membrane diffusion.</p></li>
-<li><p><code>viscosity::Float64</code>: viscosity (pN<em>s/nm² or MPa</em>s) water is about 1E-9</p></li>
-<li><p><code>g_tol::Float64</code>: maximum force magnitude after minimization (pN)</p></li>
-<li><p><code>nforce_fractbit::Int64</code>: number of fractional bits used to scale force values into Int64</p></li>
-<li><p><code>nenergy_fractbit::Int64</code>: number of fractional bits used to scale energy values into Int64</p></li>
-<li><p><code>shake_before_minimization::Float64</code>: Standard deviation of noise added to coordinates before starting minimization.</p></li>
-<li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
-<li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
-<li><p><code>check_neighborlist_error::Bool</code>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
-<li><p><code>nthreads::Int64</code>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
-<li><p><code>enable_collision::Ref{Bool}</code>: Are collision forces calculated</p></li>
-<li><p><code>collision_skin::Float64</code>: Extra collision neighbor list cutoff radius in nm. The neighbor lists are reset after something moves over this amount</p></li>
-<li><p><code>collision_switchover_scale_unitless::Float32</code>: Smoothing scale to avoid sharp forces when two cylinders are collinear</p></li>
-<li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code>: The filament mechanical parameters, indexed by filament type id</p></li>
-<li><p><code>func_membranespeciespotentialenergy::Any</code>: Membrane species potential energy function. See docs on default function for more info.</p></li>
-<li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a mutating function taking a <code>(fc::MEDYAN.ForceContext, vectorized_x)</code>, which adds to <code>fc.forces, fc.energies, and fc.energy</code>. The energy and force must be consistent, and this is not checked. This can be used as ad-hoc solutions to experiment with uncommon forces, such as specifically designed attachments, etc. If this variable is used often, consider moving it into MEDYAN.</p></li>
-<li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
-<li><p><code>chem_boundary_oversampling_factor::Int64</code>: Oversampling factor for chem boundary TSDF computation. Default is 4.</p></li>
-<li><p><code>chem_boundary_tsdf_max_distance::Float64</code>: Maximum distance for TSDF truncation (nm). Actual max is max(this, 2.5*grid_spacing). Default is 312.5 nm.</p></li>
-<li><p><code>chem_boundary_tsdf_cache::Union{Nothing, Array{Float64, 3}}</code>: Cached truncated signed distance field for chem boundary. <code>nothing</code> means cache is invalid.</p></li>
-<li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
-<li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
-<li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
-<li><p><code>profiler::ZoneProfilers.Profiler</code></p></li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chem_boundary_tsdf_max_distance!</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    max_distance<span class="op">::</span><span class="dt">Float64</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Set the maximum distance for TSDF truncation (nm). The actual max distance used is max(this, 2.5*grid_spacing). This will invalidate the TSDF cache.</p>
 </div>
 </div>
 </div>
@@ -681,4 +627,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.context-736368ed32b08894.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_chem_boundary_tsdf_max_distance--6d2b2e3f7c85a2e1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
