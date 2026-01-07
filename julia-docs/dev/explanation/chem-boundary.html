@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>chem-boundary – MEDYAN.jl</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">MEDYAN.jl</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../tutorials/1install.html"> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../howto/index.html"> 
+<span class="menu-text">How-To</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explanation/chem-boundary.html"> 
+<span class="menu-text">Explanation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../reference/index.html"> 
+<span class="menu-text">Reference</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/medyan-dev/MEDYAN.jl"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-versions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Versions</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
+        <li>
+    <a class="dropdown-item" href="../../dev/">
+ <span class="dropdown-text">dev</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../stable/">
+ <span class="dropdown-text">stable</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../explanation/chem-boundary.html">Chem Boundary</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../explanation/chem-boundary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Chem Boundary</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chem-boundary" id="toc-chem-boundary" class="nav-link active" data-scroll-target="#chem-boundary">Chem Boundary</a>
+  <ul class="collapse">
+  <li><a href="#background-on-the-chemistry-model" id="toc-background-on-the-chemistry-model" class="nav-link" data-scroll-target="#background-on-the-chemistry-model">Background on the chemistry model</a></li>
+  <li><a href="#boundary-definition" id="toc-boundary-definition" class="nav-link" data-scroll-target="#boundary-definition">Boundary definition</a>
+  <ul class="collapse">
+  <li><a href="#primitives" id="toc-primitives" class="nav-link" data-scroll-target="#primitives">Primitives</a></li>
+  <li><a href="#meshes" id="toc-meshes" class="nav-link" data-scroll-target="#meshes">Meshes</a></li>
+  <li><a href="#domain-intersection" id="toc-domain-intersection" class="nav-link" data-scroll-target="#domain-intersection">Domain intersection</a></li>
+  </ul></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements">Requirements</a>
+  <ul class="collapse">
+  <li><a href="#voxel-geometry-calculations" id="toc-voxel-geometry-calculations" class="nav-link" data-scroll-target="#voxel-geometry-calculations">Voxel geometry calculations</a></li>
+  <li><a href="#position-to-voxel-lookup" id="toc-position-to-voxel-lookup" class="nav-link" data-scroll-target="#position-to-voxel-lookup">Position to voxel lookup</a></li>
+  <li><a href="#position-sampling-for-nucleation" id="toc-position-sampling-for-nucleation" class="nav-link" data-scroll-target="#position-sampling-for-nucleation">Position sampling for nucleation</a></li>
+  <li><a href="#boundary-movement-and-voxel-deactivation" id="toc-boundary-movement-and-voxel-deactivation" class="nav-link" data-scroll-target="#boundary-movement-and-voxel-deactivation">Boundary movement and voxel deactivation</a></li>
+  </ul></li>
+  <li><a href="#truncated-signed-distance-fields" id="toc-truncated-signed-distance-fields" class="nav-link" data-scroll-target="#truncated-signed-distance-fields">Truncated signed distance fields</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#grid-structure" id="toc-grid-structure" class="nav-link" data-scroll-target="#grid-structure">Grid structure</a></li>
+  </ul></li>
+  <li><a href="#tsdf-algorithms" id="toc-tsdf-algorithms" class="nav-link" data-scroll-target="#tsdf-algorithms">TSDF Algorithms</a>
+  <ul class="collapse">
+  <li><a href="#generation" id="toc-generation" class="nav-link" data-scroll-target="#generation">Generation</a></li>
+  <li><a href="#chem-voxel-area-and-volume" id="toc-chem-voxel-area-and-volume" class="nav-link" data-scroll-target="#chem-voxel-area-and-volume">Chem voxel area and volume</a></li>
+  <li><a href="#is-inside" id="toc-is-inside" class="nav-link" data-scroll-target="#is-inside">Is inside</a></li>
+  <li><a href="#position-sampling-for-nucleation-1" id="toc-position-sampling-for-nucleation-1" class="nav-link" data-scroll-target="#position-sampling-for-nucleation-1">Position sampling for nucleation</a></li>
+  </ul></li>
+  <li><a href="#voxel-deactivation-and-species-redistribution" id="toc-voxel-deactivation-and-species-redistribution" class="nav-link" data-scroll-target="#voxel-deactivation-and-species-redistribution">Voxel deactivation and species redistribution</a>
+  <ul class="collapse">
+  <li><a href="#position-to-voxel-lookup-1" id="toc-position-to-voxel-lookup-1" class="nav-link" data-scroll-target="#position-to-voxel-lookup-1">Position to voxel lookup</a></li>
+  <li><a href="#redistributing-diffusing-species" id="toc-redistributing-diffusing-species" class="nav-link" data-scroll-target="#redistributing-diffusing-species">Redistributing diffusing species</a></li>
+  </ul></li>
+  <li><a href="#caching-and-storage-in-the-snapshot-file" id="toc-caching-and-storage-in-the-snapshot-file" class="nav-link" data-scroll-target="#caching-and-storage-in-the-snapshot-file">Caching and storage in the snapshot file</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/chem-boundary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="chem-boundary" class="level1">
+<h1>Chem Boundary</h1>
+<section id="background-on-the-chemistry-model" class="level2">
+<h2 class="anchored" data-anchor-id="background-on-the-chemistry-model">Background on the chemistry model</h2>
+<p>This is background to understand the requirements of the chem boundary systems.</p>
+<p>MEDYAN models stochastic reaction diffusion dynamics using the approach described in <span class="citation" data-cites="isaacson2006incorporating">(see <a href="#ref-isaacson2006incorporating" role="doc-biblioref">Isaacson and Peskin 2006</a>)</span></p>
+<p>This is a Eulerian method on a cartesian mesh of cubes with an embedded boundary.</p>
+<p><span class="citation" data-cites="isaacson2006incorporating">Isaacson and Peskin (<a href="#ref-isaacson2006incorporating" role="doc-biblioref">2006</a>)</span> calls these cubes cells, and they were called compartments in the C++ code base. However, both cells and compartments are biological terms, so to avoid confusion the term chem voxels is used.</p>
+<p>Each chem voxel stores a count of each of the diffusing species.</p>
+<p>Chem voxels typically have a side length of 500 nm. This means for a 16 micrometer cell there may be about 30,000.</p>
+<p>Inside a chem voxel, diffusing species can react with each other. Diffusing species can move between neighboring chem voxels with first order diffusion reactions.</p>
+<p>Reactions between diffusing species can result in the creation of an object with a continuous position, such as a filament being nucleated.</p>
+<p>In addition, objects with continuous positions can react with diffusing species.</p>
+</section>
+<section id="boundary-definition" class="level2">
+<h2 class="anchored" data-anchor-id="boundary-definition">Boundary definition</h2>
+<p>The chem boundary defines a region of space. In MEDYAN, the chem boundary is constructed as the intersection of domains defined by geometric primitives and meshes.</p>
+<p>During a simulation the chem boundary can change, but in many cases it will be fixed.</p>
+<section id="primitives" class="level3">
+<h3 class="anchored" data-anchor-id="primitives">Primitives</h3>
+<p>Primitives define simple geometric domains with analytical signed distance functions:</p>
+<ul>
+<li><strong>Planes</strong>: Define a half-space. One side of the plane is inside the domain, the other is outside.</li>
+<li><strong>Capsules</strong>: A cylinder capped with hemispheres at each end. The domain is the interior of the capsule.</li>
+</ul>
+</section>
+<section id="meshes" class="level3">
+<h3 class="anchored" data-anchor-id="meshes">Meshes</h3>
+<p>Triangular meshes represent membranes or other complex surfaces. The domain can be either the interior or the exterior of the mesh.</p>
+</section>
+<section id="domain-intersection" class="level3">
+<h3 class="anchored" data-anchor-id="domain-intersection">Domain intersection</h3>
+<p>The final chem boundary is the intersection of all specified domains (both primitives and meshes). A point in space is inside the chem boundary only if it is inside every domain.</p>
+<p>This approach allows flexible construction of complex geometries. For example:</p>
+<ul>
+<li>A cell cortex can be modeled as the interior of a membrane mesh.</li>
+<li>A region between two membranes can be modeled by intersecting the exterior of an inner mesh with the interior of an outer mesh.</li>
+<li>Flat boundaries (e.g., a substrate or coverslip) can be added using planes.</li>
+</ul>
+<p>Because only intersection is used, unlike a general-purpose constructive solid geometry system which would support union and other set operations, arbitrary boundaries cannot be created using primitives alone. Instead, meshes must be used to create arbitrarily shaped domains. The code assumes there are a small number of primitives, as is the case in simple simulations where the boundary is a sphere, box, cylinder, or capsule.</p>
+<p>Each context has only one chem boundary, and thus one domain where chemistry takes place. This means that to simulate chemistry in multiple cells, or in separate cytoplasmic and nuclear domains, one context must be created per domain.</p>
+</section>
+</section>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<p>The chem boundary system must support several operations:</p>
+<section id="voxel-geometry-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="voxel-geometry-calculations">Voxel geometry calculations</h3>
+<p>Diffusion rates between neighboring voxels depend on the shared surface area, and volume-dependent reaction rates (e.g., bimolecular reactions) require accurate voxel volumes. For voxels entirely inside or outside the boundary, this is straightforward. However, voxels cut by the boundary require computing the partial volume and the areas of faces inside the domain.</p>
+<p>Specifically, the diffusion hopping rate between two neighboring voxels is <span class="citation" data-cites="isaacson2006incorporating">(<a href="#ref-isaacson2006incorporating" role="doc-biblioref">Isaacson and Peskin 2006</a>)</span>:</p>
+<p><span class="math display">\[k = \frac{D \cdot A}{V \cdot L}\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is the diffusion coefficient, <span class="math inline">\(A\)</span> is the shared face area, <span class="math inline">\(V\)</span> is the source voxel volume, and <span class="math inline">\(L\)</span> is the voxel spacing. For voxels cut by the boundary, <span class="math inline">\(A\)</span> and <span class="math inline">\(V\)</span> will be reduced from their full values of <span class="math inline">\(L^2\)</span> and <span class="math inline">\(L^3\)</span>.</p>
+</section>
+<section id="position-to-voxel-lookup" class="level3">
+<h3 class="anchored" data-anchor-id="position-to-voxel-lookup">Position to voxel lookup</h3>
+<p>When continuously positioned objects (such as filaments) react with diffusing species, the system must determine which chem voxel contains the object’s position.</p>
+</section>
+<section id="position-sampling-for-nucleation" class="level3">
+<h3 class="anchored" data-anchor-id="position-sampling-for-nucleation">Position sampling for nucleation</h3>
+<p>When a nucleation reaction creates a new positioned object, a position must be sampled within the voxel where the reaction occurred. The sampled position must be conservatively inside the boundary — if the boundary is defined by a mesh, positions too close to the surface can cause numerical issues during force calculations.</p>
+</section>
+<section id="boundary-movement-and-voxel-deactivation" class="level3">
+<h3 class="anchored" data-anchor-id="boundary-movement-and-voxel-deactivation">Boundary movement and voxel deactivation</h3>
+<p>When the chem boundary moves, some voxels may transition from inside to outside. These voxels must be deactivated, and their diffusing species must be moved to nearby active voxels.</p>
+<p>Additionally, voxels with volumes below a threshold must be deactivated even if they are partially inside the boundary. This is necessary because volume-dependent reaction propensities can numerically explode when the volume is very small.</p>
+</section>
+</section>
+<section id="truncated-signed-distance-fields" class="level2">
+<h2 class="anchored" data-anchor-id="truncated-signed-distance-fields">Truncated signed distance fields</h2>
+<p>Because the boundary can be quite complex, we make use of a truncated signed distance field (TSDF) to accelerate the various boundary computations. By using a grid based acceleration method, the assumption is that simulations are dense. Tree based methods such as a BVH would use much less memory and could be faster in very large sparse system.</p>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background</h3>
+<p>A signed distance field (SDF) stores, at each point in space, the signed distance to the nearest boundary surface. By convention, negative values indicate points inside the domain, and positive values indicate points outside. The zero level set of the SDF defines the boundary surface.</p>
+<p>A <em>truncated</em> signed distance field (TSDF) clamps the signed distance to ±max_distance. This truncation makes TSDF generation from meshes efficient: only grid points near the surface need accurate distance computations, while distant points are simply assigned the clamped value.</p>
+</section>
+<section id="grid-structure" class="level3">
+<h3 class="anchored" data-anchor-id="grid-structure">Grid structure</h3>
+<p>The TSDF is stored on a Cartesian grid that is aligned with the chem voxel grid but with finer spacing. Typically, the TSDF grid oversamples the chem voxels by a factor of 4 in each dimension.</p>
+<p>The TSDF values are defined at the corners of the TSDF grid cells. Importantly, the corners of the chem voxels coincide with a subset of the TSDF grid points.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tsdf-grid.svg" class="img-fluid figure-img"></p>
+<figcaption>Relationship between chem voxels and TSDF grid. Thick lines show chem voxel boundaries, thin lines show the finer TSDF grid. TSDF values are stored at grid intersections. Red dots mark chem voxel corners, which align with TSDF grid points. With 4× oversampling, each chem voxel edge spans 4 TSDF cells.</figcaption>
+</figure>
+</div>
+<p>This alignment ensures that TSDF values at chem voxel corners are directly available without interpolation, while the finer grid provides the resolution needed for accurate cut voxel geometry calculations.</p>
+</section>
+</section>
+<section id="tsdf-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="tsdf-algorithms">TSDF Algorithms</h2>
+<section id="generation" class="level3">
+<h3 class="anchored" data-anchor-id="generation">Generation</h3>
+<p>The TSDF is computed differently for primitives and meshes, then combined by intersection (taking the maximum signed distance at each grid point).</p>
+<p><strong>Primitives (planes and capsules):</strong> For each grid point, the signed distance to each primitive is computed analytically:</p>
+<ul>
+<li>For planes, this is simply the dot product of the position with the plane normal minus the offset.</li>
+<li>For capsules, the distance is computed to the closest point on the capsule’s central axis, minus the capsule radius.</li>
+</ul>
+<p>The maximum distance across all primitives gives the signed distance to the primitive boundary. Values are clamped to ±max_distance.</p>
+<p><strong>Meshes:</strong> Computing signed distances to a triangular mesh is more involved. The algorithm follows the method described by <span class="citation" data-cites="baerentzen2002generating">Bærentzen and Aanæs (<a href="#ref-baerentzen2002generating" role="doc-biblioref">2002</a>)</span>, which handles sharp corners and edges correctly using <em>pseudo-normals</em>.</p>
+<p>The key steps are:</p>
+<ol type="1">
+<li><p><strong>Compute pseudo-normals</strong>: For each vertex, the pseudo-normal is the angle-weighted average of the normals of incident triangles. For each edge, it is the sum of the two adjacent triangle normals. These pseudo-normals ensure correct sign determination near sharp features.</p></li>
+<li><p><strong>Compute unsigned squared distances</strong>: For each triangle, the algorithm iterates over nearby grid points (within max_distance of the triangle’s bounding box). For each point, it determines whether the closest point on the triangle is on the face, an edge, or a vertex, and computes the squared distance accordingly.</p></li>
+<li><p><strong>Determine sign</strong>: The sign is determined by the dot product of the vector from the closest surface point to the query point with the appropriate pseudo-normal (triangle, edge, or vertex).</p></li>
+<li><p><strong>Propagate signs</strong>: Grid points far from the mesh may not be visited. A sweep in all six axis directions propagates the sign from computed regions to fill in the rest of the grid.</p></li>
+<li><p><strong>Convert to distance</strong>: Finally, squared distances are converted to actual distances and clamped to ±max_distance.</p></li>
+</ol>
+<p><strong>Combining boundaries:</strong> When both primitives and meshes define the boundary, their TSDFs are combined by taking the element-wise maximum. This implements the intersection of domains — a point is inside only if it is inside all boundary components.</p>
+</section>
+<section id="chem-voxel-area-and-volume" class="level3">
+<h3 class="anchored" data-anchor-id="chem-voxel-area-and-volume">Chem voxel area and volume</h3>
+<p>To compute the volume and face areas of a chem voxel cut by the boundary, the algorithm uses the fine TSDF grid within that voxel.</p>
+<p>For each chem voxel:</p>
+<ol type="1">
+<li><p><strong>Extract the local TSDF</strong>: The portion of the TSDF corresponding to this voxel (a subgrid of size oversampling_factor+1 in each dimension) is extracted.</p></li>
+<li><p><strong>Check trivial cases</strong>: If all TSDF values are negative (fully inside), the volume is simply L³ and all face areas are L². If all are positive (fully outside), volume and areas are zero.</p></li>
+<li><p><strong>Isosurface extraction</strong>: For cut voxels, the marching tetrahedra algorithm (see <span class="citation" data-cites="doi1991efficient">Doi and Koide (<a href="#ref-doi1991efficient" role="doc-biblioref">1991</a>)</span>) extracts the zero isosurface as a triangle mesh, with the boundary capped where it intersects the voxel faces.</p></li>
+<li><p><strong>Compute volume</strong>: The signed volume is computed by summing the signed volumes of tetrahedra formed by each isosurface triangle with the origin.</p></li>
+<li><p><strong>Compute face areas</strong>: For each of the six faces of the voxel, the algorithm identifies which triangles lie on that face and sums their areas. This gives the portion of each face that is inside the domain, which is needed for diffusion rate calculations.</p></li>
+</ol>
+<section id="comparison-to-other-approaches" class="level4">
+<h4 class="anchored" data-anchor-id="comparison-to-other-approaches">Comparison to other approaches</h4>
+<p><strong>MEDYAN C++:</strong> For membrane boundaries, the <code>computeSlicedVolumeArea()</code> method fits a single plane to the triangles overlapping a compartment (area-weighted average position and normal), then uses an analytical plane-cube slicing formula (<code>planeUnitCubeSlice</code>). This is fast but assumes the membrane is locally planar within each compartment.</p>
+<p><strong>Analytical methods:</strong> When the boundary is a simple primitive (plane, sphere, cylinder), exact formulas exist for the intersection of that primitive with a cube. These are exact but require separate implementations for each primitive type and do not handle combinations of boundaries.</p>
+<p>The TSDF approach used in MEDYAN.jl handles arbitrary boundary shapes consistently, including curved surfaces and multiple intersecting boundaries, at the cost of more computation. The resolution is configurable through the oversampling factor.</p>
+</section>
+</section>
+<section id="is-inside" class="level3">
+<h3 class="anchored" data-anchor-id="is-inside">Is inside</h3>
+<p>To check whether a position is conservatively inside the boundary by at least a minimum distance, the algorithm uses the cached TSDF.</p>
+<p><strong>Bounding the signed distance using the triangle inequality:</strong></p>
+<p>The signed distance function satisfies the triangle inequality: for any two points, their signed distances differ by at most the Euclidean distance between them. If a TSDF vertex has value <span class="math inline">\(t_v\)</span> and is at distance <span class="math inline">\(r\)</span> from the query point <span class="math inline">\(p\)</span>, then:</p>
+<p><span class="math display">\[\text{TSDF}(p) \in [t_v - r, t_v + r]\]</span></p>
+<p>This provides upper and lower bounds on the truncated signed distance at <span class="math inline">\(p\)</span> without computing it directly.</p>
+<p><strong>The algorithm:</strong></p>
+<ol type="1">
+<li><p><strong>Locate the containing TSDF voxel</strong>: Convert the position to TSDF grid coordinates and find the eight vertices of the containing voxel.</p></li>
+<li><p><strong>For each vertex</strong>, compute the distance <span class="math inline">\(r\)</span> to the query point and apply the bounds:</p>
+<ul>
+<li>If <span class="math inline">\(t_v - r &gt; -\text{min\_distance}\)</span>: even in the best case, the point cannot be inside by the required margin → return <code>false</code></li>
+<li>If <span class="math inline">\(t_v + r &lt; -\text{min\_distance}\)</span>: even in the worst case, the point is definitely inside by enough margin → return <code>true</code></li>
+<li>Otherwise: this vertex is inconclusive, continue to next vertex</li>
+</ul></li>
+<li><p><strong>Fallback</strong>: If all eight vertices are inconclusive, return <code>false</code> (conservative).</p></li>
+</ol>
+<p><strong>Restriction on min_distance:</strong></p>
+<p>The maximum possible distance <span class="math inline">\(r\)</span> from a query point to any vertex of its containing TSDF voxel is the voxel diagonal: <span class="math inline">\(r_{\max} = \sqrt{3} \cdot \text{grid\_spacing}\)</span>.</p>
+<p>For the algorithm to ever return <code>true</code>, we need the upper bound to satisfy: <span class="math display">\[t_v + r &lt; -\text{min\_distance}\]</span></p>
+<p>But TSDF values are clamped to <span class="math inline">\(\pm\text{max\_distance}\)</span>. For a point deep inside the boundary, <span class="math inline">\(t_v = -\text{max\_distance}\)</span>. In this case: <span class="math display">\[-\text{max\_distance} + r_{\max} &lt; -\text{min\_distance}\]</span></p>
+<p>Rearranging: <span class="math display">\[\text{min\_distance} &lt; \text{max\_distance} - \sqrt{3} \cdot \text{grid\_spacing}\]</span></p>
+<p>If this condition is not met, the truncation could prevent the algorithm from proving a point is inside by the requested margin. The function throws an error in this case, suggesting the user increase <code>max_distance</code>.</p>
+<p>A more sophisticated approach could interpolate or combine information from multiple vertices to make better use of the available data, but the current algorithm keeps the logic simple.</p>
+<p>This conservative approach is important for nucleation sampling — we must never place a new object outside the boundary or too close to a mesh surface.</p>
+<section id="comparison-to-other-approaches-1" class="level4">
+<h4 class="anchored" data-anchor-id="comparison-to-other-approaches-1">Comparison to other approaches</h4>
+<p>An alternative approach would store, for each chem voxel, a list of nearby triangles. To check whether a point is inside by a margin, the algorithm would:</p>
+<ol type="1">
+<li>Look up the triangles associated with the containing chem voxel</li>
+<li>Compute the exact signed distance to each triangle</li>
+<li>Return <code>true</code> if the minimum signed distance is less than -min_distance</li>
+</ol>
+<p>This <strong>triangle list approach</strong> has some advantages:</p>
+<ul>
+<li><strong>Exact results</strong>: No conservative approximation; the algorithm can determine exactly whether a point is inside by the required margin.</li>
+</ul>
+<p>However, the TSDF approach used in MEDYAN has its own advantages:</p>
+<ul>
+<li><strong>Constant-time queries</strong>: The triangle inequality check examines only 8 TSDF values regardless of mesh complexity. The triangle list approach scales with the number of nearby triangles.</li>
+<li><strong>Unified handling of primitives and meshes</strong>: The TSDF combines all boundary components into a single representation. A triangle list would need separate handling for analytical primitives.</li>
+</ul>
+<p>A <strong>BVH (bounding volume hierarchy)</strong> over triangles is another option that would give exact results with O(log n) query time. This is attractive for very large or sparse domains but adds implementation complexity and may have higher constant factors for the small, dense systems typical in MEDYAN.</p>
+<p>The TSDF approach strikes a balance: it provides fast, conservative inside checks suitable for nucleation sampling while reusing the same data structure needed for volume and area computations.</p>
+</section>
+</section>
+<section id="position-sampling-for-nucleation-1" class="level3">
+<h3 class="anchored" data-anchor-id="position-sampling-for-nucleation-1">Position sampling for nucleation</h3>
+<p>When a nucleation reaction fires in a chem voxel, a position must be sampled for the new object. The position must be conservatively inside the boundary to avoid numerical issues during subsequent force calculations.</p>
+<p>The algorithm uses rejection sampling:</p>
+<ol type="1">
+<li>Sample a uniform random point within the chem voxel</li>
+<li>Check if the point is inside the boundary by the required margin using the <code>is_inside</code> algorithm</li>
+<li>If not, reject and repeat from step 1</li>
+</ol>
+<p>If the voxel is mostly inside the boundary, rejection sampling is efficient. For voxels that are largely cut by the boundary, many samples may be rejected.</p>
+</section>
+</section>
+<section id="voxel-deactivation-and-species-redistribution" class="level2">
+<h2 class="anchored" data-anchor-id="voxel-deactivation-and-species-redistribution">Voxel deactivation and species redistribution</h2>
+<p>When <code>apply_chem_boundary!</code> is called, voxels may need to be deactivated. A voxel is deactivated if:</p>
+<ul>
+<li>Its volume (after boundary cutting) falls below <code>min_chem_voxel_volume_ratio × L³</code>, where L is the voxel side length</li>
+</ul>
+<section id="position-to-voxel-lookup-1" class="level3">
+<h3 class="anchored" data-anchor-id="position-to-voxel-lookup-1">Position to voxel lookup</h3>
+<p>When a continuously positioned object (such as a filament monomer) participates in a reaction with diffusing species, the system must determine which chem voxel contains the object’s position.</p>
+<p>For positions clearly inside the domain, this is simple integer division: divide the position by the voxel spacing and convert to a voxel index.</p>
+<p>However, the position may be in a voxel that has been deactivated (volume below threshold or outside the boundary). In this case, the algorithm searches for the nearest <em>active</em> voxel:</p>
+<ol type="1">
+<li>Check the voxel containing the position — if active, return it</li>
+<li>Check the six face-adjacent neighbors — return the nearest active one</li>
+<li>If no neighbor is active, search all voxels in the grid</li>
+</ol>
+<p>This fallback ensures that objects near the boundary can still interact with chemistry, even if their exact position falls in a deactivated voxel.</p>
+</section>
+<section id="redistributing-diffusing-species" class="level3">
+<h3 class="anchored" data-anchor-id="redistributing-diffusing-species">Redistributing diffusing species</h3>
+<p>When a voxel is deactivated, any diffusing species it contains must be moved elsewhere. For each molecule in the deactivated voxel:</p>
+<ol type="1">
+<li>Sample a random position within the voxel</li>
+<li>Find the nearest active voxel to that position (using the position-to-voxel lookup with fallback)</li>
+<li>Move the molecule to that voxel</li>
+</ol>
+<p>This approach approximately preserves spatial distribution — molecules near the boundary of the deactivated region move to the closest active voxel rather than being uniformly redistributed.</p>
+<p>In practice, if boundaries move slowly, diffusion will naturally move most species out of shrinking voxels before they are deactivated, so few molecules need to be forcibly redistributed, but there is a lot of room for speeding up the redistribution, for example by sampling a multinomial distribution for how many molecules should move to each neighbor.</p>
+</section>
+</section>
+<section id="caching-and-storage-in-the-snapshot-file" class="level2">
+<h2 class="anchored" data-anchor-id="caching-and-storage-in-the-snapshot-file">Caching and storage in the snapshot file</h2>
+<p>The TSDF is computed when first needed and cached for reuse. The cache is invalidated when:</p>
+<ul>
+<li>The chem boundary primitives change</li>
+<li>A membrane marked as a chem boundary moves (e.g., after energy minimization)</li>
+<li>The oversampling factor or max distance settings change</li>
+</ul>
+<p>The TSDF itself is not saved in snapshot files, as it can be regenerated from the boundary geometry. However, the configuration parameters (<code>chem_boundary_oversampling_factor</code> and <code>chem_boundary_tsdf_max_distance</code>) are saved so the TSDF can be regenerated consistently when loading.</p>
+<p>The computed chem voxel volumes and areas are also saved in the snapshot, allowing chemistry to resume without recomputing them. The chem voxel volumes and areas must be explicitly recomputed with <code>apply_chem_boundary!</code></p>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-baerentzen2002generating" class="csl-entry" role="listitem">
+Bærentzen, J Andreas, and Henrik Aanæs. 2002. <span>“Generating Signed Distance Fields from Triangle Meshes.”</span> <em>Informatics and Mathematical Modeling, Technical University of Denmark, DTU</em> 20: 23.
+</div>
+<div id="ref-doi1991efficient" class="csl-entry" role="listitem">
+Doi, Akio, and Akio Koide. 1991. <span>“An Efficient Method of Triangulating Equi-Valued Surfaces by Using Tetrahedral Cells.”</span> <em>IEICE TRANSACTIONS on Information and Systems</em> 74 (1): 214–24.
+</div>
+<div id="ref-isaacson2006incorporating" class="csl-entry" role="listitem">
+Isaacson, Samuel A., and Charles S. Peskin. 2006. <span>“Incorporating Diffusion in Complex Geometries into Stochastic Chemical Kinetics Simulations.”</span> <em>SIAM Journal on Scientific Computing</em> 28 (1): 47–74. <a href="https://doi.org/10.1137/040605060">https://doi.org/10.1137/040605060</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/medyan-dev\.github\.io\/julia-docs\/dev\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/chem-boundary.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
