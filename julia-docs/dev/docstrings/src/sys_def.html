@@ -194,6 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.add_decimated_2mon_site--ad56e7ee56067940" id="toc-medyan.add_decimated_2mon_site--ad56e7ee56067940" class="nav-link" data-scroll-target="#medyan.add_decimated_2mon_site--ad56e7ee56067940"><code>MEDYAN.add_decimated_2mon_site!</code></a></li>
   <li><a href="#medyan.addpossiblecadherinsite--ae8586daa0b5454a" id="toc-medyan.addpossiblecadherinsite--ae8586daa0b5454a" class="nav-link" data-scroll-target="#medyan.addpossiblecadherinsite--ae8586daa0b5454a"><code>MEDYAN.addpossiblecadherinsite!</code></a></li>
   <li><a href="#medyan.addmembranesite--892875b2c079002d" id="toc-medyan.addmembranesite--892875b2c079002d" class="nav-link" data-scroll-target="#medyan.addmembranesite--892875b2c079002d"><code>MEDYAN.addmembranesite!</code></a></li>
+  <li><a href="#medyan.add_link_type--50ddf30e150f7d7a" id="toc-medyan.add_link_type--50ddf30e150f7d7a" class="nav-link" data-scroll-target="#medyan.add_link_type--50ddf30e150f7d7a"><code>MEDYAN.add_link_type!</code></a></li>
   <li><a href="#medyan.addreaction--da9bd35e7d1df7c3" id="toc-medyan.addreaction--da9bd35e7d1df7c3" class="nav-link" data-scroll-target="#medyan.addreaction--da9bd35e7d1df7c3"><code>MEDYAN.addreaction!</code></a></li>
   <li><a href="#medyan.addreactioncallback--9c9d46adeded2d88" id="toc-medyan.addreactioncallback--9c9d46adeded2d88" class="nav-link" data-scroll-target="#medyan.addreactioncallback--9c9d46adeded2d88"><code>MEDYAN.addreactioncallback!</code></a></li>
   <li><a href="#medyan.addfilament_reaction--63195cbff2ab4237" id="toc-medyan.addfilament_reaction--63195cbff2ab4237" class="nav-link" data-scroll-target="#medyan.addfilament_reaction--63195cbff2ab4237"><code>MEDYAN.addfilament_reaction!</code></a></li>
@@ -310,6 +311,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="medyan.add_link_type--50ddf30e150f7d7a" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.add_link_type--50ddf30e150f7d7a"><a href="../../docstrings/medyan.add_link_type--50ddf30e150f7d7a.html"><code>MEDYAN.add_link_type!</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_link_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name, description, places, bonds, reactions, param, state)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add a new link type to the system definition. Links represent connections between simulation elements (filament monomers, filament tips, anchors, membrane vertices) that can have associated mechanical bonds and chemical reactions.</p>
+<section id="keyword-arguments" class="level1">
+<h1>Keyword Arguments</h1>
+<ul>
+<li><p><code>name::Symbol</code>: Unique identifier for this link type.</p></li>
+<li><p><code>description::String=""</code>: Human-readable description of the link’s purpose.</p></li>
+<li><p><code>places::Vector{&lt;:Place}</code>: The places this link connects. Each place can be:</p>
+<ul>
+<li><code>FilaMonoIdx()</code>: A filament monomer</li>
+<li><code>FilaTipIdx()</code>: A filament tip (plus or minus end)</li>
+<li><code>Anchor()</code>: A free-floating anchor point (e.g., membrane-bound protein)</li>
+<li><code>BallIdx()</code>: A ball (spherical object)</li>
+<li><code>MembVertIdx()</code>: A membrane vertex</li>
+</ul></li>
+<li><p><code>bonds::Vector</code>: Mechanical bonds between places. Each bond is a <code>NamedTuple</code> with:</p>
+<ul>
+<li><code>bond</code>: Bond type (e.g., <code>DistanceRestraint()</code>, custom <code>Bond</code> subtype)</li>
+<li><code>input::Tuple{Int...}</code>: Which places the bond connects</li>
+<li><code>param::NamedTuple</code>: Fixed parameters (e.g., spring constant <code>k</code>)</li>
+<li><code>state::NamedTuple</code>: Mutable state (e.g., rest length <code>L0</code>)</li>
+<li><code>enabled::Bool=true</code>: Whether bond is active by default</li>
+</ul></li>
+<li><p><code>reactions::Vector{Vector}</code>: Reactions at each place. Each reaction is a <code>NamedTuple</code>:</p>
+<ul>
+<li><p>Required fields:</p>
+<ul>
+<li><code>name::Symbol</code>: Unique identifier for this reaction within the place.</li>
+<li><code>affect!</code>: Callback <code>(c::Context; link, chem_voxel, reaction_id, place_idx, kwargs...) -&gt; Int</code> that executes the reaction. Return 1 on success, 0 to reject. For <code>fila_cutoff</code> reactions, also receives <code>place</code> (the nearby filament monomer).</li>
+<li><code>rate</code>: Function <code>(c::Context; link, link_data, place_idx, link_state, kwargs...) -&gt; Float64</code> returning the state-dependent rate factor. For multi-site binding, return the number of available sites (e.g., <code>NPF_MAX_ACTIN - link_state.num_actin</code>).</li>
+</ul></li>
+<li><p>Optional fields:</p>
+<ul>
+<li><code>base_rate::Float64 = 1.0</code>: Rate constant multiplier. For bimolecular reactions with <code>invvolumepower=1</code>, use units of nm³/s (e.g., diffusion-limited rate k_D = 4πDR ≈ 1.57×10⁹ nm³/s for D=25 μm²/s, R=5 nm). Separating large rate constants from small integer multipliers in <code>rate</code> avoids overflow.</li>
+<li><code>invvolumepower::Int64 = 0</code>: Volume scaling. Set to 1 for bimolecular (nm³/s), 0 for unimolecular (1/s).</li>
+<li><code>reactants_extra::String = ""</code>: Additional reactants like <code>"diffusing.ARP23"</code>. Makes propensity proportional to these species counts.</li>
+<li><code>fila_cutoff::Tuple{Symbol, Float64} = nothing</code>: If set, e.g., <code>(:actin, 50.0)</code>, rate is multiplied by nearby filament monomers within cutoff (nm), and <code>affect!</code> receives one such monomer as <code>place</code>.</li>
+<li><code>enabled::Bool = true</code>: Whether reaction is active by default.</li>
+</ul></li>
+</ul></li>
+<li><p><code>param::NamedTuple=(;)</code>: Fixed parameters for the link type.</p></li>
+<li><p><code>state::NamedTuple=(;)</code>: Initial mutable state (e.g., <code>(num_bound=Int32(0),)</code>).</p></li>
+</ul>
+</section>
+<section id="example-membrane-bound-npf-cluster" class="level1">
+<h1>Example: Membrane-bound NPF cluster</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">add_link_type!</span>(s;</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    state<span class="op">=</span>(;</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        num_arp23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound ARP2/3 count</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        num_actin <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound actin count</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    reactions<span class="op">=</span>[</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        [</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Bimolecular binding: NPF + diffusing ARP2/3 → NPF·ARP2/3</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_bind,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">+</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> NPF_MAX_ARP23 <span class="op">-</span> link_state.num_arp23,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">5E7</span>,  <span class="co"># nm³/s</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                reactants_extra <span class="op">=</span> <span class="st">"diffusing.ARP23"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Unimolecular unbinding: NPF·ARP2/3 → NPF + ARP2/3</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_unbind,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">-</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> link_state.num_arp23,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">0.01</span>,  <span class="co"># 1/s per bound ARP2/3</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.addreaction--da9bd35e7d1df7c3" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.addreaction--da9bd35e7d1df7c3"><a href="../../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>MEDYAN.addreaction!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -318,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -328,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reactionexpr<span class="op">::</span><span class="dt">AbstractString</span>,rate<span class="op">::</span><span class="dt">Float64</span>,invvolumepower<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>,reactionexpr<span class="op">::</span><span class="dt">AbstractString</span>,rate<span class="op">::</span><span class="dt">Float64</span>,invvolumepower<span class="op">::</span><span class="dt">Int</span>)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a reaction to the system. Return s</p>
 <p><code>reactionexpr</code> is a string describing the reaction stoichiometry</p>
 <p><code>reactionexpr</code> is comprised of reactant and product parts seperated by a <code>"--&gt;"</code></p>
@@ -342,25 +441,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="example-good-reactionexpr" class="level1">
 <h1>Example good <code>reactionexpr</code></h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; diffusing.c"</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.c --&gt; diffusing.a + diffusing.b"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">"+ + diffusing.c + --&gt; + diffusing.a + + diffusing.b + +"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">" --&gt; diffusing.a + diffusing.b"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; "</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.a --&gt; "</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">"2diffusing.a --&gt; "</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="st">"2diffusing.a --&gt; 20diffusing.a"</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.c + diffusing.b --&gt; diffusing.c + diffusing.b"</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b --&gt; fixedspecies.g"</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b + fixedspecies.g --&gt; fixedspecies.g"</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b + 23fixedspecies.g --&gt; fixedspecies.g"</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g --&gt; fixedspecies.rate1b + 23fixedspecies.g"</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g + fixedspecies.rate1b--&gt; 2fixedspecies.rate1b + 23fixedspecies.g"</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.MT.d --&gt; filamentsite.MT.d"</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.MT.d + diffusing.a --&gt; filamentsite.MT.d"</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g --&gt; diffusing.a"</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a --&gt; fixedspecies.g"</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.actin.pm + diffusing.a --&gt; filamentsite.actin.pm"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; diffusing.c"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.c --&gt; diffusing.a + diffusing.b"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">"+ + diffusing.c + --&gt; + diffusing.a + + diffusing.b + +"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">" --&gt; diffusing.a + diffusing.b"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.b --&gt; "</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a + diffusing.a --&gt; "</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">"2diffusing.a --&gt; "</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">"2diffusing.a --&gt; 20diffusing.a"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.c + diffusing.b --&gt; diffusing.c + diffusing.b"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b --&gt; fixedspecies.g"</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b + fixedspecies.g --&gt; fixedspecies.g"</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.rate1b + 23fixedspecies.g --&gt; fixedspecies.g"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g --&gt; fixedspecies.rate1b + 23fixedspecies.g"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g + fixedspecies.rate1b--&gt; 2fixedspecies.rate1b + 23fixedspecies.g"</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.MT.d --&gt; filamentsite.MT.d"</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.MT.d + diffusing.a --&gt; filamentsite.MT.d"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="st">"fixedspecies.g --&gt; diffusing.a"</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="st">"diffusing.a --&gt; fixedspecies.g"</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="st">"filamentsite.actin.pm + diffusing.a --&gt; filamentsite.actin.pm"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -374,8 +473,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction<span class="op">::</span><span class="dt">CompartmentReaction</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Like <a href="../../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>addreaction!</code></a> but also adds <code>callback</code>. <code>callback</code> is called when the reaction happens with input of <code>MEDYAN.Context</code> and <code>Int</code> the compartment id where the reaction happened.</p>
 <p>The reaction should normally have no net stoichiometry because the callback should handle updating species counts. If an <code>AbstractString</code> is passed instead of a <code>CompartmentReaction</code> for the reaction, that string will be parsed to determine the reactants. The net stoichiometry will be zero.</p>
 <p><code>MEDYAN.errorcheck_addcallback(callback,s::SysDef)</code> can optionally be overloaded to add errorchecking when the callback is added.</p>
@@ -417,24 +516,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="examples" class="level1">
 <h1>Examples</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>a,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>b,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>c,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>ab,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b], <span class="fl">1</span>,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>aabc,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a,<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b,<span class="op">:</span>c], <span class="fl">2</span>,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>a,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>b,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>c,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>ab,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b], <span class="fl">1</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilament_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>aabc,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>a,<span class="op">:</span>a]<span class="op">=&gt;</span>[<span class="op">:</span>b,<span class="op">:</span>c], <span class="fl">2</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt;"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -465,28 +564,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="examples-1" class="level1">
 <h1>Examples</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    diffusingspeciesnames<span class="op">=</span> [<span class="op">:</span>a,],</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>plus,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>mid,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>minus,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>monomerspacing<span class="op">=</span> <span class="fl">2.7</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#minus end polymerization</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>pm, <span class="cn">true</span>,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>minus]<span class="op">=&gt;</span>[<span class="op">:</span>minus,<span class="op">:</span>mid], monomerspacing,</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"diffusing.a --&gt;"</span>, <span class="fl">10E3</span>, <span class="fl">1</span>,</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#plus end depolymerization</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>dpp, <span class="cn">false</span>,</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>mid,<span class="op">:</span>plus]<span class="op">=&gt;</span>[<span class="op">:</span>plus], <span class="fl">0.0</span>,</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt; diffusing.a"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>agent_names <span class="op">=</span> <span class="fu">AgentNames</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    diffusingspeciesnames<span class="op">=</span> [<span class="op">:</span>a,],</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    filamentnames<span class="op">=</span> [(<span class="op">:</span>filname,[</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>plus,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>mid,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                            <span class="op">:</span>minus,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                        ]),</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>s<span class="op">=</span> <span class="fu">SysDef</span>(agent_names)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>monomerspacing<span class="op">=</span> <span class="fl">2.7</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#minus end polymerization</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>pm, <span class="cn">true</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>minus]<span class="op">=&gt;</span>[<span class="op">:</span>minus,<span class="op">:</span>mid], monomerspacing,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"diffusing.a --&gt;"</span>, <span class="fl">10E3</span>, <span class="fl">1</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#plus end depolymerization</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">addfilamentend_reaction!</span>(s, <span class="op">:</span>filname, <span class="op">:</span>dpp, <span class="cn">false</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>mid,<span class="op">:</span>plus]<span class="op">=&gt;</span>[<span class="op">:</span>plus], <span class="fl">0.0</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"--&gt; diffusing.a"</span>, <span class="fl">1.75E-3</span>, <span class="fl">0</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
