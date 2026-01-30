@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Return a capsule boundary.</p>
 <p><code>center</code>(nm): The center of the capsule.</p>
 <p><code>axis</code>(nm): The direction and length of the capsule spine. The spine line segment goes from <code>center - axis/2</code> to <code>center + axis/2</code> If zero the capsule is a sphere.</p>
-<p><code>radius</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2radius</code>.</p>
+<p><code>radius</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2*abs(radius)</code>. If negative, the domain is the outside of the capsule, if positive the domain is the inside of the capsule.</p>
 <p><code>stiffness</code>(pN/nm): How strong the boundary is.</p>
 </div>
 </div>

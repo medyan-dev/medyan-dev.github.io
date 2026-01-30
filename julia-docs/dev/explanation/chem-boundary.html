@@ -299,7 +299,7 @@ window.Quarto = {
 <p>Primitives define simple geometric domains with analytical signed distance functions:</p>
 <ul>
 <li><strong>Planes</strong>: Define a half-space. One side of the plane is inside the domain, the other is outside.</li>
-<li><strong>Capsules</strong>: A cylinder capped with hemispheres at each end. The domain is the interior of the capsule.</li>
+<li><strong>Capsules</strong>: A cylinder capped with hemispheres at each end. The domain can be either the interior or the exterior of the capsule.</li>
 </ul>
 </section>
 <section id="meshes" class="level3">
@@ -372,7 +372,7 @@ window.Quarto = {
 <p><strong>Primitives (planes and capsules):</strong> For each grid point, the signed distance to each primitive is computed analytically:</p>
 <ul>
 <li>For planes, this is simply the dot product of the position with the plane normal minus the offset.</li>
-<li>For capsules, the distance is computed to the closest point on the capsule’s central axis, minus the capsule radius.</li>
+<li>For capsules, the distance is computed to the closest point on the capsule’s central axis, minus the capsule radius. The distance sign is flipped if the exterior of the capsule is part of the domain instead of the interior.</li>
 </ul>
 <p>The maximum distance across all primitives gives the signed distance to the primitive boundary. Values are clamped to ±max_distance.</p>
 <p><strong>Meshes:</strong> Computing signed distances to a triangular mesh is more involved. The algorithm follows the method described by <span class="citation" data-cites="baerentzen2002generating">Bærentzen and Aanæs (<a href="#ref-baerentzen2002generating" role="doc-biblioref">2002</a>)</span>, which handles sharp corners and edges correctly using <em>pseudo-normals</em>.</p>

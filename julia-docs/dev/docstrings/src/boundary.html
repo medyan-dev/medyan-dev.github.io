@@ -220,9 +220,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For example, a mech bounding plane <code>[1,0,0,3]</code> would try and make x &lt; 3 nm with a spring constant of 1 pN/nm.</p>
 <p><code>2.0*[1,0,0,3]</code> would try and make x &lt; 3 nm with a spring constant of 4 pN/nm.</p></li>
 <li><p><code>capsules::Vector{StaticArraysCore.SVector{8, Float64}}</code>: Capsules that make up the mechanical boundary of the simulation.</p>
-<p><code>capsules[bi][1:3]</code> is the starting point of the spine line segment (nm). <code>capsules[bi][4:6]</code> is the axis of the spine line segment (nm). <code>capsules[bi][7]</code> is the radius (nm). <code>capsules[bi][8]</code> is the spring constant (pN/nm).</p>
+<p><code>capsules[bi][1:3]</code> is the starting point of the spine line segment (nm). <code>capsules[bi][4:6]</code> is the axis of the spine line segment (nm). <code>capsules[bi][7]</code> is the radius (nm). If the radius is negative, the domain is the outside of the capsule, if the radius is positive the domain is inside the capsule. <code>capsules[bi][8]</code> is the spring constant (pN/nm).</p>
 <p>if <code>capsules[bi][4:6]</code> is zero then the capsule is a sphere. Capsule boundaries can be combined with plane boundaries to create cylinder boundaries.</p>
-<p><code>E = 1//2*k*relu(d - r0)^2</code> where:</p>
+<p><code>E = 1//2*k*relu(sign(r0)*d - r0)^2</code> where:</p>
 <ul>
 <li>d is the distance of the point to the spine line segment described by capsules[bi][1:6].</li>
 <li>r0 is capsules[bi][7]</li>
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Return a capsule boundary.</p>
 <p><code>center</code>(nm): The center of the capsule.</p>
 <p><code>axis</code>(nm): The direction and length of the capsule spine. The spine line segment goes from <code>center - axis/2</code> to <code>center + axis/2</code> If zero the capsule is a sphere.</p>
-<p><code>radius</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2radius</code>.</p>
+<p><code>radius</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2*abs(radius)</code>. If negative, the domain is the outside of the capsule, if positive the domain is the inside of the capsule.</p>
 <p><code>stiffness</code>(pN/nm): How strong the boundary is.</p>
 </div>
 </div>
