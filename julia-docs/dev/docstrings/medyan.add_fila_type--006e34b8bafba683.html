@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.add_filament_params--74c7d0081157ca31 – MEDYAN.jl</title>
+<title>medyan.add_fila_type--006e34b8bafba683 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.add_filament_params" id="toc-medyan.add_filament_params" class="nav-link active" data-scroll-target="#medyan.add_filament_params"><code>MEDYAN.add_filament_params!</code></a>
+  <li><a href="#medyan.add_fila_type" id="toc-medyan.add_fila_type" class="nav-link active" data-scroll-target="#medyan.add_fila_type"><code>MEDYAN.add_fila_type!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" id="toc-tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Any}</code></a></li>
+  <li><a href="#tuple-medyan.sysdef--efaa49a98644904f" id="toc-tuple-medyan.sysdef--efaa49a98644904f" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--efaa49a98644904f"><code data-shortcodes="false">Tuple{MEDYAN.SysDef}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_filament_params--74c7d0081157ca31.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fila_type--006e34b8bafba683.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,31 +198,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.add_filament_params" class="level1">
-<h1><code>MEDYAN.add_filament_params!</code></h1>
-<section id="tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Any}</code></h2>
+<section id="medyan.add_fila_type" class="level1">
+<h1><code>MEDYAN.add_fila_type!</code></h1>
+<section id="tuple-medyan.sysdef--efaa49a98644904f" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--efaa49a98644904f"><code data-shortcodes="false">Tuple{MEDYAN.SysDef}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_filament_params!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, filament_name<span class="op">::</span><span class="dt">Symbol</span>, filament_params<span class="op">::</span><span class="dt">FilamentMechParams</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Update the filament mechanical parameters for an existing filament type.</p>
-<p>The filament type must already exist in <code>s.filament</code> (typically added via <a href="../docstrings/medyan.add_fila_type--006e34b8bafba683.html"><code>add_fila_type!</code></a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name<span class="op">::</span><span class="dt">Symbol</span>, mono_states<span class="op">::</span><span class="dt">Vector{Symbol}</span>, param<span class="op">::</span><span class="dt">FilamentMechParams</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add a new filament type to the system definition.</p>
 <section id="arguments" class="level1">
 <h1>Arguments</h1>
 <ul>
 <li><code>s::SysDef</code>: The system definition to modify.</li>
-<li><code>filament_name::Symbol</code>: The name of the existing filament type.</li>
-<li><code>filament_params::FilamentMechParams</code>: The mechanical parameters to set.</li>
+<li><code>name::Symbol</code>: The name of the new filament type.</li>
+<li><code>mono_states::Vector{Symbol}</code>: Vector of monomer state names for this filament type. Must not be empty.</li>
+<li><code>param::FilamentMechParams</code>: The filament mechanical parameters.</li>
 </ul>
 </section>
 <section id="returns" class="level1">
 <h1>Returns</h1>
 <p>The modified <code>SysDef</code>.</p>
-<p>See also: <a href="../docstrings/medyan.add_fila_type--006e34b8bafba683.html"><code>add_fila_type!</code></a> to add a new filament type with its parameters in one step.</p>
+</section>
+<section id="throws" class="level1">
+<h1>Throws</h1>
+<ul>
+<li>Error if a filament type with the given name already exists.</li>
+<li>Error if <code>mono_states</code> is empty.</li>
+</ul>
 </section>
 </div>
 </div>
@@ -638,4 +644,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_filament_params--74c7d0081157ca31.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fila_type--006e34b8bafba683.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

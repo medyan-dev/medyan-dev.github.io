@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.add_filament_params--74c7d0081157ca31 – MEDYAN.jl</title>
+<title>structs – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,62 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -115,9 +80,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
@@ -128,23 +93,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tutorials/1install.html"> 
+    <a class="nav-link" href="../../../tutorials/1install.html"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../howto/index.html"> 
+    <a class="nav-link" href="../../../howto/index.html"> 
 <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../explanation/chem-boundary.html"> 
+    <a class="nav-link" href="../../../explanation/chem-boundary.html"> 
 <span class="menu-text">Explanation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reference/index.html"> 
+    <a class="nav-link" href="../../../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -160,11 +125,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="../../dev/">
+    <a class="dropdown-item" href="../../../../dev/">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../stable/">
+    <a class="dropdown-item" href="../../../../stable/">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
@@ -185,12 +150,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.add_filament_params" id="toc-medyan.add_filament_params" class="nav-link active" data-scroll-target="#medyan.add_filament_params"><code>MEDYAN.add_filament_params!</code></a>
+  <li><a href="#srcfilamentstructs.jl" id="toc-srcfilamentstructs.jl" class="nav-link active" data-scroll-target="#srcfilamentstructs.jl">src/filament/structs.jl</a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" id="toc-tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Any}</code></a></li>
+  <li><a href="#medyan.filamentmechparams-003aa222b98c6481" id="toc-medyan.filamentmechparams-003aa222b98c6481" class="nav-link" data-scroll-target="#medyan.filamentmechparams-003aa222b98c6481"><code>MEDYAN.FilamentMechParams</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_filament_params--74c7d0081157ca31.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/structs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,32 +163,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.add_filament_params" class="level1">
-<h1><code>MEDYAN.add_filament_params!</code></h1>
-<section id="tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--symbol--any--444c61f2a1ac78e1"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol, Any}</code></h2>
+<section id="srcfilamentstructs.jl" class="level1">
+<h1>src/filament/structs.jl</h1>
+<section id="medyan.filamentmechparams-003aa222b98c6481" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.filamentmechparams-003aa222b98c6481"><a href="../../../docstrings/medyan.filamentmechparams-003aa222b98c6481.html"><code>MEDYAN.FilamentMechParams</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_filament_params!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, filament_name<span class="op">::</span><span class="dt">Symbol</span>, filament_params<span class="op">::</span><span class="dt">FilamentMechParams</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Update the filament mechanical parameters for an existing filament type.</p>
-<p>The filament type must already exist in <code>s.filament</code> (typically added via <a href="../docstrings/medyan.add_fila_type--006e34b8bafba683.html"><code>add_fila_type!</code></a>.</p>
-<section id="arguments" class="level1">
-<h1>Arguments</h1>
+<p>Filament mechanical parameters</p>
 <ul>
-<li><code>s::SysDef</code>: The system definition to modify.</li>
-<li><code>filament_name::Symbol</code>: The name of the existing filament type.</li>
-<li><code>filament_params::FilamentMechParams</code>: The mechanical parameters to set.</li>
+<li><code>radius::Float64</code>: Cylinder radius (nm)</li>
+<li><code>spacing::Float64</code>: Monomer spacing length (nm)</li>
+<li><code>klength::Float64</code>: Length force constant (pN/nm)</li>
+<li><code>kangle::Float64</code>: Bending force constant (pN*nm/rad²)</li>
+<li><code>ktwist::Float64</code>: Twisting force constant (pN*nm/rad²)</li>
+<li><code>twist_per_monomer::Float64</code>: Twist between monomers (rad)</li>
+<li><code>numpercylinder::Int32</code>: Number of monomers per cylinder</li>
+<li><code>kcollide::Float64</code>: Repulsion stiffness (pN/nm)</li>
+<li><code>max_num_unmin_end::Int32</code>: Maximum number of unminimized monomers that can be on an end. This should be less than the minimum <code>radius</code> of other filaments + <code>radius</code> divided by <code>spacing</code>.</li>
 </ul>
-</section>
-<section id="returns" class="level1">
-<h1>Returns</h1>
-<p>The modified <code>SysDef</code>.</p>
-<p>See also: <a href="../docstrings/medyan.add_fila_type--006e34b8bafba683.html"><code>add_fila_type!</code></a> to add a new filament type with its parameters in one step.</p>
-</section>
 </div>
 </div>
 </div>
@@ -638,4 +599,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_filament_params--74c7d0081157ca31.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/structs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
