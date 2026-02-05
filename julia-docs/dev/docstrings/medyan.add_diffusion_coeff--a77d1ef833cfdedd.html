@@ -208,8 +208,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_diffusion_coeff!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, diffusing_name<span class="op">::</span><span class="dt">Symbol</span>, diffusing_coeff<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add the diffusing species to the system with diffusion coefficent in units of (nm²/s). Return s.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_diffusion_coeff!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, name<span class="op">::</span><span class="dt">Symbol</span>, coeff<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Update the diffusion coefficient for an existing diffusing species.</p>
+<p>The species must already exist in <code>s.diffusing</code> (typically added via <a href="../docstrings/medyan.add_diffusing_species--2b8ef74f13e77b3a.html"><code>add_diffusing_species!</code></a>.</p>
+<section id="arguments" class="level1">
+<h1>Arguments</h1>
+<ul>
+<li><code>s::SysDef</code>: The system definition to modify.</li>
+<li><code>name::Symbol</code>: The name of the existing diffusing species.</li>
+<li><code>coeff::Float64</code>: The diffusion coefficient in units of nm²/s.</li>
+</ul>
+</section>
+<section id="returns" class="level1">
+<h1>Returns</h1>
+<p>The modified <code>SysDef</code>.</p>
+<p>See also: <a href="../docstrings/medyan.add_diffusing_species--2b8ef74f13e77b3a.html"><code>add_diffusing_species!</code></a> to add a new species with its diffusion coefficient in one step.</p>
+</section>
 </div>
 </div>
 </div>
