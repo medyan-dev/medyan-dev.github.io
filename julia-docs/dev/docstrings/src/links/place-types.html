@@ -187,7 +187,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#srclinksplace-types.jl" id="toc-srclinksplace-types.jl" class="nav-link active" data-scroll-target="#srclinksplace-types.jl">src/links/place-types.jl</a>
   <ul class="collapse">
+  <li><a href="#medyan.filaidx-89c89b8bbef4dbda" id="toc-medyan.filaidx-89c89b8bbef4dbda" class="nav-link" data-scroll-target="#medyan.filaidx-89c89b8bbef4dbda"><code>MEDYAN.FilaIdx</code></a></li>
+  <li><a href="#medyan.filatipidx-460debd2fef11ad4" id="toc-medyan.filatipidx-460debd2fef11ad4" class="nav-link" data-scroll-target="#medyan.filatipidx-460debd2fef11ad4"><code>MEDYAN.FilaTipIdx</code></a></li>
   <li><a href="#medyan.num_directions-89697a0fca8de12f" id="toc-medyan.num_directions-89697a0fca8de12f" class="nav-link" data-scroll-target="#medyan.num_directions-89697a0fca8de12f"><code>MEDYAN.num_directions</code></a></li>
+  <li><a href="#medyan.filamonoidx-94fe5a1112741990" id="toc-medyan.filamonoidx-94fe5a1112741990" class="nav-link" data-scroll-target="#medyan.filamonoidx-94fe5a1112741990"><code>MEDYAN.FilaMonoIdx</code></a></li>
+  <li><a href="#medyan.membvertidx-4b26f8c9d72f1f49" id="toc-medyan.membvertidx-4b26f8c9d72f1f49" class="nav-link" data-scroll-target="#medyan.membvertidx-4b26f8c9d72f1f49"><code>MEDYAN.MembVertIdx</code></a></li>
   <li><a href="#medyan.anchor-0dc7f056c6ce8b51" id="toc-medyan.anchor-0dc7f056c6ce8b51" class="nav-link" data-scroll-target="#medyan.anchor-0dc7f056c6ce8b51"><code>MEDYAN.Anchor</code></a></li>
   <li><a href="#medyan.ballidx-5a4aba766d557d6a" id="toc-medyan.ballidx-5a4aba766d557d6a" class="nav-link" data-scroll-target="#medyan.ballidx-5a4aba766d557d6a"><code>MEDYAN.BallIdx</code></a></li>
   </ul></li>
@@ -202,6 +206,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="srclinksplace-types.jl" class="level1">
 <h1>src/links/place-types.jl</h1>
+<section id="medyan.filaidx-89c89b8bbef4dbda" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.filaidx-89c89b8bbef4dbda"><a href="../../../docstrings/medyan.filaidx-89c89b8bbef4dbda.html"><code>MEDYAN.FilaIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>FilaIdx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index identifying a specific filament in the simulation. This is a lightweight reference that becomes invalid after filament mutations (removal or reordering).</p>
+<p>Unlike the <code>Place</code> subtypes, <code>FilaIdx</code> is not taggable — filaments do not have a stable identity because of operations like severing. To maintain a long-term reference to a filament, store a <code>Tag{FilaTipIdx}</code> or <code>Tag{FilaMonoIdx}</code> instead, and resolve back to a <code>FilaIdx</code> when needed.</p>
+<section id="constructors" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>FilaIdx(typeid::Integer, idx::Integer)</code>: Direct constructor with filament type ID and filament index</li>
+<li><code>FilaIdx(c::Context, f::FilaIdx)</code>: Re-resolve a filament index</li>
+<li><code>FilaIdx(c::Context, ft::FilaTipIdx)</code>: Extract the filament index from a filament tip index</li>
+<li><code>FilaIdx(c::Context, t::Tag)</code>: Construct from a context and a filament-related tag (e.g., <code>Tag{FilaTipIdx}</code> or <code>Tag{FilaMonoIdx}</code>)</li>
+<li><code>FilaIdx(c::Context, fm::FilaMonoIdx)</code>: Extract the filament index from a filament monomer index</li>
+</ul>
+</section>
+<section id="fields" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>typeid::UInt32</code>: The filament type ID (use <code>fila_typeid(c; type=:actin)</code> to get this)</li>
+<li><code>idx::UInt32</code>: The index of the filament within its type (1-based)</li>
+</ul>
+</section>
+<section id="example" class="level1">
+<h1>Example</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over all filaments of a given type</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ftid <span class="op">=</span> <span class="fu">fila_typeid</span>(c; <span class="kw">type</span><span class="op">=:</span>actin)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">num_fila</span>(c; <span class="kw">type</span><span class="op">=:</span>actin)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    fidx <span class="op">=</span> <span class="fu">FilaIdx</span>(ftid, i)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    states <span class="op">=</span> <span class="fu">fila_mono_states</span>(c, fidx)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    positions <span class="op">=</span> <span class="fu">fila_node_positions</span>(c, fidx)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="related-functions" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.num_fila-6aa6f32d094c895e.html"><code>num_fila</code></a>, <a href="../../../docstrings/medyan.fila_typeid-1616b490df0cda1e.html"><code>fila_typeid</code></a>, <a href="../../../docstrings/medyan.fila_mono_ids-946d70c3169126dd.html"><code>fila_mono_ids</code></a>, <a href="../../../docstrings/medyan.fila_mono_states-bf83d6c80fc4d691.html"><code>fila_mono_states</code></a>, <a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>, <a href="../../../docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html"><code>fila_tip_tags</code></a>.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.filatipidx-460debd2fef11ad4" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.filatipidx-460debd2fef11ad4"><a href="../../../docstrings/medyan.filatipidx-460debd2fef11ad4.html"><code>MEDYAN.FilaTipIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>FilaTipIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index identifying a specific filament tip (either the minus end or plus end).</p>
+<p>This index may be invalidated by mutations (e.g., filament removal or severing). Use a <code>Tag{FilaTipIdx}</code> for a long-term reference that remains valid across mutations.</p>
+<section id="constructors-1" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>FilaTipIdx()</code>: Creates a null tip index</li>
+<li><code>FilaTipIdx(fila_idx::FilaIdx, is_minus_end::Bool)</code>: Creates a tip index for the specified filament and end</li>
+<li><code>FilaTipIdx(c::Context, x, ::typeof(-))</code>: Get the minus-end tip</li>
+<li><code>FilaTipIdx(c::Context, x, ::typeof(+))</code>: Get the plus-end tip</li>
+<li><code>FilaTipIdx(c::Context, f::FilaTipIdx)</code>: Re-resolve a tip index</li>
+<li><code>FilaTipIdx(c::Context, t::Tag{FilaTipIdx})</code>: Construct from a tag</li>
+<li><code>FilaTipIdx(c::Context, x::Union{FilaIdx, FilaMonoIdx, FilaTipIdx, Tag}, is_minus_end::Bool)</code>: Construct from various filament references</li>
+</ul>
+</section>
+<section id="fields-1" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>fila_idx::FilaIdx</code>: The filament this tip belongs to</li>
+<li><code>is_minus_end::Bool</code>: <code>true</code> for minus end, <code>false</code> for plus end</li>
+</ul>
+</section>
+<section id="related-functions-1" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html"><code>fila_tip_tags</code></a>, <a href="../../../docstrings/medyan.make_fila--f2346a40b4792de5.html"><code>make_fila!</code></a>.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.num_directions-89697a0fca8de12f" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.num_directions-89697a0fca8de12f"><a href="../../../docstrings/medyan.num_directions-89697a0fca8de12f.html"><code>MEDYAN.num_directions</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -210,8 +298,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_directions</span>(<span class="op">::</span><span class="dt">Union{Place, Type{&lt;:Place}}</span>)<span class="op">::</span><span class="dt">Int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">num_directions</span>(<span class="op">::</span><span class="dt">Union{Place, Type{&lt;:Place}}</span>)<span class="op">::</span><span class="dt">Int</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the number of directions associated with a place.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.filamonoidx-94fe5a1112741990" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.filamonoidx-94fe5a1112741990"><a href="../../../docstrings/medyan.filamonoidx-94fe5a1112741990.html"><code>MEDYAN.FilaMonoIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>FilaMonoIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index identifying a specific monomer on a filament. This is used for reactions and links that target individual monomers rather than filament tips.</p>
+<p>This index may be invalidated by mutations (e.g., filament removal or severing). Use a <code>Tag{FilaMonoIdx}</code> for a long-term reference that remains valid across mutations.</p>
+<section id="constructors-2" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>FilaMonoIdx()</code>: Creates a null monomer index</li>
+<li><code>FilaMonoIdx(fila_idx::FilaIdx, mid::Integer)</code>: Creates a monomer index for the specified filament and monomer ID</li>
+<li><code>FilaMonoIdx(c::Context, f::FilaIdx, m::Integer)</code>: Creates a monomer index from a filament index and monomer ID</li>
+<li><code>FilaMonoIdx(c::Context, ft::FilaTipIdx, offset::Integer=0)</code>: Creates a monomer index relative to a tip position</li>
+<li><code>FilaMonoIdx(c::Context, fm::FilaMonoIdx, offset::Integer=0)</code>: Re-resolve a monomer index with optional offset</li>
+<li><code>FilaMonoIdx(c::Context, x, y::Union{typeof(+), typeof(-)}, offset::Integer=0)</code>: Creates a monomer index from a tip direction</li>
+<li><code>FilaMonoIdx(c::Context, t::Tag, offset::Integer=0)</code>: Creates a monomer index from a tag with optional offset</li>
+</ul>
+</section>
+<section id="fields-2" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>fila_idx::FilaIdx</code>: The filament this monomer belongs to</li>
+<li><code>mid::Int64</code>: The monomer ID (can be obtained from <code>fila_mono_ids</code>)</li>
+</ul>
+</section>
+<section id="example-1" class="level1">
+<h1>Example</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a specific monomer on a filament</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fidx <span class="op">=</span> <span class="fu">FilaIdx</span>(ftid, <span class="fl">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mono_ids <span class="op">=</span> <span class="fu">fila_mono_ids</span>(c, fidx)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mono_idx <span class="op">=</span> <span class="fu">FilaMonoIdx</span>(fidx, <span class="fu">first</span>(mono_ids))  <span class="co"># First monomer (minus end)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="related-functions-2" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.fila_mono_ids-946d70c3169126dd.html"><code>fila_mono_ids</code></a>, <a href="../../../docstrings/medyan.fila_mono_states-bf83d6c80fc4d691.html"><code>fila_mono_states</code></a></p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.membvertidx-4b26f8c9d72f1f49" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.membvertidx-4b26f8c9d72f1f49"><a href="../../../docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html"><code>MEDYAN.MembVertIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MembVertIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index identifying a specific vertex on a membrane mesh. Membranes are represented as triangular meshes, and vertices can participate in chemical reactions and mechanical links.</p>
+<p>This index may be invalidated by mesh adaptation or membrane removal. Use a <code>Tag{MembVertIdx}</code> for a long-term reference that remains valid across mutations.</p>
+<section id="constructors-3" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>MembVertIdx()</code>: Creates a null vertex index with both indices set to 0</li>
+<li><code>MembVertIdx(memb_idx::Integer, vert_idx::Integer)</code>: Creates a vertex index for the specified membrane and vertex</li>
+<li><code>MembVertIdx(c::Context, memb_idx::Integer, vert_idx::Integer)</code>: Creates a vertex index for the specified membrane and vertex</li>
+</ul>
+</section>
+<section id="fields-3" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>memb_idx::UInt32</code>: Index of the membrane in the context</li>
+<li><code>vert_idx::UInt32</code>: Index of the vertex within the membrane mesh</li>
+</ul>
+</section>
+<section id="related-functions-3" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.make_memb--3b9234d85f7612ed.html"><code>make_memb!</code></a>, <a href="../../../docstrings/medyan.make_memb_sphere--5ed5984bc3221359.html"><code>make_memb_sphere!</code></a>, <a href="../../../docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.html"><code>make_memb_rectangle!</code></a>.</p>
+</section>
 </div>
 </div>
 </div>
@@ -224,18 +391,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Anchor <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Anchor <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.</p>
-<section id="constructors" class="level1">
+<section id="constructors-4" class="level1">
 <h1>Constructors</h1>
 <ul>
 <li><code>Anchor()</code>: Creates a null anchor with NaN position, NaN directions, and state 0</li>
 <li><code>Anchor(pos::SVector{3, Float64})</code>: Creates an anchor at the given position with NaN directions and state 0</li>
 <li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}})</code>: Creates an anchor at the given position with specified directions and state 0</li>
 <li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64)</code>: Full constructor with position, directions, and state</li>
+<li><code>Anchor(c::Context, pos, dirs, state)</code>: Construct from context with position, directions, and state</li>
+<li><code>Anchor(c::Context, pos::SVector{3, Float64})</code>: Construct from context at the given position</li>
 </ul>
 </section>
-<section id="fields" class="level1">
+<section id="fields-4" class="level1">
 <h1>Fields</h1>
 <ul>
 <li><code>pos::SVector{3, Float64}</code>: 3D position coordinates</li>
@@ -255,22 +424,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>An index referring to a ball (spherical particle) in the simulation. Balls are stored in the <code>balls</code> vector of the <code>Context</code> and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.</p>
-<section id="constructors-1" class="level1">
+<p>This index may be invalidated by ball removal or reordering. Use a <code>Tag{BallIdx}</code> for a long-term reference that remains valid across mutations.</p>
+<section id="constructors-5" class="level1">
 <h1>Constructors</h1>
 <ul>
 <li><code>BallIdx()</code>: Creates a null ball index with idx 0</li>
 <li><code>BallIdx(idx::Int64)</code>: Creates a ball index pointing to the ball at position <code>idx</code> in the context’s balls vector</li>
+<li><code>BallIdx(c::Context, idx::Integer)</code>: Construct from context with index</li>
+<li><code>BallIdx(c::Context, b::BallIdx)</code>: Re-resolve a ball index</li>
+<li><code>BallIdx(c::Context, t::Tag{BallIdx})</code>: Construct from a tag</li>
 </ul>
 </section>
-<section id="fields-1" class="level1">
+<section id="fields-5" class="level1">
 <h1>Fields</h1>
 <ul>
 <li><code>idx::Int64</code>: Index of the ball in the context’s <code>balls</code> vector</li>
 </ul>
 </section>
-<section id="related-functions" class="level1">
+<section id="related-functions-4" class="level1">
 <h1>Related Functions</h1>
 <p>See <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, and <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a> for creating, removing, and modifying balls.</p>
 </section>

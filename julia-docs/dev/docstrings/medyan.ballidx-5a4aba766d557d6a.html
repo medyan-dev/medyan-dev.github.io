@@ -210,11 +210,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>An index referring to a ball (spherical particle) in the simulation. Balls are stored in the <code>balls</code> vector of the <code>Context</code> and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.</p>
+<p>This index may be invalidated by ball removal or reordering. Use a <code>Tag{BallIdx}</code> for a long-term reference that remains valid across mutations.</p>
 <section id="constructors" class="level1">
 <h1>Constructors</h1>
 <ul>
 <li><code>BallIdx()</code>: Creates a null ball index with idx 0</li>
 <li><code>BallIdx(idx::Int64)</code>: Creates a ball index pointing to the ball at position <code>idx</code> in the context’s balls vector</li>
+<li><code>BallIdx(c::Context, idx::Integer)</code>: Construct from context with index</li>
+<li><code>BallIdx(c::Context, b::BallIdx)</code>: Re-resolve a ball index</li>
+<li><code>BallIdx(c::Context, t::Tag{BallIdx})</code>: Construct from a tag</li>
 </ul>
 </section>
 <section id="fields" class="level1">

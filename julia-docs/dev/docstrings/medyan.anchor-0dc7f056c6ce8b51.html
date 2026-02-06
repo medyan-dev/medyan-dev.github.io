@@ -217,6 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Anchor(pos::SVector{3, Float64})</code>: Creates an anchor at the given position with NaN directions and state 0</li>
 <li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}})</code>: Creates an anchor at the given position with specified directions and state 0</li>
 <li><code>Anchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64)</code>: Full constructor with position, directions, and state</li>
+<li><code>Anchor(c::Context, pos, dirs, state)</code>: Construct from context with position, directions, and state</li>
+<li><code>Anchor(c::Context, pos::SVector{3, Float64})</code>: Construct from context at the given position</li>
 </ul>
 </section>
 <section id="fields" class="level1">

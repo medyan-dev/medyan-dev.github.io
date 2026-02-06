@@ -84,81 +84,88 @@
     "text": "remove_fila!(c::Context, filaidx::Union{FilaIdx, Tag})\nRemove the filament.\nUnlink any monomers or tips on the filament that are referenced by any links. The links will not be removed, but will have a null reference."
   },
   {
-    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
-    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
-    "title": "MEDYAN.minimize_energy!",
+    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
+    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
+    "title": "MEDYAN.boundary_cylinder",
     "section": "",
-    "text": "minimize_energy!(c::Context)::MinimizeEnergyResults\nMinimize mechanical energy of the context.\n\n\n\ncheck_closest::Bool=true:\n\nIf true, the function will warn if two objects get too close during minimization.\n\nbrownian_motion_time::Float64=Inf: This parameter is used to simulate the effect\n\nof Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.\n\ng_tol::Float64=c.g_tol: The acceptable maximum residual force on any degree of freedom in pN.\niter_max::Int=c.iter_max_cg_minimization: The maximum number of congugate gradient iterations to do before exiting."
+    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.minimize_energy!",
+    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
+    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
+    "title": "MEDYAN.boundary_cylinder",
     "section": "",
-    "text": "minimize_energy!(c::Context)::MinimizeEnergyResults\nMinimize mechanical energy of the context.\n\n\n\ncheck_closest::Bool=true:\n\nIf true, the function will warn if two objects get too close during minimization.\n\nbrownian_motion_time::Float64=Inf: This parameter is used to simulate the effect\n\nof Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.\n\ng_tol::Float64=c.g_tol: The acceptable maximum residual force on any degree of freedom in pN.\niter_max::Int=c.iter_max_cg_minimization: The maximum number of congugate gradient iterations to do before exiting."
+    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
   },
   {
-    "objectID": "docstrings/medyan.place2links-0b74317627f4b920.html",
-    "href": "docstrings/medyan.place2links-0b74317627f4b920.html",
-    "title": "MEDYAN.place2links",
+    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
+    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
+    "title": "MEDYAN.num_vertexwithstate",
     "section": "",
-    "text": "place2links(c::Context, p::Place) -&gt; Link iterator\nReturn an iterator of Links attached to p. If !place_exists(c, p) return an empty iterator."
+    "text": "Return the number of vertices with state vertex_state."
   },
   {
-    "objectID": "docstrings/medyan.place2links-0b74317627f4b920.html#tuple-medyan.context--medyan.place--5f4876ae276f10cb",
-    "href": "docstrings/medyan.place2links-0b74317627f4b920.html#tuple-medyan.context--medyan.place--5f4876ae276f10cb",
-    "title": "MEDYAN.place2links",
+    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--integer--d9b9e9640b07196d",
+    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--integer--d9b9e9640b07196d",
+    "title": "MEDYAN.num_vertexwithstate",
     "section": "",
-    "text": "place2links(c::Context, p::Place) -&gt; Link iterator\nReturn an iterator of Links attached to p. If !place_exists(c, p) return an empty iterator."
+    "text": "Return the number of vertices with state vertex_state."
   },
   {
-    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html",
-    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html",
-    "title": "MEDYAN.is_minimized",
+    "objectID": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html",
+    "href": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html",
+    "title": "MEDYAN.depolymerize_fila!",
     "section": "",
-    "text": "is_minimized(c::Context, link::Link, [d::LinkData])::Bool\nReturn the is_minimized flag of the link. Throw an error if link doesn’t exist.\n\n\n\n\n\n\n\n\n\n\n\n\nis_minimized(c::Context, p::Union{FilaMonoIdx, FilaTipIdx, Tag})::Bool\nReturn true iff the monomer or tip has been minimized. Throw an error if p doesn’t exist."
+    "text": "depolymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx)\nRemove a monomer from the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids.\nError if the filament isn’t initially over 2 monomers long.\nUnlink any monomers on the filament that are referenced by any links. The links will not be removed, but will have a null reference. Links attached to the filament tip will remain attached."
   },
   {
-    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
-    "title": "MEDYAN.is_minimized",
+    "objectID": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html#tuple-medyan.context--medyan.filatipidx--d592866d39d8c362",
+    "href": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html#tuple-medyan.context--medyan.filatipidx--d592866d39d8c362",
+    "title": "MEDYAN.depolymerize_fila!",
     "section": "",
-    "text": "is_minimized(c::Context, link::Link, [d::LinkData])::Bool\nReturn the is_minimized flag of the link. Throw an error if link doesn’t exist."
+    "text": "depolymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx)\nRemove a monomer from the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids.\nError if the filament isn’t initially over 2 monomers long.\nUnlink any monomers on the filament that are referenced by any links. The links will not be removed, but will have a null reference. Links attached to the filament tip will remain attached."
   },
   {
-    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1",
-    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1",
-    "title": "MEDYAN.is_minimized",
+    "objectID": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html",
+    "href": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html",
+    "title": "MEDYAN.get_chem_boundary_oversampling_factor",
     "section": "",
-    "text": "is_minimized(c::Context, p::Union{FilaMonoIdx, FilaTipIdx, Tag})::Bool\nReturn true iff the monomer or tip has been minimized. Throw an error if p doesn’t exist."
+    "text": "get_chem_boundary_oversampling_factor(\n    c::MEDYAN.Context\n) -&gt; Int64\nGet the oversampling factor used for chem boundary TSDF computation."
   },
   {
-    "objectID": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html",
-    "href": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html",
-    "title": "MEDYAN.get_all_links",
+    "objectID": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.get_chem_boundary_oversampling_factor",
     "section": "",
-    "text": "get_all_links(c::Context; type::Union{Symbol,Integer}) -&gt; Link iterator\nReturn an iterator of all Links of type type."
+    "text": "get_chem_boundary_oversampling_factor(\n    c::MEDYAN.Context\n) -&gt; Int64\nGet the oversampling factor used for chem boundary TSDF computation."
   },
   {
-    "objectID": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.get_all_links",
+    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
+    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
+    "title": "MEDYAN.load_snapshot!",
     "section": "",
-    "text": "get_all_links(c::Context; type::Union{Symbol,Integer}) -&gt; Link iterator\nReturn an iterator of all Links of type type."
+    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
   },
   {
-    "objectID": "docstrings/medyan.get_chem_state-a69539a7b114572a.html",
-    "href": "docstrings/medyan.get_chem_state-a69539a7b114572a.html",
-    "title": "MEDYAN.get_chem_state",
+    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
+    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
+    "title": "MEDYAN.load_snapshot!",
     "section": "",
-    "text": "get_chem_state(c::Context, x::Union{Tag, Place})\nReturn the chemical state of x. Each type of place has a different type of chemical state. If the chemical state of a place changes, any attached links will have their reaction rates recalculated. Throw an error if x doesn’t exist."
+    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
   },
   {
-    "objectID": "docstrings/medyan.get_chem_state-a69539a7b114572a.html#tuple-medyan.context--medyan.tag--fedde092ce150cde",
-    "href": "docstrings/medyan.get_chem_state-a69539a7b114572a.html#tuple-medyan.context--medyan.tag--fedde092ce150cde",
-    "title": "MEDYAN.get_chem_state",
+    "objectID": "docstrings/medyan.filamonoidx-94fe5a1112741990.html",
+    "href": "docstrings/medyan.filamonoidx-94fe5a1112741990.html",
+    "title": "MEDYAN.FilaMonoIdx",
     "section": "",
-    "text": "get_chem_state(c::Context, x::Union{Tag, Place})\nReturn the chemical state of x. Each type of place has a different type of chemical state. If the chemical state of a place changes, any attached links will have their reaction rates recalculated. Throw an error if x doesn’t exist."
+    "text": "FilaMonoIdx &lt;: Place\nAn index identifying a specific monomer on a filament. This is used for reactions and links that target individual monomers rather than filament tips.\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaMonoIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaMonoIdx(): Creates a null monomer index\nFilaMonoIdx(fila_idx::FilaIdx, mid::Integer): Creates a monomer index for the specified filament and monomer ID\nFilaMonoIdx(c::Context, f::FilaIdx, m::Integer): Creates a monomer index from a filament index and monomer ID\nFilaMonoIdx(c::Context, ft::FilaTipIdx, offset::Integer=0): Creates a monomer index relative to a tip position\nFilaMonoIdx(c::Context, fm::FilaMonoIdx, offset::Integer=0): Re-resolve a monomer index with optional offset\nFilaMonoIdx(c::Context, x, y::Union{typeof(+), typeof(-)}, offset::Integer=0): Creates a monomer index from a tip direction\nFilaMonoIdx(c::Context, t::Tag, offset::Integer=0): Creates a monomer index from a tag with optional offset\n\n\n\n\n\nfila_idx::FilaIdx: The filament this monomer belongs to\nmid::Int64: The monomer ID (can be obtained from fila_mono_ids)\n\n\n\n\n# Get a specific monomer on a filament\nfidx = FilaIdx(ftid, 1)\nmono_ids = fila_mono_ids(c, fidx)\nmono_idx = FilaMonoIdx(fidx, first(mono_ids))  # First monomer (minus end)\n\n\n\nSee fila_mono_ids, fila_mono_states"
+  },
+  {
+    "objectID": "docstrings/medyan.filamonoidx-94fe5a1112741990.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.filamonoidx-94fe5a1112741990.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.FilaMonoIdx",
+    "section": "",
+    "text": "FilaMonoIdx &lt;: Place\nAn index identifying a specific monomer on a filament. This is used for reactions and links that target individual monomers rather than filament tips.\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaMonoIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaMonoIdx(): Creates a null monomer index\nFilaMonoIdx(fila_idx::FilaIdx, mid::Integer): Creates a monomer index for the specified filament and monomer ID\nFilaMonoIdx(c::Context, f::FilaIdx, m::Integer): Creates a monomer index from a filament index and monomer ID\nFilaMonoIdx(c::Context, ft::FilaTipIdx, offset::Integer=0): Creates a monomer index relative to a tip position\nFilaMonoIdx(c::Context, fm::FilaMonoIdx, offset::Integer=0): Re-resolve a monomer index with optional offset\nFilaMonoIdx(c::Context, x, y::Union{typeof(+), typeof(-)}, offset::Integer=0): Creates a monomer index from a tip direction\nFilaMonoIdx(c::Context, t::Tag, offset::Integer=0): Creates a monomer index from a tag with optional offset\n\n\n\n\n\nfila_idx::FilaIdx: The filament this monomer belongs to\nmid::Int64: The monomer ID (can be obtained from fila_mono_ids)\n\n\n\n\n# Get a specific monomer on a filament\nfidx = FilaIdx(ftid, 1)\nmono_ids = fila_mono_ids(c, fidx)\nmono_idx = FilaMonoIdx(fidx, first(mono_ids))  # First monomer (minus end)\n\n\n\nSee fila_mono_ids, fila_mono_states"
   },
   {
     "objectID": "docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html",
@@ -1054,7 +1061,21 @@
     "href": "docstrings/src/links/place-types.html",
     "title": "src/links/place-types.jl",
     "section": "",
-    "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place.\n\n\n\n\n\n\n\n\n\n\n\n\nAnchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
+    "text": "FilaIdx\nAn index identifying a specific filament in the simulation. This is a lightweight reference that becomes invalid after filament mutations (removal or reordering).\nUnlike the Place subtypes, FilaIdx is not taggable — filaments do not have a stable identity because of operations like severing. To maintain a long-term reference to a filament, store a Tag{FilaTipIdx} or Tag{FilaMonoIdx} instead, and resolve back to a FilaIdx when needed.\n\n\n\nFilaIdx(typeid::Integer, idx::Integer): Direct constructor with filament type ID and filament index\nFilaIdx(c::Context, f::FilaIdx): Re-resolve a filament index\nFilaIdx(c::Context, ft::FilaTipIdx): Extract the filament index from a filament tip index\nFilaIdx(c::Context, t::Tag): Construct from a context and a filament-related tag (e.g., Tag{FilaTipIdx} or Tag{FilaMonoIdx})\nFilaIdx(c::Context, fm::FilaMonoIdx): Extract the filament index from a filament monomer index\n\n\n\n\n\ntypeid::UInt32: The filament type ID (use fila_typeid(c; type=:actin) to get this)\nidx::UInt32: The index of the filament within its type (1-based)\n\n\n\n\n# Iterate over all filaments of a given type\nftid = fila_typeid(c; type=:actin)\nfor i in 1:num_fila(c; type=:actin)\n    fidx = FilaIdx(ftid, i)\n    states = fila_mono_states(c, fidx)\n    positions = fila_node_positions(c, fidx)\nend\n\n\n\nSee num_fila, fila_typeid, fila_mono_ids, fila_mono_states, fila_node_positions, fila_tip_tags.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilaTipIdx &lt;: Place\nAn index identifying a specific filament tip (either the minus end or plus end).\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaTipIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaTipIdx(): Creates a null tip index\nFilaTipIdx(fila_idx::FilaIdx, is_minus_end::Bool): Creates a tip index for the specified filament and end\nFilaTipIdx(c::Context, x, ::typeof(-)): Get the minus-end tip\nFilaTipIdx(c::Context, x, ::typeof(+)): Get the plus-end tip\nFilaTipIdx(c::Context, f::FilaTipIdx): Re-resolve a tip index\nFilaTipIdx(c::Context, t::Tag{FilaTipIdx}): Construct from a tag\nFilaTipIdx(c::Context, x::Union{FilaIdx, FilaMonoIdx, FilaTipIdx, Tag}, is_minus_end::Bool): Construct from various filament references\n\n\n\n\n\nfila_idx::FilaIdx: The filament this tip belongs to\nis_minus_end::Bool: true for minus end, false for plus end\n\n\n\n\nSee fila_tip_tags, make_fila!.\n\n\n\n\n\n\n\n\n\n\n\n\n\nnum_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place.\n\n\n\n\n\n\n\n\n\n\n\n\nFilaMonoIdx &lt;: Place\nAn index identifying a specific monomer on a filament. This is used for reactions and links that target individual monomers rather than filament tips.\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaMonoIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaMonoIdx(): Creates a null monomer index\nFilaMonoIdx(fila_idx::FilaIdx, mid::Integer): Creates a monomer index for the specified filament and monomer ID\nFilaMonoIdx(c::Context, f::FilaIdx, m::Integer): Creates a monomer index from a filament index and monomer ID\nFilaMonoIdx(c::Context, ft::FilaTipIdx, offset::Integer=0): Creates a monomer index relative to a tip position\nFilaMonoIdx(c::Context, fm::FilaMonoIdx, offset::Integer=0): Re-resolve a monomer index with optional offset\nFilaMonoIdx(c::Context, x, y::Union{typeof(+), typeof(-)}, offset::Integer=0): Creates a monomer index from a tip direction\nFilaMonoIdx(c::Context, t::Tag, offset::Integer=0): Creates a monomer index from a tag with optional offset\n\n\n\n\n\nfila_idx::FilaIdx: The filament this monomer belongs to\nmid::Int64: The monomer ID (can be obtained from fila_mono_ids)\n\n\n\n\n# Get a specific monomer on a filament\nfidx = FilaIdx(ftid, 1)\nmono_ids = fila_mono_ids(c, fidx)\nmono_idx = FilaMonoIdx(fidx, first(mono_ids))  # First monomer (minus end)\n\n\n\nSee fila_mono_ids, fila_mono_states\n\n\n\n\n\n\n\n\n\n\n\n\n\nMembVertIdx &lt;: Place\nAn index identifying a specific vertex on a membrane mesh. Membranes are represented as triangular meshes, and vertices can participate in chemical reactions and mechanical links.\nThis index may be invalidated by mesh adaptation or membrane removal. Use a Tag{MembVertIdx} for a long-term reference that remains valid across mutations.\n\n\n\nMembVertIdx(): Creates a null vertex index with both indices set to 0\nMembVertIdx(memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\nMembVertIdx(c::Context, memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\n\n\n\n\n\nmemb_idx::UInt32: Index of the membrane in the context\nvert_idx::UInt32: Index of the vertex within the membrane mesh\n\n\n\n\nSee make_memb!, make_memb_sphere!, make_memb_rectangle!.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\nAnchor(c::Context, pos, dirs, state): Construct from context with position, directions, and state\nAnchor(c::Context, pos::SVector{3, Float64}): Construct from context at the given position\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\nThis index may be invalidated by ball removal or reordering. Use a Tag{BallIdx} for a long-term reference that remains valid across mutations.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\nBallIdx(c::Context, idx::Integer): Construct from context with index\nBallIdx(c::Context, b::BallIdx): Re-resolve a ball index\nBallIdx(c::Context, t::Tag{BallIdx}): Construct from a tag\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
+  },
+  {
+    "objectID": "docstrings/src/links/place-types.html#medyan.filaidx-89c89b8bbef4dbda",
+    "href": "docstrings/src/links/place-types.html#medyan.filaidx-89c89b8bbef4dbda",
+    "title": "src/links/place-types.jl",
+    "section": "",
+    "text": "FilaIdx\nAn index identifying a specific filament in the simulation. This is a lightweight reference that becomes invalid after filament mutations (removal or reordering).\nUnlike the Place subtypes, FilaIdx is not taggable — filaments do not have a stable identity because of operations like severing. To maintain a long-term reference to a filament, store a Tag{FilaTipIdx} or Tag{FilaMonoIdx} instead, and resolve back to a FilaIdx when needed.\n\n\n\nFilaIdx(typeid::Integer, idx::Integer): Direct constructor with filament type ID and filament index\nFilaIdx(c::Context, f::FilaIdx): Re-resolve a filament index\nFilaIdx(c::Context, ft::FilaTipIdx): Extract the filament index from a filament tip index\nFilaIdx(c::Context, t::Tag): Construct from a context and a filament-related tag (e.g., Tag{FilaTipIdx} or Tag{FilaMonoIdx})\nFilaIdx(c::Context, fm::FilaMonoIdx): Extract the filament index from a filament monomer index\n\n\n\n\n\ntypeid::UInt32: The filament type ID (use fila_typeid(c; type=:actin) to get this)\nidx::UInt32: The index of the filament within its type (1-based)\n\n\n\n\n# Iterate over all filaments of a given type\nftid = fila_typeid(c; type=:actin)\nfor i in 1:num_fila(c; type=:actin)\n    fidx = FilaIdx(ftid, i)\n    states = fila_mono_states(c, fidx)\n    positions = fila_node_positions(c, fidx)\nend\n\n\n\nSee num_fila, fila_typeid, fila_mono_ids, fila_mono_states, fila_node_positions, fila_tip_tags."
+  },
+  {
+    "objectID": "docstrings/src/links/place-types.html#medyan.filatipidx-460debd2fef11ad4",
+    "href": "docstrings/src/links/place-types.html#medyan.filatipidx-460debd2fef11ad4",
+    "title": "src/links/place-types.jl",
+    "section": "",
+    "text": "FilaTipIdx &lt;: Place\nAn index identifying a specific filament tip (either the minus end or plus end).\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaTipIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaTipIdx(): Creates a null tip index\nFilaTipIdx(fila_idx::FilaIdx, is_minus_end::Bool): Creates a tip index for the specified filament and end\nFilaTipIdx(c::Context, x, ::typeof(-)): Get the minus-end tip\nFilaTipIdx(c::Context, x, ::typeof(+)): Get the plus-end tip\nFilaTipIdx(c::Context, f::FilaTipIdx): Re-resolve a tip index\nFilaTipIdx(c::Context, t::Tag{FilaTipIdx}): Construct from a tag\nFilaTipIdx(c::Context, x::Union{FilaIdx, FilaMonoIdx, FilaTipIdx, Tag}, is_minus_end::Bool): Construct from various filament references\n\n\n\n\n\nfila_idx::FilaIdx: The filament this tip belongs to\nis_minus_end::Bool: true for minus end, false for plus end\n\n\n\n\nSee fila_tip_tags, make_fila!."
   },
   {
     "objectID": "docstrings/src/links/place-types.html#medyan.num_directions-89697a0fca8de12f",
@@ -1064,18 +1085,32 @@
     "text": "num_directions(::Union{Place, Type{&lt;:Place}})::Int\nReturn the number of directions associated with a place."
   },
   {
+    "objectID": "docstrings/src/links/place-types.html#medyan.filamonoidx-94fe5a1112741990",
+    "href": "docstrings/src/links/place-types.html#medyan.filamonoidx-94fe5a1112741990",
+    "title": "src/links/place-types.jl",
+    "section": "",
+    "text": "FilaMonoIdx &lt;: Place\nAn index identifying a specific monomer on a filament. This is used for reactions and links that target individual monomers rather than filament tips.\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaMonoIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaMonoIdx(): Creates a null monomer index\nFilaMonoIdx(fila_idx::FilaIdx, mid::Integer): Creates a monomer index for the specified filament and monomer ID\nFilaMonoIdx(c::Context, f::FilaIdx, m::Integer): Creates a monomer index from a filament index and monomer ID\nFilaMonoIdx(c::Context, ft::FilaTipIdx, offset::Integer=0): Creates a monomer index relative to a tip position\nFilaMonoIdx(c::Context, fm::FilaMonoIdx, offset::Integer=0): Re-resolve a monomer index with optional offset\nFilaMonoIdx(c::Context, x, y::Union{typeof(+), typeof(-)}, offset::Integer=0): Creates a monomer index from a tip direction\nFilaMonoIdx(c::Context, t::Tag, offset::Integer=0): Creates a monomer index from a tag with optional offset\n\n\n\n\n\nfila_idx::FilaIdx: The filament this monomer belongs to\nmid::Int64: The monomer ID (can be obtained from fila_mono_ids)\n\n\n\n\n# Get a specific monomer on a filament\nfidx = FilaIdx(ftid, 1)\nmono_ids = fila_mono_ids(c, fidx)\nmono_idx = FilaMonoIdx(fidx, first(mono_ids))  # First monomer (minus end)\n\n\n\nSee fila_mono_ids, fila_mono_states"
+  },
+  {
+    "objectID": "docstrings/src/links/place-types.html#medyan.membvertidx-4b26f8c9d72f1f49",
+    "href": "docstrings/src/links/place-types.html#medyan.membvertidx-4b26f8c9d72f1f49",
+    "title": "src/links/place-types.jl",
+    "section": "",
+    "text": "MembVertIdx &lt;: Place\nAn index identifying a specific vertex on a membrane mesh. Membranes are represented as triangular meshes, and vertices can participate in chemical reactions and mechanical links.\nThis index may be invalidated by mesh adaptation or membrane removal. Use a Tag{MembVertIdx} for a long-term reference that remains valid across mutations.\n\n\n\nMembVertIdx(): Creates a null vertex index with both indices set to 0\nMembVertIdx(memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\nMembVertIdx(c::Context, memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\n\n\n\n\n\nmemb_idx::UInt32: Index of the membrane in the context\nvert_idx::UInt32: Index of the vertex within the membrane mesh\n\n\n\n\nSee make_memb!, make_memb_sphere!, make_memb_rectangle!."
+  },
+  {
     "objectID": "docstrings/src/links/place-types.html#medyan.anchor-0dc7f056c6ce8b51",
     "href": "docstrings/src/links/place-types.html#medyan.anchor-0dc7f056c6ce8b51",
     "title": "src/links/place-types.jl",
     "section": "",
-    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
+    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\nAnchor(c::Context, pos, dirs, state): Construct from context with position, directions, and state\nAnchor(c::Context, pos::SVector{3, Float64}): Construct from context at the given position\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
   },
   {
     "objectID": "docstrings/src/links/place-types.html#medyan.ballidx-5a4aba766d557d6a",
     "href": "docstrings/src/links/place-types.html#medyan.ballidx-5a4aba766d557d6a",
     "title": "src/links/place-types.jl",
     "section": "",
-    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
+    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\nThis index may be invalidated by ball removal or reordering. Use a Tag{BallIdx} for a long-term reference that remains valid across mutations.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\nBallIdx(c::Context, idx::Integer): Construct from context with index\nBallIdx(c::Context, b::BallIdx): Re-resolve a ball index\nBallIdx(c::Context, t::Tag{BallIdx}): Construct from a tag\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
   },
   {
     "objectID": "docstrings/medyan.get_time-6e9303598ae0437c.html",
@@ -1386,53 +1421,60 @@
     "text": "num_link_types(c::Context)::Int\nReturn the number of link types."
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html",
+    "href": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html",
+    "title": "MEDYAN.fila_typeid",
     "section": "",
-    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
+    "text": "fila_typeid(c::Context, f::Union{Tag, FilaIdx})::Int\nfila_typeid(c::Context; type::Union{Symbol,Integer})::Int\nReturn the typeid of a filament f or associated with type."
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.fila_typeid",
     "section": "",
-    "text": "scale the volume and area"
+    "text": "fila_typeid(c::Context, f::Union{Tag, FilaIdx})::Int\nfila_typeid(c::Context; type::Union{Symbol,Integer})::Int\nReturn the typeid of a filament f or associated with type."
   },
   {
-    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
-    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
-    "title": "Base.:*",
+    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
+    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
+    "title": "MEDYAN.addfilamentend_reaction!",
     "section": "",
-    "text": "scale the volume and area by different amounts in each direction"
+    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
-    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
-    "title": "MEDYAN.addfilamentsite!",
+    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
+    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
+    "title": "MEDYAN.addfilamentend_reaction!",
     "section": "",
-    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
+    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
-    "title": "MEDYAN.addfilamentsite!",
+    "objectID": "docstrings/medyan.add_fila_type--006e34b8bafba683.html",
+    "href": "docstrings/medyan.add_fila_type--006e34b8bafba683.html",
+    "title": "MEDYAN.add_fila_type!",
     "section": "",
-    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
+    "text": "add_fila_type!(s::SysDef; name::Symbol, mono_states::Vector{Symbol}, param::FilamentMechParams)\nAdd a new filament type to the system definition.\n\n\n\ns::SysDef: The system definition to modify.\nname::Symbol: The name of the new filament type.\nmono_states::Vector{Symbol}: Vector of monomer state names for this filament type. Must not be empty.\nparam::FilamentMechParams: The filament mechanical parameters.\n\n\n\n\nThe modified SysDef.\n\n\n\n\nError if a filament type with the given name already exists.\nError if mono_states is empty."
   },
   {
-    "objectID": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html",
-    "href": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html",
-    "title": "MEDYAN.remove_ball!",
+    "objectID": "docstrings/medyan.add_fila_type--006e34b8bafba683.html#tuple-medyan.sysdef--efaa49a98644904f",
+    "href": "docstrings/medyan.add_fila_type--006e34b8bafba683.html#tuple-medyan.sysdef--efaa49a98644904f",
+    "title": "MEDYAN.add_fila_type!",
     "section": "",
-    "text": "remove_ball!(c::Context, ball::Union{BallIdx, Tag{BallIdx}})\nRemove a ball from the simulation and unlink all connected links.\nSee also: make_ball!, update_ball!"
+    "text": "add_fila_type!(s::SysDef; name::Symbol, mono_states::Vector{Symbol}, param::FilamentMechParams)\nAdd a new filament type to the system definition.\n\n\n\ns::SysDef: The system definition to modify.\nname::Symbol: The name of the new filament type.\nmono_states::Vector{Symbol}: Vector of monomer state names for this filament type. Must not be empty.\nparam::FilamentMechParams: The filament mechanical parameters.\n\n\n\n\nThe modified SysDef.\n\n\n\n\nError if a filament type with the given name already exists.\nError if mono_states is empty."
   },
   {
-    "objectID": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8",
-    "href": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8",
-    "title": "MEDYAN.remove_ball!",
+    "objectID": "docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html",
+    "href": "docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html",
+    "title": "MEDYAN.MembVertIdx",
     "section": "",
-    "text": "remove_ball!(c::Context, ball::Union{BallIdx, Tag{BallIdx}})\nRemove a ball from the simulation and unlink all connected links.\nSee also: make_ball!, update_ball!"
+    "text": "MembVertIdx &lt;: Place\nAn index identifying a specific vertex on a membrane mesh. Membranes are represented as triangular meshes, and vertices can participate in chemical reactions and mechanical links.\nThis index may be invalidated by mesh adaptation or membrane removal. Use a Tag{MembVertIdx} for a long-term reference that remains valid across mutations.\n\n\n\nMembVertIdx(): Creates a null vertex index with both indices set to 0\nMembVertIdx(memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\nMembVertIdx(c::Context, memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\n\n\n\n\n\nmemb_idx::UInt32: Index of the membrane in the context\nvert_idx::UInt32: Index of the vertex within the membrane mesh\n\n\n\n\nSee make_memb!, make_memb_sphere!, make_memb_rectangle!."
+  },
+  {
+    "objectID": "docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.MembVertIdx",
+    "section": "",
+    "text": "MembVertIdx &lt;: Place\nAn index identifying a specific vertex on a membrane mesh. Membranes are represented as triangular meshes, and vertices can participate in chemical reactions and mechanical links.\nThis index may be invalidated by mesh adaptation or membrane removal. Use a Tag{MembVertIdx} for a long-term reference that remains valid across mutations.\n\n\n\nMembVertIdx(): Creates a null vertex index with both indices set to 0\nMembVertIdx(memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\nMembVertIdx(c::Context, memb_idx::Integer, vert_idx::Integer): Creates a vertex index for the specified membrane and vertex\n\n\n\n\n\nmemb_idx::UInt32: Index of the membrane in the context\nvert_idx::UInt32: Index of the vertex within the membrane mesh\n\n\n\n\nSee make_memb!, make_memb_sphere!, make_memb_rectangle!."
   },
   {
     "objectID": "docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.html",
@@ -1715,7 +1757,7 @@
     "href": "tutorials/1install.html",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.12.4\nCommit 01a2eadb047 (2026-01-06 16:56 UTC)\nBuild Info:\n  Official https://julialang.org release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-18.1.7 (ORCJIT, skylake)\n  GC: Built with stock GC\nThreads: 1 default, 1 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner7/_work/_tool/julia/1.12.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner7/_work/_tool/julia/1.12.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.\n\n\n\nDownload the exact julia environment used to generate the tutorials.\nClick to Download\nNext extract this zip file and cd into the extracted directory.\nNext add a copy of MEDYAN to the directory.\nNow run:\njulia --project -e 'import Pkg; Pkg.instantiate()'\nTo start the julia REPL in the correct environment to run the tutorials, use:\njulia --project\nFrom inside the medyan-tutorial directory.\nYou can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.\nhttps://code.visualstudio.com/docs/languages/julia\n\n\n\nThese tests may take a few minutes to run.\njulia lib/MEDYAN/test/install-deps.jl\njulia --project=lib/MEDYAN/test lib/MEDYAN/test/runtests.jl\nIf you have any errors or failing tests create an issue",
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.12.4\nCommit 01a2eadb047 (2026-01-06 16:56 UTC)\nBuild Info:\n  Official https://julialang.org release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-18.1.7 (ORCJIT, skylake)\n  GC: Built with stock GC\nThreads: 1 default, 1 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner6/_work/_tool/julia/1.12.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner6/_work/_tool/julia/1.12.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.\n\n\n\nDownload the exact julia environment used to generate the tutorials.\nClick to Download\nNext extract this zip file and cd into the extracted directory.\nNext add a copy of MEDYAN to the directory.\nNow run:\njulia --project -e 'import Pkg; Pkg.instantiate()'\nTo start the julia REPL in the correct environment to run the tutorials, use:\njulia --project\nFrom inside the medyan-tutorial directory.\nYou can also save julia files in this directory and use the VSCode julia extension to set the environment, and run code blocks, if you prefer that over the REPL.\nhttps://code.visualstudio.com/docs/languages/julia\n\n\n\nThese tests may take a few minutes to run.\njulia lib/MEDYAN/test/install-deps.jl\njulia --project=lib/MEDYAN/test lib/MEDYAN/test/runtests.jl\nIf you have any errors or failing tests create an issue",
     "crumbs": [
       "Tutorials",
       "1. Installing MEDYAN.jl"
@@ -1726,7 +1768,7 @@
     "href": "tutorials/1install.html#install-julia",
     "title": "1. Installing MEDYAN.jl",
     "section": "",
-    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.12.4\nCommit 01a2eadb047 (2026-01-06 16:56 UTC)\nBuild Info:\n  Official https://julialang.org release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-18.1.7 (ORCJIT, skylake)\n  GC: Built with stock GC\nThreads: 1 default, 1 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner7/_work/_tool/julia/1.12.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner7/_work/_tool/julia/1.12.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.",
+    "text": "MEDYAN.jl is a julia package so first install the julia programming language.\nThis tutorial was generated using:\n\n\nJulia Version 1.12.4\nCommit 01a2eadb047 (2026-01-06 16:56 UTC)\nBuild Info:\n  Official https://julialang.org release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 16 × Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-18.1.7 (ORCJIT, skylake)\n  GC: Built with stock GC\nThreads: 1 default, 1 interactive, 1 GC (on 16 virtual cores)\nEnvironment:\n  LD_LIBRARY_PATH = /home/gh-actions1/actions-runner6/_work/_tool/julia/1.12.4/x64/bin/../lib/julia:/home/gh-actions1/actions-runner6/_work/_tool/julia/1.12.4/x64/bin/../lib\n  JULIA_PROJECT = @.\n  JULIA_LOAD_PATH = @:@stdlib\n\n\nThe tutorials should work on newer versions of julia, and on MacOS and Windows, please create an issue if you have a problem or question.\nJulia can be installed with juliaup.\nYou can also download julia here.\nDo not install julia using apt install julia or module load julia, as these don’t have a recent version of julia.\nAfter installing julia, open the REPL with the julia command in terminal.",
     "crumbs": [
       "Tutorials",
       "1. Installing MEDYAN.jl"
@@ -1858,7 +1900,7 @@
     "href": "docstrings.html",
     "title": "Docstrings",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\n\n\nBase.:*\n\n\n\n\n\n\nBase.delete!\n\n\n\n\n\n\nBase.empty!\n\n\n\n\n\n\nBase.getindex\n\n\n\n\n\n\nBase.haskey\n\n\n\n\n\n\nBase.iterate\n\n\n\n\n\n\nBase.length\n\n\n\n\n\n\nBase.push!\n\n\n\n\n\n\nBase.setindex!\n\n\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\n\n\nMEDYAN.Anchor\n\n\n\n\n\n\nMEDYAN.BallIdx\n\n\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\n\n\nMEDYAN.Context\n\n\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\n\n\nMEDYAN.FilamentMechParams\n\n\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\n\n\nMEDYAN.add_diffusing_count!\n\n\n\n\n\n\nMEDYAN.add_diffusing_species!\n\n\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\n\n\nMEDYAN.add_fila_type!\n\n\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\n\n\nMEDYAN.add_link_type!\n\n\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\n\n\nMEDYAN.apply_chem_boundary!\n\n\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\n\n\nMEDYAN.boundary_capsule\n\n\n\n\n\n\nMEDYAN.boundary_cylinder\n\n\n\n\n\n\nMEDYAN.boundary_plane\n\n\n\n\n\n\nMEDYAN.centerof\n\n\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\n\n\nMEDYAN.depolymerize_fila!\n\n\n\n\n\n\nMEDYAN.fila_mono_ids\n\n\n\n\n\n\nMEDYAN.fila_mono_states\n\n\n\n\n\n\nMEDYAN.fila_node_mids\n\n\n\n\n\n\nMEDYAN.fila_node_positions\n\n\n\n\n\n\nMEDYAN.fila_num_nodes\n\n\n\n\n\n\nMEDYAN.fila_num_unmin_ends\n\n\n\n\n\n\nMEDYAN.fila_tip_tags\n\n\n\n\n\n\nMEDYAN.fila_type_name\n\n\n\n\n\n\nMEDYAN.fila_typeid\n\n\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\n\n\nMEDYAN.get_all_links\n\n\n\n\n\n\nMEDYAN.get_all_tags\n\n\n\n\n\n\nMEDYAN.get_bond_enabled\n\n\n\n\n\n\nMEDYAN.get_bond_states\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_grid_spacing\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_oversampling_factor\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf!\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf_actual_max_distance\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf_max_distance\n\n\n\n\n\n\nMEDYAN.get_chem_state\n\n\n\n\n\n\nMEDYAN.get_directions\n\n\n\n\n\n\nMEDYAN.get_link_mechanics\n\n\n\n\n\n\nMEDYAN.get_material_frame\n\n\n\n\n\n\nMEDYAN.get_position\n\n\n\n\n\n\nMEDYAN.get_reaction_enabled\n\n\n\n\n\n\nMEDYAN.get_state\n\n\n\n\n\n\nMEDYAN.get_time\n\n\n\n\n\n\nMEDYAN.grididat\n\n\n\n\n\n\nMEDYAN.has_tag\n\n\n\n\n\n\nMEDYAN.is_chem_boundary_tsdf_cache_valid\n\n\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\n\n\nMEDYAN.is_inside_chem_boundary!\n\n\n\n\n\n\nMEDYAN.is_minimized\n\n\n\n\n\n\nMEDYAN.link2tags\n\n\n\n\n\n\nMEDYAN.link_exists\n\n\n\n\n\n\nMEDYAN.link_type_name\n\n\n\n\n\n\nMEDYAN.link_typeid\n\n\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\n\n\nMEDYAN.make_anchor!\n\n\n\n\n\n\nMEDYAN.make_ball!\n\n\n\n\n\n\nMEDYAN.make_fila!\n\n\n\n\n\n\nMEDYAN.make_fila_rand!\n\n\n\n\n\n\nMEDYAN.make_link!\n\n\n\n\n\n\nMEDYAN.make_memb!\n\n\n\n\n\n\nMEDYAN.make_memb_rectangle!\n\n\n\n\n\n\nMEDYAN.make_memb_sphere!\n\n\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\n\n\nMEDYAN.num_directions\n\n\n\n\n\n\nMEDYAN.num_fila\n\n\n\n\n\n\nMEDYAN.num_fila_types\n\n\n\n\n\n\nMEDYAN.num_link_types\n\n\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\n\n\nMEDYAN.pick_rand_fila_mono_site\n\n\n\n\n\n\nMEDYAN.pick_rand_fila_tip_site\n\n\n\n\n\n\nMEDYAN.place2links\n\n\n\n\n\n\nMEDYAN.place2tag\n\n\n\n\n\n\nMEDYAN.place_exists\n\n\n\n\n\n\nMEDYAN.polymerize_fila!\n\n\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\n\n\nMEDYAN.remove_anchor!\n\n\n\n\n\n\nMEDYAN.remove_ball!\n\n\n\n\n\n\nMEDYAN.remove_fila!\n\n\n\n\n\n\nMEDYAN.remove_link!\n\n\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary_oversampling_factor!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary_tsdf_max_distance!\n\n\n\n\n\n\nMEDYAN.set_enable_collision!\n\n\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\n\n\nMEDYAN.sever_fila!\n\n\n\n\n\n\nMEDYAN.tag!\n\n\n\n\n\n\nMEDYAN.tag2links\n\n\n\n\n\n\nMEDYAN.tag2place\n\n\n\n\n\n\nMEDYAN.tag_exists\n\n\n\n\n\n\nMEDYAN.update_anchor!\n\n\n\n\n\n\nMEDYAN.update_ball!\n\n\n\n\n\n\nMEDYAN.update_fila_mono_state!\n\n\n\n\n\n\nMEDYAN.update_link!\n\n\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\n\n\nsrc/boundary.jl\n\n\n\n\n\n\nsrc/context.jl\n\n\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\n\n\nsrc/filament/depolymerize_fila.jl\n\n\n\n\n\n\nsrc/filament/endsites.jl\n\n\n\n\n\n\nsrc/filament/functions.jl\n\n\n\n\n\n\nsrc/filament/make_fila.jl\n\n\n\n\n\n\nsrc/filament/make_fila_rand.jl\n\n\n\n\n\n\nsrc/filament/polymerize_fila.jl\n\n\n\n\n\n\nsrc/filament/remove_fila.jl\n\n\n\n\n\n\nsrc/filament/sever_fila.jl\n\n\n\n\n\n\nsrc/filament/sites.jl\n\n\n\n\n\n\nsrc/filament/structs.jl\n\n\n\n\n\n\nsrc/filament/update_fila_mono_state.jl\n\n\n\n\n\n\nsrc/grids.jl\n\n\n\n\n\n\nsrc/links/anchors.jl\n\n\n\n\n\n\nsrc/links/balls.jl\n\n\n\n\n\n\nsrc/links/link-chemistry.jl\n\n\n\n\n\n\nsrc/links/link-manager.jl\n\n\n\n\n\n\nsrc/links/place-types.jl\n\n\n\n\n\n\nsrc/links/places.jl\n\n\n\n\n\n\nsrc/membrane/make_memb.jl\n\n\n\n\n\n\nsrc/membrane/make_memb_rectangle.jl\n\n\n\n\n\n\nsrc/membrane/make_memb_sphere.jl\n\n\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\n\n\nsrc/sys_def-types.jl\n\n\n\n\n\n\nsrc/sys_def.jl\n\n\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\n\n\n\n\n\nBase.:*\n\n\n\n\n\n\nBase.delete!\n\n\n\n\n\n\nBase.empty!\n\n\n\n\n\n\nBase.getindex\n\n\n\n\n\n\nBase.haskey\n\n\n\n\n\n\nBase.iterate\n\n\n\n\n\n\nBase.length\n\n\n\n\n\n\nBase.push!\n\n\n\n\n\n\nBase.setindex!\n\n\n\n\n\n\nMEDYAN.AgentNames\n\n\n\n\n\n\nMEDYAN.Anchor\n\n\n\n\n\n\nMEDYAN.BallIdx\n\n\n\n\n\n\nMEDYAN.Boundary\n\n\n\n\n\n\nMEDYAN.Context\n\n\n\n\n\n\nMEDYAN.CubicGrid\n\n\n\n\n\n\nMEDYAN.Decimated2MonSiteMinAngleRange\n\n\n\n\n\n\nMEDYAN.Decimated2MonSiteRange\n\n\n\n\n\n\nMEDYAN.FilaIdx\n\n\n\n\n\n\nMEDYAN.FilaMonoIdx\n\n\n\n\n\n\nMEDYAN.FilaTipIdx\n\n\n\n\n\n\nMEDYAN.FilamentEndSiteGeneral\n\n\n\n\n\n\nMEDYAN.FilamentMechParams\n\n\n\n\n\n\nMEDYAN.FilamentSiteGeneral\n\n\n\n\n\n\nMEDYAN.MembVertIdx\n\n\n\n\n\n\nMEDYAN.MembraneSiteDiffusing\n\n\n\n\n\n\nMEDYAN.MembraneSpeciesParams\n\n\n\n\n\n\nMEDYAN.SysDef\n\n\n\n\n\n\nMEDYAN.VertexName\n\n\n\n\n\n\nMEDYAN.adapt_membranes!\n\n\n\n\n\n\nMEDYAN.add_decimated_2mon_site!\n\n\n\n\n\n\nMEDYAN.add_diffusing_count!\n\n\n\n\n\n\nMEDYAN.add_diffusing_species!\n\n\n\n\n\n\nMEDYAN.add_diffusion_coeff!\n\n\n\n\n\n\nMEDYAN.add_fila_type!\n\n\n\n\n\n\nMEDYAN.add_filament_params!\n\n\n\n\n\n\nMEDYAN.add_link_type!\n\n\n\n\n\n\nMEDYAN.add_membranesitereaction!\n\n\n\n\n\n\nMEDYAN.adddiffusingcount_rand!\n\n\n\n\n\n\nMEDYAN.addfilament_reaction!\n\n\n\n\n\n\nMEDYAN.addfilamentend_reaction!\n\n\n\n\n\n\nMEDYAN.addfilamentendsite!\n\n\n\n\n\n\nMEDYAN.addfilamentsite!\n\n\n\n\n\n\nMEDYAN.addmembranediffusingcount_rand!\n\n\n\n\n\n\nMEDYAN.addmembranesite!\n\n\n\n\n\n\nMEDYAN.addpossiblecadherinsite!\n\n\n\n\n\n\nMEDYAN.addreaction!\n\n\n\n\n\n\nMEDYAN.addreactioncallback!\n\n\n\n\n\n\nMEDYAN.apply_chem_boundary!\n\n\n\n\n\n\nMEDYAN.boundary_box\n\n\n\n\n\n\nMEDYAN.boundary_capsule\n\n\n\n\n\n\nMEDYAN.boundary_cylinder\n\n\n\n\n\n\nMEDYAN.boundary_plane\n\n\n\n\n\n\nMEDYAN.centerof\n\n\n\n\n\n\nMEDYAN.chem_adddiffusingcount!\n\n\n\n\n\n\nMEDYAN.chem_addfixedcount!\n\n\n\n\n\n\nMEDYAN.compute_all_membrane_geometry!_system\n\n\n\n\n\n\nMEDYAN.defer_chem_caching!\n\n\n\n\n\n\nMEDYAN.depolymerize_fila!\n\n\n\n\n\n\nMEDYAN.fila_mono_ids\n\n\n\n\n\n\nMEDYAN.fila_mono_states\n\n\n\n\n\n\nMEDYAN.fila_node_mids\n\n\n\n\n\n\nMEDYAN.fila_node_positions\n\n\n\n\n\n\nMEDYAN.fila_num_nodes\n\n\n\n\n\n\nMEDYAN.fila_num_unmin_ends\n\n\n\n\n\n\nMEDYAN.fila_tip_tags\n\n\n\n\n\n\nMEDYAN.fila_type_name\n\n\n\n\n\n\nMEDYAN.fila_typeid\n\n\n\n\n\n\nMEDYAN.filter_grididat\n\n\n\n\n\n\nMEDYAN.get_all_links\n\n\n\n\n\n\nMEDYAN.get_all_tags\n\n\n\n\n\n\nMEDYAN.get_bond_enabled\n\n\n\n\n\n\nMEDYAN.get_bond_states\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_grid_spacing\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_oversampling_factor\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf!\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf_actual_max_distance\n\n\n\n\n\n\nMEDYAN.get_chem_boundary_tsdf_max_distance\n\n\n\n\n\n\nMEDYAN.get_chem_state\n\n\n\n\n\n\nMEDYAN.get_directions\n\n\n\n\n\n\nMEDYAN.get_link_mechanics\n\n\n\n\n\n\nMEDYAN.get_material_frame\n\n\n\n\n\n\nMEDYAN.get_position\n\n\n\n\n\n\nMEDYAN.get_reaction_enabled\n\n\n\n\n\n\nMEDYAN.get_state\n\n\n\n\n\n\nMEDYAN.get_time\n\n\n\n\n\n\nMEDYAN.grididat\n\n\n\n\n\n\nMEDYAN.has_tag\n\n\n\n\n\n\nMEDYAN.is_chem_boundary_tsdf_cache_valid\n\n\n\n\n\n\nMEDYAN.is_chem_cache_valid\n\n\n\n\n\n\nMEDYAN.is_inside_chem_boundary!\n\n\n\n\n\n\nMEDYAN.is_minimized\n\n\n\n\n\n\nMEDYAN.link2tags\n\n\n\n\n\n\nMEDYAN.link_exists\n\n\n\n\n\n\nMEDYAN.link_type_name\n\n\n\n\n\n\nMEDYAN.link_typeid\n\n\n\n\n\n\nMEDYAN.load_snapshot!\n\n\n\n\n\n\nMEDYAN.make_anchor!\n\n\n\n\n\n\nMEDYAN.make_ball!\n\n\n\n\n\n\nMEDYAN.make_fila!\n\n\n\n\n\n\nMEDYAN.make_fila_rand!\n\n\n\n\n\n\nMEDYAN.make_link!\n\n\n\n\n\n\nMEDYAN.make_memb!\n\n\n\n\n\n\nMEDYAN.make_memb_rectangle!\n\n\n\n\n\n\nMEDYAN.make_memb_sphere!\n\n\n\n\n\n\nMEDYAN.minimize_energy!\n\n\n\n\n\n\nMEDYAN.num_directions\n\n\n\n\n\n\nMEDYAN.num_fila\n\n\n\n\n\n\nMEDYAN.num_fila_types\n\n\n\n\n\n\nMEDYAN.num_link_types\n\n\n\n\n\n\nMEDYAN.num_vertexwithstate\n\n\n\n\n\n\nMEDYAN.pick_rand_fila_mono_site\n\n\n\n\n\n\nMEDYAN.pick_rand_fila_tip_site\n\n\n\n\n\n\nMEDYAN.place2links\n\n\n\n\n\n\nMEDYAN.place2tag\n\n\n\n\n\n\nMEDYAN.place_exists\n\n\n\n\n\n\nMEDYAN.polymerize_fila!\n\n\n\n\n\n\nMEDYAN.randompoint\n\n\n\n\n\n\nMEDYAN.refresh_chem_cache!\n\n\n\n\n\n\nMEDYAN.remove_anchor!\n\n\n\n\n\n\nMEDYAN.remove_ball!\n\n\n\n\n\n\nMEDYAN.remove_fila!\n\n\n\n\n\n\nMEDYAN.remove_link!\n\n\n\n\n\n\nMEDYAN.resolve_all_filament_mesh_crossing!\n\n\n\n\n\n\nMEDYAN.run_chemistry!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary_oversampling_factor!\n\n\n\n\n\n\nMEDYAN.set_chem_boundary_tsdf_max_distance!\n\n\n\n\n\n\nMEDYAN.set_enable_collision!\n\n\n\n\n\n\nMEDYAN.set_mechboundary!\n\n\n\n\n\n\nMEDYAN.set_time!\n\n\n\n\n\n\nMEDYAN.sever_fila!\n\n\n\n\n\n\nMEDYAN.tag!\n\n\n\n\n\n\nMEDYAN.tag2links\n\n\n\n\n\n\nMEDYAN.tag2place\n\n\n\n\n\n\nMEDYAN.tag_exists\n\n\n\n\n\n\nMEDYAN.update_anchor!\n\n\n\n\n\n\nMEDYAN.update_ball!\n\n\n\n\n\n\nMEDYAN.update_fila_mono_state!\n\n\n\n\n\n\nMEDYAN.update_link!\n\n\n\n\n\n\nsrc/auxprocs.jl\n\n\n\n\n\n\nsrc/boundary.jl\n\n\n\n\n\n\nsrc/context.jl\n\n\n\n\n\n\nsrc/decimated_2mon_sites.jl\n\n\n\n\n\n\nsrc/filament/depolymerize_fila.jl\n\n\n\n\n\n\nsrc/filament/endsites.jl\n\n\n\n\n\n\nsrc/filament/functions.jl\n\n\n\n\n\n\nsrc/filament/make_fila.jl\n\n\n\n\n\n\nsrc/filament/make_fila_rand.jl\n\n\n\n\n\n\nsrc/filament/polymerize_fila.jl\n\n\n\n\n\n\nsrc/filament/remove_fila.jl\n\n\n\n\n\n\nsrc/filament/sever_fila.jl\n\n\n\n\n\n\nsrc/filament/sites.jl\n\n\n\n\n\n\nsrc/filament/structs.jl\n\n\n\n\n\n\nsrc/filament/update_fila_mono_state.jl\n\n\n\n\n\n\nsrc/grids.jl\n\n\n\n\n\n\nsrc/links/anchors.jl\n\n\n\n\n\n\nsrc/links/balls.jl\n\n\n\n\n\n\nsrc/links/link-chemistry.jl\n\n\n\n\n\n\nsrc/links/link-manager.jl\n\n\n\n\n\n\nsrc/links/place-types.jl\n\n\n\n\n\n\nsrc/links/places.jl\n\n\n\n\n\n\nsrc/membrane/make_memb.jl\n\n\n\n\n\n\nsrc/membrane/make_memb_rectangle.jl\n\n\n\n\n\n\nsrc/membrane/make_memb_sphere.jl\n\n\n\n\n\n\nsrc/membrane/membranesites.jl\n\n\n\n\n\n\nsrc/membrane/meshadapt.jl\n\n\n\n\n\n\nsrc/minimize_energy.jl\n\n\n\n\n\n\nsrc/sys_def-types.jl\n\n\n\n\n\n\nsrc/sys_def.jl\n\n\n\n\n\n\nsrc/trajectory-io/snapshot.jl\n\n\n\n\n\n\nsrc/util/math/cuboidslicing.jl\n\n\n\n\n\n\nsrc/util/stableindex.jl\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Reference",
       "Docstrings"
@@ -1932,7 +1974,7 @@
     "href": "reference/index.html",
     "title": "Table of Contents",
     "section": "",
-    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\nadd_fila_type!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_collision!\nset_chem_boundary!\nset_mechboundary!\n\n\n\n\n\nmake_ball!\nremove_ball!\nupdate_ball!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\nnum_fila_types\nfila_type_name\nfila_typeid\nnum_fila\nfila_mono_ids\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags\nfila_num_unmin_ends\npick_rand_fila_mono_site\npick_rand_fila_tip_site\n\n\n\n\n\nmake_memb!\nmake_memb_sphere!\nmake_memb_rectangle!\n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\nmake_anchor!\nremove_anchor!\nupdate_anchor!\nnum_link_types\nlink_type_name\nlink_typeid\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_material_frame\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\napply_chem_boundary!\nrun_chemistry!\nminimize_energy!\n\n\n\n\n\n\n\n\n\n\nCubicGrid\nMEDYAN.grididat\nMEDYAN.filter_grididat\nMEDYAN.centerof",
+    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\nadd_fila_type!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_collision!\nset_chem_boundary!\nset_mechboundary!\n\n\n\n\n\nmake_ball!\nremove_ball!\nupdate_ball!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\nnum_fila_types\nfila_type_name\nfila_typeid\nnum_fila\nfila_mono_ids\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags\nfila_num_unmin_ends\npick_rand_fila_mono_site\npick_rand_fila_tip_site\n\n\n\n\n\nmake_memb!\nmake_memb_sphere!\nmake_memb_rectangle!\n\n\n\n\n\nPlace\nFilaIdx\nFilaTipIdx\nFilaMonoIdx\nMembVertIdx\nAnchor\nBallIdx\nTag\ntag!\nmake_link!\nremove_link!\nupdate_link!\nmake_anchor!\nremove_anchor!\nupdate_anchor!\nnum_link_types\nlink_type_name\nlink_typeid\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_material_frame\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\napply_chem_boundary!\nrun_chemistry!\nminimize_energy!\n\n\n\n\n\n\n\n\n\n\nCubicGrid\nMEDYAN.grididat\nMEDYAN.filter_grididat\nMEDYAN.centerof",
     "crumbs": [
       "Reference",
       "Table of Contents"
@@ -1943,7 +1985,7 @@
     "href": "reference/index.html#functions",
     "title": "Table of Contents",
     "section": "",
-    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\nadd_fila_type!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_collision!\nset_chem_boundary!\nset_mechboundary!\n\n\n\n\n\nmake_ball!\nremove_ball!\nupdate_ball!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\nnum_fila_types\nfila_type_name\nfila_typeid\nnum_fila\nfila_mono_ids\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags\nfila_num_unmin_ends\npick_rand_fila_mono_site\npick_rand_fila_tip_site\n\n\n\n\n\nmake_memb!\nmake_memb_sphere!\nmake_memb_rectangle!\n\n\n\n\n\ntag!\nmake_link!\nremove_link!\nupdate_link!\nmake_anchor!\nremove_anchor!\nupdate_anchor!\nnum_link_types\nlink_type_name\nlink_typeid\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_material_frame\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\napply_chem_boundary!\nrun_chemistry!\nminimize_energy!",
+    "text": "src/sysdefs.jl\n\nMEDYAN.AgentNames\nMEDYAN.SysDef\nadd_diffusion_coeff!\naddreaction!\naddreactioncallback!\nadd_filament_params!\nadd_fila_type!\naddfilamentsite!\naddfilament_reaction!\naddfilamentendsite!\naddfilamentend_reaction!\n\n\n\n\n\nMEDYAN.Context\nCubicGrid\ndeepcopy, note: rng is shared\n\n\n\n\n\nBase.empty!\nload_snapshot!\nchem_adddiffusingcount!\nchem_addfixedcount!\nadddiffusingcount_rand!\nset_time!\nset_enable_collision!\nset_chem_boundary!\nset_mechboundary!\n\n\n\n\n\nmake_ball!\nremove_ball!\nupdate_ball!\n\n\n\n\n\nmake_fila!\nmake_fila_rand!\nremove_fila!\nupdate_fila_mono_state!\npolymerize_fila!\ndepolymerize_fila!\nsever_fila!\nnum_fila_types\nfila_type_name\nfila_typeid\nnum_fila\nfila_mono_ids\nfila_mono_states\nfila_num_nodes\nfila_node_mids\nfila_node_positions\nfila_tip_tags\nfila_num_unmin_ends\npick_rand_fila_mono_site\npick_rand_fila_tip_site\n\n\n\n\n\nmake_memb!\nmake_memb_sphere!\nmake_memb_rectangle!\n\n\n\n\n\nPlace\nFilaIdx\nFilaTipIdx\nFilaMonoIdx\nMembVertIdx\nAnchor\nBallIdx\nTag\ntag!\nmake_link!\nremove_link!\nupdate_link!\nmake_anchor!\nremove_anchor!\nupdate_anchor!\nnum_link_types\nlink_type_name\nlink_typeid\nget_all_links\nget_all_tags\ntag2links\nplace2links\ntag_exists\nplace_exists\nlink_exists\nlink2tags\ntag2place\nplace2tag\nhas_tag\nget_position\nnum_directions\nget_directions\nget_material_frame\nget_chem_state\nget_state\nget_bond_states\nget_bond_enabled\nget_reaction_enabled\nis_minimized\nget_link_mechanics\n\n\n\n\n\napply_chem_boundary!\nrun_chemistry!\nminimize_energy!",
     "crumbs": [
       "Reference",
       "Table of Contents"
@@ -2037,14 +2079,14 @@
     "href": "docstrings/medyan.ballidx-5a4aba766d557d6a.html",
     "title": "MEDYAN.BallIdx",
     "section": "",
-    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
+    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\nThis index may be invalidated by ball removal or reordering. Use a Tag{BallIdx} for a long-term reference that remains valid across mutations.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\nBallIdx(c::Context, idx::Integer): Construct from context with index\nBallIdx(c::Context, b::BallIdx): Re-resolve a ball index\nBallIdx(c::Context, t::Tag{BallIdx}): Construct from a tag\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
   },
   {
     "objectID": "docstrings/medyan.ballidx-5a4aba766d557d6a.html#union---b2cfd89fb0d1b9c6",
     "href": "docstrings/medyan.ballidx-5a4aba766d557d6a.html#union---b2cfd89fb0d1b9c6",
     "title": "MEDYAN.BallIdx",
     "section": "",
-    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
+    "text": "BallIdx &lt;: Place\nAn index referring to a ball (spherical particle) in the simulation. Balls are stored in the balls vector of the Context and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.\nThis index may be invalidated by ball removal or reordering. Use a Tag{BallIdx} for a long-term reference that remains valid across mutations.\n\n\n\nBallIdx(): Creates a null ball index with idx 0\nBallIdx(idx::Int64): Creates a ball index pointing to the ball at position idx in the context’s balls vector\nBallIdx(c::Context, idx::Integer): Construct from context with index\nBallIdx(c::Context, b::BallIdx): Re-resolve a ball index\nBallIdx(c::Context, t::Tag{BallIdx}): Construct from a tag\n\n\n\n\n\nidx::Int64: Index of the ball in the context’s balls vector\n\n\n\n\nSee make_ball!, remove_ball!, and update_ball! for creating, removing, and modifying balls."
   },
   {
     "objectID": "docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html",
@@ -2075,46 +2117,67 @@
     "text": "Map ID to a new index. The ID must be in use."
   },
   {
-    "objectID": "docstrings/medyan.add_fila_type--006e34b8bafba683.html",
-    "href": "docstrings/medyan.add_fila_type--006e34b8bafba683.html",
-    "title": "MEDYAN.add_fila_type!",
+    "objectID": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html",
+    "href": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html",
+    "title": "MEDYAN.remove_ball!",
     "section": "",
-    "text": "add_fila_type!(s::SysDef; name::Symbol, mono_states::Vector{Symbol}, param::FilamentMechParams)\nAdd a new filament type to the system definition.\n\n\n\ns::SysDef: The system definition to modify.\nname::Symbol: The name of the new filament type.\nmono_states::Vector{Symbol}: Vector of monomer state names for this filament type. Must not be empty.\nparam::FilamentMechParams: The filament mechanical parameters.\n\n\n\n\nThe modified SysDef.\n\n\n\n\nError if a filament type with the given name already exists.\nError if mono_states is empty."
+    "text": "remove_ball!(c::Context, ball::Union{BallIdx, Tag{BallIdx}})\nRemove a ball from the simulation and unlink all connected links.\nSee also: make_ball!, update_ball!"
   },
   {
-    "objectID": "docstrings/medyan.add_fila_type--006e34b8bafba683.html#tuple-medyan.sysdef--efaa49a98644904f",
-    "href": "docstrings/medyan.add_fila_type--006e34b8bafba683.html#tuple-medyan.sysdef--efaa49a98644904f",
-    "title": "MEDYAN.add_fila_type!",
+    "objectID": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8",
+    "href": "docstrings/medyan.remove_ball--57fbfd7855882ccd.html#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8",
+    "title": "MEDYAN.remove_ball!",
     "section": "",
-    "text": "add_fila_type!(s::SysDef; name::Symbol, mono_states::Vector{Symbol}, param::FilamentMechParams)\nAdd a new filament type to the system definition.\n\n\n\ns::SysDef: The system definition to modify.\nname::Symbol: The name of the new filament type.\nmono_states::Vector{Symbol}: Vector of monomer state names for this filament type. Must not be empty.\nparam::FilamentMechParams: The filament mechanical parameters.\n\n\n\n\nThe modified SysDef.\n\n\n\n\nError if a filament type with the given name already exists.\nError if mono_states is empty."
+    "text": "remove_ball!(c::Context, ball::Union{BallIdx, Tag{BallIdx}})\nRemove a ball from the simulation and unlink all connected links.\nSee also: make_ball!, update_ball!"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
-    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html",
-    "title": "MEDYAN.addfilamentend_reaction!",
+    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
+    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html",
+    "title": "MEDYAN.addfilamentsite!",
     "section": "",
-    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
+    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
   },
   {
-    "objectID": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
-    "href": "docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html#tuple-medyan.sysdef--symbol--symbol--bool--pair-vector-symbol---vector-symbol----float64--abstractstring--float64--int64--02be6e9d6f919481",
-    "title": "MEDYAN.addfilamentend_reaction!",
+    "objectID": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "href": "docstrings/medyan.addfilamentsite--eb6bfd871a21b6f4.html#tuple-medyan.sysdef--symbol--symbol--any--b9a0ed342fa77751",
+    "title": "MEDYAN.addfilamentsite!",
     "section": "",
-    "text": "Add filament end reaction. Return s. Add a filamentendsite and reaction with callback to change the filaments. This can be used for polymerization, depolymeriation, and changing end state.\n\n\n\ns::SysDef: the system to add to.\nfilamenttypename::Symbol: the filament type name.\nfilamentendsitename::Symbol: the new name of the filamentendsite added. This can be used as a catalyst in other reactions.\nisminusend::Bool: true if changing the minus end, false if changing the plus end.\nchangedendstatenames::Pair{Vector{Symbol}, Vector{Symbol}}: the changes to the end monomer states, the first is the states to match. The second is the new monomer states after the reaction. If the second has more states than the first, new monomers will be added, if the second has less, monomers will be removed. Ordered minus end first.\nspacing::Float64: Space needed at the filament end for this reaction. (nm) ratefactor= exp(-β*spacing*loadforce) where β is 1/kT, loadforce is the external force pushing axially on the end of the filament. and ratefactor affects this reaction propensity and any others using filamentendsitename\nreactionexpr::AbstractString: Allows adding other reactants or products to the reaction. \" + filamentendsite.$(filamenttypename).$(filamentendsitename) + \" gets added to both sides this to create the full reaction expression. See addreaction! for syntax.\nrate::Float64: Base rate for the reaction. ((nm³)^(invvolumepower)/s)\ninvvolumepower::Int: volumefactor= (1/volume)^invvolumepower where volume is the volume of the voxel in nm³. volumefactor only applies to this reaction not any other reaction using filamentendsitename Generally this is 0 for reactions without another diffusing reactant, and 1 if there is another diffusing reactant.\n\n\n\n\nusing MEDYAN\nagent_names = AgentNames(\n    diffusingspeciesnames= [:a,],\n    filamentnames= [(:filname,[\n                            :plus,\n                            :mid,\n                            :minus,\n                        ]),\n    ],\n)\ns= SysDef(agent_names)\nmonomerspacing= 2.7\n#minus end polymerization\naddfilamentend_reaction!(s, :filname, :pm, true,\n    [:minus]=&gt;[:minus,:mid], monomerspacing,\n    \"diffusing.a --&gt;\", 10E3, 1,\n)\n#plus end depolymerization\naddfilamentend_reaction!(s, :filname, :dpp, false,\n    [:mid,:plus]=&gt;[:plus], 0.0,\n    \"--&gt; diffusing.a\", 1.75E-3, 0,\n)"
+    "text": "addfilamentsite!(s::SysDef,filamenttypename::Symbol,filamentsitename::Symbol,site)"
   },
   {
-    "objectID": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html",
-    "href": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html",
-    "title": "MEDYAN.fila_typeid",
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html",
+    "title": "Base.:*",
     "section": "",
-    "text": "fila_typeid(c::Context, f::Union{Tag, FilaIdx})::Int\nfila_typeid(c::Context; type::Union{Symbol,Integer})::Int\nReturn the typeid of a filament f or associated with type."
+    "text": "scale the volume and area\n\n\n\n\n\n\n\n\n\n\n\n\nscale the volume and area by different amounts in each direction"
   },
   {
-    "objectID": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.fila_typeid-1616b490df0cda1e.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.fila_typeid",
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--real--351897cd93ec653f",
+    "title": "Base.:*",
     "section": "",
-    "text": "fila_typeid(c::Context, f::Union{Tag, FilaIdx})::Int\nfila_typeid(c::Context; type::Union{Symbol,Integer})::Int\nReturn the typeid of a filament f or associated with type."
+    "text": "scale the volume and area"
+  },
+  {
+    "objectID": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
+    "href": "docstrings/base.---a21e771ed8ea7d6f.html#tuple-medyan.planecuboidslicingresult--abstractvector--a044ea7870b5bb9c",
+    "title": "Base.:*",
+    "section": "",
+    "text": "scale the volume and area by different amounts in each direction"
+  },
+  {
+    "objectID": "docstrings/medyan.filaidx-89c89b8bbef4dbda.html",
+    "href": "docstrings/medyan.filaidx-89c89b8bbef4dbda.html",
+    "title": "MEDYAN.FilaIdx",
+    "section": "",
+    "text": "FilaIdx\nAn index identifying a specific filament in the simulation. This is a lightweight reference that becomes invalid after filament mutations (removal or reordering).\nUnlike the Place subtypes, FilaIdx is not taggable — filaments do not have a stable identity because of operations like severing. To maintain a long-term reference to a filament, store a Tag{FilaTipIdx} or Tag{FilaMonoIdx} instead, and resolve back to a FilaIdx when needed.\n\n\n\nFilaIdx(typeid::Integer, idx::Integer): Direct constructor with filament type ID and filament index\nFilaIdx(c::Context, f::FilaIdx): Re-resolve a filament index\nFilaIdx(c::Context, ft::FilaTipIdx): Extract the filament index from a filament tip index\nFilaIdx(c::Context, t::Tag): Construct from a context and a filament-related tag (e.g., Tag{FilaTipIdx} or Tag{FilaMonoIdx})\nFilaIdx(c::Context, fm::FilaMonoIdx): Extract the filament index from a filament monomer index\n\n\n\n\n\ntypeid::UInt32: The filament type ID (use fila_typeid(c; type=:actin) to get this)\nidx::UInt32: The index of the filament within its type (1-based)\n\n\n\n\n# Iterate over all filaments of a given type\nftid = fila_typeid(c; type=:actin)\nfor i in 1:num_fila(c; type=:actin)\n    fidx = FilaIdx(ftid, i)\n    states = fila_mono_states(c, fidx)\n    positions = fila_node_positions(c, fidx)\nend\n\n\n\nSee num_fila, fila_typeid, fila_mono_ids, fila_mono_states, fila_node_positions, fila_tip_tags."
+  },
+  {
+    "objectID": "docstrings/medyan.filaidx-89c89b8bbef4dbda.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.filaidx-89c89b8bbef4dbda.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.FilaIdx",
+    "section": "",
+    "text": "FilaIdx\nAn index identifying a specific filament in the simulation. This is a lightweight reference that becomes invalid after filament mutations (removal or reordering).\nUnlike the Place subtypes, FilaIdx is not taggable — filaments do not have a stable identity because of operations like severing. To maintain a long-term reference to a filament, store a Tag{FilaTipIdx} or Tag{FilaMonoIdx} instead, and resolve back to a FilaIdx when needed.\n\n\n\nFilaIdx(typeid::Integer, idx::Integer): Direct constructor with filament type ID and filament index\nFilaIdx(c::Context, f::FilaIdx): Re-resolve a filament index\nFilaIdx(c::Context, ft::FilaTipIdx): Extract the filament index from a filament tip index\nFilaIdx(c::Context, t::Tag): Construct from a context and a filament-related tag (e.g., Tag{FilaTipIdx} or Tag{FilaMonoIdx})\nFilaIdx(c::Context, fm::FilaMonoIdx): Extract the filament index from a filament monomer index\n\n\n\n\n\ntypeid::UInt32: The filament type ID (use fila_typeid(c; type=:actin) to get this)\nidx::UInt32: The index of the filament within its type (1-based)\n\n\n\n\n# Iterate over all filaments of a given type\nftid = fila_typeid(c; type=:actin)\nfor i in 1:num_fila(c; type=:actin)\n    fidx = FilaIdx(ftid, i)\n    states = fila_mono_states(c, fidx)\n    positions = fila_node_positions(c, fidx)\nend\n\n\n\nSee num_fila, fila_typeid, fila_mono_ids, fila_mono_states, fila_node_positions, fila_tip_tags."
   },
   {
     "objectID": "docstrings/medyan.addfilament_reaction--63195cbff2ab4237.html",
@@ -2296,14 +2359,14 @@
     "href": "docstrings/medyan.anchor-0dc7f056c6ce8b51.html",
     "title": "MEDYAN.Anchor",
     "section": "",
-    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
+    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\nAnchor(c::Context, pos, dirs, state): Construct from context with position, directions, and state\nAnchor(c::Context, pos::SVector{3, Float64}): Construct from context at the given position\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
   },
   {
     "objectID": "docstrings/medyan.anchor-0dc7f056c6ce8b51.html#union---b2cfd89fb0d1b9c6",
     "href": "docstrings/medyan.anchor-0dc7f056c6ce8b51.html#union---b2cfd89fb0d1b9c6",
     "title": "MEDYAN.Anchor",
     "section": "",
-    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
+    "text": "Anchor &lt;: Place\nA position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.\n\n\n\nAnchor(): Creates a null anchor with NaN position, NaN directions, and state 0\nAnchor(pos::SVector{3, Float64}): Creates an anchor at the given position with NaN directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}): Creates an anchor at the given position with specified directions and state 0\nAnchor(pos::SVector{3, Float64}, dirs::SVector{2, SVector{3, Float64}}, state::Int64): Full constructor with position, directions, and state\nAnchor(c::Context, pos, dirs, state): Construct from context with position, directions, and state\nAnchor(c::Context, pos::SVector{3, Float64}): Construct from context at the given position\n\n\n\n\n\npos::SVector{3, Float64}: 3D position coordinates\ndirs::SVector{2, SVector{3, Float64}}: Two direction vectors\nstate::Int64: State identifier for chemical reactions"
   },
   {
     "objectID": "docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html",
@@ -3517,74 +3580,95 @@
     "text": "set_mechboundary!(\n    c::MEDYAN.Context;\n    kwargs...\n) -&gt; MEDYAN.Boundary\nSee also Boundary"
   },
   {
-    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
-    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html",
-    "title": "MEDYAN.load_snapshot!",
+    "objectID": "docstrings/medyan.get_chem_state-a69539a7b114572a.html",
+    "href": "docstrings/medyan.get_chem_state-a69539a7b114572a.html",
+    "title": "MEDYAN.get_chem_state",
     "section": "",
-    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
+    "text": "get_chem_state(c::Context, x::Union{Tag, Place})\nReturn the chemical state of x. Each type of place has a different type of chemical state. If the chemical state of a place changes, any attached links will have their reaction rates recalculated. Throw an error if x doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
-    "href": "docstrings/medyan.load_snapshot--e534be293ce74465.html#tuple-medyan.context--smallzarrgroups.zgroup--a98412e602b7637b",
-    "title": "MEDYAN.load_snapshot!",
+    "objectID": "docstrings/medyan.get_chem_state-a69539a7b114572a.html#tuple-medyan.context--medyan.tag--fedde092ce150cde",
+    "href": "docstrings/medyan.get_chem_state-a69539a7b114572a.html#tuple-medyan.context--medyan.tag--fedde092ce150cde",
+    "title": "MEDYAN.get_chem_state",
     "section": "",
-    "text": "load_snapshot!(c::Context,group::ZGroup)\nEmpty the context and load the state saved in the snapshot group.\nc should be constructed with the same SysDef and parameters as the Context used to create the snapshot. Trying to load a snapshot into a Context constructed with a different system or parameters may lead to unexpected results.\nSee Snapshot group for more details."
+    "text": "get_chem_state(c::Context, x::Union{Tag, Place})\nReturn the chemical state of x. Each type of place has a different type of chemical state. If the chemical state of a place changes, any attached links will have their reaction rates recalculated. Throw an error if x doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html",
-    "href": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html",
-    "title": "MEDYAN.get_chem_boundary_oversampling_factor",
+    "objectID": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html",
+    "href": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html",
+    "title": "MEDYAN.get_all_links",
     "section": "",
-    "text": "get_chem_boundary_oversampling_factor(\n    c::MEDYAN.Context\n) -&gt; Int64\nGet the oversampling factor used for chem boundary TSDF computation."
+    "text": "get_all_links(c::Context; type::Union{Symbol,Integer}) -&gt; Link iterator\nReturn an iterator of all Links of type type."
   },
   {
-    "objectID": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html#tuple-medyan.context--4896731d1a77eb1c",
-    "href": "docstrings/medyan.get_chem_boundary_oversampling_factor-ceb9b2d946f4fb17.html#tuple-medyan.context--4896731d1a77eb1c",
-    "title": "MEDYAN.get_chem_boundary_oversampling_factor",
+    "objectID": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.get_all_links-fe0d12c0df825f7e.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.get_all_links",
     "section": "",
-    "text": "get_chem_boundary_oversampling_factor(\n    c::MEDYAN.Context\n) -&gt; Int64\nGet the oversampling factor used for chem boundary TSDF computation."
+    "text": "get_all_links(c::Context; type::Union{Symbol,Integer}) -&gt; Link iterator\nReturn an iterator of all Links of type type."
   },
   {
-    "objectID": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html",
-    "href": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html",
-    "title": "MEDYAN.depolymerize_fila!",
+    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html",
+    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html",
+    "title": "MEDYAN.is_minimized",
     "section": "",
-    "text": "depolymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx)\nRemove a monomer from the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids.\nError if the filament isn’t initially over 2 monomers long.\nUnlink any monomers on the filament that are referenced by any links. The links will not be removed, but will have a null reference. Links attached to the filament tip will remain attached."
+    "text": "is_minimized(c::Context, link::Link, [d::LinkData])::Bool\nReturn the is_minimized flag of the link. Throw an error if link doesn’t exist.\n\n\n\n\n\n\n\n\n\n\n\n\nis_minimized(c::Context, p::Union{FilaMonoIdx, FilaTipIdx, Tag})::Bool\nReturn true iff the monomer or tip has been minimized. Throw an error if p doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html#tuple-medyan.context--medyan.filatipidx--d592866d39d8c362",
-    "href": "docstrings/medyan.depolymerize_fila--7aae43ce27544212.html#tuple-medyan.context--medyan.filatipidx--d592866d39d8c362",
-    "title": "MEDYAN.depolymerize_fila!",
+    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f",
+    "title": "MEDYAN.is_minimized",
     "section": "",
-    "text": "depolymerize_fila!(c::Context, fila_tip_idx::FilaTipIdx)\nRemove a monomer from the end of the filament.\nThis doesn’t affect the other monomer states, positions, or change any of the monomer ids.\nError if the filament isn’t initially over 2 monomers long.\nUnlink any monomers on the filament that are referenced by any links. The links will not be removed, but will have a null reference. Links attached to the filament tip will remain attached."
+    "text": "is_minimized(c::Context, link::Link, [d::LinkData])::Bool\nReturn the is_minimized flag of the link. Throw an error if link doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
-    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html",
-    "title": "MEDYAN.num_vertexwithstate",
+    "objectID": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1",
+    "href": "docstrings/medyan.is_minimized-ff3858ada5447c46.html#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1",
+    "title": "MEDYAN.is_minimized",
     "section": "",
-    "text": "Return the number of vertices with state vertex_state."
+    "text": "is_minimized(c::Context, p::Union{FilaMonoIdx, FilaTipIdx, Tag})::Bool\nReturn true iff the monomer or tip has been minimized. Throw an error if p doesn’t exist."
   },
   {
-    "objectID": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--integer--d9b9e9640b07196d",
-    "href": "docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html#tuple-medyan.dynamichalfedgemesh--integer--d9b9e9640b07196d",
-    "title": "MEDYAN.num_vertexwithstate",
+    "objectID": "docstrings/medyan.place2links-0b74317627f4b920.html",
+    "href": "docstrings/medyan.place2links-0b74317627f4b920.html",
+    "title": "MEDYAN.place2links",
     "section": "",
-    "text": "Return the number of vertices with state vertex_state."
+    "text": "place2links(c::Context, p::Place) -&gt; Link iterator\nReturn an iterator of Links attached to p. If !place_exists(c, p) return an empty iterator."
   },
   {
-    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
-    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html",
-    "title": "MEDYAN.boundary_cylinder",
+    "objectID": "docstrings/medyan.place2links-0b74317627f4b920.html#tuple-medyan.context--medyan.place--5f4876ae276f10cb",
+    "href": "docstrings/medyan.place2links-0b74317627f4b920.html#tuple-medyan.context--medyan.place--5f4876ae276f10cb",
+    "title": "MEDYAN.place2links",
     "section": "",
-    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
+    "text": "place2links(c::Context, p::Place) -&gt; Link iterator\nReturn an iterator of Links attached to p. If !place_exists(c, p) return an empty iterator."
   },
   {
-    "objectID": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
-    "href": "docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html#tuple---3937a4f1811c9dc1",
-    "title": "MEDYAN.boundary_cylinder",
+    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
+    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html",
+    "title": "MEDYAN.minimize_energy!",
     "section": "",
-    "text": "boundary_cylinder(\n;\n    center,\n    axis,\n    radius,\n    stiffness\n) -&gt; MEDYAN.Boundary\nReturn a cylinder boundary.\ncenter(nm): The center of the cylinder.\naxis(nm): The direction and length of the cylinder. The spine line segment goes from center - axis/2 to center + axis/2 the full length of the cylinder is norm(axis).\nradius(nm): Radius of cylinder.\nstiffness(pN/nm): How strong the boundary is."
+    "text": "minimize_energy!(c::Context)::MinimizeEnergyResults\nMinimize mechanical energy of the context.\n\n\n\ncheck_closest::Bool=true:\n\nIf true, the function will warn if two objects get too close during minimization.\n\nbrownian_motion_time::Float64=Inf: This parameter is used to simulate the effect\n\nof Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.\n\ng_tol::Float64=c.g_tol: The acceptable maximum residual force on any degree of freedom in pN.\niter_max::Int=c.iter_max_cg_minimization: The maximum number of congugate gradient iterations to do before exiting."
+  },
+  {
+    "objectID": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
+    "href": "docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html#tuple-medyan.context--4896731d1a77eb1c",
+    "title": "MEDYAN.minimize_energy!",
+    "section": "",
+    "text": "minimize_energy!(c::Context)::MinimizeEnergyResults\nMinimize mechanical energy of the context.\n\n\n\ncheck_closest::Bool=true:\n\nIf true, the function will warn if two objects get too close during minimization.\n\nbrownian_motion_time::Float64=Inf: This parameter is used to simulate the effect\n\nof Brownian motion over a certain period of time in seconds. It is currently experimental. By default, the effect of Brownian motion is ignored.\n\ng_tol::Float64=c.g_tol: The acceptable maximum residual force on any degree of freedom in pN.\niter_max::Int=c.iter_max_cg_minimization: The maximum number of congugate gradient iterations to do before exiting."
+  },
+  {
+    "objectID": "docstrings/medyan.filatipidx-460debd2fef11ad4.html",
+    "href": "docstrings/medyan.filatipidx-460debd2fef11ad4.html",
+    "title": "MEDYAN.FilaTipIdx",
+    "section": "",
+    "text": "FilaTipIdx &lt;: Place\nAn index identifying a specific filament tip (either the minus end or plus end).\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaTipIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaTipIdx(): Creates a null tip index\nFilaTipIdx(fila_idx::FilaIdx, is_minus_end::Bool): Creates a tip index for the specified filament and end\nFilaTipIdx(c::Context, x, ::typeof(-)): Get the minus-end tip\nFilaTipIdx(c::Context, x, ::typeof(+)): Get the plus-end tip\nFilaTipIdx(c::Context, f::FilaTipIdx): Re-resolve a tip index\nFilaTipIdx(c::Context, t::Tag{FilaTipIdx}): Construct from a tag\nFilaTipIdx(c::Context, x::Union{FilaIdx, FilaMonoIdx, FilaTipIdx, Tag}, is_minus_end::Bool): Construct from various filament references\n\n\n\n\n\nfila_idx::FilaIdx: The filament this tip belongs to\nis_minus_end::Bool: true for minus end, false for plus end\n\n\n\n\nSee fila_tip_tags, make_fila!."
+  },
+  {
+    "objectID": "docstrings/medyan.filatipidx-460debd2fef11ad4.html#union---b2cfd89fb0d1b9c6",
+    "href": "docstrings/medyan.filatipidx-460debd2fef11ad4.html#union---b2cfd89fb0d1b9c6",
+    "title": "MEDYAN.FilaTipIdx",
+    "section": "",
+    "text": "FilaTipIdx &lt;: Place\nAn index identifying a specific filament tip (either the minus end or plus end).\nThis index may be invalidated by mutations (e.g., filament removal or severing). Use a Tag{FilaTipIdx} for a long-term reference that remains valid across mutations.\n\n\n\nFilaTipIdx(): Creates a null tip index\nFilaTipIdx(fila_idx::FilaIdx, is_minus_end::Bool): Creates a tip index for the specified filament and end\nFilaTipIdx(c::Context, x, ::typeof(-)): Get the minus-end tip\nFilaTipIdx(c::Context, x, ::typeof(+)): Get the plus-end tip\nFilaTipIdx(c::Context, f::FilaTipIdx): Re-resolve a tip index\nFilaTipIdx(c::Context, t::Tag{FilaTipIdx}): Construct from a tag\nFilaTipIdx(c::Context, x::Union{FilaIdx, FilaMonoIdx, FilaTipIdx, Tag}, is_minus_end::Bool): Construct from various filament references\n\n\n\n\n\nfila_idx::FilaIdx: The filament this tip belongs to\nis_minus_end::Bool: true for minus end, false for plus end\n\n\n\n\nSee fila_tip_tags, make_fila!."
   },
   {
     "objectID": "docstrings/medyan.chem_addfixedcount--0286edfebf8ea5e6.html",
