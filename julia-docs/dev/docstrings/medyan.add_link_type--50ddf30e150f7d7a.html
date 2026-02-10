@@ -237,10 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>name::Symbol</code>: Unique identifier for this reaction within the place.</li>
 <li><code>affect!</code>: Callback <code>(c::Context; link, chem_voxel, reaction_id, place_idx, kwargs...) -&gt; Int</code> that executes the reaction. Return 1 on success, 0 to reject. For <code>fila_cutoff</code> reactions, also receives <code>place</code> (the nearby filament monomer).</li>
-<li><code>rate</code>: Function <code>(c::Context; link, link_data, place_idx, link_state, kwargs...) -&gt; Float64</code> returning the state-dependent rate factor. For multi-site binding, return the number of available sites (e.g., <code>NPF_MAX_ACTIN - link_state.num_actin</code>).</li>
 </ul></li>
 <li><p>Optional fields:</p>
 <ul>
+<li><code>rate = Returns(1.0)</code>: Function <code>(c::Context; link, link_data, place_idx, link_state, kwargs...) -&gt; Float64</code> returning the state-dependent rate factor. For multi-site binding, return the number of available sites (e.g., <code>NPF_MAX_ACTIN - link_state.num_actin</code>).</li>
 <li><code>base_rate::Float64 = 1.0</code>: Rate constant multiplier. For bimolecular reactions with <code>invvolumepower=1</code>, use units of nm³/s (e.g., diffusion-limited rate k_D = 4πDR ≈ 1.57×10⁹ nm³/s for D=25 μm²/s, R=5 nm). Separating large rate constants from small integer multipliers in <code>rate</code> avoids overflow.</li>
 <li><code>invvolumepower::Int64 = 0</code>: Volume scaling. Set to 1 for bimolecular (nm³/s), 0 for unimolecular (1/s).</li>
 <li><code>reactants_extra::String = ""</code>: Additional reactants like <code>"diffusing.ARP23"</code>. Makes propensity proportional to these species counts.</li>
