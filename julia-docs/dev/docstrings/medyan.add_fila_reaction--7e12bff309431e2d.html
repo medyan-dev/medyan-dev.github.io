@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; fila_type, name, match_states, <span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a filament monomer reaction. The reaction fires at monomers whose local neighborhood matches a pattern of states. When it fires, the matched monomers can be changed to <code>new_states</code>, or a custom <code>affect!</code> callback can handle arbitrary side effects.</p>
-<p>All pattern positions must lie on the filament. Monomers near the ends where the pattern would extend past the boundary are automatically skipped. Use <a href="../docstrings/medyan.addfilamentend_reaction--83ec3db37b4e2130.html"><code>addfilamentend_reaction!</code></a> for reactions at filament ends.</p>
+<p>All pattern positions must lie on the filament. Monomers near the ends where the pattern would extend past the boundary are automatically skipped. Use <a href="../docstrings/medyan.add_fila_tip_reaction--015bae70ff11d905.html"><code>add_fila_tip_reaction!</code></a> for reactions at filament ends.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <section id="required" class="level2">
