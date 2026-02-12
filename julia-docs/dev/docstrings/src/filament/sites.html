@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -153,6 +188,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#srcfilamentsites.jl" id="toc-srcfilamentsites.jl" class="nav-link active" data-scroll-target="#srcfilamentsites.jl">src/filament/sites.jl</a>
   <ul class="collapse">
   <li><a href="#medyan.filamentsitegeneral-0d87ce44fed17b2c" id="toc-medyan.filamentsitegeneral-0d87ce44fed17b2c" class="nav-link" data-scroll-target="#medyan.filamentsitegeneral-0d87ce44fed17b2c"><code>MEDYAN.FilamentSiteGeneral</code></a></li>
+  <li><a href="#medyan.anystate-1965db924963e911" id="toc-medyan.anystate-1965db924963e911" class="nav-link" data-scroll-target="#medyan.anystate-1965db924963e911"><code>MEDYAN.AnyState</code></a></li>
+  <li><a href="#medyan.anystate-5e989313a9ef75d3" id="toc-medyan.anystate-5e989313a9ef75d3" class="nav-link" data-scroll-target="#medyan.anystate-5e989313a9ef75d3"><code>MEDYAN.anystate</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/sites.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -178,6 +215,35 @@ ul.task-list li input[type="checkbox"] {
 <li><code>center::Int64</code>: index of center monomer in states</li>
 <li><code>states::Vector{UInt8}</code>: monomer states to match</li>
 </ul>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.anystate-1965db924963e911" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.anystate-1965db924963e911"><a href="../../../docstrings/medyan.anystate-1965db924963e911.html"><code>MEDYAN.AnyState</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AnyState</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Singleton type used in <code>match_states</code> in <a href="../../../docstrings/medyan.add_fila_reaction--7e12bff309431e2d.html"><code>add_fila_reaction!</code></a> to match any <code>MonomerState</code>.</p>
+<p>Use the exported constant <a href="../../../docstrings/medyan.anystate-5e989313a9ef75d3.html"><code>anystate</code></a> instead of constructing directly.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.anystate-5e989313a9ef75d3" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.anystate-5e989313a9ef75d3"><a href="../../../docstrings/medyan.anystate-5e989313a9ef75d3.html"><code>MEDYAN.anystate</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> anystate <span class="op">=</span> <span class="fu">AnyState</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A special value in <code>match_states</code> in <a href="../../../docstrings/medyan.add_fila_reaction--7e12bff309431e2d.html"><code>add_fila_reaction!</code></a> to match any <code>MonomerState</code>.</p>
 </div>
 </div>
 </div>
