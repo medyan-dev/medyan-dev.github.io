@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Examples</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> MEDYAN.<span class="fu">SysDef</span>()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_type!</span>(s; name<span class="op">=:</span>actin, mono_states<span class="op">=</span>[<span class="op">:</span>a, <span class="op">:</span>plusend, <span class="op">:</span>minusend], param<span class="op">=</span>MEDYAN.ACTIN_TWIST_PARAMS)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">def_fila_type!</span>(s; name<span class="op">=:</span>actin, mono_states<span class="op">=</span>[<span class="op">:</span>a, <span class="op">:</span>plusend, <span class="op">:</span>minusend], param<span class="op">=</span>MEDYAN.ACTIN_TWIST_PARAMS)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">def_diffusing_species!</span>(s, <span class="op">:</span>actin_mon; coeff<span class="op">=</span><span class="fl">2.5e7</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plus-end polymerization: add one monomer (bimolecular with diffusing actin)</span></span>
