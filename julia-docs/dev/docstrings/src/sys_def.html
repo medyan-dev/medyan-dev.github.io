@@ -472,20 +472,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>state::NamedTuple</code>: Mutable state (e.g., rest length <code>L0</code>)</li>
 <li><code>enabled::Bool=true</code>: Whether bond is active by default</li>
 </ul></li>
-<li><p><code>reactions::Vector{Vector}</code>: Reactions at each place. Each reaction is a <code>NamedTuple</code>:</p>
+<li><p><code>reactions::Vector{Vector}</code>: Reactions for each place. <code>reactions[i]</code> is a <code>Vector</code> of reactions for <code>places[i]</code>. Trailing places with no reactions can be omitted (i.e.&nbsp;<code>length(reactions) ≤ length(places)</code>). Each reaction is a <code>NamedTuple</code> with:</p>
 <ul>
 <li><p>Required fields:</p>
 <ul>
 <li><code>name::Symbol</code>: Unique identifier for this reaction within the place.</li>
-<li><code>affect!</code>: Callback <code>(c::Context; link, chem_voxel, reaction_id, place_idx, kwargs...) -&gt; Int</code> that executes the reaction. Return 1 on success, 0 to reject. For <code>fila_cutoff</code> reactions, also receives <code>place</code> (the nearby filament monomer).</li>
+<li><code>affect!</code>: Callback that executes the reaction. Signature: <code>(c::Context; link::Link, chem_voxel::Int, reaction_id, place_idx, kwargs...) -&gt; Int</code>. <code>link</code> is a handle identifying the specific link instance — pass it to <a href="../../docstrings/medyan.get_state-e99d22cacff37374.html"><code>get_state</code></a>, <a href="../../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>update_link!</code></a>, <a href="../../docstrings/medyan.link2tags-645330bedbf54254.html"><code>link2tags</code></a>, etc. Return a status code for debugging purposes. For <code>fila_cutoff</code> reactions, also receives <code>place::FilaMonoIdx</code> (a randomly chosen nearby filament monomer within the cutoff distance).</li>
 </ul></li>
 <li><p>Optional fields:</p>
 <ul>
-<li><code>rate = Returns(1.0)</code>: Function <code>(c::Context; link, link_data, place_idx, link_state, kwargs...) -&gt; Float64</code> returning the state-dependent rate factor. For multi-site binding, return the number of available sites (e.g., <code>NPF_MAX_ACTIN - link_state.num_actin</code>).</li>
-<li><code>base_rate::Float64 = 1.0</code>: Rate constant multiplier. For bimolecular reactions with <code>invvolumepower=1</code>, use units of nm³/s (e.g., diffusion-limited rate k_D = 4πDR ≈ 1.57×10⁹ nm³/s for D=25 μm²/s, R=5 nm). Separating large rate constants from small integer multipliers in <code>rate</code> avoids overflow.</li>
+<li><code>rate = Returns(1.0)</code>: Function <code>(c::Context; link::Link, link_data, place_idx, link_state::NamedTuple, kwargs...) -&gt; Float64</code> returning the state-dependent rate factor. <code>link_state</code> is the current mutable state of this link instance (as defined by the <code>state</code> keyword). For multi-site binding, return the number of available sites (e.g., <code>MAX_ARP23 - link_state.num_arp23</code>). <code>link_data</code> is an internal object — pass it through to <a href="../../docstrings/medyan.link2tags-645330bedbf54254.html"><code>link2tags</code></a> or <a href="../../docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html"><code>get_link_mechanics</code></a> for a small performance gain over the 1-argument forms. <strong>See “When rates are reevaluated” below for important constraints on what this function should depend on.</strong></li>
+<li><code>base_rate::Float64 = 1.0</code>: Rate constant multiplier. Units depend on <code>invvolumepower</code>: 1/s for unimolecular (<code>invvolumepower=0</code>), nm³/s for bimolecular (<code>invvolumepower=1</code>). For example, a diffusion-limited on-rate k_D = 4πDR ≈ 1.57×10⁹ nm³/s for D=25 μm²/s, R=5 nm. Separating large rate constants from small integer multipliers in <code>rate</code> avoids overflow.</li>
 <li><code>invvolumepower::Int64 = 0</code>: Volume scaling. Set to 1 for bimolecular (nm³/s), 0 for unimolecular (1/s).</li>
-<li><code>reactants_extra::String = ""</code>: Additional reactants like <code>"diffusing.ARP23"</code>. Makes propensity proportional to these species counts.</li>
-<li><code>fila_cutoff::Tuple{Symbol, Float64} = nothing</code>: If set, e.g., <code>(:actin, 50.0)</code>, rate is multiplied by nearby filament monomers within cutoff (nm), and <code>affect!</code> receives one such monomer as <code>place</code>.</li>
+<li><code>reactants_extra::String = ""</code>: Additional reactant species whose counts multiply the propensity (e.g., <code>"diffusing.ARP23"</code>). Uses the same <code>"+"</code>-separated format as <a href="../../docstrings/medyan.def_reaction--60ae13f69a537c68.html"><code>def_reaction!</code></a> (e.g., <code>"diffusing.A + diffusing.B"</code>).</li>
+<li><code>fila_cutoff::Tuple{Symbol, Float64} = nothing</code>: If set, e.g., <code>(:actin, 50.0)</code>, the propensity is multiplied by the number of nearby filament monomers of that type within the cutoff distance (nm). When the reaction fires, <code>affect!</code> receives one such monomer as <code>place::FilaMonoIdx</code>. <strong>Some monomers are invisible to this search until after a mechanics cycle</strong> — see “Monomer count caching and mechanics” below.</li>
 <li><code>enabled::Bool = true</code>: Whether reaction is active by default.</li>
 </ul></li>
 </ul></li>
@@ -493,47 +493,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>state::NamedTuple=(;)</code>: Initial mutable state (e.g., <code>(num_bound=Int32(0),)</code>).</p></li>
 </ul>
 </section>
+<section id="when-rates-are-reevaluated" class="level1">
+<h1>When rates are reevaluated</h1>
+<p>Although the <code>rate</code> callback receives the full <code>Context</code> and could in principle read any simulation state, the cached rate value is only <strong>incrementally</strong> recalculated for a specific link when one of the following events occurs during a chemistry step:</p>
+<ol type="1">
+<li><p><strong><code>update_link!</code> is called on this link</strong> — any change to <code>state</code>, <code>places</code>, <code>bond_states</code>, <code>bond_enabled</code>, or <code>reaction_enabled</code> triggers a rate recalculation for all reactions on this link.</p></li>
+<li><p><strong>The chemical state (<a href="../../docstrings/medyan.get_chem_state-a69539a7b114572a.html"><code>get_chem_state</code></a>) of an attached place changes</strong> — specifically:</p>
+<ul>
+<li>A filament monomer state changes (e.g., via polymerization, depolymerization, severing, or <code>update_fila_mono_state!</code>): rates are recalculated for links attached to the changed monomer <strong>and its ±1 neighbors</strong> (and attached tips).</li>
+<li>An anchor is moved via <code>update_anchor!</code>.</li>
+<li>A ball is modified via <code>update_ball!</code>.</li>
+</ul></li>
+</ol>
+<p>The entire cache is <strong>fully rebuilt</strong> at the start of each chemistry phase after mechanics — so all rates are recomputed from scratch using the current <code>Context</code> state after mechanics.</p>
+<p><strong>This means</strong>: within a chemistry step, if the <code>rate</code> function reads something from the <code>Context</code> other than <code>link_state</code> or the chem state of its own places (see <a href="../../docstrings/medyan.get_chem_state-a69539a7b114572a.html"><code>get_chem_state</code></a>), that dependency will <strong>not</strong> be tracked and the cached rate will become stale until the next full cache rebuild. For example:</p>
+<ul>
+<li>✅ <strong>Safe</strong>: Reading <code>link_state</code> fields (e.g., <code>link_state.num_arp23</code>). Updated immediately when <code>update_link!</code> changes <code>state</code>.</li>
+<li>✅ <strong>Safe</strong>: Reading <code>get_chem_state</code> of attached places, or calling <code>get_link_mechanics</code> / <code>is_minimized</code> on the same link (these change only after mechanics, which triggers a full cache rebuild before the next chemistry step).</li>
+<li>⚠️ <strong>Stale within a chemistry step</strong>: Reading diffusing species counts, other links’ states, or the chem state of places that this link is not attached to. These values may change during chemistry without triggering a rate update for this link.</li>
+</ul>
+<p><strong>Workaround — rejection sampling</strong>: If a reaction rate genuinely depends on state that <code>rate</code> cannot track (e.g., the state of a nearby monomer not attached to this link), have <code>rate</code> return an <strong>upper bound</strong> of the true rate. Then in <code>affect!</code>, read the current state and accept the reaction with probability <code>true_rate / upper_bound</code> (rejecting by returning <code>0</code> otherwise). This preserves correct stochastic kinetics despite the stale cache.</p>
+</section>
+<section id="monomer-count-caching-and-mechanics-fila_cutoff-reactions" class="level1">
+<h1>Monomer count caching and mechanics (<code>fila_cutoff</code> reactions)</h1>
+<p>When a reaction has <code>fila_cutoff</code> set, its total propensity is <code>base_rate × rate(...) × nearby_monomer_count × ...</code>. The nearby monomer count is <strong>cached</strong> alongside the rate factor and has its own important update semantics:</p>
+<p><strong>Unminimized monomers are invisible to the neighbor search.</strong> The <code>map_nearby_monomers</code> function skips monomers within <a href="../../docstrings/medyan.fila_num_unmin_ends-09448ccb823dbeac.html"><code>fila_num_unmin_ends</code></a> of each filament end. Several operations mark monomers as “not minimized”, making them invisible until after the next mechanics cycle (which zeros <code>fila_num_unmin_ends</code>):</p>
+<ul>
+<li><a href="../../docstrings/medyan.make_fila--f2346a40b4792de5.html"><code>make_fila!</code></a> / <a href="../../docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html"><code>make_fila_rand!</code></a>: All monomers on a newly created filament start unminimized.</li>
+<li><a href="../../docstrings/medyan.polymerize_fila--ef96193868627e48.html"><code>polymerize_fila!</code></a>: The newly added monomer at the polymerized end is unminimized.</li>
+<li><a href="../../docstrings/medyan.depolymerize_fila--7aae43ce27544212.html"><code>depolymerize_fila!</code></a>: Decrements the unminimized count on the depolymerized end (saturating at 0).</li>
+<li><a href="../../docstrings/medyan.sever_fila--161c869bc5d06d6a.html"><code>sever_fila!</code></a>: All monomers on <strong>both</strong> daughter filaments are marked unminimized.</li>
+</ul>
+</section>
 <section id="example-membrane-bound-npf-cluster" class="level1">
 <h1>Example: Membrane-bound NPF cluster</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    state<span class="op">=</span>(;</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        num_arp23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound ARP2/3 count</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        num_actin <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound actin count</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    reactions<span class="op">=</span>[</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        [</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Bimolecular binding: NPF + diffusing ARP2/3 → NPF·ARP2/3</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            (;</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_bind,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">+</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> NPF_MAX_ARP23 <span class="op">-</span> link_state.num_arp23,</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">5E7</span>,  <span class="co"># nm³/s</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                reactants_extra <span class="op">=</span> <span class="st">"diffusing.ARP23"</span>,</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>            ),</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Unimolecular unbinding: NPF·ARP2/3 → NPF + ARP2/3</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            (;</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_unbind,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">-</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> link_state.num_arp23,</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">0.01</span>,  <span class="co"># 1/s per bound ARP2/3</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>            ),</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> NPF_MAX_ARP23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">3</span>)  <span class="co"># maximum ARP2/3 that can bind per NPF</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    state<span class="op">=</span>(;</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        num_arp23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound ARP2/3 count</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        num_actin <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound actin count</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    reactions<span class="op">=</span>[</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        [  <span class="co"># reactions for places[1] (the Anchor)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Bimolecular binding: NPF + diffusing ARP2/3 → NPF·ARP2/3</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_bind,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">+</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> NPF_MAX_ARP23 <span class="op">-</span> link_state.num_arp23,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">5E7</span>,  <span class="co"># nm³/s (bimolecular on-rate)</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>                reactants_extra <span class="op">=</span> <span class="st">"diffusing.ARP23"</span>,</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Unimolecular unbinding: NPF·ARP2/3 → NPF + ARP2/3</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_unbind,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">-</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> link_state.num_arp23,</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">0.01</span>,  <span class="co"># 1/s per bound ARP2/3</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
