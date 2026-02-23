@@ -644,17 +644,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; fila_type, name, match_states, <span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add a filament monomer reaction. The reaction fires at monomers whose local neighborhood matches a pattern of states. When it fires, the matched monomers can be changed to <code>new_states</code>, or a custom <code>affect!</code> callback can handle arbitrary side effects.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; fila_type, name, match, <span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add a filament monomer reaction. The reaction fires at monomers whose local neighborhood matches a pattern of states. When it fires, the matched monomers can be changed to <code>new</code>, or a custom <code>affect!</code> callback can handle arbitrary side effects.</p>
 <p>All pattern positions must lie on the filament. Monomers near the ends where the pattern would extend past the boundary are automatically skipped. Use <a href="../../docstrings/medyan.add_fila_tip_reaction--015bae70ff11d905.html"><code>add_fila_tip_reaction!</code></a> for reactions at filament ends.</p>
 <section id="keyword-arguments-1" class="level1">
 <h1>Keyword Arguments</h1>
-<section id="required" class="level2">
-<h2 class="anchored" data-anchor-id="required">Required</h2>
+<section id="required" class="level3">
+<h3 class="anchored" data-anchor-id="required">Required</h3>
 <ul>
 <li><p><code>fila_type::Symbol</code>: Filament type (e.g., <code>:actin</code>).</p></li>
 <li><p><code>name::Symbol</code>: Unique name for this reaction site.</p></li>
-<li><p><code>match_states::Vector</code>: Pattern of monomer states to match, ordered minus → plus end. Each element can be:</p>
+<li><p><code>match::Vector</code>: Pattern of monomer states to match, ordered minus → plus end. Each element can be:</p>
 <ul>
 <li><code>Symbol</code> — exact state (e.g., <code>:a</code>)</li>
 <li><code>Vector{Symbol}</code> — any of these states (e.g., <code>[:a, :b]</code>)</li>
@@ -662,25 +662,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="state-change-provide-exactly-one" class="level2">
-<h2 class="anchored" data-anchor-id="state-change-provide-exactly-one">State change (provide exactly one)</h2>
+<section id="state-change-provide-exactly-one" class="level3">
+<h3 class="anchored" data-anchor-id="state-change-provide-exactly-one">State change (provide exactly one)</h3>
 <ul>
-<li><code>new_states::Vector{Symbol}</code>: States to assign to the matched monomers after firing. Must be the same length as <code>match_states</code>. Cannot be used with <code>affect!</code>.</li>
-<li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, center::FilaMonoIdx, kwargs...) -&gt; Int</code>. Called instead of automatic state changes. The returned <code>Int</code> is a status code. Cannot be used with <code>new_states</code>.</li>
+<li><code>new::Vector{Symbol}</code>: States to assign to the matched monomers after firing. Must be the same length as <code>match</code>. Cannot be used with <code>affect!</code>.</li>
+<li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, center::FilaMonoIdx, kwargs...) -&gt; Int</code>. Called instead of automatic state changes. The returned <code>Int</code> is a status code. Cannot be used with <code>new</code>.</li>
 </ul>
 </section>
-<section id="rate" class="level2">
-<h2 class="anchored" data-anchor-id="rate">Rate</h2>
+<section id="stoichiometry" class="level3">
+<h3 class="anchored" data-anchor-id="stoichiometry">Stoichiometry</h3>
+<ul>
+<li><code>net_stoich::Vector{Pair{Symbol,Int}} = Pair{Symbol,Int}[]</code>: Net change to diffusing species when the reaction fires. Each entry is <code>species_name =&gt; amount</code>, e.g.&nbsp;<code>[:ligand =&gt; -1]</code> to consume one ligand per firing. The callback handles the count update automatically. Can only be used with <code>new</code>, not with <code>affect!</code>.</li>
+</ul>
+</section>
+<section id="rate" class="level3">
+<h3 class="anchored" data-anchor-id="rate">Rate</h3>
 <ul>
 <li><code>base_rate::Float64</code>: Rate constant. Units: <code>(nm³)^invvolumepower / s</code>.</li>
 <li><code>invvolumepower::Int = 0</code>: Set to 0 for unimolecular, 1 for bimolecular.</li>
 <li><code>reactants_extra::String = ""</code>: Additional reactant species that contribute to propensity (e.g., <code>"diffusing.ligand"</code>). The species is not consumed automatically.</li>
 </ul>
 </section>
-<section id="geometry" class="level2">
-<h2 class="anchored" data-anchor-id="geometry">Geometry</h2>
+<section id="geometry" class="level3">
+<h3 class="anchored" data-anchor-id="geometry">Geometry</h3>
 <ul>
-<li><code>center::Int = cld(length(match_states), 2)</code>: Which position in <code>match_states</code> is the center of the reaction. Determines which chem_voxel the reaction is assigned to.</li>
+<li><code>center::Int = cld(length(match), 2)</code>: Which position in <code>match</code> is the center of the reaction. Determines which chem_voxel the reaction is assigned to.</li>
 </ul>
 </section>
 </section>
@@ -693,25 +699,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Aging: every :a monomer transitions to :b</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>aging,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [<span class="op">:</span>a],</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    new_states <span class="op">=</span> [<span class="op">:</span>b],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>a],</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>b],</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">2.4</span>,</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Cooperative transition: :a next to :b on the minus side becomes :b</span></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>cooperate,</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [<span class="op">:</span>b, <span class="op">:</span>a],</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    new_states <span class="op">=</span> [<span class="op">:</span>b, <span class="op">:</span>b],</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>b, <span class="op">:</span>a],</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>b, <span class="op">:</span>b],</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> <span class="fl">2</span>,</span>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Bimolecular binding with a diffusing ligand</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Bimolecular binding with a diffusing ligand using affect!</span></span>
 <span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">add_diffusing_species!</span>(s, <span class="op">:</span>ligand; coeff<span class="op">=</span><span class="fl">2.5e7</span>)</span>
 <span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>bind,</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [<span class="op">:</span>a],</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>bind_affect,</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>a],</span>
 <span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; center, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="kw">let</span></span>
 <span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_fila_mono_state!</span>(c, center, <span class="op">:</span>b)</span>
 <span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ligand, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
@@ -722,22 +728,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    reactants_extra <span class="op">=</span> <span class="st">"diffusing.ligand"</span>,</span>
 <span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Match a set of states: :a or :b → :c</span></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Bimolecular binding with a diffusing ligand using net_stoich</span></span>
 <span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>a_or_b,</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [[<span class="op">:</span>a, <span class="op">:</span>b]],</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    new_states <span class="op">=</span> [<span class="op">:</span>c],</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.0</span>,</span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co"># anystate with neighbor constraint: any monomer whose plus neighbor is :a</span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>any_then_a,</span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [anystate, <span class="op">:</span>a],</span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    new_states <span class="op">=</span> [<span class="op">:</span>a, <span class="op">:</span>b],</span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> <span class="fl">2</span>,</span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.0</span>,</span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>bind_stoich,</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>a],</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>b],</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>    net_stoich <span class="op">=</span> [<span class="op">:</span>ligand <span class="op">=&gt;</span> <span class="op">-</span><span class="fl">1</span>],</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1e6</span>,</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>    reactants_extra <span class="op">=</span> <span class="st">"diffusing.ligand"</span>,</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Match a set of states: :a or :b → :c</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>a_or_b,</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [[<span class="op">:</span>a, <span class="op">:</span>b]],</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>c],</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.0</span>,</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="co"># anystate with neighbor constraint: any monomer whose plus neighbor is :a</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_reaction!</span>(s;</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>any_then_a,</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [anystate, <span class="op">:</span>a],</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>a, <span class="op">:</span>b],</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>    center <span class="op">=</span> <span class="fl">2</span>,</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.0</span>,</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -751,36 +768,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_tip_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; fila_type, name, is_minus_end, match_states, spacing, <span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_tip_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; fila_type, name, is_minus_end, match, spacing, <span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a filament <em>tip</em> reaction that fires only at either the plus or minus end of a filament.</p>
-<p>This mirrors <a href="../../docstrings/medyan.add_fila_reaction--7e12bff309431e2d.html"><code>add_fila_reaction!</code></a> in API style and rate wiring, but the pattern is anchored at a filament end. <code>new_states</code> may be shorter or longer than <code>match_states</code> to represent depolymerization or polymerization.</p>
-<p><code>match_states</code> and <code>new_states</code> are always ordered from minus end toward plus end. If <code>is_minus_end = true</code>, the pattern is matched against the <em>first</em> <code>length(match_states)</code> monomers; if <code>is_minus_end = false</code>, it is matched against the <em>last</em> <code>length(match_states)</code> monomers.</p>
+<p>This mirrors <a href="../../docstrings/medyan.add_fila_reaction--7e12bff309431e2d.html"><code>add_fila_reaction!</code></a> in API style and rate wiring, but the pattern is anchored at a filament end. <code>new</code> may be shorter or longer than <code>match</code> to represent depolymerization or polymerization.</p>
+<p><code>match</code> and <code>new</code> are always ordered from minus end toward plus end. If <code>is_minus_end = true</code>, the pattern is matched against the <em>first</em> <code>length(match)</code> monomers; if <code>is_minus_end = false</code>, it is matched against the <em>last</em> <code>length(match)</code> monomers.</p>
 <section id="keyword-arguments-2" class="level1">
 <h1>Keyword Arguments</h1>
-<section id="required-1" class="level2">
-<h2 class="anchored" data-anchor-id="required-1">Required</h2>
+<section id="required-1" class="level3">
+<h3 class="anchored" data-anchor-id="required-1">Required</h3>
 <ul>
 <li><code>fila_type::Symbol</code>: Filament type (e.g., <code>:actin</code>).</li>
 <li><code>name::Symbol</code>: Unique name for this tip site.</li>
 <li><code>is_minus_end::Bool</code>: Which filament end to target. <code>true</code> targets the minus end; <code>false</code> targets the plus end.</li>
-<li><code>match_states::Vector</code>: Pattern of monomer states to match (minus → plus order). Elements can be <code>Symbol</code>, <code>Vector{Symbol}</code> (state set), or <a href="../../docstrings/medyan.anystate-5e989313a9ef75d3.html"><code>anystate</code></a>.</li>
+<li><code>match::Vector</code>: Pattern of monomer states to match (minus → plus order). Elements can be <code>Symbol</code>, <code>Vector{Symbol}</code> (state set), or <a href="../../docstrings/medyan.anystate-5e989313a9ef75d3.html"><code>anystate</code></a>.</li>
 <li><code>spacing::Float64</code>: Space needed at the filament end for this reaction (nm). This affects a load-force rate factor via <code>exp(-β * spacing * loadforce)</code> where <code>β</code> is 1/kT and <code>loadforce</code> is the external force pushing axially on the end of the filament.</li>
 </ul>
 </section>
-<section id="state-change-provide-exactly-one-1" class="level2">
-<h2 class="anchored" data-anchor-id="state-change-provide-exactly-one-1">State change (provide exactly one)</h2>
+<section id="state-change-provide-exactly-one-1" class="level3">
+<h3 class="anchored" data-anchor-id="state-change-provide-exactly-one-1">State change (provide exactly one)</h3>
 <ul>
-<li><code>new_states::Vector{Symbol}</code>: New monomer states (minus → plus order) for the tip region. If <code>length(new_states) &gt; length(match_states)</code>, monomers are added. If <code>length(new_states) &lt; length(match_states)</code>, monomers are removed. Cannot be used with <code>affect!</code>.</li>
-<li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, tip::FilaTipIdx, kwargs...) -&gt; Int</code>. Called instead of automatic changes. Cannot be used with <code>new_states</code>.</li>
+<li><code>new::Vector{Symbol}</code>: New monomer states (minus → plus order) for the tip region. If <code>length(new) &gt; length(match)</code>, monomers are added. If <code>length(new) &lt; length(match)</code>, monomers are removed. Cannot be used with <code>affect!</code>.</li>
+<li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, tip::FilaTipIdx, kwargs...) -&gt; Int</code>. Called instead of automatic changes. Cannot be used with <code>new</code>.</li>
 </ul>
 </section>
-<section id="rate-1" class="level2">
-<h2 class="anchored" data-anchor-id="rate-1">Rate</h2>
+<section id="stoichiometry-1" class="level3">
+<h3 class="anchored" data-anchor-id="stoichiometry-1">Stoichiometry</h3>
+<ul>
+<li><code>net_stoich::Vector{Pair{Symbol,Int}} = Pair{Symbol,Int}[]</code>: Net change to diffusing species when the reaction fires. Each entry is <code>species_name =&gt; amount</code>, e.g.&nbsp;<code>[:actin_mon =&gt; -1]</code> to consume one monomer per polymerization. The callback handles the count update automatically. Can only be used with <code>new</code>, not with <code>affect!</code>.</li>
+</ul>
+</section>
+<section id="rate-1" class="level3">
+<h3 class="anchored" data-anchor-id="rate-1">Rate</h3>
 <ul>
 <li><code>base_rate::Float64</code>: Rate constant. Units: <code>(nm³)^invvolumepower / s</code>.</li>
 <li><code>invvolumepower::Int = 0</code>: Set to 0 for unimolecular, 1 for bimolecular.</li>
 <li><code>reactants_extra::String = ""</code>: Additional reactant species that contribute to propensity (e.g., <code>"diffusing.ligand"</code>). The species is not consumed automatically.</li>
-<li><code>added_monomers::Union{Int, Nothing}</code>: The number of monomers added by the reaction. This is automatically determined if <code>new_states</code> is passed. Each filament has a limited number of monomers that can be added per end</li>
+<li><code>added_monomers::Union{Int, Nothing}</code>: The number of monomers added by the reaction. This is automatically determined if <code>new</code> is passed. Each filament has a limited number of monomers that can be added per end</li>
 </ul>
 <p>between mechanic solves given by <code>FilamentMechParams.max_num_unmin_end</code>. The filament tip reaction is disabled on tips where the added monomers would cause that limit to be exceeded.</p>
 </section>
@@ -797,35 +820,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin,</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>pp,</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    is_minus_end <span class="op">=</span> <span class="cn">false</span>,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [<span class="op">:</span>a, <span class="op">:</span>plusend],</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>plusend],</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    spacing <span class="op">=</span> <span class="fl">2.7</span>,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; tip, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_fila_mono_state!</span>(c, <span class="fu">FilaMonoIdx</span>(c, tip), <span class="op">:</span>a)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">polymerize_fila!</span>(c, tip, <span class="op">:</span>plusend)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>actin_mon, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    added_monomers <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.93e7</span>,</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    reactants_extra <span class="op">=</span> <span class="st">"diffusing.actin_mon"</span>,</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Minus-end depolymerization: remove one monomer, release actin back to solution</span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_tip_reaction!</span>(s;</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>dm,</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    is_minus_end <span class="op">=</span> <span class="cn">true</span>,</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    match_states <span class="op">=</span> [<span class="op">:</span>minusend, <span class="op">:</span>a],</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    spacing <span class="op">=</span> <span class="fl">0.0</span>,</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; tip, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        <span class="fu">depolymerize_fila!</span>(c, tip)</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_fila_mono_state!</span>(c, <span class="fu">FilaMonoIdx</span>(c, tip), <span class="op">:</span>minusend)</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>actin_mon, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    added_monomers <span class="op">=</span> <span class="fl">0</span>,</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.4</span>,</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>a, <span class="op">:</span>plusend],</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    net_stoich <span class="op">=</span> [<span class="op">:</span>actin_mon <span class="op">=&gt;</span> <span class="op">-</span><span class="fl">1</span>],</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.93e7</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    reactants_extra <span class="op">=</span> <span class="st">"diffusing.actin_mon"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plus-end polymerization: add one monomer (bimolecular with diffusing actin)</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Using affect!</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_tip_reaction!</span>(s;</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin,</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>pp_affect,</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    is_minus_end <span class="op">=</span> <span class="cn">false</span>,</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>a, <span class="op">:</span>plusend],</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    spacing <span class="op">=</span> <span class="fl">2.7</span>,</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; tip, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">update_fila_mono_state!</span>(c, <span class="fu">FilaMonoIdx</span>(c, tip), <span class="op">:</span>a)</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">polymerize_fila!</span>(c, tip, <span class="op">:</span>plusend)</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>        <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>actin_mon, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    added_monomers <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.93e7</span>,</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    reactants_extra <span class="op">=</span> <span class="st">"diffusing.actin_mon"</span>,</span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Minus-end depolymerization: remove one monomer, release actin back to solution</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fila_tip_reaction!</span>(s;</span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>    fila_type <span class="op">=</span> <span class="op">:</span>actin, name <span class="op">=</span> <span class="op">:</span>dm,</span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>    is_minus_end <span class="op">=</span> <span class="cn">true</span>,</span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> [<span class="op">:</span>minusend, <span class="op">:</span>a],</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    spacing <span class="op">=</span> <span class="fl">0.0</span>,</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="op">=</span> [<span class="op">:</span>minusend],</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    net_stoich <span class="op">=</span> [<span class="op">:</span>actin_mon <span class="op">=&gt;</span> <span class="op">+</span><span class="fl">1</span>],</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.4</span>,</span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
