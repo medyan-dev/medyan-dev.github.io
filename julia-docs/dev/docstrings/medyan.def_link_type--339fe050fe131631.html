@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.add_link_type--50ddf30e150f7d7a – MEDYAN.jl</title>
+<title>medyan.def_link_type--339fe050fe131631 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.add_link_type" id="toc-medyan.add_link_type" class="nav-link active" data-scroll-target="#medyan.add_link_type"><code>MEDYAN.add_link_type!</code></a>
+  <li><a href="#medyan.def_link_type" id="toc-medyan.def_link_type" class="nav-link active" data-scroll-target="#medyan.def_link_type"><code>MEDYAN.def_link_type!</code></a>
   <ul class="collapse">
   <li><a href="#tuple-medyan.sysdef--efaa49a98644904f" id="toc-tuple-medyan.sysdef--efaa49a98644904f" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--efaa49a98644904f"><code data-shortcodes="false">Tuple{MEDYAN.SysDef}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_link_type--50ddf30e150f7d7a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.def_link_type--339fe050fe131631.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,8 +198,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.add_link_type" class="level1">
-<h1><code>MEDYAN.add_link_type!</code></h1>
+<section id="medyan.def_link_type" class="level1">
+<h1><code>MEDYAN.def_link_type!</code></h1>
 <section id="tuple-medyan.sysdef--efaa49a98644904f" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--efaa49a98644904f"><code data-shortcodes="false">Tuple{MEDYAN.SysDef}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_link_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name, description, places, bonds, reactions, param, state)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_link_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name, description, places, bonds, reactions, param, state)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a new link type to the system definition. Links represent connections between simulation elements (filament monomers, filament tips, anchors, membrane vertices) that can have associated mechanical bonds and chemical reactions.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
@@ -254,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example-membrane-bound-npf-cluster" class="level1">
 <h1>Example: Membrane-bound NPF cluster</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">add_link_type!</span>(s;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
@@ -708,4 +708,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_link_type--50ddf30e150f7d7a.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.def_link_type--339fe050fe131631.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

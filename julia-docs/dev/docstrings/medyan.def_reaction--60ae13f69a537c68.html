@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.add_fixed_species--35346c30bc595d9e – MEDYAN.jl</title>
+<title>medyan.def_reaction--60ae13f69a537c68 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.add_fixed_species" id="toc-medyan.add_fixed_species" class="nav-link active" data-scroll-target="#medyan.add_fixed_species"><code>MEDYAN.add_fixed_species!</code></a>
+  <li><a href="#medyan.def_reaction" id="toc-medyan.def_reaction" class="nav-link active" data-scroll-target="#medyan.def_reaction"><code>MEDYAN.def_reaction!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.sysdef--symbol--772937de98b04e8b" id="toc-tuple-medyan.sysdef--symbol--772937de98b04e8b" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--symbol--772937de98b04e8b"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol}</code></a></li>
+  <li><a href="#tuple-medyan.sysdef--abstractstring--33fb2da203ce5d75" id="toc-tuple-medyan.sysdef--abstractstring--33fb2da203ce5d75" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--abstractstring--33fb2da203ce5d75"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, AbstractString}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fixed_species--35346c30bc595d9e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.def_reaction--60ae13f69a537c68.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,36 +198,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.add_fixed_species" class="level1">
-<h1><code>MEDYAN.add_fixed_species!</code></h1>
-<section id="tuple-medyan.sysdef--symbol--772937de98b04e8b" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--symbol--772937de98b04e8b"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol}</code></h2>
+<section id="medyan.def_reaction" class="level1">
+<h1><code>MEDYAN.def_reaction!</code></h1>
+<section id="tuple-medyan.sysdef--abstractstring--33fb2da203ce5d75" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--abstractstring--33fb2da203ce5d75"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, AbstractString}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fixed_species!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, name<span class="op">::</span><span class="dt">Symbol</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Dynamically add a new fixed (non-diffusing) species to the system definition.</p>
-<p>Must be called before adding any sites (filament sites, filament end sites, membrane sites, link types, etc.) or reactions.</p>
-<section id="arguments" class="level1">
-<h1>Arguments</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction_expr<span class="op">::</span><span class="dt">AbstractString</span>; base_rate, invvolumepower<span class="op">=</span><span class="fl">0</span>, affect<span class="op">!=</span><span class="cn">nothing</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add a chem_voxel reaction to the system definition. Returns <code>s</code>.</p>
+<p><code>reaction_expr</code> is a string describing the reaction. The format depends on whether <code>affect!</code> is provided:</p>
 <ul>
-<li><code>s::SysDef</code>: The system definition to modify.</li>
-<li><code>name::Symbol</code>: The name of the new fixed species.</li>
+<li><strong>Without <code>affect!</code></strong>: <code>reaction_expr</code> must contain <code>"--&gt;"</code> to separate reactants from products. Stoichiometry is computed automatically.</li>
+<li><strong>With <code>affect!</code></strong>: <code>reaction_expr</code> lists only the reactants (no <code>"--&gt;"</code>). Net stoichiometry is zero; the callback handles all state changes.</li>
+</ul>
+<p><code>reaction_expr</code> is comprised of reactant and product parts separated by <code>"--&gt;"</code>. All whitespace is ignored. Each side is split by <code>"+"</code> to get species names. Repeated or extra <code>"+"</code> are ignored. A species name can be prepended by a positive integer to represent multiple copies (e.g., <code>"2diffusing.A"</code>).</p>
+<p>Species name prefixes:</p>
+<ul>
+<li><code>diffusing.X</code> — diffusing species</li>
+<li><code>fixedspecies.X</code> — fixed (non-diffusing) species</li>
+<li><code>filamentsite.T.N</code> — filament monomer site</li>
+<li><code>filamentendsite.T.N</code> — filament end site</li>
+<li><code>decimated_2mon_site.N</code> — decimated two-monomer site</li>
+</ul>
+<section id="keyword-arguments" class="level1">
+<h1>Keyword Arguments</h1>
+<section id="rate" class="level3">
+<h3 class="anchored" data-anchor-id="rate">Rate</h3>
+<ul>
+<li><code>base_rate::Float64</code>: Rate constant. Units: <code>(nm³)^invvolumepower / s</code>. Rate constants are stochastic rate constants in the sense of Gillespie (1976).</li>
+<li><code>invvolumepower::Int = 0</code>: <code>volumefactor = (1/volume)^invvolumepower</code> where <code>volume</code> is the chem_voxel volume in nm³. Typically 0 for unimolecular, 1 for bimolecular, 2 for trimolecular.</li>
 </ul>
 </section>
-<section id="returns" class="level1">
-<h1>Returns</h1>
-<p>The modified <code>SysDef</code>.</p>
-</section>
-<section id="throws" class="level1">
-<h1>Throws</h1>
+<section id="callback-optional" class="level3">
+<h3 class="anchored" data-anchor-id="callback-optional">Callback (optional)</h3>
 <ul>
-<li>Error if the fixed species already exists.</li>
-<li>Error if sites or reactions have already been added.</li>
+<li><code>affect!</code>: Callback fired when the reaction occurs. Signature: <code>(c::Context; chem_voxel::Int, kwargs...) -&gt; Any</code>. When provided, <code>reaction_expr</code> must not contain <code>"--&gt;"</code>.</li>
 </ul>
+</section>
+</section>
+<section id="examples" class="level1">
+<h1>Examples</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">MEDYAN</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> MEDYAN.<span class="fu">SysDef</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">def_diffusing_species!</span>(s, <span class="op">:</span>A; coeff<span class="op">=</span><span class="fl">2.5e7</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">def_diffusing_species!</span>(s, <span class="op">:</span>B; coeff<span class="op">=</span><span class="fl">2.5e7</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">def_diffusing_species!</span>(s, <span class="op">:</span>C; coeff<span class="op">=</span><span class="fl">2.5e7</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bimolecular: A + B → C</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.A + diffusing.B --&gt; diffusing.C"</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.5e6</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Unimolecular: C → A + B</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.C --&gt; diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-order creation</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">" --&gt; diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># With a callback (reactants only, no "--&gt;")</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1e8</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># custom logic here</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cn">nothing</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
@@ -643,4 +688,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fixed_species--35346c30bc595d9e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.def_reaction--60ae13f69a537c68.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
