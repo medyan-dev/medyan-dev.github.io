@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.addreactioncallback--9c9d46adeded2d88 – MEDYAN.jl</title>
+<title>medyan.add_fixed_species--35346c30bc595d9e – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.addreactioncallback" id="toc-medyan.addreactioncallback" class="nav-link active" data-scroll-target="#medyan.addreactioncallback"><code>MEDYAN.addreactioncallback!</code></a>
+  <li><a href="#medyan.add_fixed_species" id="toc-medyan.add_fixed_species" class="nav-link active" data-scroll-target="#medyan.add_fixed_species"><code>MEDYAN.add_fixed_species!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.sysdef--abstractstring--float64--int64--any--ecdb462076761cce" id="toc-tuple-medyan.sysdef--abstractstring--float64--int64--any--ecdb462076761cce" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--abstractstring--float64--int64--any--ecdb462076761cce"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, AbstractString, Float64, Int64, Any}</code></a></li>
+  <li><a href="#tuple-medyan.sysdef--symbol--772937de98b04e8b" id="toc-tuple-medyan.sysdef--symbol--772937de98b04e8b" class="nav-link" data-scroll-target="#tuple-medyan.sysdef--symbol--772937de98b04e8b"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.addreactioncallback--9c9d46adeded2d88.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fixed_species--35346c30bc595d9e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,20 +198,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.addreactioncallback" class="level1">
-<h1><code>MEDYAN.addreactioncallback!</code></h1>
-<section id="tuple-medyan.sysdef--abstractstring--float64--int64--any--ecdb462076761cce" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--abstractstring--float64--int64--any--ecdb462076761cce"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, AbstractString, Float64, Int64, Any}</code></h2>
+<section id="medyan.add_fixed_species" class="level1">
+<h1><code>MEDYAN.add_fixed_species!</code></h1>
+<section id="tuple-medyan.sysdef--symbol--772937de98b04e8b" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.sysdef--symbol--772937de98b04e8b"><code data-shortcodes="false">Tuple{MEDYAN.SysDef, Symbol}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Like <a href="../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>addreaction!</code></a> but also adds <code>callback</code>. <code>callback</code> is called when the reaction happens with input of <code>MEDYAN.Context</code> and <code>Int</code> the chem_voxel id where the reaction happened.</p>
-<p>The callback should handle updating species counts.</p>
-<p><code>MEDYAN.errorcheck_addcallback(callback,s::SysDef)</code> can optionally be overloaded to add errorchecking when the callback is added.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_fixed_species!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, name<span class="op">::</span><span class="dt">Symbol</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Dynamically add a new fixed (non-diffusing) species to the system definition.</p>
+<p>Must be called before adding any sites (filament sites, filament end sites, membrane sites, link types, etc.) or reactions.</p>
+<section id="arguments" class="level1">
+<h1>Arguments</h1>
+<ul>
+<li><code>s::SysDef</code>: The system definition to modify.</li>
+<li><code>name::Symbol</code>: The name of the new fixed species.</li>
+</ul>
+</section>
+<section id="returns" class="level1">
+<h1>Returns</h1>
+<p>The modified <code>SysDef</code>.</p>
+</section>
+<section id="throws" class="level1">
+<h1>Throws</h1>
+<ul>
+<li>Error if the fixed species already exists.</li>
+<li>Error if sites or reactions have already been added.</li>
+</ul>
+</section>
 </div>
 </div>
 </div>
@@ -626,4 +643,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.addreactioncallback--9c9d46adeded2d88.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.add_fixed_species--35346c30bc595d9e.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
