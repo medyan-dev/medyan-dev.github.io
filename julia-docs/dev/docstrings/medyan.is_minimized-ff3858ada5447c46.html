@@ -188,6 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.is_minimized" id="toc-medyan.is_minimized" class="nav-link active" data-scroll-target="#medyan.is_minimized"><code>MEDYAN.is_minimized</code></a>
   <ul class="collapse">
   <li><a href="#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f" id="toc-union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f" class="nav-link" data-scroll-target="#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f"><code data-shortcodes="false">Union{Tuple{MEDYAN.Context, MEDYAN.Link}, Tuple{MEDYAN.Context, MEDYAN.Link, Any}}</code></a></li>
+  <li><a href="#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8" id="toc-tuple-medyan.context--medyan.ballidx--277715bc057ae4e8" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.ballidx--277715bc057ae4e8"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.BallIdx}</code></a></li>
   <li><a href="#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" id="toc-tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx}</code></a></li>
   </ul></li>
   </ul>
@@ -215,6 +216,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="tuple-medyan.context--medyan.ballidx--277715bc057ae4e8" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.ballidx--277715bc057ae4e8"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.BallIdx}</code></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, ball<span class="op">::</span><span class="dt">Union{BallIdx, Tag{BallIdx}}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return <code>true</code> if the ball has been minimized (i.e.&nbsp;its position has been updated by <a href="../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a> since it was last created or modified).</p>
+<p>Balls are marked as not minimized when created with <a href="../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a> or when their <code>position</code> or <code>radius</code> is changed via <a href="../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>. All balls are marked as minimized at the end of <a href="../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a>.</p>
+<p>See also: <a href="../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
+</div>
+</div>
+</div>
+</section>
 <section id="tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--be3f97f8041f5bf1"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -223,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Union{FilaMonoIdx, FilaTipIdx, Tag}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Union{FilaMonoIdx, FilaTipIdx, Tag}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return true iff the monomer or tip has been minimized. Throw an error if <code>p</code> doesn’t exist.</p>
 </div>
 </div>

@@ -217,8 +217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>radius::Union{Nothing, Float32}=nothing</code>: New radius (nm)</li>
 <li><code>stiffness::Union{Nothing, Float32}=nothing</code>: New stiffness (pN/nm)</li>
 <li><code>state::Union{Nothing, SVector{3, Int64}}=nothing</code>: New state vector</li>
+<li><code>is_minimized::Union{Nothing, Bool}=nothing</code>: Whether the ball is marked as minimized. Defaults to <code>false</code> when <code>position</code> or <code>radius</code> is changed, otherwise unchanged. Set explicitly to override the default behavior.</li>
 </ul>
-<p>See also: <a href="../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a></p>
+<p>See also: <a href="../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a>, <a href="../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></p>
 </section>
 </div>
 </div>

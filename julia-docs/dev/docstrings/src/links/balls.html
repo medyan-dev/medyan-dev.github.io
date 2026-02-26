@@ -190,6 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.make_ball--ae25720dbd2acec6" id="toc-medyan.make_ball--ae25720dbd2acec6" class="nav-link" data-scroll-target="#medyan.make_ball--ae25720dbd2acec6"><code>MEDYAN.make_ball!</code></a></li>
   <li><a href="#medyan.remove_ball--57fbfd7855882ccd" id="toc-medyan.remove_ball--57fbfd7855882ccd" class="nav-link" data-scroll-target="#medyan.remove_ball--57fbfd7855882ccd"><code>MEDYAN.remove_ball!</code></a></li>
   <li><a href="#medyan.update_ball--83d0c0fbbdbab087" id="toc-medyan.update_ball--83d0c0fbbdbab087" class="nav-link" data-scroll-target="#medyan.update_ball--83d0c0fbbdbab087"><code>MEDYAN.update_ball!</code></a></li>
+  <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/links/balls.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -210,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0</span>, state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>]) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0f0</span>, state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>], is_minimized<span class="op">=</span><span class="cn">false</span>) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create a new ball in <code>c</code> and return a tag for it.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
@@ -219,8 +220,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>radius::Float32</code>: Radius of the ball (nm)</li>
 <li><code>stiffness::Float32=1.0</code>: Mechanical stiffness coefficient (pN/nm)</li>
 <li><code>state::SVector{3, Int64}=SA[0,0,0]</code>: Three-component state vector for chemical reactions</li>
+<li><code>is_minimized::Bool=false</code>: Whether the ball is marked as minimized. By default balls are not minimized when created. Set to <code>true</code> to create a ball that is already marked as minimized.</li>
 </ul>
-<p>See also: <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a></p>
+<p>See also: <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../../../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a>, <a href="../../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></p>
 </section>
 </div>
 </div>
@@ -236,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>, ball<span class="op">::</span><span class="dt">Union{BallIdx, Tag{BallIdx}}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove a ball from the simulation and unlink all connected links.</p>
-<p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a></p>
+<p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../../../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a>, <a href="../../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></p>
 </div>
 </div>
 </div>
@@ -258,9 +260,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>radius::Union{Nothing, Float32}=nothing</code>: New radius (nm)</li>
 <li><code>stiffness::Union{Nothing, Float32}=nothing</code>: New stiffness (pN/nm)</li>
 <li><code>state::Union{Nothing, SVector{3, Int64}}=nothing</code>: New state vector</li>
+<li><code>is_minimized::Union{Nothing, Bool}=nothing</code>: Whether the ball is marked as minimized. Defaults to <code>false</code> when <code>position</code> or <code>radius</code> is changed, otherwise unchanged. Set explicitly to override the default behavior.</li>
 </ul>
-<p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a></p>
+<p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../../../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a>, <a href="../../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></p>
 </section>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.is_minimized-ff3858ada5447c46" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.is_minimized-ff3858ada5447c46"><a href="../../../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>MEDYAN.is_minimized</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, ball<span class="op">::</span><span class="dt">Union{BallIdx, Tag{BallIdx}}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return <code>true</code> if the ball has been minimized (i.e.&nbsp;its position has been updated by <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a> since it was last created or modified).</p>
+<p>Balls are marked as not minimized when created with <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a> or when their <code>position</code> or <code>radius</code> is changed via <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>. All balls are marked as minimized at the end of <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a>.</p>
+<p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
 </div>
 </div>
 </div>

@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0</span>, state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>]) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0f0</span>, state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>], is_minimized<span class="op">=</span><span class="cn">false</span>) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create a new ball in <code>c</code> and return a tag for it.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
@@ -217,8 +217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>radius::Float32</code>: Radius of the ball (nm)</li>
 <li><code>stiffness::Float32=1.0</code>: Mechanical stiffness coefficient (pN/nm)</li>
 <li><code>state::SVector{3, Int64}=SA[0,0,0]</code>: Three-component state vector for chemical reactions</li>
+<li><code>is_minimized::Bool=false</code>: Whether the ball is marked as minimized. By default balls are not minimized when created. Set to <code>true</code> to create a ball that is already marked as minimized.</li>
 </ul>
-<p>See also: <a href="../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a></p>
+<p>See also: <a href="../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, <a href="../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a>, <a href="../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></p>
 </section>
 </div>
 </div>

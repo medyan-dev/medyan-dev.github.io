@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>chem_voxel_volumes::Array{Float64, 3}</code>: Volume of each chemical voxel</p></li>
 <li><p><code>chem_voxel_areas::Array{Float64, 4}</code>: Areas of (-x, -y, -z) faces of each chemical voxel</p></li>
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
-<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, state::Vector{StaticArraysCore.SVector{3, Int64}}}, Int64}</code></p></li>
+<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, state::Vector{StaticArraysCore.SVector{3, Int64}}, is_minimized::Vector{Bool}}, Int64}</code></p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>
 <li><p><code>next_membid::Ref{MEDYAN.MembId}</code>: Next memb id</p></li>
 <li><p><code>membid2membidx::Dict{MEDYAN.MembId, UInt32}</code>: map from memb id to index memb indexes can change whenever a memb is removed, but id’s are stable</p></li>
