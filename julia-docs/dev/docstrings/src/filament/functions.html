@@ -201,6 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
   <li><a href="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1" id="toc-medyan.pick_rand_fila_mono_site-6641f66ed8873af1" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1"><code>MEDYAN.pick_rand_fila_mono_site</code></a></li>
   <li><a href="#medyan.pick_rand_fila_tip_site-d1418d43027273e9" id="toc-medyan.pick_rand_fila_tip_site-d1418d43027273e9" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_tip_site-d1418d43027273e9"><code>MEDYAN.pick_rand_fila_tip_site</code></a></li>
+  <li><a href="#medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36" id="toc-medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36" class="nav-link" data-scroll-target="#medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36"><code>MEDYAN.set_chem_cylinder_cell_list_grid_spacing!</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/functions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -442,6 +443,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_tip_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fesid)<span class="op">::</span><span class="dt">Union{FilaTipIdx, Nothing}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a <code>FilaTipIdx</code> of a random fila<em>end</em>site, or return nothing if rejected weighted by counts, using the default RNG.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36"><a href="../../../docstrings/medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36.html"><code>MEDYAN.set_chem_cylinder_cell_list_grid_spacing!</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chem_cylinder_cell_list_grid_spacing!</span>(c<span class="op">::</span><span class="dt">Context</span>, fil_typeid<span class="op">::</span><span class="dt">Int</span>, spacing<span class="op">::</span><span class="dt">Real</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Set the grid spacing (nm) for the chem cylinder cell list of filament type <code>fil_typeid</code>. Changing the spacing will invalidate the cell list cache of those chem cylinders.</p>
 </div>
 </div>
 </div>
