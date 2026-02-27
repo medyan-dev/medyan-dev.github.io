@@ -226,6 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>type::Int=1</code>: Membrane type index</li>
 <li><code>chem_boundary::Bool = false</code>: If <code>true</code>, the membrane acts as a boundary for 3D diffusing species.</li>
 <li><code>chem_boundary_exterior::Bool = false</code>: If <code>true</code>, the confined chemical domain is the exterior; otherwise the confined domain is the interior.</li>
+<li><code>fixed::Bool = false</code>: If <code>true</code>, the membrane is fixed: it does not move during energy minimization and its mesh is not adapted. Useful for static boundary surfaces.</li>
 </ul>
 </section>
 </div>
