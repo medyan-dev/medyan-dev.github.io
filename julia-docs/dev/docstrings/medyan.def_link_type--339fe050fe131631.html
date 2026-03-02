@@ -276,57 +276,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="monomer-count-caching-and-mechanics-fila_cutoff-reactions" class="level1">
 <h1>Monomer count caching and mechanics (<code>fila_cutoff</code> reactions)</h1>
 <p>When a reaction has <code>fila_cutoff</code> set, its total propensity is <code>base_rate × rate(...) × nearby_monomer_count × ...</code>. The nearby monomer count is <strong>cached</strong> alongside the rate factor and has its own important update semantics:</p>
-<p><strong>Unminimized monomers are invisible to the neighbor search.</strong> The <code>map_nearby_monomers</code> function skips monomers within <a href="../docstrings/medyan.fila_num_unmin_ends-09448ccb823dbeac.html"><code>fila_num_unmin_ends</code></a> of each filament end. Several operations mark monomers as “not minimized”, making them invisible until after the next mechanics cycle (which zeros <code>fila_num_unmin_ends</code>):</p>
-<ul>
-<li><a href="../docstrings/medyan.make_fila--f2346a40b4792de5.html"><code>make_fila!</code></a> / <a href="../docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html"><code>make_fila_rand!</code></a>: All monomers on a newly created filament start unminimized.</li>
-<li><a href="../docstrings/medyan.polymerize_fila--ef96193868627e48.html"><code>polymerize_fila!</code></a>: The newly added monomer at the polymerized end is unminimized.</li>
-<li><a href="../docstrings/medyan.depolymerize_fila--7aae43ce27544212.html"><code>depolymerize_fila!</code></a>: Decrements the unminimized count on the depolymerized end (saturating at 0).</li>
-<li><a href="../docstrings/medyan.sever_fila--161c869bc5d06d6a.html"><code>sever_fila!</code></a>: All monomers on <strong>both</strong> daughter filaments are marked unminimized.</li>
-</ul>
+<section id="minimized-positions-for-monomer-counting" class="level2">
+<h2 class="anchored" data-anchor-id="minimized-positions-for-monomer-counting">Minimized positions for monomer counting</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span>. After each mechanics cycle, monomer positions are snapshotted. These</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="cf">do</span> not change during chemistry.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span>. The nearby monomer count is computed <span class="im">using</span> <span class="bu">the</span> place's **current** position</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   (<span class="ss">`get_position`</span>) against the snapshotted monomer positions. The count is</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   recomputed whenever a place moves or a <span class="kw">new</span> link is created (not only at the</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   batch rebuild after mechanics).</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span>. Monomers that have not yet been through a mechanics cycle (from</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   polymerization, filament creation, or severing) are not <span class="kw">in</span> the snapshot.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="example-membrane-bound-npf-cluster" class="level1">
 <h1>Example: Membrane-bound NPF cluster</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> NPF_MAX_ARP23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">3</span>)  <span class="co"># maximum ARP2/3 that can bind per NPF</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    state<span class="op">=</span>(;</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        num_arp23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound ARP2/3 count</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        num_actin <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound actin count</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    reactions<span class="op">=</span>[</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        [  <span class="co"># reactions for places[1] (the Anchor)</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Bimolecular binding: NPF + diffusing ARP2/3 → NPF·ARP2/3</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            (;</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_bind,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">+</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> NPF_MAX_ARP23 <span class="op">-</span> link_state.num_arp23,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">5E7</span>,  <span class="co"># nm³/s (bimolecular on-rate)</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                reactants_extra <span class="op">=</span> <span class="st">"diffusing.ARP23"</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            ),</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Unimolecular unbinding: NPF·ARP2/3 → NPF + ARP2/3</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            (;</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_unbind,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">-</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> link_state.num_arp23,</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">0.01</span>,  <span class="co"># 1/s per bound ARP2/3</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            ),</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> NPF_MAX_ARP23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">3</span>)  <span class="co"># maximum ARP2/3 that can bind per NPF</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    state<span class="op">=</span>(;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        num_arp23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound ARP2/3 count</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        num_actin <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">0</span>),  <span class="co"># bound actin count</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    reactions<span class="op">=</span>[</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        [  <span class="co"># reactions for places[1] (the Anchor)</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Bimolecular binding: NPF + diffusing ARP2/3 → NPF·ARP2/3</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_bind,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">+</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=-</span><span class="fl">1</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> NPF_MAX_ARP23 <span class="op">-</span> link_state.num_arp23,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">5E7</span>,  <span class="co"># nm³/s (bimolecular on-rate)</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                reactants_extra <span class="op">=</span> <span class="st">"diffusing.ARP23"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Unimolecular unbinding: NPF·ARP2/3 → NPF + ARP2/3</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            (;</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                name <span class="op">=</span> <span class="op">:</span>arp23_unbind,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                affect! <span class="op">=</span> (c; link, chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> let</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                    link_state <span class="op">=</span> <span class="fu">get_state</span>(c, link)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">update_link!</span>(c, link; state<span class="op">=</span>(num_arp23<span class="op">=</span>link_state.num_arp23 <span class="op">-</span> <span class="fu">Int32</span>(<span class="fl">1</span>),))</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">add_diffusing_count!</span>(c; species<span class="op">=:</span>ARP23, chem_voxel, amount<span class="op">=+</span><span class="fl">1</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">1</span>  <span class="co"># success</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                <span class="kw">end</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                rate <span class="op">=</span> (c; link_state, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> link_state.num_arp23,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>                base_rate <span class="op">=</span> <span class="fl">0.01</span>,  <span class="co"># 1/s per bound ARP2/3</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
