@@ -244,7 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>base_rate::Float64 = 1.0</code>: Rate constant multiplier. Units depend on <code>invvolumepower</code>: 1/s for unimolecular (<code>invvolumepower=0</code>), nm³/s for bimolecular (<code>invvolumepower=1</code>). For example, a diffusion-limited on-rate k_D = 4πDR ≈ 1.57×10⁹ nm³/s for D=25 μm²/s, R=5 nm. Separating large rate constants from small integer multipliers in <code>rate</code> avoids overflow.</li>
 <li><code>invvolumepower::Int64 = 0</code>: Volume scaling. Set to 1 for bimolecular (nm³/s), 0 for unimolecular (1/s).</li>
 <li><code>reactants_extra::String = ""</code>: Additional reactant species whose counts multiply the propensity (e.g., <code>"diffusing.ARP23"</code>). Uses the same <code>"+"</code>-separated format as <a href="../docstrings/medyan.def_reaction--60ae13f69a537c68.html"><code>def_reaction!</code></a> (e.g., <code>"diffusing.A + diffusing.B"</code>).</li>
-<li><code>fila_cutoff::Tuple{Symbol, Float64} = nothing</code>: If set, e.g., <code>(:actin, 50.0)</code>, the propensity is multiplied by the number of nearby filament monomers of that type within the cutoff distance (nm). When the reaction fires, <code>affect!</code> receives one such monomer as <code>place::FilaMonoIdx</code>. <strong>Some monomers are invisible to this search until after a mechanics cycle</strong> — see “Monomer count caching and mechanics” below.</li>
+<li><code>fila_cutoff::Tuple{Symbol, Float64} = nothing</code>: If set, e.g., <code>(:actin, 50.0)</code>, the propensity is multiplied by the number of nearby filament monomers of that type within the cutoff distance (nm). When the reaction fires, <code>affect!</code> receives one such monomer as <code>place::FilaMonoIdx</code>. <strong>Some monomers are invisible to this search until after a mechanics cycle</strong> — see “Nearby count caching and mechanics” below.</li>
+<li><code>fila_tip_cutoff::Tuple{Symbol, Bool, Float64} = nothing</code>: If set, e.g., <code>(:actin, true, 50.0)</code>, the propensity is multiplied by the number of nearby filament tips of that type within the cutoff distance (nm). The <code>Bool</code> is <code>is_minus_end</code>: <code>true</code> for minus-end tips, <code>false</code> for plus-end tips. When the reaction fires, <code>affect!</code> receives one such tip as <code>place::FilaTipIdx</code>. Mutually exclusive with <code>fila_cutoff</code>. <strong>Some tips are invisible to this search until after a mechanics cycle</strong> — see “Nearby count caching and mechanics” below.</li>
 <li><code>enabled::Bool = true</code>: Whether reaction is active by default.</li>
 </ul></li>
 </ul></li>
@@ -273,19 +274,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Workaround — rejection sampling</strong>: If a reaction rate genuinely depends on state that <code>rate</code> cannot track (e.g., the state of a nearby monomer not attached to this link), have <code>rate</code> return an <strong>upper bound</strong> of the true rate. Then in <code>affect!</code>, read the current state and accept the reaction with probability <code>true_rate / upper_bound</code> (rejecting by returning <code>0</code> otherwise). This preserves correct stochastic kinetics despite the stale cache.</p>
 </section>
-<section id="monomer-count-caching-and-mechanics-fila_cutoff-reactions" class="level1">
-<h1>Monomer count caching and mechanics (<code>fila_cutoff</code> reactions)</h1>
-<p>When a reaction has <code>fila_cutoff</code> set, its total propensity is <code>base_rate × rate(...) × nearby_monomer_count × ...</code>. The nearby monomer count is <strong>cached</strong> alongside the rate factor and has its own important update semantics:</p>
-<section id="minimized-positions-for-monomer-counting" class="level2">
-<h2 class="anchored" data-anchor-id="minimized-positions-for-monomer-counting">Minimized positions for monomer counting</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span>. After each mechanics cycle, monomer positions are snapshotted. These</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="cf">do</span> not change during chemistry.</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span>. The nearby monomer count is computed <span class="im">using</span> <span class="bu">the</span> place's **current** position</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   (<span class="ss">`get_position`</span>) against the snapshotted monomer positions. The count is</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   recomputed whenever a place moves or a <span class="kw">new</span> link is created (not only at the</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   batch rebuild after mechanics).</span>
+<section id="nearby-count-caching-and-mechanics-fila_cutoff-fila_tip_cutoff-reactions" class="level1">
+<h1>Nearby count caching and mechanics (<code>fila_cutoff</code> / <code>fila_tip_cutoff</code> reactions)</h1>
+<p>When a reaction has <code>fila_cutoff</code> set, its total propensity is <code>base_rate × rate(...) × nearby_monomer_count × [reactants_extra counts] / V^invvolumepower</code>. When a reaction has <code>fila_tip_cutoff</code> set, the propensity is the same but with <code>nearby_tip_count</code> in place of <code>nearby_monomer_count</code>. These counts are <strong>cached</strong> alongside the rate factor and have important update semantics:</p>
+<section id="snapshotted-positions" class="level2">
+<h2 class="anchored" data-anchor-id="snapshotted-positions">Snapshotted positions</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span>. After each mechanics cycle, monomer and tip positions are snapshotted.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   These snapshotted positions <span class="cf">do</span> not change during chemistry.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span>. The nearby count is computed <span class="im">using</span> <span class="bu">the</span> link place's **current** position</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   (i.<span class="cn">e</span>. the <span class="ss">`Anchor`</span>, <span class="ss">`FilaMonoIdx`</span>, etc. whose reaction has the cutoff)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   against the snapshotted positions. The count is recomputed whenever the</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   link place moves or a <span class="kw">new</span> link is created.</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span>. Monomers that have not yet been through a mechanics cycle (from</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   polymerization, filament creation, or severing) are not <span class="kw">in</span> the snapshot.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   polymerization, filament creation, or severing) are not <span class="kw">in</span> the snapshot.</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span>. Similarly, a tip is visible only <span class="cf">if</span> it existed at the last mechanics</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>   snapshot. Polymerization and depolymerization move an existing tip</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>   but <span class="cf">do</span> not create a <span class="kw">new</span> one, so the tip stays visible at its</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>   snapshotted position.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="example-membrane-bound-npf-cluster" class="level1">
