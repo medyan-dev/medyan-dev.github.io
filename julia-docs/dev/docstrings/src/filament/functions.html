@@ -483,8 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The extension controls how far the tip position extends outward from the last monomer center. It affects both the chemistry tip position ([<code>get_position</code>] for <code>FilaTipIdx</code>) and the mechanical endpoint used in energy minimization (volume exclusion, equilibrium length):</p>
 <ul>
 <li><code>0.0</code>: tip at the monomer center</li>
-<li><code>DEFAULT_TIP_EXTENSION</code> (0.5): tip at the node boundary (default, backwards compatible)</li>
-<li><code>&gt; 0.5</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
+<li><code>&gt; 0.0</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
 <li><code>&lt; 0.0</code>: tip moves inward past the monomer center</li>
 </ul>
 <p>The mechanical node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) remain at cylinder boundaries and are not affected by the extension.</p>
