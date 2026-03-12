@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "version": "0.14.0",
     "medyanInfo": {
         "title": "MEDYAN.jl",
-        "version": "0.5.1-dev",
+        "version": "0.6.0-dev",
         "sourceCodeUrl": "https://github.com/medyan-dev/MEDYAN.jl"
     },
     "size": {
@@ -876,6 +876,25 @@ See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code
 <p>Same semantics as <code>tsm</code> but for plus ends.</p>
 See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code>fila_tip_snapshot</code></a>.
 </details>
+<details>
+<summary>
+🔢 tom
+</summary>
+<pre class="{julia}"><code>collect(group["fila/1/tom"])</code></pre>
+<p>Minus-end tip extensions in monomer spacings.</p>
+<p>Each entry is the tip extension for a filament’s minus end. 0=monomer center, 0.5=node boundary (default).</p>
+<p>May be absent in older snapshots (defaults to 0.5 when loading).</p>
+See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.
+</details>
+<details>
+<summary>
+🔢 top
+</summary>
+<pre class="{julia}"><code>collect(group["fila/1/top"])</code></pre>
+<p>Plus-end tip extensions in monomer spacings.</p>
+<p>Same semantics as <code>tom</code> but for plus ends.</p>
+See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.
+</details>
 </div>
 </div>
 </div>
@@ -1012,7 +1031,7 @@ Each row of this matrix represents a link, each column represents a bond.
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/bs"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/bs"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 └─ 📂 1 🏷️ name =&gt; "1",
@@ -1029,7 +1048,7 @@ Each row of this matrix represents a link, each column represents a bond.
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/s"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/s"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 ├─ 🔢 1: 4 Int64  🏷️ name =&gt; "a",

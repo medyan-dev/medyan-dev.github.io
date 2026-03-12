@@ -226,6 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>minus_end_mat_dir=nothing</code>: <code>SVector{3,Float64}</code>. The mat direction of the minus end node.</p></li>
 <li><p><code>joint_twists=nothing</code>: <code>Collection of</code>Float64`. The extra material frame axial rotation at the joints between the cylinders.</p></li>
 <li><p><code>tip_load_forces=(0.0=&gt;0.0)</code>: tip load forces, usually don’t use this, because load forces will automatically get updated at the next minimization.</p></li>
+<li><p><code>minus_tip_extension=0.5</code>: tip extension for the minus end in monomer spacings. 0=monomer center, DEFAULT<em>TIP</em>EXTENSION=node boundary (default). See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p></li>
+<li><p><code>plus_tip_extension=0.5</code>: tip extension for the plus end in monomer spacings. 0=monomer center, DEFAULT<em>TIP</em>EXTENSION=node boundary (default). See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p></li>
 </ul>
 </section>
 </div>

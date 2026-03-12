@@ -196,10 +196,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.fila_num_nodes-a3efee39b1440945" id="toc-medyan.fila_num_nodes-a3efee39b1440945" class="nav-link" data-scroll-target="#medyan.fila_num_nodes-a3efee39b1440945"><code>MEDYAN.fila_num_nodes</code></a></li>
   <li><a href="#medyan.fila_node_mids-35de9fc339cbec42" id="toc-medyan.fila_node_mids-35de9fc339cbec42" class="nav-link" data-scroll-target="#medyan.fila_node_mids-35de9fc339cbec42"><code>MEDYAN.fila_node_mids</code></a></li>
   <li><a href="#medyan.fila_node_positions-f4c5bac0dcb570ff" id="toc-medyan.fila_node_positions-f4c5bac0dcb570ff" class="nav-link" data-scroll-target="#medyan.fila_node_positions-f4c5bac0dcb570ff"><code>MEDYAN.fila_node_positions</code></a></li>
+  <li><a href="#medyan.fila_chem_positions-4bb01f692fdc715c" id="toc-medyan.fila_chem_positions-4bb01f692fdc715c" class="nav-link" data-scroll-target="#medyan.fila_chem_positions-4bb01f692fdc715c"><code>MEDYAN.fila_chem_positions</code></a></li>
   <li><a href="#medyan.fila_tip_tags-f05dfa7a845b20ea" id="toc-medyan.fila_tip_tags-f05dfa7a845b20ea" class="nav-link" data-scroll-target="#medyan.fila_tip_tags-f05dfa7a845b20ea"><code>MEDYAN.fila_tip_tags</code></a></li>
   <li><a href="#medyan.fila_num_unmin_ends-09448ccb823dbeac" id="toc-medyan.fila_num_unmin_ends-09448ccb823dbeac" class="nav-link" data-scroll-target="#medyan.fila_num_unmin_ends-09448ccb823dbeac"><code>MEDYAN.fila_num_unmin_ends</code></a></li>
   <li><a href="#medyan.fila_load_force-89938451df4263a3" id="toc-medyan.fila_load_force-89938451df4263a3" class="nav-link" data-scroll-target="#medyan.fila_load_force-89938451df4263a3"><code>MEDYAN.fila_load_force</code></a></li>
   <li><a href="#medyan.fila_tip_snapshot-1a8df73c85df5309" id="toc-medyan.fila_tip_snapshot-1a8df73c85df5309" class="nav-link" data-scroll-target="#medyan.fila_tip_snapshot-1a8df73c85df5309"><code>MEDYAN.fila_tip_snapshot</code></a></li>
+  <li><a href="#medyan.fila_tip_extension-cef965509800f1e7" id="toc-medyan.fila_tip_extension-cef965509800f1e7" class="nav-link" data-scroll-target="#medyan.fila_tip_extension-cef965509800f1e7"><code>MEDYAN.fila_tip_extension</code></a></li>
   <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
   <li><a href="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1" id="toc-medyan.pick_rand_fila_mono_site-6641f66ed8873af1" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_mono_site-6641f66ed8873af1"><code>MEDYAN.pick_rand_fila_mono_site</code></a></li>
   <li><a href="#medyan.pick_rand_fila_tip_site-d1418d43027273e9" id="toc-medyan.pick_rand_fila_tip_site-d1418d43027273e9" class="nav-link" data-scroll-target="#medyan.pick_rand_fila_tip_site-d1418d43027273e9"><code>MEDYAN.pick_rand_fila_tip_site</code></a></li>
@@ -365,7 +367,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the mechanical node positions of the filament.</p>
+<p>Return the node positions of the filament at cylinder boundaries.</p>
+<p>These are NOT adjusted for tip extension. Use <code>get_position(c, FilaTipIdx(...))</code> to get the tip position with extension applied.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.fila_chem_positions-4bb01f692fdc715c" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.fila_chem_positions-4bb01f692fdc715c"><a href="../../../docstrings/medyan.fila_chem_positions-4bb01f692fdc715c.html"><code>MEDYAN.fila_chem_positions</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_chem_positions</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return a view of the chemistry cylinder endpoint positions for the filament.</p>
+<p>These are the raw positions used for chemistry calculations, at the boundaries between cylinders. Unlike <code>fila_node_positions</code>, the first and last positions are NOT adjusted for partial cylinders or tip extension. Use <code>get_position(c, FilaTipIdx(...))</code> for the actual tip positions. This can be invalid after any mutations to context, so copy if needed.</p>
 </div>
 </div>
 </div>
@@ -378,10 +399,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_tip_tags</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_tip_tags</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{MEDYAN.Tag{MEDYAN.FilaTipIdx}, MEDYAN.Tag{MEDYAN.FilaTipIdx}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the pair of minus end, plus end filament tip tags.</p>
 </div>
 </div>
@@ -395,10 +416,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_num_unmin_ends</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    fila_idx<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_num_unmin_ends</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    fila_idx<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Pair</span>{<span class="dt">Int64</span>, <span class="dt">Int64</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a pair (minus =&gt; plus) of the number of unminimized monomers on the minus and plus end of a filament.</p>
 <p>This will be reset to (0 =&gt; 0) by <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
 <p>When an end is depolymerized this will decrease, but saturate at 0. When an end is polymerized this will increase.</p>
@@ -415,10 +436,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_load_force</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    tip<span class="op">::</span><span class="dt">MEDYAN.FilaTipIdx</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Float64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_load_force</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    tip<span class="op">::</span><span class="dt">MEDYAN.FilaTipIdx</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Float64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the end load force for the given filament tip in pN.</p>
 <p>Values are always ≥ 0: the compressive force component pushing inward on the tip projected along the filament axis.</p>
 <p>Load forces are computed during <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a> and <a href="../../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a>. They are zero before the first mechanics cycle and after filament creation.</p>
@@ -435,13 +456,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_tip_snapshot</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    tip<span class="op">::</span><span class="dt">MEDYAN.FilaTipIdx</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_tip_snapshot</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    tip<span class="op">::</span><span class="dt">MEDYAN.FilaTipIdx</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the snapshotted tip position for the given filament tip.</p>
 <p>Tip positions are set from the actual tip position at the end of <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a> and <a href="../../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> (whenever load forces are updated). Before the first mechanics cycle, positions are <code>NaN</code>.</p>
 <p>These snapshotted positions are used by <code>fila_tip_cutoff</code> reactions to count nearby tips.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.fila_tip_extension-cef965509800f1e7" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.fila_tip_extension-cef965509800f1e7"><a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>MEDYAN.fila_tip_extension</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fila_tip_extension</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    tip<span class="op">::</span><span class="dt">MEDYAN.FilaTipIdx</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Float64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the tip extension for the given filament tip in monomer spacings.</p>
+<p>The extension controls how far the tip position extends outward from the last monomer center. It affects both the chemistry tip position ([<code>get_position</code>] for <code>FilaTipIdx</code>) and the mechanical endpoint used in energy minimization (volume exclusion, equilibrium length):</p>
+<ul>
+<li><code>0.0</code>: tip at the monomer center</li>
+<li><code>DEFAULT_TIP_EXTENSION</code> (0.5): tip at the node boundary (default, backwards compatible)</li>
+<li><code>&gt; 0.5</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
+<li><code>&lt; 0.0</code>: tip moves inward past the monomer center</li>
+</ul>
+<p>The mechanical node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) remain at cylinder boundaries and are not affected by the extension.</p>
+<p>See also <a href="../../../docstrings/medyan.set_fila_tip_extension--4067d098840cde42.html"><code>set_fila_tip_extension!</code></a>.</p>
 </div>
 </div>
 </div>
@@ -454,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Union{FilaMonoIdx, FilaTipIdx, Tag}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_minimized</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Union{FilaMonoIdx, FilaTipIdx, Tag}</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return true iff the monomer or tip has been minimized. Throw an error if <code>p</code> doesn’t exist.</p>
 </div>
 </div>
@@ -468,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_mono_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaMonoIdx, Nothing}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_mono_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fsid)<span class="op">::</span><span class="dt">Union{FilaMonoIdx, Nothing}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a <code>FilaMonoIdx</code> of a random fila<em>mono</em>site, or return nothing if rejected weighted by counts, using the default RNG.</p>
 </div>
 </div>
@@ -482,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_tip_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fesid)<span class="op">::</span><span class="dt">Union{FilaTipIdx, Nothing}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pick_rand_fila_tip_site</span>(c<span class="op">::</span><span class="dt">Context</span>, chem_voxel, fila_typeid, fesid)<span class="op">::</span><span class="dt">Union{FilaTipIdx, Nothing}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a <code>FilaTipIdx</code> of a random fila<em>end</em>site, or return nothing if rejected weighted by counts, using the default RNG.</p>
 </div>
 </div>
@@ -496,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chem_cylinder_cell_list_grid_spacing!</span>(c<span class="op">::</span><span class="dt">Context</span>, fil_typeid<span class="op">::</span><span class="dt">Int</span>, spacing<span class="op">::</span><span class="dt">Real</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_chem_cylinder_cell_list_grid_spacing!</span>(c<span class="op">::</span><span class="dt">Context</span>, fil_typeid<span class="op">::</span><span class="dt">Int</span>, spacing<span class="op">::</span><span class="dt">Real</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Set the grid spacing (nm) for the chem cylinder cell list of filament type <code>fil_typeid</code>. Changing the spacing will invalidate the cell list cache of those chem cylinders.</p>
 </div>
 </div>

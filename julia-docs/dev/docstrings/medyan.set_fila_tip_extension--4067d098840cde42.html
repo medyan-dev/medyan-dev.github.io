@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7 – MEDYAN.jl</title>
+<title>medyan.set_fila_tip_extension--4067d098840cde42 – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -150,12 +185,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.resolve_all_filament_mesh_crossing" id="toc-medyan.resolve_all_filament_mesh_crossing" class="nav-link active" data-scroll-target="#medyan.resolve_all_filament_mesh_crossing"><code>MEDYAN.resolve_all_filament_mesh_crossing!</code></a>
+  <li><a href="#medyan.set_fila_tip_extension" id="toc-medyan.set_fila_tip_extension" class="nav-link active" data-scroll-target="#medyan.set_fila_tip_extension"><code>MEDYAN.set_fila_tip_extension!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5" id="toc-tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.BinaryAABBTree}</code></a></li>
+  <li><a href="#tuple-medyan.context--medyan.filatipidx--float64--ee871315e1c21329" id="toc-tuple-medyan.context--medyan.filatipidx--float64--ee871315e1c21329" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filatipidx--float64--ee871315e1c21329"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaTipIdx, Float64}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_fila_tip_extension--4067d098840cde42.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -163,22 +198,27 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="medyan.resolve_all_filament_mesh_crossing" class="level1">
-<h1><code>MEDYAN.resolve_all_filament_mesh_crossing!</code></h1>
-<section id="tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.binaryaabbtree--169a754d8e383ec5"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.BinaryAABBTree}</code></h2>
+<section id="medyan.set_fila_tip_extension" class="level1">
+<h1><code>MEDYAN.set_fila_tip_extension!</code></h1>
+<section id="tuple-medyan.context--medyan.filatipidx--float64--ee871315e1c21329" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filatipidx--float64--ee871315e1c21329"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaTipIdx, Float64}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Given an AABB tree corresponding to up-to-date membrane mesh triangles, resolve all filament-membrane intersections.</p>
-<p>Requires</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_fila_tip_extension!</span>(c<span class="op">::</span><span class="dt">Context</span>, tip<span class="op">::</span><span class="dt">FilaTipIdx</span>, extension<span class="op">::</span><span class="dt">Float64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Set the tip extension for the given filament tip in monomer spacings.</p>
+<p>The extension controls how far the tip position extends outward from the last monomer center. It affects both the chemistry tip position ([<code>get_position</code>] for <code>FilaTipIdx</code>) and the mechanical endpoint used in energy minimization (volume exclusion, equilibrium length):</p>
 <ul>
-<li>up-to-date unit normals of all triangles in the meshes.</li>
-<li>up-to-date AABB tree corresponding to all membrane meshes.</li>
+<li><code>0.0</code>: tip at the monomer center</li>
+<li><code>DEFAULT_TIP_EXTENSION</code> (0.5): tip at the node boundary (default, backwards compatible)</li>
+<li><code>&gt; 0.5</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
+<li><code>&lt; 0.0</code>: tip moves inward past the monomer center</li>
 </ul>
+<p>The mechanical node positions (<a href="../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) remain at cylinder boundaries and are not affected by the extension. During energy minimization, end nodes are temporarily shifted to tip positions so volume exclusion sees the extension, then shifted back afterward.</p>
+<p>See also <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p>
 </div>
 </div>
 </div>
@@ -593,4 +633,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.resolve_all_filament_mesh_crossing--a8be83a7d2ad65c7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.set_fila_tip_extension--4067d098840cde42.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
