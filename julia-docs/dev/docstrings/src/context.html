@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_adddiffusingcount!</span>(c<span class="op">::</span><span class="dt">Context</span>, sid, cid, inccount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add <code>inccount</code> to diffusing species id <code>sid</code> in compartment id <code>cid</code></p>
+<p>Add <code>inccount</code> to diffusing species id <code>sid</code> in chem voxel id <code>cid</code></p>
 </div>
 </div>
 </div>
@@ -597,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chem_addfixedcount!</span>(c<span class="op">::</span><span class="dt">Context</span>, sid, cid, inccount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Add <code>inccount</code> to fixed species id <code>sid</code> in compartment id <code>cid</code></p>
+<p>Add <code>inccount</code> to fixed species id <code>sid</code> in chem voxel id <code>cid</code></p>
 </div>
 </div>
 </div>
@@ -626,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adddiffusingcount_rand!</span>(c<span class="op">::</span><span class="dt">Context</span>, dsid, inccount)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Distribute the added diffusing species count randomly to compartments weighted by volume.</p>
+<p>Distribute the added diffusing species count randomly to chem voxels weighted by volume.</p>
 <ul>
 <li><code>dsid</code>: diffusing species id.</li>
 <li><code>inccount</code>: amount to add.</li>
