@@ -191,6 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.remove_ball--57fbfd7855882ccd" id="toc-medyan.remove_ball--57fbfd7855882ccd" class="nav-link" data-scroll-target="#medyan.remove_ball--57fbfd7855882ccd"><code>MEDYAN.remove_ball!</code></a></li>
   <li><a href="#medyan.update_ball--83d0c0fbbdbab087" id="toc-medyan.update_ball--83d0c0fbbdbab087" class="nav-link" data-scroll-target="#medyan.update_ball--83d0c0fbbdbab087"><code>MEDYAN.update_ball!</code></a></li>
   <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
+  <li><a href="#medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0" id="toc-medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0" class="nav-link" data-scroll-target="#medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0"><code>MEDYAN.set_ball_cell_list_grid_spacing!</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/links/balls.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -280,6 +281,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Return <code>true</code> if the ball has been minimized (i.e.&nbsp;its position has been updated by <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a> since it was last created or modified).</p>
 <p>Balls are marked as not minimized when created with <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a> or when their <code>position</code> or <code>radius</code> is changed via <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>. All balls are marked as minimized at the end of <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a>.</p>
 <p>See also: <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a>, <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0"><a href="../../../docstrings/medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0.html"><code>MEDYAN.set_ball_cell_list_grid_spacing!</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set_ball_cell_list_grid_spacing!</span>(c<span class="op">::</span><span class="dt">Context</span>, spacing<span class="op">::</span><span class="dt">Real</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Set the grid spacing (nm) for the ball cell list. Changing the spacing will invalidate the ball cell list cache.</p>
 </div>
 </div>
 </div>
