@@ -218,16 +218,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
-<li><p><code>type=1</code>: filament type id or symbol.</p></li>
-<li><p><code>mono_states</code>: Collection of the <code>MonomerState</code> or <code>Symbol</code> of the monomers in the new filament. In order from minus end to plus end. <code>length(mono_states)&gt;1</code></p></li>
-<li><p><code>node_positions</code>: Collection of <code>SVector{3,Float64}</code>. The positions of the nodes, monomers are between nodes.</p></li>
-<li><p><code>node_mids</code>: Collection of <code>Integer</code>. The monomer ids at (slightly plus side of) the <code>node_positions</code> | ––-+––-|––-+––- minus end &lt;–– M | M | (M) | M ––&gt; plus end ––-+––-|––-+––- | ^ A node_position is indicated by the line.</p>
-<p>The monomer id with parenthesis (M) will in <code>node_mids</code> <code>length(node_mids) == length(node_positions) - 1</code></p></li>
-<li><p><code>minus_end_mat_dir=nothing</code>: <code>SVector{3,Float64}</code>. The mat direction of the minus end node.</p></li>
-<li><p><code>joint_twists=nothing</code>: <code>Collection of</code>Float64`. The extra material frame axial rotation at the joints between the cylinders.</p></li>
-<li><p><code>tip_load_forces=(0.0=&gt;0.0)</code>: tip load forces, usually don’t use this, because load forces will automatically get updated at the next minimization.</p></li>
-<li><p><code>minus_tip_extension=0.0</code>: tip extension for the minus end in monomer spacings. 0=monomer center. See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p></li>
-<li><p><code>plus_tip_extension=0.0</code>: tip extension for the plus end in monomer spacings. 0=monomer center. See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p></li>
+<li><code>type=1</code>: filament type id or symbol.</li>
+<li><code>mono_states</code>: Collection of the <code>MonomerState</code> or <code>Symbol</code> of the monomers in the new filament. In order from minus end to plus end. <code>length(mono_states)&gt;1</code></li>
+<li><code>node_positions</code>: Collection of <code>SVector{3,Float64}</code>. The positions of the nodes, monomers are between nodes.</li>
+<li><code>node_mids</code>: Collection of <code>Integer</code>. The monomer ids at (slightly plus side of) the <code>node_positions</code>. The monomer id with parenthesis <code>(M)</code> below will be in <code>node_mids</code>. <code>length(node_mids) == length(node_positions) - 1</code></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>                               <span class="op">|</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-----+-----|-----+-----</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>minus <span class="kw">end</span> <span class="op">&lt;----</span>       M  <span class="op">|</span>  M  <span class="op">|</span> (M) <span class="op">|</span>  M        <span class="op">----&gt;</span> plus <span class="kw">end</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-----+-----|-----+-----</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                               <span class="op">|</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                               <span class="op">^</span> A node_position is indicated by the line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>minus_end_mat_dir=nothing</code>: <code>SVector{3,Float64}</code>. The mat direction of the minus end node.</li>
+<li><code>joint_twists=nothing</code>: <code>Collection of</code>Float64`. The extra material frame axial rotation at the joints between the cylinders.</li>
+<li><code>tip_load_forces=(0.0=&gt;0.0)</code>: tip load forces, usually don’t use this, because load forces will automatically get updated at the next minimization.</li>
+<li><code>minus_tip_extension=0.0</code>: tip extension for the minus end in monomer spacings. 0=monomer center. See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</li>
+<li><code>plus_tip_extension=0.0</code>: tip extension for the plus end in monomer spacings. 0=monomer center. See <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</li>
 </ul>
 </section>
 </div>

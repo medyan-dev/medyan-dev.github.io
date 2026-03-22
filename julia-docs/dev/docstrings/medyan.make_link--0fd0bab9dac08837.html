@@ -217,15 +217,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p><code>type::Union{Symbol,Integer}</code>: the link type id or symbol.</p></li>
 <li><p><code>places=()</code>: places or tags to attach to the link.</p>
-<p>Set an element to <code>nothing</code> not change the attached place. Set an element to a null place or tag to detach that place.</p></li>
+<p>Set an element to <code>nothing</code> to not change the attached place. Set an element to a null place or tag to detach that place.</p></li>
 <li><p><code>state=(;)</code>: state properties to change.</p>
 <p>A <code>NamedTuple</code> of changes. For example, <code>state = (;k1 = 3.6, k7 = 2.0,)</code> to change <code>state.k1</code> to <code>3.6</code> and <code>state.k7</code> to <code>2.0</code>.</p></li>
 <li><p><code>bond_states=()</code>: bond state properties to change.</p>
-<p>A <code>Tuple</code> of changes. If an element in the tuple is <code>nothing</code>, the corresponding bond state isn’t changed. For example, <code>bond_states = (nothing, (;L0 = 3.6,))</code> to change <code>bond_states[2].L0</code> to <code>3.6</code>.</p></li>
+<p>A <code>Tuple</code> of <code>NamedTuple</code> or <code>nothing</code>. If an element in the tuple is <code>nothing</code>, the corresponding bond state isn’t changed. For example, <code>bond_states = (nothing, (;L0 = 3.6,))</code> to change <code>bond_states[2].L0</code> to <code>3.6</code>.</p></li>
 <li><p><code>bond_enabled=()</code>: bond enable flags to change.</p>
-<p>A <code>Tuple</code> of <code>Union{Bool, Nothing}. If an element in the tuple is</code>nothing<code>, the corresponding bond enable flag isn't changed. For example,</code>bond_enabled = (nothing, true, false)` to not change bond 1, enable bond 2, and disable bond 3.</p></li>
+<p>A <code>Tuple</code> of <code>Union{Bool, Nothing}</code>. If an element in the tuple is <code>nothing</code>, the corresponding bond enable flag isn’t changed. For example, <code>bond_enabled = (nothing, true, false)</code> to not change bond 1, enable bond 2, and disable bond 3.</p></li>
 <li><p><code>reaction_enabled=()</code>: reaction enable flags to change.</p>
-<p>A <code>Tuple</code> of <code>NamedTuple</code> of changes. If an element in the tuple is <code>nothing</code>, the corresponding reaction enable flags aren’t changed. For example, <code>reaction_enabled = (nothing, (;a=true, b=false))</code> to not change any reactions on place 1, enable reaction a on place 2, and disable reaction b on place 2.</p></li>
+<p>A <code>Tuple</code> of <code>NamedTuple</code> or <code>nothing</code>. If an element in the tuple is <code>nothing</code>, the corresponding reaction enable flags aren’t changed. For example, <code>reaction_enabled = (nothing, (;a=true, b=false))</code> to not change any reactions on place 1, enable reaction a on place 2, and disable reaction b on place 2.</p></li>
 <li><p><code>is_minimized::Bool=false</code>: is the link marked as minimized.</p>
 <p>By default links are marked as minimized at the end of mechanics when updated.</p></li>
 </ul>
