@@ -1162,6 +1162,14 @@ position_scale
 <p>Default: No effect</p>
 Positions were rounded to the nearest 2^-position_scale nm when saved.
 </details>
+<details>
+<summary>
+bary_scale
+</summary>
+<pre class="{julia}"><code>attrs(group["memb"])["bary_scale"]</code></pre>
+<p>Default: No effect</p>
+In-triangle point barycentric coordinates were rounded to the nearest 2^-bary_scale when saved.
+</details>
 </div>
 </div>
 </div>
@@ -1221,6 +1229,28 @@ optional 🔢 copynumbers
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/copynumbers"])</code></pre>
 Array of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.
+</details>
+The following three datasets store in-triangle points. If the membrane has no in-triangle points these datasets will not exist.
+<details>
+<summary>
+optional 🔢 itp_tri
+</summary>
+<pre class="{julia}"><code>collect(group["memb/1/itp_tri"])</code></pre>
+Each entry is the 1-based index of the triangle containing the point.
+</details>
+<details>
+<summary>
+optional 🔢 itp_bary
+</summary>
+<pre class="{julia}"><code>collect(group["memb/1/itp_bary"])</code></pre>
+Each column is the barycentric coordinates (λ₂, λ₃) of a point. The third coordinate is λ₁ = 1 − λ₂ − λ₃. <code>(0,0)</code> maps to the first vertex of the triangle, <code>(1,0)</code> to the second, and <code>(0,1)</code> to the third (vertex order given by the corresponding column in <code>trilist</code>).
+</details>
+<details>
+<summary>
+optional 🔢 itp_state
+</summary>
+<pre class="{julia}"><code>collect(group["memb/1/itp_state"])</code></pre>
+Each entry is a user-defined state value for an in-triangle point.
 </details>
 </div>
 </div>
