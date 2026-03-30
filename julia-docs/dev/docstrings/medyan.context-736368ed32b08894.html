@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>chem_voxel_volumes::Array{Float64, 3}</code>: Volume of each chemical voxel</p></li>
 <li><p><code>chem_voxel_areas::Array{Float64, 4}</code>: Areas of (-x, -y, -z) faces of each chemical voxel</p></li>
 <li><p><code>chem_cylinders::Vector{MEDYAN.ChemCylinders}</code>: Data about filament cylinders, indexed by filament type id</p></li>
-<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, state::Vector{StaticArraysCore.SVector{3, Int64}}, is_minimized::Vector{Bool}}, Int64}</code></p></li>
+<li><p><code>balls::StructArrays.StructVector{MEDYAN.Ball, @NamedTuple{position::Vector{StaticArraysCore.SVector{3, Float64}}, radius::Vector{Float32}, stiffness::Vector{Float32}, collision_layers::Vector{UInt32}, no_collide_mask::Vector{UInt32}, state::Vector{StaticArraysCore.SVector{3, Int64}}, is_minimized::Vector{Bool}}, Int64}</code></p></li>
 <li><p><code>ball_cell_list_cache::Union{Nothing, MEDYAN.PointCellList}</code>: Cached PointCellList for minimized ball positions. <code>nothing</code> means cache is invalid.</p></li>
 <li><p><code>ball_cell_list_grid_spacing::Float32</code>: Grid spacing (nm) for the ball PointCellList. Default is 100 nm.</p></li>
 <li><p><code>membranes::Vector</code>: All membrane meshes.</p></li>

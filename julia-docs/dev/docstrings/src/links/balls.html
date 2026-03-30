@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0f0</span>, state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>], is_minimized<span class="op">=</span><span class="cn">false</span>) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_ball!</span>(c<span class="op">::</span><span class="dt">Context</span>; position, radius, stiffness<span class="op">=</span><span class="fl">1.0f0</span>, collision_layers<span class="op">=</span><span class="fu">UInt32</span>(<span class="fl">1</span>), no_collide_mask<span class="op">=</span><span class="fu">UInt32</span>(<span class="fl">0</span>), state<span class="op">=</span>SA[<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>], is_minimized<span class="op">=</span><span class="cn">false</span>) <span class="op">-&gt;</span> Tag{BallIdx}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create a new ball in <code>c</code> and return a tag for it.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
@@ -220,6 +220,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>position::SVector{3, Float64}</code>: 3D position of the ball center (nm)</li>
 <li><code>radius::Float32</code>: Radius of the ball (nm)</li>
 <li><code>stiffness::Float32=1.0</code>: Mechanical stiffness coefficient (pN/nm)</li>
+<li><code>collision_layers::UInt32=UInt32(1)</code>: Collision layers bitmask. Defines which layers this ball is on.</li>
+<li><code>no_collide_mask::UInt32=UInt32(0)</code>: No-collide mask bitmask. Bits set = layers this ball will not collide with.</li>
 <li><code>state::SVector{3, Int64}=SA[0,0,0]</code>: Three-component state vector for chemical reactions</li>
 <li><code>is_minimized::Bool=false</code>: Whether the ball is marked as minimized. By default balls are not minimized when created. Set to <code>true</code> to create a ball that is already marked as minimized.</li>
 </ul>
@@ -260,6 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>position::Union{Nothing, SVector{3, Float64}}=nothing</code>: New position (nm)</li>
 <li><code>radius::Union{Nothing, Float32}=nothing</code>: New radius (nm)</li>
 <li><code>stiffness::Union{Nothing, Float32}=nothing</code>: New stiffness (pN/nm)</li>
+<li><code>collision_layers::Union{Nothing, UInt32}=nothing</code>: New collision layers bitmask</li>
+<li><code>no_collide_mask::Union{Nothing, UInt32}=nothing</code>: New no-collide mask bitmask</li>
 <li><code>state::Union{Nothing, SVector{3, Int64}}=nothing</code>: New state vector</li>
 <li><code>is_minimized::Union{Nothing, Bool}=nothing</code>: Whether the ball is marked as minimized. Defaults to <code>false</code> when <code>position</code> or <code>radius</code> is changed, otherwise unchanged. Set explicitly to override the default behavior.</li>
 </ul>

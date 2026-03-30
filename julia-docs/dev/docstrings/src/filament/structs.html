@@ -183,6 +183,8 @@ ul.task-list li input[type="checkbox"] {
 <li><code>twist_per_monomer::Float64</code>: Twist between monomers (rad)</li>
 <li><code>numpercylinder::Int32</code>: Number of monomers per cylinder</li>
 <li><code>kcollide::Float64</code>: Repulsion stiffness (pN/nm)</li>
+<li><code>collision_layers::UInt32</code>: Collision layers bitmask. Defines which layers this filament type is on.</li>
+<li><code>no_collide_mask::UInt32</code>: No-collide mask bitmask. Bits set = layers this filament type will not collide with.</li>
 <li><code>max_num_unmin_end::Int32</code>: Maximum number of unminimized monomers that can be on an end. This should be less than the minimum <code>radius</code> of other filaments + <code>radius</code> divided by <code>spacing</code>.</li>
 </ul>
 </div>

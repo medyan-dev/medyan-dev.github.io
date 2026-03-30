@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>explanations – MEDYAN.jl</title>
+<title>collision-layers – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2573075ffc6bc9308bc673c69050c894.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,19 +105,19 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MEDYAN.jl</span>
     </a>
   </div>
@@ -93,23 +128,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorials/1install.html"> 
+    <a class="nav-link" href="../tutorials/1install.html"> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./howto/index.html"> 
+    <a class="nav-link" href="../howto/index.html"> 
 <span class="menu-text">How-To</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./explanation/chem-boundary.html"> 
+    <a class="nav-link" href="../explanation/chem-boundary.html"> 
 <span class="menu-text">Explanation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./reference/index.html"> 
+    <a class="nav-link" href="../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
 </ul>
@@ -125,11 +160,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-versions">    
         <li>
-    <a class="dropdown-item" href="./../dev/">
+    <a class="dropdown-item" href="../../dev/">
  <span class="dropdown-text">dev</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../stable/">
+    <a class="dropdown-item" href="../../stable/">
  <span class="dropdown-text">stable</span></a>
   </li>  
     </ul>
@@ -140,13 +175,64 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../explanation/collision-layers.html">Collision Layers and No-Collide Masks</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../explanation/chem-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chem Boundary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../explanation/collision-layers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Collision Layers and No-Collide Masks</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#collision-layers-and-no-collide-masks" id="toc-collision-layers-and-no-collide-masks" class="nav-link active" data-scroll-target="#collision-layers-and-no-collide-masks">Collision Layers and No-Collide Masks</a>
+  <ul class="collapse">
+  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How it works</a></li>
+  <li><a href="#defaults" id="toc-defaults" class="nav-link" data-scroll-target="#defaults">Defaults</a></li>
+  <li><a href="#example-piston-ball-that-ignores-the-boundary" id="toc-example-piston-ball-that-ignores-the-boundary" class="nav-link" data-scroll-target="#example-piston-ball-that-ignores-the-boundary">Example: piston ball that ignores the boundary</a></li>
+  <li><a href="#example-balls-that-dont-self-collide" id="toc-example-balls-that-dont-self-collide" class="nav-link" data-scroll-target="#example-balls-that-dont-self-collide">Example: balls that don’t self-collide</a></li>
+  <li><a href="#example-selective-membrane-permeability" id="toc-example-selective-membrane-permeability" class="nav-link" data-scroll-target="#example-selective-membrane-permeability">Example: selective membrane permeability</a></li>
+  <li><a href="#where-layers-are-set" id="toc-where-layers-are-set" class="nav-link" data-scroll-target="#where-layers-are-set">Where layers are set</a></li>
+  <li><a href="#design-notes" id="toc-design-notes" class="nav-link" data-scroll-target="#design-notes">Design notes</a>
+  <ul class="collapse">
+  <li><a href="#why-a-no-collide-mask" id="toc-why-a-no-collide-mask" class="nav-link" data-scroll-target="#why-a-no-collide-mask">Why a no-collide mask?</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/collision-layers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -154,8 +240,213 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="collision-layers-and-no-collide-masks" class="level1">
+<h1>Collision Layers and No-Collide Masks</h1>
+<p>Most simulations want all objects to collide with each other and with boundaries, and this happens by default with no configuration needed.</p>
+<p>MEDYAN already supports preventing collisions between <em>specific linked objects</em> via the <code>no_collide</code> flag on bond configurations in <code>def_link_type!</code>. This is useful when two objects are connected by a bond and shouldn’t also generate a repulsive collision force.</p>
+<p>For cases where entire <em>classes</em> of objects should ignore each other (e.g.&nbsp;a piston ball that passes through walls, or particles that don’t self-collide), MEDYAN provides a <strong>layer and no-collide mask</strong> bitmask system. This avoids the need to explicitly enumerate no-collide pairs for every combination of objects.</p>
+<section id="how-it-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
+<p>Every collision object (ball, filament type, membrane type) and every boundary element (plane, capsule) carries two <code>UInt32</code> bitmasks:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>collision_layers</code></td>
+<td>Which layers the object <strong>is on</strong></td>
+</tr>
+<tr class="even">
+<td><code>no_collide_mask</code></td>
+<td>Which layers the object <strong>will not collide with</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Two objects collide <strong>unless</strong> either one disables collisions with the other:</p>
+<pre><code>no_collide = (A.layers &amp; B.no_collide_mask) ≠ 0  OR  (B.layers &amp; A.no_collide_mask) ≠ 0</code></pre>
+<p>In other words: if A is on a layer that B has disabled, or B is on a layer that A has disabled, they don’t collide.</p>
+<p>The same check applies between objects and boundary elements.</p>
+</section>
+<section id="defaults" class="level2">
+<h2 class="anchored" data-anchor-id="defaults">Defaults</h2>
+<p><code>collision_layers</code> defaults to <code>UInt32(1)</code> (on layer 1) and <code>no_collide_mask</code> defaults to <code>UInt32(0)</code> (no collisions disabled). This means all objects collide with all other objects and all boundaries by default.</p>
+</section>
+<section id="example-piston-ball-that-ignores-the-boundary" class="level2">
+<h2 class="anchored" data-anchor-id="example-piston-ball-that-ignores-the-boundary">Example: piston ball that ignores the boundary</h2>
+<p>Suppose you have actin filaments inside a box, and a large ball acting as a piston that should push actin but not be pushed back by the boundary walls.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Object</th>
+<th><code>collision_layers</code></th>
+<th><code>no_collide_mask</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actin (default)</td>
+<td><code>1</code></td>
+<td><code>0</code></td>
+<td>Unchanged</td>
+</tr>
+<tr class="even">
+<td>Piston ball</td>
+<td><code>2</code></td>
+<td><code>2</code></td>
+<td>On layer 2, won’t collide with layer 2</td>
+</tr>
+<tr class="odd">
+<td>Boundary box</td>
+<td><code>2</code></td>
+<td><code>2</code></td>
+<td>On layer 2, won’t collide with layer 2</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern is simple: put yourself on layer N, disable layer N. Actin stays completely at defaults.</p>
+</section>
+<section id="example-balls-that-dont-self-collide" class="level2">
+<h2 class="anchored" data-anchor-id="example-balls-that-dont-self-collide">Example: balls that don’t self-collide</h2>
+<p>Suppose you have many small balls representing diffusing particles. They should collide with actin and boundaries, but not with each other.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Object</th>
+<th><code>collision_layers</code></th>
+<th><code>no_collide_mask</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Actin (default)</td>
+<td><code>1</code></td>
+<td><code>0</code></td>
+<td>Unchanged</td>
+</tr>
+<tr class="even">
+<td>Balls</td>
+<td><code>2</code></td>
+<td><code>2</code></td>
+<td>On layer 2, won’t collide with layer 2</td>
+</tr>
+<tr class="odd">
+<td>Boundary (default)</td>
+<td><code>1</code></td>
+<td><code>0</code></td>
+<td>Unchanged</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-selective-membrane-permeability" class="level2">
+<h2 class="anchored" data-anchor-id="example-selective-membrane-permeability">Example: selective membrane permeability</h2>
+<p>Suppose you have two membranes: membrane A collides with filaments but lets balls pass through, and membrane B collides with balls but lets filaments pass through. The membranes do not collide with each other.</p>
+<p>Assign each object type its own layer. Filaments stay on layer 1 (default), balls go on <code>UInt32(1)&lt;&lt;1</code>, membranes go on <code>UInt32(1)&lt;&lt;2</code>. Each membrane then sets its <code>no_collide_mask</code> to the layers it should not collide with.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> FILA_LAYER <span class="op">=</span> <span class="fu">UInt32</span>(<span class="fl">1</span>)        <span class="co"># bit 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> BALL_LAYER <span class="op">=</span> <span class="fu">UInt32</span>(<span class="fl">1</span>) <span class="op">&lt;&lt;</span> <span class="fl">1</span>   <span class="co"># bit 2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> MEMB_LAYER <span class="op">=</span> <span class="fu">UInt32</span>(<span class="fl">1</span>) <span class="op">&lt;&lt;</span> <span class="fl">2</span>   <span class="co"># bit 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th><code>collision_layers</code></th>
+<th><code>no_collide_mask</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Filaments</td>
+<td><code>FILA_LAYER</code></td>
+<td><code>UInt32(0)</code></td>
+<td>Default layer, collides with everything</td>
+</tr>
+<tr class="even">
+<td>Balls</td>
+<td><code>BALL_LAYER</code></td>
+<td><code>UInt32(0)</code></td>
+<td>Own layer, collides with everything</td>
+</tr>
+<tr class="odd">
+<td>Membrane A</td>
+<td><code>MEMB_LAYER</code></td>
+<td><code>BALL_LAYER \| MEMB_LAYER</code></td>
+<td>Won’t collide with balls or membranes</td>
+</tr>
+<tr class="even">
+<td>Membrane B</td>
+<td><code>MEMB_LAYER</code></td>
+<td><code>FILA_LAYER \| MEMB_LAYER</code></td>
+<td>Won’t collide with filaments or membranes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="where-layers-are-set" class="level2">
+<h2 class="anchored" data-anchor-id="where-layers-are-set">Where layers are set</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object type</th>
+<th>Where to set</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Balls</td>
+<td><code>make_ball!</code> / <code>update_ball!</code> kwargs</td>
+</tr>
+<tr class="even">
+<td>Filaments</td>
+<td><code>FilamentMechParams</code> fields</td>
+</tr>
+<tr class="odd">
+<td>Membranes</td>
+<td><code>MembraneMechParams</code> fields</td>
+</tr>
+<tr class="even">
+<td>Boundary planes</td>
+<td><code>boundary_plane</code> / <code>boundary_box</code> / <code>boundary_cylinder</code> kwargs</td>
+</tr>
+<tr class="odd">
+<td>Boundary capsules</td>
+<td><code>boundary_capsule</code> / <code>boundary_cylinder</code> kwargs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="design-notes" class="level2">
+<h2 class="anchored" data-anchor-id="design-notes">Design notes</h2>
+<p>The layer/mask approach is inspired by the collision layer system in the <a href="https://docs.godotengine.org/en/stable/tutorials/physics/physics_introduction.html#collision-layers-and-masks">Godot game engine</a>, though MEDYAN uses different semantics. The choice of a no-collide mask (blocklist) over Godot’s collision mask (allowlist) is inspired by <a href="https://www.unrealengine.com/en-US/blog/collision-filtering">Unreal Engine’s collision filtering</a>.</p>
+<section id="why-a-no-collide-mask" class="level3">
+<h3 class="anchored" data-anchor-id="why-a-no-collide-mask">Why a no-collide mask?</h3>
+<p>The <code>no_collide_mask</code> specifies which layers to disable collisions with: bits set = layers you don’t collide with. The default is <code>UInt32(0)</code> — no collisions disabled, collide with everything. This is more intuitive than an allowlist where the default would need to be all-bits-set (<code>0xFFFFFFFF</code>) to mean “collide with everything.”</p>
+<p>The no-collide check uses OR: if <em>either</em> object disables collisions with the other, the pair is excluded. This preserves Newton’s third law — MEDYAN’s collision forces are symmetric repulsive potentials, so if a pair exists both objects must feel the force. There is no concept of one object pushing another without being pushed back.</p>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -563,4 +854,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/collision-layers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

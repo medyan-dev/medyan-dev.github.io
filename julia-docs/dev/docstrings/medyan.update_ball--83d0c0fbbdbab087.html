@@ -216,6 +216,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>position::Union{Nothing, SVector{3, Float64}}=nothing</code>: New position (nm)</li>
 <li><code>radius::Union{Nothing, Float32}=nothing</code>: New radius (nm)</li>
 <li><code>stiffness::Union{Nothing, Float32}=nothing</code>: New stiffness (pN/nm)</li>
+<li><code>collision_layers::Union{Nothing, UInt32}=nothing</code>: New collision layers bitmask</li>
+<li><code>no_collide_mask::Union{Nothing, UInt32}=nothing</code>: New no-collide mask bitmask</li>
 <li><code>state::Union{Nothing, SVector{3, Int64}}=nothing</code>: New state vector</li>
 <li><code>is_minimized::Union{Nothing, Bool}=nothing</code>: Whether the ball is marked as minimized. Defaults to <code>false</code> when <code>position</code> or <code>radius</code> is changed, otherwise unchanged. Set explicitly to override the default behavior.</li>
 </ul>
