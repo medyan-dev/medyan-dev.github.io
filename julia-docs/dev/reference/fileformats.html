@@ -515,40 +515,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 time (s)
 </summary>
 <pre class="{julia}"><code>attrs(group)["time (s)"]</code></pre>
-<div class="line-block">Default: No change<br>
-See <a href="../docstrings/medyan.set_time--a6dd8f73f68a3759.html"><code>MEDYAN.set_time!</code></a> <a href="../docstrings/medyan.get_time-6e9303598ae0437c.html"><code>MEDYAN.get_time</code></a></div>
+<p>Default: No change</p>
+See <a href="../docstrings/medyan.set_time--a6dd8f73f68a3759.html"><code>MEDYAN.set_time!</code></a> <a href="../docstrings/medyan.get_time-6e9303598ae0437c.html"><code>MEDYAN.get_time</code></a>
 </details>
 <details>
 <summary>
 rng_key
 </summary>
 <pre class="{julia}"><code>attrs(group)["rng_key"]</code></pre>
-<div class="line-block">Default: No change<br>
-PhiloxRNG seed (<code>UInt64</code>), set once at <code>Context</code> construction.</div>
+<p>Default: No change</p>
+PhiloxRNG seed (<code>UInt64</code>), set once at <code>Context</code> construction.
 </details>
 <details>
 <summary>
 rng_counter
 </summary>
 <pre class="{julia}"><code>attrs(group)["rng_counter"]</code></pre>
-<div class="line-block">Default: No change<br>
-PhiloxRNG counter (<code>UInt64</code>), advanced by each <code>baoab!</code> call.</div>
+<p>Default: No change</p>
+PhiloxRNG counter (<code>UInt64</code>), advanced by each <code>baoab!</code> call.
 </details>
 <details>
 <summary>
 version
 </summary>
 <pre class="{julia}"><code>attrs(group)["version"]</code></pre>
-<div class="line-block">Default: No change<br>
-See <a href="#snapshot-versioning">Snapshot Versioning</a></div>
+<p>Default: No change</p>
+See <a href="#snapshot-versioning">Snapshot Versioning</a>
 </details>
 <details>
 <summary>
 uuid
 </summary>
 <pre class="{julia}"><code>attrs(group)["uuid"]</code></pre>
-<div class="line-block">Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08”<br>
-to be considered a valid MEDYAN snapshot.</div>
+Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08” to be considered a valid MEDYAN snapshot.
 </details>
 </div>
 </div>
@@ -755,7 +754,8 @@ See <a href="../explanation/collision-layers.html">Collision Layers and No-Colli
 🔢 im
 </summary>
 <pre class="{julia}"><code>collect(group["ball/im"])</code></pre>
-Boolean vector indicating whether each ball is marked as minimized. <code>true</code> means the ball’s position has been updated by <code>minimize_energy!</code> since it was last created or modified. May be absent in older snapshots (defaults to <code>false</code> for all balls when loading).
+<p>Default: <code>false</code></p>
+Boolean vector indicating whether each ball is marked as minimized. <code>true</code> means the ball’s position has been updated by <code>minimize_energy!</code> since it was last created or modified. May be absent in older snapshots.
 </details>
 </div>
 </div>
@@ -896,9 +896,10 @@ This array only exists if the filament type is twistable. Each row is the materi
 🔢 tsm
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/tsm"])</code></pre>
+<p>Default: NaN</p>
 <p>Snapshotted minus-end tip positions (nm).</p>
 <p>Each row is the minus-end tip position of a filament, set at the end of <code>minimize_energy!</code> / <code>baoab!</code>. NaN before the first mechanics cycle. Used by <code>fila_tip_cutoff</code> reactions.</p>
-<p>May be absent in older snapshots (defaults to NaN when loading).</p>
+<p>May be absent in older snapshots.</p>
 See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code>fila_tip_snapshot</code></a>.
 </details>
 <details>
@@ -906,6 +907,7 @@ See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code
 🔢 tsp
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/tsp"])</code></pre>
+<p>Default: NaN</p>
 <p>Snapshotted plus-end tip positions (nm).</p>
 <p>Same semantics as <code>tsm</code> but for plus ends.</p>
 See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code>fila_tip_snapshot</code></a>.
@@ -915,9 +917,10 @@ See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code
 🔢 tom
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/tom"])</code></pre>
+<p>Default: 0.0</p>
 <p>Minus-end tip extensions in monomer spacings.</p>
-<p>Each entry is the tip extension for a filament’s minus end. 0=monomer center (default).</p>
-<p>May be absent in older snapshots (defaults to 0.0 when loading).</p>
+<p>Each entry is the tip extension for a filament’s minus end. 0=monomer center.</p>
+<p>May be absent in older snapshots.</p>
 See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.
 </details>
 <details>
@@ -925,6 +928,7 @@ See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><cod
 🔢 top
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/top"])</code></pre>
+<p>Default: 0.0</p>
 <p>Plus-end tip extensions in monomer spacings.</p>
 <p>Same semantics as <code>tom</code> but for plus ends.</p>
 See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.
