@@ -210,8 +210,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove_memb!</span>(c<span class="op">::</span><span class="dt">Context</span>, membid<span class="op">::</span><span class="dt">MembId</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove the membrane identified by <code>membid</code> from the simulation.</p>
-<p>All <code>MembVertIdx</code> tags on the removed membrane are removed, which nullifies the corresponding places in any connected links (links are kept alive but with null membrane-vertex references).</p>
-<p>Uses swap-delete on <code>c.membranes</code>: if the removed membrane is not the last, the last membrane is moved into its slot and all <code>MembVertIdx</code> tags referencing the moved membrane are updated.</p>
+<p>All <code>MembVertIdx</code> and <code>InTriPointIdx</code> tags on the removed membrane are removed, which nullifies the corresponding places in any connected links (links are kept alive but with null membrane-vertex / in-triangle-point references).</p>
+<p>Uses swap-delete on <code>c.membranes</code>: if the removed membrane is not the last, the last membrane is moved into its slot and all <code>MembVertIdx</code> and <code>InTriPointIdx</code> tags referencing the moved membrane are updated.</p>
 <p>See also: <a href="../docstrings/medyan.make_memb--3b9234d85f7612ed.html"><code>make_memb!</code></a>, <a href="../docstrings/medyan.make_memb_sphere--5ed5984bc3221359.html"><code>make_memb_sphere!</code></a>, <a href="../docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.html"><code>make_memb_rectangle!</code></a></p>
 </div>
 </div>

@@ -210,6 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minimize_energy!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">MinimizeEnergyResults</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Minimize mechanical energy of the context.</p>
+<p>In-triangle points are held at fixed <code>bary</code> during minimization; they move only when their triangle’s vertices move.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>

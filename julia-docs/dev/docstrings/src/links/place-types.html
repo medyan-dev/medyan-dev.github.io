@@ -192,6 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.num_directions-89697a0fca8de12f" id="toc-medyan.num_directions-89697a0fca8de12f" class="nav-link" data-scroll-target="#medyan.num_directions-89697a0fca8de12f"><code>MEDYAN.num_directions</code></a></li>
   <li><a href="#medyan.filamonoidx-94fe5a1112741990" id="toc-medyan.filamonoidx-94fe5a1112741990" class="nav-link" data-scroll-target="#medyan.filamonoidx-94fe5a1112741990"><code>MEDYAN.FilaMonoIdx</code></a></li>
   <li><a href="#medyan.membvertidx-4b26f8c9d72f1f49" id="toc-medyan.membvertidx-4b26f8c9d72f1f49" class="nav-link" data-scroll-target="#medyan.membvertidx-4b26f8c9d72f1f49"><code>MEDYAN.MembVertIdx</code></a></li>
+  <li><a href="#medyan.intripointidx-1228a5cc6e98a6e0" id="toc-medyan.intripointidx-1228a5cc6e98a6e0" class="nav-link" data-scroll-target="#medyan.intripointidx-1228a5cc6e98a6e0"><code>MEDYAN.InTriPointIdx</code></a></li>
   <li><a href="#medyan.anchor-0dc7f056c6ce8b51" id="toc-medyan.anchor-0dc7f056c6ce8b51" class="nav-link" data-scroll-target="#medyan.anchor-0dc7f056c6ce8b51"><code>MEDYAN.Anchor</code></a></li>
   <li><a href="#medyan.ballidx-5a4aba766d557d6a" id="toc-medyan.ballidx-5a4aba766d557d6a" class="nav-link" data-scroll-target="#medyan.ballidx-5a4aba766d557d6a"><code>MEDYAN.BallIdx</code></a></li>
   </ul></li>
@@ -383,6 +384,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="medyan.intripointidx-1228a5cc6e98a6e0" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.intripointidx-1228a5cc6e98a6e0"><a href="../../../docstrings/medyan.intripointidx-1228a5cc6e98a6e0.html"><code>MEDYAN.InTriPointIdx</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>InTriPointIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An index identifying a specific in-triangle point on a membrane mesh. In-triangle points are particles embedded in a triangular face of a membrane, parameterized by barycentric coordinates, that diffuse along the surface during BAOAB integration and can participate in mechanical links and chemical reactions.</p>
+<p>This index may be invalidated by <code>remove_in_tri_point!</code> (swap-erase reorders the storage) or by membrane removal. Mesh adaptation does <strong>not</strong> invalidate the index — it only changes which triangle the point is on.</p>
+<p>Use a <code>Tag{InTriPointIdx}</code> for a long-term reference that remains valid across mutations.</p>
+<section id="constructors-4" class="level1">
+<h1>Constructors</h1>
+<ul>
+<li><code>InTriPointIdx()</code>: Creates a null in-triangle point index with both indices set to 0</li>
+<li><code>InTriPointIdx(memb_idx::Integer, pt_idx::Integer)</code>: Creates an in-triangle point index for the specified membrane and point</li>
+</ul>
+</section>
+<section id="fields-4" class="level1">
+<h1>Fields</h1>
+<ul>
+<li><code>memb_idx::UInt32</code>: Index of the membrane in the context</li>
+<li><code>pt_idx::UInt32</code>: Index of the in-triangle point within <code>m.metaattr.intripoints</code></li>
+</ul>
+</section>
+<section id="related-functions-4" class="level1">
+<h1>Related Functions</h1>
+<p>See <a href="../../../docstrings/medyan.make_in_tri_point--faa3c2ed616d1a17.html"><code>make_in_tri_point!</code></a>, <a href="../../../docstrings/medyan.remove_in_tri_point--81a2b95db9628dce.html"><code>remove_in_tri_point!</code></a>, <a href="../../../docstrings/medyan.update_in_tri_point--79239ce2a85134a0.html"><code>update_in_tri_point!</code></a>.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.anchor-0dc7f056c6ce8b51" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.anchor-0dc7f056c6ce8b51"><a href="../../../docstrings/medyan.anchor-0dc7f056c6ce8b51.html"><code>MEDYAN.Anchor</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -391,9 +426,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Anchor <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Anchor <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A position and directions fixed in the simulation frame. Useful for creating links to a point that doesn’t move with any dynamic elements.</p>
-<section id="constructors-4" class="level1">
+<section id="constructors-5" class="level1">
 <h1>Constructors</h1>
 <ul>
 <li><code>Anchor()</code>: Creates a null anchor with NaN position, NaN directions, and state 0</li>
@@ -404,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Anchor(c::Context, pos::SVector{3, Float64})</code>: Construct from context at the given position</li>
 </ul>
 </section>
-<section id="fields-4" class="level1">
+<section id="fields-5" class="level1">
 <h1>Fields</h1>
 <ul>
 <li><code>pos::SVector{3, Float64}</code>: 3D position coordinates</li>
@@ -424,10 +459,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>BallIdx <span class="op">&lt;:</span><span class="dt"> Place</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>An index referring to a ball (spherical particle) in the simulation. Balls are stored in the <code>balls</code> vector of the <code>Context</code> and represent spherical objects with position, radius, and stiffness that can participate in mechanical interactions and chemical reactions.</p>
 <p>This index may be invalidated by ball removal or reordering. Use a <code>Tag{BallIdx}</code> for a long-term reference that remains valid across mutations.</p>
-<section id="constructors-5" class="level1">
+<section id="constructors-6" class="level1">
 <h1>Constructors</h1>
 <ul>
 <li><code>BallIdx()</code>: Creates a null ball index with idx 0</li>
@@ -437,13 +472,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>BallIdx(c::Context, t::Tag{BallIdx})</code>: Construct from a tag</li>
 </ul>
 </section>
-<section id="fields-5" class="level1">
+<section id="fields-6" class="level1">
 <h1>Fields</h1>
 <ul>
 <li><code>idx::Int64</code>: Index of the ball in the context’s <code>balls</code> vector</li>
 </ul>
 </section>
-<section id="related-functions-4" class="level1">
+<section id="related-functions-5" class="level1">
 <h1>Related Functions</h1>
 <p>See <a href="../../../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a>, <a href="../../../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a>, and <a href="../../../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a> for creating, removing, and modifying balls.</p>
 </section>

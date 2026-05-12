@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – MEDYAN.jl</title>
+<title>bagogab – MEDYAN.jl</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -145,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/index.html">Table of Contents</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../explanation/bagogab.html">BAGOGAB integrator for in-triangle points</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -163,26 +212,20 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Table of Contents</span></a>
+  <a href="../explanation/chem-boundary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chem Boundary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/sitesinfo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sites</span></a>
+  <a href="../explanation/collision-layers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Collision Layers and No-Collide Masks</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/fileformats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">File Formats</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../docstrings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Docstrings</span></a>
+  <a href="../explanation/bagogab.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">BAGOGAB integrator for in-triangle points</span></a>
   </div>
 </li>
     </ul>
@@ -195,13 +238,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of Contents</a>
+  <li><a href="#bagogab-integrator-for-in-triangle-points" id="toc-bagogab-integrator-for-in-triangle-points" class="nav-link active" data-scroll-target="#bagogab-integrator-for-in-triangle-points">BAGOGAB integrator for in-triangle points</a>
   <ul class="collapse">
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  <li><a href="#utilities" id="toc-utilities" class="nav-link" data-scroll-target="#utilities">Utilities</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#setup-one-triangle-with-one-in-triangle-point" id="toc-setup-one-triangle-with-one-in-triangle-point" class="nav-link" data-scroll-target="#setup-one-triangle-with-one-in-triangle-point">Setup: one triangle with one in-triangle point</a></li>
+  <li><a href="#a-non-physical-but-tractable-lagrangian" id="toc-a-non-physical-but-tractable-lagrangian" class="nav-link" data-scroll-target="#a-non-physical-but-tractable-lagrangian">A non-physical but tractable Lagrangian</a></li>
+  <li><a href="#hamiltonian" id="toc-hamiltonian" class="nav-link" data-scroll-target="#hamiltonian">Hamiltonian</a></li>
+  <li><a href="#equations-of-motion" id="toc-equations-of-motion" class="nav-link" data-scroll-target="#equations-of-motion">Equations of motion</a></li>
+  <li><a href="#scaling-up-to-the-full-medyan-system" id="toc-scaling-up-to-the-full-medyan-system" class="nav-link" data-scroll-target="#scaling-up-to-the-full-medyan-system">Scaling up to the full MEDYAN system</a></li>
+  <li><a href="#splitting-strategy" id="toc-splitting-strategy" class="nav-link" data-scroll-target="#splitting-strategy">Splitting strategy</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/reference/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/bagogab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -209,181 +257,132 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="table-of-contents" class="level1">
-<h1>Table of Contents</h1>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<div class="div" style="column-width: 14em;">
-<section id="define-a-system" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="define-a-system">Define a System</h5>
-<p><a href="../docstrings/src/sysdefs.qmd"><code>src/sysdefs.jl</code></a></p>
-<ul>
-<li><a href="../docstrings/medyan.sysdef-c0c4da7a2b3d4fef.html"><code>MEDYAN.SysDef</code></a></li>
-<li><a href="../docstrings/medyan.def_diffusing_species--e07d4f4fa5062c57.html"><code>def_diffusing_species!</code></a></li>
-<li><a href="../docstrings/medyan.def_fixed_species--490fb150d53e2870.html"><code>def_fixed_species!</code></a></li>
-<li><a href="../docstrings/medyan.def_reaction--60ae13f69a537c68.html"><code>def_reaction!</code></a></li>
-<li><a href="../docstrings/medyan.def_fila_type--5a1f6234215ea82d.html"><code>def_fila_type!</code></a></li>
-<li><a href="../docstrings/medyan.def_fila_reaction--070b0fa01eaea608.html"><code>def_fila_reaction!</code></a></li>
-<li><a href="../docstrings/medyan.def_fila_tip_reaction--488aa3a14ff39688.html"><code>def_fila_tip_reaction!</code></a></li>
-<li><a href="../docstrings/medyan.def_link_type--339fe050fe131631.html"><code>def_link_type!</code></a></li>
-</ul>
+<section id="bagogab-integrator-for-in-triangle-points" class="level1">
+<h1>BAGOGAB integrator for in-triangle points</h1>
+<p>When a simulation contains in-triangle points, <a href="../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> does not run the textbook BAOAB Langevin splitting. It runs <strong>BAGOGAB</strong> — BAOAB with an extra symmetric pair of “G” sub-steps inserted between A and O. This page derives the Hamiltonian that the G step integrates, describes how the splitting maps to in-triangle motion on the membrane mesh, and explains how the velocity thermostat handles in-triangle points without a matrix square root.</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>A naive way to keep a particle stuck to a triangle mesh is to add an attractive point-to-membrane force pulling it onto the surface, but then the integrator has to track which triangle each particle currently belongs to and keep the attracting force pointed at the <em>right</em> one as the mesh deforms and the point moves — a bookkeeping problem that gets ugly fast.</p>
+<p>A second option is to step the particle without holding it to the mesh and then enforce the in-triangle constraint with a SHAKE-style solve. Done correctly, this solve has to couple across the entire connected mesh: a constraint impulse on a point requires an equal-and-opposite impulse on the three vertices of its current triangle, which changes the motion of those vertices and can violate the constraints of every other in-triangle point on the same triangle — or on any neighbouring triangle, since the vertices are shared along edges. A future direction could be an approximate, <em>local</em> constraint solver that avoids this global iteration.</p>
+<p>BAGOGAB sidesteps both. We construct a Hamiltonian (derived below) in which the in-triangle motion has its own kinetic term. The G step then exactly integrates pure geodesic drift on the frozen mesh — a cheap per-particle operation with no global solve and no attracting force — at the cost of an additional pair of half-steps inside the BAOAB splitting.</p>
 </section>
-<section id="construct-a-context" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="construct-a-context">Construct a Context</h5>
-<ul>
-<li><a href="../docstrings/medyan.context-736368ed32b08894.html" title="#MEDYAN.Context"><code>MEDYAN.Context</code></a></li>
-<li><a href="../docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html" title="#MEDYAN.CubicGrid"><code>CubicGrid</code></a></li>
-<li><code>deepcopy</code>, note: rng is shared</li>
-</ul>
+<section id="setup-one-triangle-with-one-in-triangle-point" class="level2">
+<h2 class="anchored" data-anchor-id="setup-one-triangle-with-one-in-triangle-point">Setup: one triangle with one in-triangle point</h2>
+<p>Consider a single triangle in 3-space with vertices <span class="math inline">\(R_1, R_2, R_3\)</span>, vertex masses <span class="math inline">\(M_1, M_2, M_3\)</span>, and vertex momenta <span class="math inline">\(P_1, P_2, P_3\)</span>. A point particle of mass <span class="math inline">\(m\)</span> lives on the triangle. Its 3D position <span class="math inline">\(r\)</span> is determined by its barycentric coordinates <span class="math inline">\((\lambda_1, \lambda_2, \lambda_3)\)</span> constrained by <span class="math inline">\(\lambda_1 + \lambda_2 + \lambda_3 = 1\)</span>:</p>
+<p><span class="math display">\[
+r = \lambda_1 R_1 + \lambda_2 R_2 + \lambda_3 R_3.
+\]</span></p>
+<p>Take <span class="math inline">\((\lambda_2, \lambda_3)\)</span> as the independent coordinates with <span class="math inline">\(\lambda_1 \equiv 1 - \lambda_2 - \lambda_3\)</span>. Define the edge matrix and metric:</p>
+<p><span class="math display">\[
+A = \begin{bmatrix} R_2 - R_1 &amp; R_3 - R_1 \end{bmatrix}, \qquad G = A^{\mathsf T} A.
+\]</span></p>
+<p>Then <span class="math inline">\(r = R_1 + A \lambda\)</span> with <span class="math inline">\(\lambda = (\lambda_2, \lambda_3)\)</span>.</p>
+<p>There is a potential energy <span class="math inline">\(PE(R_1, R_2, R_3, r)\)</span>. Write <span class="math inline">\(f = -\partial PE / \partial r\)</span> for the force on the particle and <span class="math inline">\(F_i = -\partial PE / \partial R_i\)</span> for the explicit vertex forces (the chain-rule contribution from <span class="math inline">\(r\)</span> will appear separately below).</p>
 </section>
-<section id="mutate-a-context" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="mutate-a-context">Mutate a Context</h5>
-<ul>
-<li><p><a href="../docstrings/src/context.html#base.empty--418304748816268d" title="/docstrings/src/context.qmd#Base.empty!"><code>Base.empty!</code></a></p></li>
-<li><p><a href="../docstrings/src/trajectory-io/snapshot.html#medyan.load_snapshot--e534be293ce74465" title="/docstrings/src/trajectory-io/snapshot.qmd#load_snapshot!"><code>load_snapshot!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.add_diffusing_count--78fc5fd22c94a7fa" title="/docstrings/src/context.qmd#add_diffusing_count!"><code>add_diffusing_count!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.add_fixed_count--51020c406ff1afef" title="/docstrings/src/context.qmd#add_fixed_count!"><code>add_fixed_count!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.adddiffusingcount_rand--9d3ddfabbceeef92" title="/docstrings/src/context.qmd#adddiffusingcount_rand!"><code>adddiffusingcount_rand!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.set_time--a6dd8f73f68a3759" title="/docstrings/src/context.qmd#set_time!"><code>set_time!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.set_enable_collision--ff3352f0a3c63ab0" title="/docstrings/src/context.qmd#set_enable_collision!"><code>set_enable_collision!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.set_chem_boundary--8446b49a230e3146" title="/docstrings/src/context.qmd#set_chem_boundary!"><code>set_chem_boundary!</code></a></p></li>
-<li><p><a href="../docstrings/src/context.html#medyan.set_mechboundary--b5e26b6b690256aa" title="/docstrings/src/context.qmd#set_mechboundary!"><code>set_mechboundary!</code></a></p></li>
-</ul>
+<section id="a-non-physical-but-tractable-lagrangian" class="level2">
+<h2 class="anchored" data-anchor-id="a-non-physical-but-tractable-lagrangian">A non-physical but tractable Lagrangian</h2>
+<p>The “physically honest” particle velocity in 3-space is <span class="math inline">\(\dot r = \dot R_1 + \dot A\,\lambda + A\,\dot\lambda\)</span>. Using this in the kinetic energy couples the particle’s motion to the vertices’ motion in a way that is awkward to integrate symplectically. Instead, in the spirit of the Andersen barostat <span class="citation" data-cites="andersen1980molecular">(<a href="#ref-andersen1980molecular" role="doc-biblioref">Andersen 1980</a>)</span>, drop the <span class="math inline">\(\dot R_1 + \dot A\,\lambda\)</span> contribution and use only the in-plane particle velocity, ignoring vertex motion:</p>
+<p><span class="math display">\[
+v := A \dot\lambda = \dot\lambda_1 R_1 + \dot\lambda_2 R_2 + \dot\lambda_3 R_3,
+\qquad \dot\lambda_1 := -(\dot\lambda_2 + \dot\lambda_3).
+\]</span></p>
+<p>The resulting Lagrangian is</p>
+<p><span class="math display">\[
+\mathcal{L} = \tfrac{1}{2} m\,(A\dot\lambda)^{\mathsf T} (A\dot\lambda)
+            + \tfrac{1}{2} \sum_i M_i\,\dot R_i^{\,2}
+            - PE(R_1, R_2, R_3, R_1 + A\lambda).
+\]</span></p>
+<p>This kinetic term is not physically correct — it ignores the motion the particle inherits from the moving vertices — but, as in the Andersen barostat, integrating out the momenta at temperature <span class="math inline">\(kT\)</span> gives the configurational marginal <span class="math inline">\(\rho \propto \sqrt{\det G}\,\exp(-PE/kT)\)</span>. The <span class="math inline">\(\sqrt{\det G}\)</span> is exactly the triangle area Jacobian <span class="math inline">\(dA = \sqrt{\det G}\,d\lambda_2\,d\lambda_3\)</span>, so in physical <span class="math inline">\(r\)</span>-space the equilibrium is the correct <span class="math inline">\(\exp(-PE/kT)\,dA\)</span>.</p>
 </section>
-<section id="performance-tuning" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="performance-tuning">Performance Tuning</h5>
-<ul>
-<li><a href="../docstrings/medyan.set_chem_cylinder_cell_list_grid_spacing--b0d0c7ec07ff0f36.html"><code>set_chem_cylinder_cell_list_grid_spacing!</code></a></li>
-<li><a href="../docstrings/medyan.set_fila_tip_cell_list_grid_spacing--054aa74846e9cb85.html"><code>set_fila_tip_cell_list_grid_spacing!</code></a></li>
-<li><a href="../docstrings/medyan.set_ball_cell_list_grid_spacing--4f8014d797e5adc0.html"><code>set_ball_cell_list_grid_spacing!</code></a></li>
-</ul>
+<section id="hamiltonian" class="level2">
+<h2 class="anchored" data-anchor-id="hamiltonian">Hamiltonian</h2>
+<p>Conjugate momenta:</p>
+<p><span class="math display">\[
+p_\lambda = \partial \mathcal{L}/\partial \dot\lambda = m\,G\,\dot\lambda,
+\qquad
+P_i = \partial \mathcal{L}/\partial \dot R_i = M_i\,\dot R_i.
+\]</span></p>
+<p>Legendre transform gives</p>
+<p><span class="math display">\[
+\mathcal{H} = \frac{1}{2 m}\,p_\lambda^{\mathsf T} G^{-1} p_\lambda
+            + \sum_i \frac{1}{2 M_i}\,P_i^{\,2}
+            + PE(R_1, R_2, R_3, R_1 + A\lambda).
+\]</span></p>
 </section>
-<section id="balls" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="balls">Balls</h5>
+<section id="equations-of-motion" class="level2">
+<h2 class="anchored" data-anchor-id="equations-of-motion">Equations of motion</h2>
+<p>Differentiating <span class="math inline">\(\mathcal{H}\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\dot\lambda    &amp;= \partial \mathcal{H}/\partial p_\lambda  &amp;&amp;= \tfrac{1}{m}\,G^{-1} p_\lambda, \\
+\dot{p}_\lambda &amp;= -\partial \mathcal{H}/\partial \lambda  &amp;&amp;= A^{\mathsf T} f, \\
+\dot R_i       &amp;= \partial \mathcal{H}/\partial P_i        &amp;&amp;= \tfrac{1}{M_i}\,P_i, \\
+\dot P_i       &amp;= -\partial \mathcal{H}/\partial R_i       &amp;&amp;= F_i + \lambda_i\,f + m\,\dot\lambda_i\,v, \\
+v              &amp;= A\dot\lambda                              &amp;&amp;= \tfrac{1}{m}\,A\,G^{-1} p_\lambda.
+\end{aligned}
+\]</span></p>
+<p>Three contributions to <span class="math inline">\(\dot P_i\)</span>:</p>
 <ul>
-<li><a href="../docstrings/medyan.make_ball--ae25720dbd2acec6.html"><code>make_ball!</code></a></li>
-<li><a href="../docstrings/medyan.remove_ball--57fbfd7855882ccd.html"><code>remove_ball!</code></a></li>
-<li><a href="../docstrings/medyan.update_ball--83d0c0fbbdbab087.html"><code>update_ball!</code></a></li>
+<li><span class="math inline">\(F_i\)</span> — explicit vertex-vertex potential gradient (e.g.&nbsp;neighbouring edge springs).</li>
+<li><span class="math inline">\(\lambda_i\,f\)</span> — chain-rule kick from <span class="math inline">\(r = R_1 + A\lambda\)</span>. The particle pushes on each vertex weighted by that vertex’s barycentric coordinate.</li>
+<li><span class="math inline">\(m\,\dot\lambda_i\,v\)</span> — the <strong>recoil</strong> term, from differentiating <span class="math inline">\(G^{-1}\)</span> with respect to <span class="math inline">\(R_i\)</span>. It is the configurational force the vertices must feel to reproduce the equilibrium distribution of a real massive particle constrained to the surface — the “2D gas” surface tension reduction that pushes outward on the mesh and bounces off triangle boundaries.</li>
 </ul>
+<p>Because <span class="math inline">\(\sum_i \dot\lambda_i = 0\)</span> and <span class="math inline">\(\sum_i \lambda_i = 1\)</span>, summing <span class="math inline">\(\dot P_i\)</span> over the three vertices gives <span class="math inline">\(\sum_i F_i + f\)</span>: the vertex springs cancel pairwise and the recoils sum to zero, so total momentum tracks just the net external force on the system.</p>
 </section>
-<section id="filaments" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="filaments">Filaments</h5>
+<section id="scaling-up-to-the-full-medyan-system" class="level2">
+<h2 class="anchored" data-anchor-id="scaling-up-to-the-full-medyan-system">Scaling up to the full MEDYAN system</h2>
+<p>The toy above is one triangle plus one in-triangle point. A real simulation is much bigger. The state is organised around <strong>beads</strong> — the 3D positions that the user-defined <span class="math inline">\(PE\)</span> is a function of. Concretely a bead is one of:</p>
 <ul>
-<li><a href="../docstrings/medyan.make_fila--f2346a40b4792de5.html"><code>make_fila!</code></a></li>
-<li><a href="../docstrings/medyan.make_fila_rand--7c63c7a09ece60c8.html"><code>make_fila_rand!</code></a></li>
-<li><a href="../docstrings/medyan.remove_fila--9938182befad3cb9.html"><code>remove_fila!</code></a></li>
-<li><a href="../docstrings/medyan.update_fila_mono_state--02d30b25ab495f22.html"><code>update_fila_mono_state!</code></a></li>
-<li><a href="../docstrings/medyan.polymerize_fila--ef96193868627e48.html"><code>polymerize_fila!</code></a></li>
-<li><a href="../docstrings/medyan.depolymerize_fila--7aae43ce27544212.html"><code>depolymerize_fila!</code></a></li>
-<li><a href="../docstrings/medyan.sever_fila--161c869bc5d06d6a.html"><code>sever_fila!</code></a></li>
-<li><a href="../docstrings/medyan.num_fila_types-1698969c2a51ad88.html"><code>num_fila_types</code></a></li>
-<li><a href="../docstrings/medyan.fila_type_name-6e5acc13d811899b.html"><code>fila_type_name</code></a></li>
-<li><a href="../docstrings/medyan.fila_typeid-1616b490df0cda1e.html"><code>fila_typeid</code></a></li>
-<li><a href="../docstrings/medyan.num_fila-6aa6f32d094c895e.html"><code>num_fila</code></a></li>
-<li><a href="../docstrings/medyan.fila_mono_ids-946d70c3169126dd.html"><code>fila_mono_ids</code></a></li>
-<li><a href="../docstrings/medyan.fila_mono_states-bf83d6c80fc4d691.html"><code>fila_mono_states</code></a></li>
-<li><a href="../docstrings/medyan.fila_num_nodes-a3efee39b1440945.html"><code>fila_num_nodes</code></a></li>
-<li><a href="../docstrings/medyan.fila_node_mids-35de9fc339cbec42.html"><code>fila_node_mids</code></a></li>
-<li><a href="../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a></li>
-<li><a href="../docstrings/medyan.fila_chem_positions-4bb01f692fdc715c.html"><code>fila_chem_positions</code></a></li>
-<li><a href="../docstrings/medyan.fila_tip_tags-f05dfa7a845b20ea.html"><code>fila_tip_tags</code></a></li>
-<li><a href="../docstrings/medyan.fila_num_unmin_ends-09448ccb823dbeac.html"><code>fila_num_unmin_ends</code></a></li>
-<li><a href="../docstrings/medyan.fila_load_force-89938451df4263a3.html"><code>fila_load_force</code></a></li>
-<li><a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code>fila_tip_snapshot</code></a></li>
-<li><a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a></li>
-<li><a href="../docstrings/medyan.set_fila_tip_extension--4067d098840cde42.html"><code>set_fila_tip_extension!</code></a></li>
-<li><a href="../docstrings/medyan.pick_rand_fila_mono_site-6641f66ed8873af1.html"><code>pick_rand_fila_mono_site</code></a></li>
-<li><a href="../docstrings/medyan.pick_rand_fila_tip_site-d1418d43027273e9.html"><code>pick_rand_fila_tip_site</code></a></li>
+<li>a <strong>filament node</strong>;</li>
+<li>a <strong>filament material direction</strong> unit vector (twistable filaments);</li>
+<li>a <strong>membrane vertex</strong>;</li>
+<li>a <strong>ball center</strong>;</li>
+<li>an <strong>in-triangle point</strong>, whose 3D position <span class="math inline">\(r = R_1 + A\lambda\)</span> is derived from its current triangle’s vertices and its barycentric coords.</li>
 </ul>
+<p>A bead is a 3D position, not a DOF. The independent DOFs are a subset or reparametrisation of the bead coordinates — three Cartesian coords for an unconstrained bead, but only two barycentric coords for an in-triangle point, and material direction unit vectors and filament-length constraints remove further DOFs.</p>
+<p>Each bead carries a 3D velocity, a mass <span class="math inline">\(M\)</span>, and a friction <span class="math inline">\(\gamma\)</span>. The user-defined <span class="math inline">\(PE\)</span> is a single function of every bead’s 3D position — filament stretching/bending/twisting, membrane bending/area, ball–object collisions, external fields, etc. — and the conservative force on a bead is <span class="math inline">\(F = -\partial PE / \partial(\text{its 3D position})\)</span>.</p>
+<p>Further changes from the toy:</p>
+<ol type="1">
+<li><strong>The membrane is a triangle mesh.</strong> Instead of a single isolated triangle, a membrane is a collection of triangles glued along shared edges. An in-triangle point lives in one <em>current</em> triangle at a time and must be able to transfer between neighboring triangles as smoothly as possible as it moves.</li>
+<li><strong>Langevin dynamics at temperature <span class="math inline">\(T\)</span>.</strong> To sample Langevin dynamics and control the diffusion coefficients we add an Ornstein–Uhlenbeck velocity update — the <em>O</em> step — to each bead independently.</li>
+</ol>
 </section>
-<section id="membranes" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="membranes">Membranes</h5>
+<section id="splitting-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-strategy">Splitting strategy</h2>
+<p>Write the Hamiltonian as three additive pieces and a friction/noise piece:</p>
 <ul>
-<li><a href="../docstrings/medyan.make_memb--3b9234d85f7612ed.html"><code>make_memb!</code></a></li>
-<li><a href="../docstrings/medyan.make_memb_sphere--5ed5984bc3221359.html"><code>make_memb_sphere!</code></a></li>
-<li><a href="../docstrings/medyan.make_memb_rectangle--68b3d30b96f64135.html"><code>make_memb_rectangle!</code></a></li>
-<li><a href="../docstrings/medyan.remove_memb--716c74cc77072741.html"><code>remove_memb!</code></a></li>
-<li><a href="../docstrings/medyan.update_memb_param--8839757eb0617b72.html"><code>update_memb_param!</code></a></li>
+<li><p><strong>B</strong> — conservative potential <span class="math inline">\(PE\)</span> (a function of every bead’s 3D position). Generates a kick on every bead’s momentum: <span class="math inline">\(\dot P_b = -\partial PE/\partial R_b\)</span> for an unconstrained Cartesian bead, and for each in-triangle point <span class="math inline">\(\dot p_\lambda = A^{\mathsf T} f\)</span> together with the chain-rule contribution <span class="math inline">\(\lambda_i\,f\)</span> to its three triangle vertices.</p></li>
+<li><p><strong>A</strong> — free-bead kinetic energy <span class="math inline">\(\sum_b P_b^{\,2}/(2 M_b)\)</span>, summed over all non-intri beads. Generates uniform drift of each bead at fixed velocity. Filament beads carry holonomic constraints (fixed link length, plus material-direction perpendicularity for twistable filaments); these are enforced by a SHAKE-style solver that, per filament, sets up a block-tridiagonal matrix system and Newton-iterates the constraint impulses on velocity so that the post-drift positions land on the constraint manifold. This is <em>not</em> a simple projection: the constraints along a single filament are coupled and have to be solved jointly. For each in-triangle point, <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(p_\lambda\)</span> are canonical constants of this flow, but its in-plane 3D velocity <span class="math inline">\(v = A\,G^{-1}\,p_\lambda / m\)</span> changes because the supporting triangle’s vertices (and hence <span class="math inline">\(A\)</span>) have moved.</p></li>
+<li><p><strong>G</strong> — in-triangle kinetic energy <span class="math inline">\(\sum_{\mathrm{intri}} p_\lambda^{\mathsf T} G^{-1} p_\lambda / (2 m)\)</span>, summed over every in-triangle point. For each one: generates <span class="math inline">\(\dot\lambda = G^{-1} p_\lambda / m\)</span> — straight-line geodesic motion of the particle along the <em>frozen</em> mesh — and a recoil <span class="math inline">\(\dot P_i = m\,\dot\lambda_i\,v\)</span> on the three vertices of the current triangle.</p>
+<p>When the geodesic reaches an edge of the current triangle, the particle’s 3D velocity is rotated along the edge to be in the plane of the new triangle, or reflected if that edge is a mesh border. In-triangle kinetic energy <span class="math inline">\(\tfrac12 m\,|v|^2\)</span> is conserved across the transfer. This transfer is <em>not</em> <span class="math inline">\(C^1\)</span>-smooth, and there are two independent sources of kink. First, the particle’s velocity direction jumps wherever the edge has a nonzero dihedral angle — at curved interior edges, and at every border reflection. Second, even on a perfectly flat mesh the <em>set</em> of vertices receiving the recoil <span class="math inline">\(m\,\dot\lambda_i\,v\)</span> changes discretely at the crossing: the old apex stops being recoiled and the new apex starts, so each affected vertex’s <span class="math inline">\(\dot P_i\)</span> has a step discontinuity and <span class="math inline">\(P_i\)</span> has a kink. Kinks like these are known to cause long-time energy-conservation problems for symplectic integrators; see <span class="citation" data-cites="bond2007stabilized">Bond and Leimkuhler (<a href="#ref-bond2007stabilized" role="doc-biblioref">2007</a>)</span> for analysis and stabilized schemes in the hard-sphere setting.</p></li>
+<li><p><strong>O</strong> — Ornstein–Uhlenbeck thermostat (added on top of the splitting of <span class="math inline">\(\mathcal{H}\)</span>). The same isotropic 3D rule applies to every bead’s velocity:</p>
+<p><span class="math display">\[
+u \leftarrow c_1\,u + c_2\,\xi, \qquad
+c_1 = \exp(-\gamma\,dt / M), \qquad
+c_2^{\,2} = \tfrac{k_B T}{M}\,(1 - c_1^{\,2}),
+\]</span></p>
+<p>with <span class="math inline">\(\xi\)</span> a fresh standard normal 3-vector, <span class="math inline">\(M\)</span> the bead’s mass, and <span class="math inline">\(\gamma\)</span> its friction coefficient (MEDYAN units pN·s/nm). <span class="math inline">\(c_2^{\,2}\)</span> is fixed by fluctuation–dissipation at temperature <span class="math inline">\(T\)</span>.</p>
+<p>For in-triangle points the canonical variable is <span class="math inline">\(p_\lambda\)</span>, with equilibrium covariance <span class="math inline">\(m\,k_B T\,G\)</span>, so the textbook OU step <span class="math inline">\(p_\lambda \leftarrow c_1\,p_\lambda + \sqrt{m\,k_B T(1 - c_1^{\,2})}\,G^{1/2}\xi_2\)</span> would need the matrix square root <span class="math inline">\(G^{1/2}\)</span>. The generic rule on <span class="math inline">\(v\)</span> is the same step in disguise: applying <span class="math inline">\(p_\lambda = m\,A^{\mathsf T} v\)</span> to <span class="math inline">\(v^{\mathrm{new}} = c_1 v + c_2 \xi\)</span> gives <span class="math inline">\(p_\lambda^{\mathrm{new}} = c_1\,p_\lambda + c_2\,m\,A^{\mathsf T}\xi\)</span>, with the new noise having covariance <span class="math inline">\(c_2^{\,2}\,m^2\,A^{\mathsf T} A = m\,k_B T(1 - c_1^{\,2})\,G\)</span> — exactly matching the <span class="math inline">\(G^{1/2}\xi_2\)</span> noise above. The <span class="math inline">\(A^{\mathsf T}\)</span> projection does the work of <span class="math inline">\(G^{1/2}\)</span> for free and discards the out-of-plane part of the 3D draw on its next application (the following G or A step).</p></li>
 </ul>
+<p>Applying a symmetric Strang splitting one step at a time yields the sequence</p>
+<p><span class="math display">\[
+B(\tfrac{dt}{2})\;A(\tfrac{dt}{2})\;G(\tfrac{dt}{2})\;O(dt)\;G(\tfrac{dt}{2})\;A(\tfrac{dt}{2})\;B(\tfrac{dt}{2})
+\]</span></p>
+<p>i.e.&nbsp;<strong>BAGOGAB</strong>. With no in-triangle points, the G sub-steps are empty and the sequence collapses to plain BAOAB, which is why the public function is still called <a href="../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a>.</p>
+
+
+
 </section>
-<section id="links" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="links">Links</h5>
-<ul>
-<li><a href="../docstrings/medyan.place-1e917fb34be5e644.qmd"><code>Place</code></a></li>
-<li><a href="../docstrings/medyan.filaidx-89c89b8bbef4dbda.html"><code>FilaIdx</code></a></li>
-<li><a href="../docstrings/medyan.filatipidx-460debd2fef11ad4.html"><code>FilaTipIdx</code></a></li>
-<li><a href="../docstrings/medyan.filamonoidx-94fe5a1112741990.html"><code>FilaMonoIdx</code></a></li>
-<li><a href="../docstrings/medyan.membvertidx-4b26f8c9d72f1f49.html"><code>MembVertIdx</code></a></li>
-<li><a href="../docstrings/medyan.intripointidx-1228a5cc6e98a6e0.html"><code>InTriPointIdx</code></a></li>
-<li><a href="../docstrings/medyan.anchor-0dc7f056c6ce8b51.html"><code>Anchor</code></a></li>
-<li><a href="../docstrings/medyan.ballidx-5a4aba766d557d6a.html"><code>BallIdx</code></a></li>
-<li><a href="../docstrings/medyan.tag-e7cddb47b7248b8e.qmd"><code>Tag</code></a></li>
-<li><a href="../docstrings/medyan.tag--518214eeb95e748e.html"><code>tag!</code></a></li>
-<li><a href="../docstrings/medyan.make_link--0fd0bab9dac08837.html"><code>make_link!</code></a></li>
-<li><a href="../docstrings/medyan.remove_link--01531e04ef5077e7.html"><code>remove_link!</code></a></li>
-<li><a href="../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>update_link!</code></a></li>
-<li><a href="../docstrings/medyan.make_anchor--5895a6f222d457ad.html"><code>make_anchor!</code></a></li>
-<li><a href="../docstrings/medyan.remove_anchor--5ded3fc420c1ef42.html"><code>remove_anchor!</code></a></li>
-<li><a href="../docstrings/medyan.update_anchor--d2dbcaf15f4f7c90.html"><code>update_anchor!</code></a></li>
-<li><a href="../docstrings/medyan.make_in_tri_point--faa3c2ed616d1a17.html"><code>make_in_tri_point!</code></a></li>
-<li><a href="../docstrings/medyan.remove_in_tri_point--81a2b95db9628dce.html"><code>remove_in_tri_point!</code></a></li>
-<li><a href="../docstrings/medyan.update_in_tri_point--79239ce2a85134a0.html"><code>update_in_tri_point!</code></a></li>
-<li><a href="../docstrings/medyan.num_link_types-2d203a5799bbfdcc.html"><code>num_link_types</code></a></li>
-<li><a href="../docstrings/medyan.link_type_name-275d5954d07419f4.html"><code>link_type_name</code></a></li>
-<li><a href="../docstrings/medyan.link_typeid-a14290ff2f9378f7.html"><code>link_typeid</code></a></li>
-<li><a href="../docstrings/medyan.get_all_links-fe0d12c0df825f7e.html"><code>get_all_links</code></a></li>
-<li><a href="../docstrings/medyan.get_all_tags-3a8e6bc0634c8a4d.html"><code>get_all_tags</code></a></li>
-<li><a href="../docstrings/medyan.tag2links-e8376daf0b29e2fd.html"><code>tag2links</code></a></li>
-<li><a href="../docstrings/medyan.place2links-0b74317627f4b920.html"><code>place2links</code></a></li>
-<li><a href="../docstrings/medyan.tag_exists-c112bb84254d0b58.html"><code>tag_exists</code></a></li>
-<li><a href="../docstrings/medyan.place_exists-fcab2f7674b282f4.html"><code>place_exists</code></a></li>
-<li><a href="../docstrings/medyan.link_exists-0f95437072169f8d.html"><code>link_exists</code></a></li>
-<li><a href="../docstrings/medyan.link2tags-645330bedbf54254.html"><code>link2tags</code></a></li>
-<li><a href="../docstrings/medyan.tag2place-68ab43363a4c1760.html"><code>tag2place</code></a></li>
-<li><a href="../docstrings/medyan.place2tag-9d62565424ca3705.html"><code>place2tag</code></a></li>
-<li><a href="../docstrings/medyan.has_tag-d550430128572035.html"><code>has_tag</code></a></li>
-<li><a href="../docstrings/medyan.get_position-5ca1f4a736664040.html"><code>get_position</code></a></li>
-<li><a href="../docstrings/medyan.num_directions-89697a0fca8de12f.html"><code>num_directions</code></a></li>
-<li><a href="../docstrings/medyan.get_directions-326e10fbe4341527.html"><code>get_directions</code></a></li>
-<li><a href="../docstrings/medyan.get_material_frame-33a63ae3a3b9c211.html"><code>get_material_frame</code></a></li>
-<li><a href="../docstrings/medyan.get_chem_state-a69539a7b114572a.html"><code>get_chem_state</code></a></li>
-<li><a href="../docstrings/medyan.get_state-e99d22cacff37374.html"><code>get_state</code></a></li>
-<li><a href="../docstrings/medyan.get_bond_states-b314ae6ee2a2b3cf.html"><code>get_bond_states</code></a></li>
-<li><a href="../docstrings/medyan.get_bond_enabled-c3461fb32deb4276.html"><code>get_bond_enabled</code></a></li>
-<li><a href="../docstrings/medyan.get_reaction_enabled-95b8e03d3766db53.html"><code>get_reaction_enabled</code></a></li>
-<li><a href="../docstrings/medyan.is_minimized-ff3858ada5447c46.html"><code>is_minimized</code></a></li>
-<li><a href="../docstrings/medyan.get_link_mechanics-57ba2f1a141d0156.html"><code>get_link_mechanics</code></a></li>
-</ul>
 </section>
-<section id="run-a-simulation" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="run-a-simulation">Run a simulation</h5>
-<ul>
-<li><a href="../docstrings/medyan.apply_chem_boundary--86fcf1aed37adaf6.html"><code>apply_chem_boundary!</code></a></li>
-<li><a href="../docstrings/medyan.run_chemistry--dda22fac5c555b9e.html"><code>run_chemistry!</code></a></li>
-<li><a href="../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a></li>
-</ul>
-</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-andersen1980molecular" class="csl-entry" role="listitem">
+Andersen, Hans C. 1980. <span>“Molecular Dynamics Simulations at Constant Pressure and/or Temperature.”</span> <em>The Journal of Chemical Physics</em> 72 (4): 2384–93. <a href="https://doi.org/10.1063/1.439486">https://doi.org/10.1063/1.439486</a>.
 </div>
-</section>
-<section id="utilities" class="level2">
-<h2 class="anchored" data-anchor-id="utilities">Utilities</h2>
-<div class="div" style="column-width: 14em;">
-<section id="cubicgrid" class="level5 div" style="margin: 0; break-inside: avoid;">
-<h5 class="anchored" data-anchor-id="cubicgrid">CubicGrid</h5>
-<ul>
-<li><a href="../docstrings/medyan.cubicgrid-fe4b7cc2dceb0431.html"><code>CubicGrid</code></a></li>
-<li><a href="../docstrings/medyan.grididat-8671e01413346deb.html"><code>MEDYAN.grididat</code></a></li>
-<li><a href="../docstrings/medyan.filter_grididat-58a94154d21e32b0.html"><code>MEDYAN.filter_grididat</code></a></li>
-<li><a href="../docstrings/medyan.centerof-e902b9bb7b2a6caf.html"><code>MEDYAN.centerof</code></a></li>
-</ul>
-</section>
+<div id="ref-bond2007stabilized" class="csl-entry" role="listitem">
+Bond, Stephen D., and Benedict J. Leimkuhler. 2007. <span>“Stabilized Integration of Hamiltonian Systems with Hard-Sphere Inequality Constraints.”</span> <em>SIAM Journal on Scientific Computing</em> 30 (1): 134–47. <a href="https://doi.org/10.1137/06066552X">https://doi.org/10.1137/06066552X</a>.
 </div>
-
-
-</section>
-</section>
-
-</main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -789,4 +788,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/reference/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/explanation/bagogab.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

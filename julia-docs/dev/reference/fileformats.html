@@ -435,6 +435,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 "fila_mono",
                 "ball"
             ]
+        },
+        {
+            "name": "fila_mono_in_tri_point_distance",
+            "places": [
+                "fila_mono",
+                "intri"
+            ]
         }
     ]
 }</code></pre>
@@ -1288,7 +1295,7 @@ optional 🔢 copynumbers
 <pre class="{julia}"><code>collect(group["memb/1/copynumbers"])</code></pre>
 Array of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.
 </details>
-The following three datasets store in-triangle points. If the membrane has no in-triangle points these datasets will not exist.
+The following datasets store in-triangle points. If the membrane has no in-triangle points these datasets will not exist.
 <details>
 <summary>
 optional 🔢 itp_tri
@@ -1309,6 +1316,13 @@ optional 🔢 itp_state
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/itp_state"])</code></pre>
 Each entry is a user-defined state value for an in-triangle point.
+</details>
+<details>
+<summary>
+optional 🔢 itp_gamma
+</summary>
+<pre class="{julia}"><code>collect(group["memb/1/itp_gamma"])</code></pre>
+Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only stored when at least one point has a non-zero <code>gamma</code>; defaults to <code>0.0</code> for all points when absent.
 </details>
 </div>
 </div>
