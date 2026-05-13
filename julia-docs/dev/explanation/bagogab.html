@@ -259,7 +259,7 @@ window.Quarto = {
 
 <section id="bagogab-integrator-for-in-triangle-points" class="level1">
 <h1>BAGOGAB integrator for in-triangle points</h1>
-<p>When a simulation contains in-triangle points, <a href="../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> does not run the textbook BAOAB Langevin splitting. It runs <strong>BAGOGAB</strong> — BAOAB with an extra symmetric pair of “G” sub-steps inserted between A and O. This page derives the Hamiltonian that the G step integrates, describes how the splitting maps to in-triangle motion on the membrane mesh, and explains how the velocity thermostat handles in-triangle points without a matrix square root.</p>
+<p>When a simulation contains in-triangle points, <a href="../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> does not run the textbook BAOAB Langevin splitting. It runs <strong>BAGOGAB</strong> — BAOAB with an extra symmetric pair of “G” sub-steps inserted between A and O. This page derives the Hamiltonian that the G step integrates, describes how the splitting maps to in-triangle motion on the membrane mesh, and explains how the velocity thermostat handles in-triangle points.</p>
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
 <p>A naive way to keep a particle stuck to a triangle mesh is to add an attractive point-to-membrane force pulling it onto the surface, but then the integrator has to track which triangle each particle currently belongs to and keep the attracting force pointed at the <em>right</em> one as the mesh deforms and the point moves — a bookkeeping problem that gets ugly fast.</p>
