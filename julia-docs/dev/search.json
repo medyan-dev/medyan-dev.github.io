@@ -2328,11 +2328,18 @@
     "text": "Warning, the API is very unstable, and this package is not released yet.\nWelcome to Papoian Lab’s Mechanochemical Dynamics of Active Networks Julia package.\nThis is based on the C++ medyan command line tool also developed by the Papoian Lab.\nCopyright 2022, Papoian lab at the University of Maryland.\nThis code is distributed under the license found in this directory, license.txt."
   },
   {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "MEDYAN.jl",
+    "section": "Installation",
+    "text": "Installation\n\n1. Clone the repository\ngit clone https://github.com/medyan-dev/MEDYAN.jl.git\ncd MEDYAN.jl\n\n\n2. Install Julia\nOn Linux and macOS you can install the known working version of julia using:\ncurl -fsSLO https://github.com/nhz2/install-julia-linux/releases/download/v0.4.0/install-julia.sh\nchmod +x install-julia.sh\nmv install-julia.sh ~/.local/bin/\ninstall-julia.sh manifest .\nRun this from the repo root so it reads the version out of Manifest-v1.*.toml.\nYou can also download and install Julia binaries from https://julialang.org/downloads/manual-downloads/\n\n\n3. Set up the workspace\nThis repository is a Julia workspace Instantiate the whole workspace at once from the repo root:\njulia --project -e 'using Pkg; Pkg.instantiate(workspace=true)'"
+  },
+  {
     "objectID": "index.html#usage",
     "href": "index.html#usage",
     "title": "MEDYAN.jl",
     "section": "Usage",
-    "text": "Usage\nFirst install and run Julia https://julialang.org/downloads/\nNext download or clone this repository.\nFinally, to use MEDYAN.jl, in Julia run:\nusing Pkg; pkg\"dev &lt;path to repo&gt;/MEDYAN\"\nWhere &lt;path to repo&gt; should be replaced with a local or absolute path to the repo.\n\nTutorials\nReference"
+    "text": "Usage\nTo use MEDYAN.jl from your own Julia environment, dev the MEDYAN sub package:\nusing Pkg; pkg\"dev &lt;path to repo&gt;/MEDYAN\"\nWhere &lt;path to repo&gt; should be replaced with a local or absolute path to the repo.\n\nTutorials\nReference"
   },
   {
     "objectID": "index.html#authors",
