@@ -190,6 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.filamentsitegeneral-0d87ce44fed17b2c" id="toc-medyan.filamentsitegeneral-0d87ce44fed17b2c" class="nav-link" data-scroll-target="#medyan.filamentsitegeneral-0d87ce44fed17b2c"><code>MEDYAN.FilamentSiteGeneral</code></a></li>
   <li><a href="#medyan.anystate-1965db924963e911" id="toc-medyan.anystate-1965db924963e911" class="nav-link" data-scroll-target="#medyan.anystate-1965db924963e911"><code>MEDYAN.AnyState</code></a></li>
   <li><a href="#medyan.anystate-5e989313a9ef75d3" id="toc-medyan.anystate-5e989313a9ef75d3" class="nav-link" data-scroll-target="#medyan.anystate-5e989313a9ef75d3"><code>MEDYAN.anystate</code></a></li>
+  <li><a href="#medyan.filamentsitemask-9c2d86d50487dd56" id="toc-medyan.filamentsitemask-9c2d86d50487dd56" class="nav-link" data-scroll-target="#medyan.filamentsitemask-9c2d86d50487dd56"><code>MEDYAN.FilamentSiteMask</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/sites.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -244,6 +245,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> anystate <span class="op">=</span> <span class="fu">AnyState</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A special value in <code>match</code> in <a href="../../../docstrings/medyan.def_fila_reaction--070b0fa01eaea608.html"><code>def_fila_reaction!</code></a> and <a href="../../../docstrings/medyan.def_fila_tip_reaction--488aa3a14ff39688.html"><code>def_fila_tip_reaction!</code></a> to match any <code>MonomerState</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.filamentsitemask-9c2d86d50487dd56" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.filamentsitemask-9c2d86d50487dd56"><a href="../../../docstrings/medyan.filamentsitemask-9c2d86d50487dd56.html"><code>MEDYAN.FilamentSiteMask</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Filament site that matches monomer states using per-position bitmasks.</p>
+<p>Each position in the pattern has a <a href="../../../docstrings/medyan.statebitmask-3475a6815b316c63.qmd"><code>StateBitMask</code></a> specifying which <code>MonomerState</code> values are acceptable at that position. A monomer sequence matches (site count = 1.0) when every position’s state is contained in the corresponding bitmask.</p>
+<p>This is a generalization of <a href="../../../docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html"><code>FilamentSiteGeneral</code></a> that supports matching any of a set of states at each position.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FilamentSiteMask</span>(site)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Convert <code>site</code> to a <a href="../../../docstrings/medyan.filamentsitemask-9c2d86d50487dd56.html"><code>FilamentSiteMask</code></a>, copying any internal state.</p>
+<p>A <a href="../../../docstrings/medyan.filamentsitegeneral-0d87ce44fed17b2c.html"><code>FilamentSiteGeneral</code></a> is the special case where every position accepts exactly one <code>MonomerState</code>.</p>
 </div>
 </div>
 </div>

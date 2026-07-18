@@ -233,8 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>membidx2membid::Vector{MEDYAN.MembId}</code>: map from memb index to id</p></li>
 <li><p><code>link_manager::MEDYAN.LinkManager</code></p></li>
 <li><p><code>decimated_2mon_site_managers::Vector{MEDYAN.AbstractDecimated2MonSiteManager}</code>: Site managers, indexed by site id</p></li>
-<li><p><code>filamentsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
-<li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>filamentsites::Vector{Vector{MEDYAN.SiteData{MEDYAN.FilamentSiteMask}}}</code>: The filament site definitions, indexed by filament type id, filament site id to get a SiteData with fields of id, site, fxsid</p></li>
+<li><p><code>filamentendsites::Vector{Vector{MEDYAN.SiteData{MEDYAN.FilamentEndSiteMask}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>decimated_2mon_sites::Vector{MEDYAN.SiteData}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
