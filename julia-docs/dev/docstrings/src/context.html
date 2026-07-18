@@ -187,7 +187,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#srccontext.jl" id="toc-srccontext.jl" class="nav-link active" data-scroll-target="#srccontext.jl">src/context.jl</a>
   <ul class="collapse">
-  <li><a href="#medyan.membranespeciesparams-548fecb643fc2599" id="toc-medyan.membranespeciesparams-548fecb643fc2599" class="nav-link" data-scroll-target="#medyan.membranespeciesparams-548fecb643fc2599"><code>MEDYAN.MembraneSpeciesParams</code></a></li>
   <li><a href="#medyan.context-736368ed32b08894" id="toc-medyan.context-736368ed32b08894" class="nav-link" data-scroll-target="#medyan.context-736368ed32b08894"><code>MEDYAN.Context</code></a></li>
   <li><a href="#medyan.set_time--a6dd8f73f68a3759" id="toc-medyan.set_time--a6dd8f73f68a3759" class="nav-link" data-scroll-target="#medyan.set_time--a6dd8f73f68a3759"><code>MEDYAN.set_time!</code></a></li>
   <li><a href="#medyan.get_time-6e9303598ae0437c" id="toc-medyan.get_time-6e9303598ae0437c" class="nav-link" data-scroll-target="#medyan.get_time-6e9303598ae0437c"><code>MEDYAN.get_time</code></a></li>
@@ -210,7 +209,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.chem_addfixedcount--0286edfebf8ea5e6" id="toc-medyan.chem_addfixedcount--0286edfebf8ea5e6" class="nav-link" data-scroll-target="#medyan.chem_addfixedcount--0286edfebf8ea5e6"><code>MEDYAN.chem_addfixedcount!</code></a></li>
   <li><a href="#medyan.add_fixed_count--51020c406ff1afef" id="toc-medyan.add_fixed_count--51020c406ff1afef" class="nav-link" data-scroll-target="#medyan.add_fixed_count--51020c406ff1afef"><code>MEDYAN.add_fixed_count!</code></a></li>
   <li><a href="#medyan.adddiffusingcount_rand--9d3ddfabbceeef92" id="toc-medyan.adddiffusingcount_rand--9d3ddfabbceeef92" class="nav-link" data-scroll-target="#medyan.adddiffusingcount_rand--9d3ddfabbceeef92"><code>MEDYAN.adddiffusingcount_rand!</code></a></li>
-  <li><a href="#medyan.addmembranediffusingcount_rand--7b719dca63a36b1b" id="toc-medyan.addmembranediffusingcount_rand--7b719dca63a36b1b" class="nav-link" data-scroll-target="#medyan.addmembranediffusingcount_rand--7b719dca63a36b1b"><code>MEDYAN.addmembranediffusingcount_rand!</code></a></li>
   <li><a href="#medyan.run_chemistry--dda22fac5c555b9e" id="toc-medyan.run_chemistry--dda22fac5c555b9e" class="nav-link" data-scroll-target="#medyan.run_chemistry--dda22fac5c555b9e"><code>MEDYAN.run_chemistry!</code></a></li>
   <li><a href="#medyan.defer_chem_caching--9538a1c449f3da93" id="toc-medyan.defer_chem_caching--9538a1c449f3da93" class="nav-link" data-scroll-target="#medyan.defer_chem_caching--9538a1c449f3da93"><code>MEDYAN.defer_chem_caching!</code></a></li>
   <li><a href="#medyan.refresh_chem_cache--f90ebca1f896ad2c" id="toc-medyan.refresh_chem_cache--f90ebca1f896ad2c" class="nav-link" data-scroll-target="#medyan.refresh_chem_cache--f90ebca1f896ad2c"><code>MEDYAN.refresh_chem_cache!</code></a></li>
@@ -228,25 +226,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="srccontext.jl" class="level1">
 <h1>src/context.jl</h1>
-<section id="medyan.membranespeciesparams-548fecb643fc2599" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.membranespeciesparams-548fecb643fc2599"><a href="../../docstrings/medyan.membranespeciesparams-548fecb643fc2599.html"><code>MEDYAN.MembraneSpeciesParams</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Membrane protein physical parameters.</p>
-<ul>
-<li><code>diffusion_coeff::Float64</code>: Membrane diffusion coefficients (nm^2/s).</li>
-<li><code>area::Float64</code>: Protein area projected onto the surface (nm^2).</li>
-<li><code>kbend::Float64</code>: Bending rigidity (pN nm).</li>
-<li><code>eqcurv::Float64</code>: The protein’s own spontaneous mean curvature (/nm). Can be used in bending energy computations with curvatures.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.context-736368ed32b08894" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.context-736368ed32b08894"><a href="../../docstrings/medyan.context-736368ed32b08894.html"><code>MEDYAN.Context</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -267,7 +246,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>rng_counter::UInt64</code>: PhiloxRNG counter, incremented by each stochastic integrator call.</p></li>
 <li><p><code>β::Float64</code>: inverse kT (1/(nm*pN))</p></li>
 <li><p><code>base_diffusion_coeffs::Vector{Float64}</code>: Diffusion coefficients indexed by diffusing species id (nm²/s)</p></li>
-<li><p><code>membrane_species_params::StaticArraysCore.SVector{NUM_MEMBRANEDIFFUSINGSPECIES, MEDYAN.MembraneSpeciesParams} where NUM_MEMBRANEDIFFUSINGSPECIES</code>: Membrane species parameters indexed by membrane diffusing species id.</p></li>
 <li><p><code>min_chem_voxel_volume_ratio::Float64</code>: Smallest volume a chem voxel can have before being deactivated as a ratio to a full chem voxel volume.</p></li>
 <li><p><code>chemistryengine::MEDYAN.RDMEPropensityRejectDiffusion</code>: The reaction diffusion master equation sampler, contains the diffusing and regular fixed species state</p></li>
 <li><p><code>chem_voxel_volumes::Array{Float64, 3}</code>: Volume of each chemical voxel</p></li>
@@ -286,14 +264,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>filamentendsites::Tuple{Vararg{Tuple{Vararg{MEDYAN.SiteData}}}}</code>: The filamentend site definitions, indexed by filament type id, filamentend site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>maxfilsite_plusrange::Vector{Int64}</code>: The maximum plus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
 <li><p><code>maxfilsite_minusrange::Vector{Int64}</code>: The maximum minus range in monomers that any filament site or end site can see. Indexed by filament type id</p></li>
-<li><p><code>membranesites::Tuple{Vararg{MEDYAN.SiteData}}</code>: Maps membrane site id to a SiteData with fields of id, site, fxsid.</p></li>
-<li><p><code>map_membranediffusingspeciesindex_membranesiteindices::Tuple{Vararg{Vector{Int64}}}</code>: Maps membrane diffusing species index to a list of membrane sites using this species as reactant. This is initialized during context init and should not be changed.</p></li>
 <li><p><code>decimated_2mon_sites::Vector{MEDYAN.SiteData}</code>: Site definitions, indexed by site id to get a SiteData with fields of id, site, fxsid</p></li>
 <li><p><code>possiblecadherinsite_managers::Tuple{Vararg{MEDYAN.AbstractPossibleCadherinSiteManager}}</code>: Site managers, indexed by site id</p></li>
 <li><p><code>check_sitecount_error::Bool</code>: If true site counts are checked for errors on every chem update. This is extremely slow, but useful for testing chem update errors.</p></li>
 <li><p><code>compartmentreactioncallbacks::Any</code></p></li>
 <li><p><code>bulkreactioncallbacks::Any</code></p></li>
-<li><p><code>memdiff_bulks_index::Int64</code>: Mock bulk species index for membrane diffusion.</p></li>
 <li><p><code>viscosity::Float64</code>: viscosity (pN<em>s/nm² or MPa</em>s) water is about 1E-9</p></li>
 <li><p><code>g_tol::Float64</code>: maximum force magnitude after minimization (pN)</p></li>
 <li><p><code>nforce_fractbit::Int64</code>: number of fractional bits used to scale force values into Int64</p></li>
@@ -307,7 +282,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>collision_skin::Float64</code>: Extra collision neighbor list cutoff radius in nm. The neighbor lists are reset after something moves over this amount</p></li>
 <li><p><code>collision_switchover_scale_unitless::Float32</code>: Smoothing scale to avoid sharp forces when two cylinders are collinear</p></li>
 <li><p><code>filamentmechparams::Vector{MEDYAN.FilamentMechParams}</code>: The filament mechanical parameters, indexed by filament type id</p></li>
-<li><p><code>func_membranespeciespotentialenergy::Any</code>: Membrane species potential energy function. See docs on default function for more info.</p></li>
 <li><p><code>external_energy_forces!::Any</code>: External energy/force expressions. This should be a mutating function taking a <code>(fc::MEDYAN.ForceContext, positions)</code>, which adds forces and energies to <code>fc</code>. The energy and force must be consistent, and this is not checked. This can be used as ad-hoc solutions to experiment with uncommon forces. If this variable is used often, consider moving it into MEDYAN.</p></li>
 <li><p><code>set_gamma!::Any</code>: User-supplied callback to customize per-DOF friction coefficients (γ, pN·s/nm) before <code>drag_back_k</code> and <code>drag_rand_force</code> are derived. Signature: <code>(fc::MEDYAN.ForceContext, c::MEDYAN.Context) -&gt; nothing</code> Called after the default γ values are populated in <code>fc.gamma</code>, so it may freely mutate <code>fc.gamma</code> (e.g.&nbsp;to assign drag to membrane vertices, or override specific beads). Defaults to <code>Returns(nothing)</code> (no-op).</p></li>
 <li><p><code>chemboundary::MEDYAN.Boundary</code>: chemical boundary, updates compartment volumes and diffusion rates</p></li>
@@ -655,25 +629,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="medyan.addmembranediffusingcount_rand--7b719dca63a36b1b" class="level2">
-<h2 class="anchored" data-anchor-id="medyan.addmembranediffusingcount_rand--7b719dca63a36b1b"><a href="../../docstrings/medyan.addmembranediffusingcount_rand--7b719dca63a36b1b.html"><code>MEDYAN.addmembranediffusingcount_rand!</code></a></h2>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmembranediffusingcount_rand!</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    membraneindex<span class="op">::</span><span class="dt">Int64</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    speciesindex<span class="op">::</span><span class="dt">Int64</span>,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    addcount<span class="op">::</span><span class="dt">Int64</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Distribute the added membrane species count randomly to membrane cells, ignoring cell area difference. Does NOT update propensity.</p>
-</div>
-</div>
-</div>
-</section>
 <section id="medyan.run_chemistry--dda22fac5c555b9e" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.run_chemistry--dda22fac5c555b9e"><a href="../../docstrings/medyan.run_chemistry--dda22fac5c555b9e.html"><code>MEDYAN.run_chemistry!</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -682,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_chemistry!</span>(c<span class="op">::</span><span class="dt">Context</span>, Δt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">run_chemistry!</span>(c<span class="op">::</span><span class="dt">Context</span>, Δt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run chemistry for Δt time.</p>
 <p>Update c.time.</p>
 </div>
@@ -697,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">defer_chem_caching!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">defer_chem_caching!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This should only be used for advanced optimizations.</p>
 <p>During chemistry, the context mutating functions will typically try to avoid invalidating various cached data needed to quickly sample sites.</p>
 <p>However, if you want to mutate the context outside of chemistry, for example right before or after minimization, you may not want to pay the cost of revalidating all the caches because minimization will already invalidate the caches. Caching will be enabled again and caches will be made valid the next time chemistry is run. Caching can also be manually refreshed and reenabled with: <a href="../../docstrings/medyan.refresh_chem_cache--f90ebca1f896ad2c.html"><code>refresh_chem_cache!</code></a></p>
@@ -713,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_chem_cache!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">refresh_chem_cache!</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Normally this isn’t needed as it will happen automatically.</p>
 </div>
 </div>
@@ -727,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_chem_cache_valid</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_chem_cache_valid</span>(c<span class="op">::</span><span class="dt">Context</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return true if the chemistry cache is valid, false otherwise.</p>
 </div>
 </div>
@@ -741,7 +696,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">empty!</span>(c<span class="op">::</span><span class="dt">Context</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">empty!</span>(c<span class="op">::</span><span class="dt">Context</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove all filaments, membranes, links, diffusing species, fixed species, bulk species, chemboundary, and mechboundary.</p>
 </div>
 </div>

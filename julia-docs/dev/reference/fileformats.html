@@ -313,17 +313,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             "name": "c"
         }
     ],
-    "membrane_diffusing_species": [
-        {
-            "name": "ma"
-        },
-        {
-            "name": "mb"
-        },
-        {
-            "name": "mc"
-        }
-    ],
     "fixed_species": [
         {
             "name": "d"
@@ -1283,13 +1272,6 @@ Each column is the 3 vertex indexes of a triangle. Indexes are one based, and fo
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/vertlist"])</code></pre>
 Each column is a vertex coordinate in nm.
-</details>
-<details>
-<summary>
-optional 🔢 copynumbers
-</summary>
-<pre class="{julia}"><code>collect(group["memb/1/copynumbers"])</code></pre>
-Array of vertex membrane species copynumbers. If the membrane has no defined species this dataset will not exist.
 </details>
 The following datasets store in-triangle points. If the membrane has no in-triangle points these datasets will not exist.
 <details>
