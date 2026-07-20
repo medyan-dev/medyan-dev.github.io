@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>chem_boundary_tsdf_cache::Union{Nothing, Array{Float64, 3}}</code>: Cached truncated signed distance field for chem boundary. <code>nothing</code> means cache is invalid.</p></li>
 <li><p><code>mechboundary::MEDYAN.Boundary</code>: mechanical boundary</p></li>
 <li><p><code>sharedtypedconfigs::MEDYAN.SharedTypedConfigs</code>: Shared configurations stored in type parameters.</p></li>
-<li><p><code>validflags::MEDYAN.ValidFlags</code>: Interval system consistency validation flags.</p></li>
+<li><p><code>is_chem_cache_valid::Bool</code>: True if the chemistry cache is valid, see <code>is_chem_cache_valid</code>.</p></li>
 <li><p><code>profiler::ZoneProfilers.Profiler</code></p></li>
 </ul>
 </div>
