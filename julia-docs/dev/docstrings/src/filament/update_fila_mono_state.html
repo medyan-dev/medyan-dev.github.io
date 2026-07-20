@@ -188,6 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#srcfilamentupdate_fila_mono_state.jl" id="toc-srcfilamentupdate_fila_mono_state.jl" class="nav-link active" data-scroll-target="#srcfilamentupdate_fila_mono_state.jl">src/filament/update_fila_mono_state.jl</a>
   <ul class="collapse">
   <li><a href="#medyan.update_fila_mono_state--02d30b25ab495f22" id="toc-medyan.update_fila_mono_state--02d30b25ab495f22" class="nav-link" data-scroll-target="#medyan.update_fila_mono_state--02d30b25ab495f22"><code>MEDYAN.update_fila_mono_state!</code></a></li>
+  <li><a href="#medyan.update_fila_mono_states--b7bf71bf890320c5" id="toc-medyan.update_fila_mono_states--b7bf71bf890320c5" class="nav-link" data-scroll-target="#medyan.update_fila_mono_states--b7bf71bf890320c5"><code>MEDYAN.update_fila_mono_states!</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/src/filament/update_fila_mono_state.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -210,6 +211,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">FilaMonoIdx</span>, state<span class="op">::</span><span class="dt">Union{Symbol,MonomerState}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update a monomer state.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="medyan.update_fila_mono_states--b7bf71bf890320c5" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.update_fila_mono_states--b7bf71bf890320c5"><a href="../../../docstrings/medyan.update_fila_mono_states--b7bf71bf890320c5.html"><code>MEDYAN.update_fila_mono_states!</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_states!</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Context</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    center_monomer<span class="op">::</span><span class="dt">FilaMonoIdx</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    states<span class="op">::</span><span class="dt">AbstractVector{&lt;:Union{Symbol,MonomerState}}</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    center<span class="op">::</span><span class="dt">Integer</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Update consecutive monomer states around <code>center_monomer</code>.</p>
+<p><code>states</code> is ordered from the filament’s minus end toward its plus end, and <code>states[center]</code> is applied to <code>center_monomer</code>.</p>
 </div>
 </div>
 </div>

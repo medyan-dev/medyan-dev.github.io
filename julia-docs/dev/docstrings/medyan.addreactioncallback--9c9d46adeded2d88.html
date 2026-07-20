@@ -211,7 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addreactioncallback!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reactantexpr<span class="op">::</span><span class="dt">AbstractString</span>, rate<span class="op">::</span><span class="dt">Float64</span>, invvolumepower<span class="op">::</span><span class="dt">Int</span>, callback)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Like <a href="../docstrings/medyan.addreaction--da9bd35e7d1df7c3.html"><code>addreaction!</code></a> but also adds <code>callback</code>. <code>callback</code> is called when the reaction happens with input of <code>MEDYAN.Context</code> and <code>Int</code> the chem_voxel id where the reaction happened.</p>
 <p>The callback should handle updating species counts.</p>
-<p><code>MEDYAN.errorcheck_addcallback(callback,s::SysDef)</code> can optionally be overloaded to add errorchecking when the callback is added.</p>
 </div>
 </div>
 </div>
