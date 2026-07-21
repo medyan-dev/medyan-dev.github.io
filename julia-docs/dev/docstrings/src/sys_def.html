@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Example: Membrane-bound NPF cluster</h1>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> NPF_MAX_ARP23 <span class="op">=</span> <span class="fu">Int32</span>(<span class="fl">3</span>)  <span class="co"># maximum ARP2/3 that can bind per NPF</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>MEDYAN.<span class="fu">def_link_type!</span>(s;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">def_link_type!</span>(s;</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>npf_anchor,</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    description<span class="op">=</span><span class="st">"Nucleation promoting factor anchored to membrane"</span>,</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    places<span class="op">=</span>[<span class="fu">Anchor</span>()],</span>
