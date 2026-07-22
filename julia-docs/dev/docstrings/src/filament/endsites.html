@@ -176,11 +176,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Filament end site that matches monomer states using per-position bitmasks.</p>
 <p>This is the end-site analog of <a href="../../../docstrings/medyan.filamentsitemask-9c2d86d50487dd56.html"><code>FilamentSiteMask</code></a>: each position in the pattern has a <a href="../../../docstrings/medyan.statebitmask-3475a6815b316c63.qmd"><code>StateBitMask</code></a> specifying which <code>MonomerState</code> values are acceptable.</p>
 <p>The pattern order is always from minus end toward plus end, regardless of which tip (<code>isminusend</code>) is being matched.</p>
+<p>If <code>both_ends</code> is <code>true</code>, the pattern must match the <em>entire</em> filament: the filament must have exactly <code>length(masks)</code> monomers, so both ends are anchored.</p>
 <ul>
 <li><code>isminusend::Bool</code></li>
 <li><code>masks::Vector{NTuple{4, UInt64}}</code></li>
 <li><code>spacing::Float64</code></li>
 <li><code>added_monomers::Int64</code></li>
+<li><code>both_ends::Bool</code></li>
 </ul>
 </div>
 </div>

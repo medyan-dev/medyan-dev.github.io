@@ -219,8 +219,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>fila_type::Symbol</code>: Filament type (e.g., <code>:actin</code>).</li>
 <li><code>name::Symbol</code>: Unique name for this tip site.</li>
-<li><code>is_minus_end::Bool</code>: Which filament end to target. <code>true</code> targets the minus end; <code>false</code> targets the plus end.</li>
+<li><code>is_minus_end::Bool</code>: Which filament end to target. <code>true</code> targets the minus end; <code>false</code> targets the plus end. Required unless <code>both_ends = true</code>, in which case it defaults to <code>false</code> (the plus end).</li>
 <li><code>match::Vector</code>: Pattern of monomer states to match (minus → plus order). Elements can be <code>Symbol</code>, <code>Vector{Symbol}</code> (state set), or <a href="../docstrings/medyan.anystate-5e989313a9ef75d3.html"><code>anystate</code></a>.</li>
+<li><code>both_ends::Bool = false</code>: If <code>true</code>, <code>match</code> must span the <em>entire</em> filament, so both ends are anchored: the filament must have exactly <code>length(match)</code> monomers.</li>
 <li><code>spacing::Float64</code>: Space needed at the filament end for this reaction (nm). This affects a load-force rate factor via <code>exp(-β * spacing * loadforce)</code> where <code>β</code> is 1/kT and <code>loadforce</code> is the external force pushing axially on the end of the filament.</li>
 </ul>
 </section>
