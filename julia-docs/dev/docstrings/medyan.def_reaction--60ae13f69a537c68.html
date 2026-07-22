@@ -208,7 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction_expr<span class="op">::</span><span class="dt">AbstractString</span>; base_rate, invvolumepower<span class="op">=</span><span class="fl">0</span>, affect<span class="op">!=</span><span class="cn">nothing</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s<span class="op">::</span><span class="dt">SysDef</span>, reaction_expr<span class="op">::</span><span class="dt">AbstractString</span>; name<span class="op">=</span><span class="cn">nothing</span>, base_rate, invvolumepower<span class="op">=</span><span class="fl">0</span>, affect<span class="op">!=</span><span class="cn">nothing</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a chem_voxel reaction to the system definition. Returns <code>s</code>.</p>
 <p><code>reaction_expr</code> is a string describing the reaction. The format depends on whether <code>affect!</code> is provided:</p>
 <ul>
@@ -226,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
+<section id="name" class="level3">
+<h3 class="anchored" data-anchor-id="name">Name</h3>
+<ul>
+<li><code>name::Union{Symbol,Nothing} = nothing</code>: Name for this reaction. If <code>nothing</code>, a name like <code>:reaction3</code> is generated automatically from the call order.</li>
+</ul>
+</section>
 <section id="rate" class="level3">
 <h3 class="anchored" data-anchor-id="rate">Rate</h3>
 <ul>
@@ -250,29 +256,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Bimolecular: A + B → C</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.A + diffusing.B --&gt; diffusing.C"</span>;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.5e6</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Unimolecular: C → A + B</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.C --&gt; diffusing.A + diffusing.B"</span>;</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-order creation</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">" --&gt; diffusing.A + diffusing.B"</span>;</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># With a callback (reactants only, no "--&gt;")</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.A + diffusing.B"</span>;</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1e8</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># custom logic here</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cn">nothing</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>bind,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.5e6</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Unimolecular: C → A + B</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.C --&gt; diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>unbind,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Zero-order creation</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">" --&gt; diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>create,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1.75</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># With a callback (reactants only, no "--&gt;")</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="fu">def_reaction!</span>(s, <span class="st">"diffusing.A + diffusing.B"</span>;</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="op">:</span>custom,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    base_rate <span class="op">=</span> <span class="fl">1e8</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    invvolumepower <span class="op">=</span> <span class="fl">1</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    affect! <span class="op">=</span> (c; chem_voxel, kwargs<span class="op">...</span>) <span class="op">-&gt;</span> <span class="cf">begin</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># custom logic here</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="cn">nothing</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </div>
 </div>
