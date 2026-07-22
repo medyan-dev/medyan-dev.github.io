@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#medyan.update_fila_mono_state" id="toc-medyan.update_fila_mono_state" class="nav-link active" data-scroll-target="#medyan.update_fila_mono_state"><code>MEDYAN.update_fila_mono_state!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--medyan.filamonoidx--union-uint8--symbol---85b1405fc752dbf8" id="toc-tuple-medyan.context--medyan.filamonoidx--union-uint8--symbol---85b1405fc752dbf8" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--union-uint8--symbol---85b1405fc752dbf8"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, Union{UInt8, Symbol}}</code></a></li>
+  <li><a href="#tuple-medyan.context--medyan.filamonoidx--union-nothing--uint8--symbol---8ab40b3010895104" id="toc-tuple-medyan.context--medyan.filamonoidx--union-nothing--uint8--symbol---8ab40b3010895104" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--union-nothing--uint8--symbol---8ab40b3010895104"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, Union{Nothing, UInt8, Symbol}}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.update_fila_mono_state--02d30b25ab495f22.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -200,16 +200,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="medyan.update_fila_mono_state" class="level1">
 <h1><code>MEDYAN.update_fila_mono_state!</code></h1>
-<section id="tuple-medyan.context--medyan.filamonoidx--union-uint8--symbol---85b1405fc752dbf8" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--union-uint8--symbol---85b1405fc752dbf8"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, Union{UInt8, Symbol}}</code></h2>
+<section id="tuple-medyan.context--medyan.filamonoidx--union-nothing--uint8--symbol---8ab40b3010895104" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--union-nothing--uint8--symbol---8ab40b3010895104"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, Union{Nothing, UInt8, Symbol}}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">FilaMonoIdx</span>, state<span class="op">::</span><span class="dt">Union{Symbol,MonomerState}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">FilaMonoIdx</span>, state<span class="op">::</span><span class="dt">Union{Symbol,MonomerState,Nothing}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update a monomer state.</p>
+<p>If <code>state</code> is <code>nothing</code> or a zero (<code>0x00</code>) <code>MonomerState</code>, the monomer is left unchanged.</p>
 </div>
 </div>
 </div>

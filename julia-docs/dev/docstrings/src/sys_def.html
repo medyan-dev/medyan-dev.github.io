@@ -702,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="state-change-provide-exactly-one" class="level3">
 <h3 class="anchored" data-anchor-id="state-change-provide-exactly-one">State change (provide exactly one)</h3>
 <ul>
-<li><code>new::Vector{Symbol}</code>: States to assign to the matched monomers after firing. Must be the same length as <code>match</code>. Cannot be used with <code>affect!</code>.</li>
+<li><code>new::Vector</code>: States to assign to the matched monomers after firing. Must be the same length as <code>match</code>. Each element is a state <code>Symbol</code>, or <code>nothing</code> to leave that monomer’s state unchanged. Cannot be used with <code>affect!</code>.</li>
 <li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, center::FilaMonoIdx, kwargs...) -&gt; Int</code>. Called instead of automatic state changes. The returned <code>Int</code> is a status code. Cannot be used with <code>new</code>.</li>
 </ul>
 </section>
@@ -825,7 +825,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="state-change-provide-exactly-one-1" class="level3">
 <h3 class="anchored" data-anchor-id="state-change-provide-exactly-one-1">State change (provide exactly one)</h3>
 <ul>
-<li><code>new::Vector{Symbol}</code>: New monomer states (minus → plus order) for the tip region. If <code>length(new) &gt; length(match)</code>, monomers are added. If <code>length(new) &lt; length(match)</code>, monomers are removed. Cannot be used with <code>affect!</code>.</li>
+<li><code>new::Vector</code>: New monomer states (minus → plus order) for the tip region. If <code>length(new) &gt; length(match)</code>, monomers are added. If <code>length(new) &lt; length(match)</code>, monomers are removed. Each element is a state <code>Symbol</code>, or <code>nothing</code> to leave that monomer’s state unchanged. <code>nothing</code> is not allowed at positions corresponding to newly added monomers. Cannot be used with <code>affect!</code>.</li>
 <li><code>affect!</code>: Custom callback <code>(c::Context; chem_voxel::Int, tip::FilaTipIdx, kwargs...) -&gt; Int</code>. Called instead of automatic changes. Cannot be used with <code>new</code>.</li>
 </ul>
 </section>

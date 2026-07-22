@@ -209,8 +209,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">FilaMonoIdx</span>, state<span class="op">::</span><span class="dt">Union{Symbol,MonomerState}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_state!</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">FilaMonoIdx</span>, state<span class="op">::</span><span class="dt">Union{Symbol,MonomerState,Nothing}</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update a monomer state.</p>
+<p>If <code>state</code> is <code>nothing</code> or a zero (<code>0x00</code>) <code>MonomerState</code>, the monomer is left unchanged.</p>
 </div>
 </div>
 </div>
@@ -226,11 +227,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_states!</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Context</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    center_monomer<span class="op">::</span><span class="dt">FilaMonoIdx</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    states<span class="op">::</span><span class="dt">AbstractVector{&lt;:Union{Symbol,MonomerState}}</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    states<span class="op">::</span><span class="dt">AbstractVector{&lt;:Union{Symbol,MonomerState,Nothing}}</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    center<span class="op">::</span><span class="dt">Integer</span>,</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update consecutive monomer states around <code>center_monomer</code>.</p>
 <p><code>states</code> is ordered from the filament’s minus end toward its plus end, and <code>states[center]</code> is applied to <code>center_monomer</code>.</p>
+<p>A <code>nothing</code> or zero (<code>0x00</code>) entry leaves the corresponding monomer unchanged (the monomer must still lie on the filament).</p>
 </div>
 </div>
 </div>

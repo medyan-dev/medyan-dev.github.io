@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#medyan.update_fila_mono_states" id="toc-medyan.update_fila_mono_states" class="nav-link active" data-scroll-target="#medyan.update_fila_mono_states"><code>MEDYAN.update_fila_mono_states!</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--medyan.filamonoidx--abstractvector---union-uint8--symbol----integer--021098d94f58c896" id="toc-tuple-medyan.context--medyan.filamonoidx--abstractvector---union-uint8--symbol----integer--021098d94f58c896" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--abstractvector---union-uint8--symbol----integer--021098d94f58c896"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, AbstractVector{&lt;:Union{UInt8, Symbol}}, Integer}</code></a></li>
+  <li><a href="#tuple-medyan.context--medyan.filamonoidx--abstractvector---union-nothing--uint8--symbol----integer--6f891b4e838524ea" id="toc-tuple-medyan.context--medyan.filamonoidx--abstractvector---union-nothing--uint8--symbol----integer--6f891b4e838524ea" class="nav-link" data-scroll-target="#tuple-medyan.context--medyan.filamonoidx--abstractvector---union-nothing--uint8--symbol----integer--6f891b4e838524ea"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, AbstractVector{&lt;:Union{Nothing, UInt8, Symbol}}, Integer}</code></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.update_fila_mono_states--b7bf71bf890320c5.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -200,8 +200,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="medyan.update_fila_mono_states" class="level1">
 <h1><code>MEDYAN.update_fila_mono_states!</code></h1>
-<section id="tuple-medyan.context--medyan.filamonoidx--abstractvector---union-uint8--symbol----integer--021098d94f58c896" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--abstractvector---union-uint8--symbol----integer--021098d94f58c896"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, AbstractVector{&lt;:Union{UInt8, Symbol}}, Integer}</code></h2>
+<section id="tuple-medyan.context--medyan.filamonoidx--abstractvector---union-nothing--uint8--symbol----integer--6f891b4e838524ea" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-medyan.context--medyan.filamonoidx--abstractvector---union-nothing--uint8--symbol----integer--6f891b4e838524ea"><code data-shortcodes="false">Tuple{MEDYAN.Context, MEDYAN.FilaMonoIdx, AbstractVector{&lt;:Union{Nothing, UInt8, Symbol}}, Integer}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -211,11 +211,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_fila_mono_states!</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">Context</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    center_monomer<span class="op">::</span><span class="dt">FilaMonoIdx</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    states<span class="op">::</span><span class="dt">AbstractVector{&lt;:Union{Symbol,MonomerState}}</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    states<span class="op">::</span><span class="dt">AbstractVector{&lt;:Union{Symbol,MonomerState,Nothing}}</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    center<span class="op">::</span><span class="dt">Integer</span>,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update consecutive monomer states around <code>center_monomer</code>.</p>
 <p><code>states</code> is ordered from the filament’s minus end toward its plus end, and <code>states[center]</code> is applied to <code>center_monomer</code>.</p>
+<p>A <code>nothing</code> or zero (<code>0x00</code>) entry leaves the corresponding monomer unchanged (the monomer must still lie on the filament).</p>
 </div>
 </div>
 </div>
