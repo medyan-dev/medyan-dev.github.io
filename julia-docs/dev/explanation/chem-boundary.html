@@ -288,11 +288,11 @@ window.Quarto = {
 <section id="background-on-the-chemistry-model" class="level2">
 <h2 class="anchored" data-anchor-id="background-on-the-chemistry-model">Background on the chemistry model</h2>
 <p>This is background to understand the requirements of the chem boundary systems.</p>
-<p>MEDYAN models stochastic reaction diffusion dynamics using the approach described in <span class="citation" data-cites="isaacson2006incorporating">(see <a href="#ref-isaacson2006incorporating" role="doc-biblioref">Isaacson and Peskin 2006</a>)</span></p>
-<p>This is a Eulerian method on a cartesian mesh of cubes with an embedded boundary.</p>
+<p>MEDYAN models stochastic reaction diffusion dynamics using the approach described in <span class="citation" data-cites="isaacson2006incorporating">Isaacson and Peskin (<a href="#ref-isaacson2006incorporating" role="doc-biblioref">2006</a>)</span>.</p>
+<p>This is an Eulerian method on a Cartesian mesh of cubes with an embedded boundary.</p>
 <p><span class="citation" data-cites="isaacson2006incorporating">Isaacson and Peskin (<a href="#ref-isaacson2006incorporating" role="doc-biblioref">2006</a>)</span> calls these cubes cells, and they were called compartments in the C++ code base. However, both cells and compartments are biological terms, so to avoid confusion the term chem voxels is used.</p>
 <p>Each chem voxel stores a count of each of the diffusing species.</p>
-<p>Chem voxels typically have a side length of 500 nm. This means for a 16 micrometer cell there may be about 30,000.</p>
+<p>Chem voxels typically have a side length of 500 nm. This means for a 16 micrometer cell there may be about 30,000 voxels.</p>
 <p>Inside a chem voxel, diffusing species can react with each other. Diffusing species can move between neighboring chem voxels with first order diffusion reactions.</p>
 <p>Reactions between diffusing species can result in the creation of an object with a continuous position, such as a filament being nucleated.</p>
 <p>In addition, objects with continuous positions can react with diffusing species.</p>
@@ -352,7 +352,7 @@ window.Quarto = {
 </section>
 <section id="truncated-signed-distance-fields" class="level2">
 <h2 class="anchored" data-anchor-id="truncated-signed-distance-fields">Truncated signed distance fields</h2>
-<p>Because the boundary can be quite complex, we make use of a truncated signed distance field (TSDF) to accelerate the various boundary computations. By using a grid based acceleration method, the assumption is that simulations are dense. Tree based methods such as a BVH would use much less memory and could be faster in very large sparse system.</p>
+<p>Because the boundary can be quite complex, we make use of a truncated signed distance field (TSDF) to accelerate the various boundary computations. By using a grid based acceleration method, the assumption is that simulations are dense. Tree based methods such as a BVH would use much less memory and could be faster in very large sparse systems.</p>
 <section id="background" class="level3">
 <h3 class="anchored" data-anchor-id="background">Background</h3>
 <p>A signed distance field (SDF) stores, at each point in space, the signed distance to the nearest boundary surface. By convention, negative values indicate points inside the domain, and positive values indicate points outside. The zero level set of the SDF defines the boundary surface.</p>
@@ -509,7 +509,7 @@ window.Quarto = {
 <li>The oversampling factor or max distance settings change</li>
 </ul>
 <p>The TSDF itself is not saved in snapshot files, as it can be regenerated from the boundary geometry. However, the configuration parameters (<code>chem_boundary_oversampling_factor</code> and <code>chem_boundary_tsdf_max_distance</code>) are saved so the TSDF can be regenerated consistently when loading.</p>
-<p>The computed chem voxel volumes and areas are also saved in the snapshot, allowing chemistry to resume without recomputing them. The chem voxel volumes and areas must be explicitly recomputed with <code>apply_chem_boundary!</code></p>
+<p>The computed chem voxel volumes and areas are also saved in the snapshot, allowing chemistry to resume without recomputing them. The chem voxel volumes and areas must be explicitly recomputed with <code>apply_chem_boundary!</code>.</p>
 
 
 
