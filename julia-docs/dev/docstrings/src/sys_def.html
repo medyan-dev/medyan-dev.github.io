@@ -373,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_link_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name, description, places, bonds, reactions, param, state)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def_link_type!</span>(s<span class="op">::</span><span class="dt">SysDef</span>; name, description, places, bonds, colvars, reactions, param, state)<span class="op">::</span><span class="dt">SysDef</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add a new link type to the system definition. Links represent connections between simulation elements (filament monomers, filament tips, anchors, membrane vertices) that can have associated mechanical bonds and chemical reactions.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
@@ -396,6 +396,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>state::NamedTuple</code>: Mutable state (e.g., rest length <code>L0</code>)</li>
 <li><code>enabled::Bool=true</code>: Whether bond is active by default</li>
 </ul></li>
+<li><p><code>colvars::Vector</code>: Collective variables read from the places. Each colvar is a <code>NamedTuple</code> with:</p>
+<ul>
+<li><code>colvar</code>: ColVar type (e.g., <code>DistanceColVar()</code>, custom <code>ColVar</code> subtype)</li>
+<li><code>input::Tuple{Int...}</code>: Which places the colvar reads</li>
+</ul>
+<p>Colvars apply no forces. Their value is sampled every step of a <a href="../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> run to build per-link statistics (<a href="../../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>ColVarStats</code></a>), read with <a href="../../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>get_colvar_stats</code></a>.</p></li>
 <li><p><code>reactions::Vector{Vector}</code>: Reactions for each place. <code>reactions[i]</code> is a <code>Vector</code> of reactions for <code>places[i]</code>. Trailing places with no reactions can be omitted (i.e.&nbsp;<code>length(reactions) ≤ length(places)</code>). Each reaction is a <code>NamedTuple</code> with:</p>
 <ul>
 <li><p>Required fields:</p>

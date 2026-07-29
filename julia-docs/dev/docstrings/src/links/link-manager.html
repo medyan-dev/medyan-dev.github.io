@@ -206,6 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#medyan.get_bond_enabled-c3461fb32deb4276" id="toc-medyan.get_bond_enabled-c3461fb32deb4276" class="nav-link" data-scroll-target="#medyan.get_bond_enabled-c3461fb32deb4276"><code>MEDYAN.get_bond_enabled</code></a></li>
   <li><a href="#medyan.get_reaction_enabled-95b8e03d3766db53" id="toc-medyan.get_reaction_enabled-95b8e03d3766db53" class="nav-link" data-scroll-target="#medyan.get_reaction_enabled-95b8e03d3766db53"><code>MEDYAN.get_reaction_enabled</code></a></li>
   <li><a href="#medyan.is_minimized-ff3858ada5447c46" id="toc-medyan.is_minimized-ff3858ada5447c46" class="nav-link" data-scroll-target="#medyan.is_minimized-ff3858ada5447c46"><code>MEDYAN.is_minimized</code></a></li>
+  <li><a href="#medyan.get_colvar_stats-74a983aac3e388cf" id="toc-medyan.get_colvar_stats-74a983aac3e388cf" class="nav-link" data-scroll-target="#medyan.get_colvar_stats-74a983aac3e388cf"><code>MEDYAN.get_colvar_stats</code></a></li>
   <li><a href="#medyan.link_exists-0f95437072169f8d" id="toc-medyan.link_exists-0f95437072169f8d" class="nav-link" data-scroll-target="#medyan.link_exists-0f95437072169f8d"><code>MEDYAN.link_exists</code></a></li>
   <li><a href="#medyan.place2links-0b74317627f4b920" id="toc-medyan.place2links-0b74317627f4b920" class="nav-link" data-scroll-target="#medyan.place2links-0b74317627f4b920"><code>MEDYAN.place2links</code></a></li>
   <li><a href="#medyan.tag2links-e8376daf0b29e2fd" id="toc-medyan.tag2links-e8376daf0b29e2fd" class="nav-link" data-scroll-target="#medyan.tag2links-e8376daf0b29e2fd"><code>MEDYAN.tag2links</code></a></li>
@@ -494,6 +495,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
+<section id="medyan.get_colvar_stats-74a983aac3e388cf" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.get_colvar_stats-74a983aac3e388cf"><a href="../../../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>MEDYAN.get_colvar_stats</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_colvar_stats</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>, [d<span class="op">::</span><span class="dt">LinkData</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the tuple of <a href="../../../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>ColVarStats</code></a> for the link, one per collective variable defined on its link type.</p>
+<p>The stats are collected by <a href="../../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> and describe the configuration the link had during that run. They are <code>NaN</code>-filled until a run has collected them, and are reset to <code>NaN</code> by <a href="../../../docstrings/medyan.minimize_energy--84c4aeab5457d3ee.html"><code>minimize_energy!</code></a>, which doesn’t sample colvars, and by <a href="../../../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>update_link!</code></a> when it is passed <code>reset_colvar_stats=true</code>.</p>
+<p>A colvar is only sampled while all of the places it reads are attached, so a colvar with any null input place will be reset to <code>NaN</code> after a full run.</p>
+<p>Safe to read from a link reaction <code>rate</code> callback on <code>link</code>.</p>
+<p>Throw an error if <code>link</code> doesn’t exist.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.link_exists-0f95437072169f8d" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.link_exists-0f95437072169f8d"><a href="../../../docstrings/medyan.link_exists-0f95437072169f8d.html"><code>MEDYAN.link_exists</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
@@ -502,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">link_exists</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">link_exists</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>)<span class="op">::</span><span class="dt">Bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return true iff <code>link</code> exists in context <code>c</code>. Otherwise return false.</p>
 </div>
 </div>
@@ -516,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">place2links</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Place</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">place2links</span>(c<span class="op">::</span><span class="dt">Context</span>, p<span class="op">::</span><span class="dt">Place</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return an iterator of <code>Link</code>s attached to <code>p</code>. If <code>!place_exists(c, p)</code> return an empty iterator.</p>
 </div>
 </div>
@@ -530,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tag2links</span>(c<span class="op">::</span><span class="dt">Context</span>, t<span class="op">::</span><span class="dt">Tag</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tag2links</span>(c<span class="op">::</span><span class="dt">Context</span>, t<span class="op">::</span><span class="dt">Tag</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return an iterator of <code>Link</code>s attached to <code>t</code>. If <code>!tag_exists(c, t)</code> return an empty iterator.</p>
 </div>
 </div>
@@ -544,7 +563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_link!</span>(c<span class="op">::</span><span class="dt">Context</span>; kwargs<span class="op">...</span>)<span class="op">::</span><span class="dt">Link</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_link!</span>(c<span class="op">::</span><span class="dt">Context</span>; kwargs<span class="op">...</span>)<span class="op">::</span><span class="dt">Link</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return the new link.</p>
 <p>The <code>type</code> keyword argument is required.</p>
 <p>The other keyword arguments can be used to change the link from default.</p>
@@ -578,7 +597,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove_link!</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove_link!</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remove the link.</p>
 </div>
 </div>
@@ -592,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_link!</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>; kwargs<span class="op">...</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update_link!</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>; kwargs<span class="op">...</span>)<span class="op">::</span><span class="dt">Nothing</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Update the link.</p>
 <section id="keyword-arguments-1" class="level1">
 <h1>Keyword Arguments</h1>
@@ -609,6 +628,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A <code>Tuple</code> of <code>NamedTuple</code> or <code>nothing</code>. If an element in the tuple is <code>nothing</code>, the corresponding reaction enable flags aren’t changed. For example, <code>reaction_enabled = (nothing, (;a=true, b=false))</code> to not change any reactions on place 1, enable reaction a on place 2, and disable reaction b on place 2.</p></li>
 <li><p><code>is_minimized::Bool=false</code>: is the link marked as minimized.</p>
 <p>By default links are marked as minimized at the end of mechanics when updated.</p></li>
+<li><p><code>reset_colvar_stats::Bool=false</code>: reset the link’s <a href="../../../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>ColVarStats</code></a> to <code>NaN</code>, discarding the stats collected by the last <a href="../../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> run.</p>
+<p>By default the stats are kept. See <a href="../../../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>get_colvar_stats</code></a>.</p></li>
 </ul>
 </section>
 </div>
@@ -623,7 +644,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_all_links</span>(c<span class="op">::</span><span class="dt">Context</span>; <span class="kw">type</span><span class="op">::</span><span class="dt">Union{Symbol,Integer}</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_all_links</span>(c<span class="op">::</span><span class="dt">Context</span>; <span class="kw">type</span><span class="op">::</span><span class="dt">Union{Symbol,Integer}</span>) <span class="op">-&gt;</span> Link iterator</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return an iterator of all <code>Link</code>s of <code>type</code> type.</p>
 </div>
 </div>
