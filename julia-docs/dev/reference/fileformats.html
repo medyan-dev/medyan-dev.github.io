@@ -712,6 +712,14 @@ Ball stiffness in pN/nm.
 </details>
 <details>
 <summary>
+🔢 g
+</summary>
+<pre class="{julia}"><code>collect(group["ball/g"])</code></pre>
+<p>Default: <code>NaN32</code></p>
+Stokes drag coefficient γ (pN·s/nm) per ball, used by the BAOAB thermostat and overdamped dynamics. <code>NaN</code> means compute it from the radius as <code>γ = 6πηr</code>. May be absent in older snapshots, in which case it is treated as <code>NaN</code>.
+</details>
+<details>
+<summary>
 🔢 s
 </summary>
 <pre class="{julia}"><code>collect(group["ball/s"])</code></pre>
@@ -1064,7 +1072,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link bonds, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/bs"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/bs"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 └─ 📂 1 🏷️ name =&gt; "1",
@@ -1081,7 +1089,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 <p>See <a href="../docstrings/medyan.update_link--67d413cca6fe82eb.html"><code>MEDYAN.update_link!</code></a>.</p>
 <p>The state of link, organized in a nested struct of vector like form. Any static arrays will be unwrapped into a tuple of vectors, in column major order. The “name” attribute of each subgroup and dataset is the corresponding property name in the <code>StructArray</code> Any property in the default state that isn’t in the snapshot will stay at its default value.</p>
 <div id="12" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/s"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>group[<span class="st">"links/8/s"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>📂
 ├─ 🔢 1: 4 Int64  🏷️ name =&gt; "a",

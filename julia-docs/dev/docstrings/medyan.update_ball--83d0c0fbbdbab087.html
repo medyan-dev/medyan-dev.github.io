@@ -216,6 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>position::Union{Nothing, SVector{3, Float64}}=nothing</code>: New position (nm)</li>
 <li><code>radius::Union{Nothing, Float32}=nothing</code>: New radius (nm)</li>
 <li><code>stiffness::Union{Nothing, Float32}=nothing</code>: New stiffness (pN/nm)</li>
+<li><code>gamma::Union{Nothing, Float32}=nothing</code>: New Stokes drag coefficient γ (pN·s/nm). Pass <code>NaN</code> to restore the compute-from-radius default.</li>
 <li><code>collision_layers::Union{Nothing, UInt32}=nothing</code>: New collision layers bitmask</li>
 <li><code>no_collide_mask::Union{Nothing, UInt32}=nothing</code>: New no-collide mask bitmask</li>
 <li><code>state::Union{Nothing, SVector{3, Int64}}=nothing</code>: New state vector</li>
