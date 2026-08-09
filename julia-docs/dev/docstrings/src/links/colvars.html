@@ -210,8 +210,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ColVarStats{D, T, L}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Per-link statistics collected for one collective variable over a <a href="../../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> run. <code>D</code> is the colvar output dimension; <code>L == D*D</code>.</p>
-<p>A run of <code>nsteps</code> steps takes <code>nsteps + 1</code> samples: one at the configuration entering each step, plus one at the final configuration. The first <code>cld(nsteps, 2)</code> samples make up the first half, the remaining samples, including the final configuration, the second half. <code>initial</code> is recorded before the run’s constraint solve and FIRE pre-relaxation, so it is not one of the samples and is excluded from the means, covariances and extrema.</p>
-<p>A half with no samples has a <code>NaN</code> mean and covariance, and a half with a single sample has a <code>NaN</code> covariance, so <code>nsteps ≥ 3</code> is needed for both <code>cov1</code> and <code>cov2</code> to be finite.</p>
+<p>A run of <code>nsteps</code> steps takes <code>nsteps + 1</code> samples: one at the configuration entering each step, plus one at the final configuration. The first <code>cld(nsteps, 2)</code> samples make up the first half, the remaining samples, including the final configuration, the second half. <code>initial</code> is recorded before the run’s constraint solve and FIRE pre-relaxation, so it is not one of the samples and is excluded from the means, covariances, extrema and fractions.</p>
+<p>The <code>frac_le</code> fields count the samples <code>x</code> with <code>all(x .≤ θ)</code> (elementwise) against the link’s per-colvar threshold <code>θ</code> (see <a href="../../../docstrings/medyan.get_colvar_thresholds-839253312aa16582.html"><code>get_colvar_thresholds</code></a>).</p>
+<p>A half with no samples has a <code>NaN</code> mean, covariance and <code>frac_le</code>, and a half with a single sample has a <code>NaN</code> covariance, so <code>nsteps ≥ 3</code> is needed for both <code>cov1</code> and <code>cov2</code> to be finite.</p>
 <p>The fields are filled with <code>NaN</code> until a run has collected them, and whenever the stats are reset. See <a href="../../../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>get_colvar_stats</code></a> for when that happens.</p>
 <ul>
 <li><code>initial::StaticArraysCore.SVector</code>: colvar value at the pre-relaxation starting configuration</li>
@@ -222,6 +223,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>cov2::StaticArraysCore.SMatrix{D, D} where D</code>: sample covariance (÷(n-1)) over the second half of the run, clamped to be positive definite</li>
 <li><code>min::StaticArraysCore.SVector</code>: elementwise minimum over the samples of the run</li>
 <li><code>max::StaticArraysCore.SVector</code>: elementwise maximum over the samples of the run</li>
+<li><code>frac_le1::Any</code>: fraction of the first half’s samples <code>x</code> with <code>all(x .≤ threshold)</code></li>
+<li><code>frac_le2::Any</code>: fraction of the second half’s samples <code>x</code> with <code>all(x .≤ threshold)</code></li>
 </ul>
 </div>
 </div>

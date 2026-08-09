@@ -400,6 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>colvar</code>: ColVar type (e.g., <code>DistanceColVar()</code>, custom <code>ColVar</code> subtype)</li>
 <li><code>input::Tuple{Int...}</code>: Which places the colvar reads</li>
+<li><code>threshold</code>: Optional default per-link threshold for the <code>frac_le</code> fields of <a href="../../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>ColVarStats</code></a>: <code>nothing</code> (the default) gives zeros, a <code>Real</code> is accepted for a 1-dimensional colvar, otherwise a length-<code>D</code> vector is required.</li>
 </ul>
 <p>Colvars apply no forces. Their value is sampled every step of a <a href="../../docstrings/medyan.baoab--133a72b248e29adf.qmd"><code>baoab!</code></a> run to build per-link statistics (<a href="../../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>ColVarStats</code></a>), read with <a href="../../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>get_colvar_stats</code></a>.</p></li>
 <li><p><code>reactions::Vector{Vector}</code>: Reactions for each place. <code>reactions[i]</code> is a <code>Vector</code> of reactions for <code>places[i]</code>. Trailing places with no reactions can be omitted (i.e.&nbsp;<code>length(reactions) ≤ length(places)</code>). Each reaction is a <code>NamedTuple</code> with:</p>

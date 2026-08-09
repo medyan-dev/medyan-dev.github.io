@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>medyan.make_link--0fd0bab9dac08837 – MEDYAN.jl</title>
+<title>medyan.get_colvar_thresholds-839253312aa16582 – MEDYAN.jl</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -185,12 +185,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#medyan.make_link" id="toc-medyan.make_link" class="nav-link active" data-scroll-target="#medyan.make_link"><code>MEDYAN.make_link!</code></a>
+  <li><a href="#medyan.get_colvar_thresholds" id="toc-medyan.get_colvar_thresholds" class="nav-link active" data-scroll-target="#medyan.get_colvar_thresholds"><code>MEDYAN.get_colvar_thresholds</code></a>
   <ul class="collapse">
-  <li><a href="#tuple-medyan.context--4896731d1a77eb1c" id="toc-tuple-medyan.context--4896731d1a77eb1c" class="nav-link" data-scroll-target="#tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></a></li>
+  <li><a href="#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f" id="toc-union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f" class="nav-link" data-scroll-target="#union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f"><code data-shortcodes="false">Union{Tuple{MEDYAN.Context, MEDYAN.Link}, Tuple{MEDYAN.Context, MEDYAN.Link, Any}}</code></a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_link--0fd0bab9dac08837.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.get_colvar_thresholds-839253312aa16582.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -198,40 +198,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="medyan.make_link" class="level1">
-<h1><code>MEDYAN.make_link!</code></h1>
-<section id="tuple-medyan.context--4896731d1a77eb1c" class="level2">
-<h2 class="anchored" data-anchor-id="tuple-medyan.context--4896731d1a77eb1c"><code data-shortcodes="false">Tuple{MEDYAN.Context}</code></h2>
+<section id="medyan.get_colvar_thresholds" class="level1">
+<h1><code>MEDYAN.get_colvar_thresholds</code></h1>
+<section id="union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f" class="level2">
+<h2 class="anchored" data-anchor-id="union-tuple-medyan.context--medyan.link---tuple-medyan.context--medyan.link--any---03b671600f22589f"><code data-shortcodes="false">Union{Tuple{MEDYAN.Context, MEDYAN.Link}, Tuple{MEDYAN.Context, MEDYAN.Link, Any}}</code></h2>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_link!</span>(c<span class="op">::</span><span class="dt">Context</span>; kwargs<span class="op">...</span>)<span class="op">::</span><span class="dt">Link</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the new link.</p>
-<p>The <code>type</code> keyword argument is required.</p>
-<p>The other keyword arguments can be used to change the link from default.</p>
-<section id="keyword-arguments" class="level1">
-<h1>Keyword Arguments</h1>
-<ul>
-<li><p><code>type::Union{Symbol,Integer}</code>: the link type id or symbol.</p></li>
-<li><p><code>places=()</code>: places or tags to attach to the link.</p>
-<p>Set an element to <code>nothing</code> to not change the attached place. Set an element to a null place or tag to detach that place.</p></li>
-<li><p><code>state=(;)</code>: state properties to change.</p>
-<p>A <code>NamedTuple</code> of changes. For example, <code>state = (;k1 = 3.6, k7 = 2.0,)</code> to change <code>state.k1</code> to <code>3.6</code> and <code>state.k7</code> to <code>2.0</code>.</p></li>
-<li><p><code>bond_states=()</code>: bond state properties to change.</p>
-<p>A <code>Tuple</code> of <code>NamedTuple</code> or <code>nothing</code>. If an element in the tuple is <code>nothing</code>, the corresponding bond state isn’t changed. For example, <code>bond_states = (nothing, (;L0 = 3.6,))</code> to change <code>bond_states[2].L0</code> to <code>3.6</code>.</p></li>
-<li><p><code>colvar_thresholds=()</code>: colvar thresholds to change.</p>
-<p>A <code>Tuple</code> of <code>nothing</code>, <code>Real</code>, or <code>AbstractVector</code>. If an element in the tuple is <code>nothing</code>, the corresponding colvar threshold isn’t changed. A <code>Real</code> is accepted for a 1-dimensional colvar; otherwise a length-<code>D</code> vector is required. For example, <code>colvar_thresholds = (nothing, 2.7)</code> to leave colvar 1’s threshold unchanged and set colvar 2’s threshold to <code>2.7</code>. See <a href="../docstrings/medyan.get_colvar_thresholds-839253312aa16582.html"><code>get_colvar_thresholds</code></a>.</p></li>
-<li><p><code>bond_enabled=()</code>: bond enable flags to change.</p>
-<p>A <code>Tuple</code> of <code>Union{Bool, Nothing}</code>. If an element in the tuple is <code>nothing</code>, the corresponding bond enable flag isn’t changed. For example, <code>bond_enabled = (nothing, true, false)</code> to not change bond 1, enable bond 2, and disable bond 3.</p></li>
-<li><p><code>reaction_enabled=()</code>: reaction enable flags to change.</p>
-<p>A <code>Tuple</code> of <code>NamedTuple</code> or <code>nothing</code>. If an element in the tuple is <code>nothing</code>, the corresponding reaction enable flags aren’t changed. For example, <code>reaction_enabled = (nothing, (;a=true, b=false))</code> to not change any reactions on place 1, enable reaction a on place 2, and disable reaction b on place 2.</p></li>
-<li><p><code>is_minimized::Bool=false</code>: is the link marked as minimized.</p>
-<p>By default links are marked as minimized at the end of mechanics when updated.</p></li>
-</ul>
-</section>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_colvar_thresholds</span>(c<span class="op">::</span><span class="dt">Context</span>, link<span class="op">::</span><span class="dt">Link</span>, [d<span class="op">::</span><span class="dt">LinkData</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Return the tuple of per-link colvar thresholds of the link, one <code>SVector{D, Float32}</code> per collective variable defined on its link type (<code>D</code> is the colvar’s dimension).</p>
+<p>Throw an error if <code>link</code> doesn’t exist.</p>
 </div>
 </div>
 </div>
@@ -646,4 +625,4 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.make_link--0fd0bab9dac08837.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/medyan-dev/MEDYAN.jl/edit/master/quartodocs/docstrings/medyan.get_colvar_thresholds-839253312aa16582.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/medyan-dev/MEDYAN.jl/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
