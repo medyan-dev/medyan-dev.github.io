@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -173,19 +208,26 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Filament mechanical parameters</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">FilamentMechParams</span>(; kwargs<span class="op">...</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mechanical parameters shared by all filaments of a type.</p>
+<p>Elastic constants are specified at the <strong>monomer</strong> scale. With <code>n = numpercylinder</code> and <code>a = spacing</code>, a full cylinder has rest length <code>L0 = n*a</code>; mechanics uses <code>klength/n</code>, <code>kangle/n</code>, and <code>ktwist/n</code>. Keep these monomer-scale constants fixed when changing cylinder resolution.</p>
+<p>The bending parameter is named <code>kangle</code>. Its continuum bending rigidity is <code>EI = kangle*spacing</code> (pN·nm²). For a three-dimensional wormlike chain, the bending persistence length is</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> EI<span class="op">/</span>(kB<span class="op">*</span>T) <span class="op">=</span> kangle<span class="op">*</span>spacing<span class="op">/</span>(kB<span class="op">*</span>T)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>kangle <span class="op">=</span> kB<span class="op">*</span>T<span class="op">*</span>lp<span class="op">/</span>spacing</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here <code>lp</code> and <code>spacing</code> are in nm and <code>kB*T</code> is in pN·nm. For example, at 310 K, <code>spacing = 2.7</code> and <code>kangle = 16_000</code> give <code>lp ≈ 10_093</code> nm (10.1 μm).</p>
+<p>The <code>NaN</code> and <code>-1</code> defaults are placeholders, not a complete physical parameter set. Supply geometry, elastic and collision constants, cylinder size, and the tip limit. Leave <code>twist_per_monomer = NaN</code> to disable twist; otherwise supply both <code>twist_per_monomer</code> and <code>ktwist</code>.</p>
 <ul>
-<li><code>radius::Float64</code>: Cylinder radius (nm)</li>
-<li><code>spacing::Float64</code>: Monomer spacing length (nm)</li>
-<li><code>klength::Float64</code>: Length force constant (pN/nm)</li>
-<li><code>kangle::Float64</code>: Bending force constant (pN*nm/rad²)</li>
-<li><code>ktwist::Float64</code>: Twisting force constant (pN*nm/rad²)</li>
-<li><code>twist_per_monomer::Float64</code>: Twist between monomers (rad)</li>
-<li><code>numpercylinder::Int32</code>: Number of monomers per cylinder</li>
-<li><code>kcollide::Float64</code>: Repulsion stiffness (pN/nm)</li>
-<li><code>collision_layers::UInt32</code>: Collision layers bitmask. Defines which layers this filament type is on.</li>
-<li><code>no_collide_mask::UInt32</code>: No-collide mask bitmask. Bits set = layers this filament type will not collide with.</li>
-<li><code>max_num_unmin_end::Int32</code>: Maximum number of unminimized monomers that can be on an end. This should be less than the minimum <code>radius</code> of other filaments + <code>radius</code> divided by <code>spacing</code>.</li>
+<li><code>radius::Float64</code>: Cylinder radius (nm), used for excluded-volume contact distances and filament geometry.</li>
+<li><code>spacing::Float64</code>: Axial rest-length increment per monomer (nm). A full cylinder spans <code>numpercylinder*spacing</code>.</li>
+<li><code>klength::Float64</code>: Monomer-scale stretching spring constant (pN/nm). A cylinder contributes <code>E = (klength/numpercylinder)*(L-L0)^2/2</code>, where <code>L</code> and <code>L0</code> are its current and rest lengths. The corresponding axial rigidity is <code>EA = klength*spacing</code> (pN).</li>
+<li><code>kangle::Float64</code>: Monomer-scale bending constant (pN·nm/rad²). Each joint contributes <code>E = (kangle/numpercylinder)*(1-cos(θ))</code>, where <code>θ = 0</code> is straight. For small bends this is <code>(kangle/numpercylinder)*θ^2/2</code>. Set <code>kangle = kB*T*lp/spacing</code> for the desired continuum bending persistence length <code>lp</code>.</li>
+<li><code>ktwist::Float64</code>: Monomer-scale torsional constant (pN·nm/rad²), used only when twist is enabled. For excess twist <code>Δφ</code> relative to the relaxed twist, a joint contributes <code>E = 2*(ktwist/numpercylinder)*tan(Δφ/2)^2</code>, approximately <code>(ktwist/numpercylinder)*Δφ^2/2</code> near equilibrium. The continuum torsional rigidity is <code>C = ktwist*spacing</code> (pN·nm²).</li>
+<li><code>twist_per_monomer::Float64</code>: Signed relaxed rotation of the material direction per monomer (rad). The reference twist between neighboring cylinders is <code>numpercylinder*twist_per_monomer</code>. <code>NaN</code> disables twist degrees of freedom; <code>0</code> enables twist with an untwisted reference state.</li>
+<li><code>numpercylinder::Int32</code>: Number of monomers represented by a full cylinder; must be positive. Controls mechanical discretization and the division of the monomer-scale elastic constants. End cylinders can be shorter.</li>
+<li><code>kcollide::Float64</code>: Excluded-volume repulsion stiffness (pN/nm) supplied to the collision model. Larger values penalize overlap more strongly. This is separate from stretching stiffness and is not divided by <code>numpercylinder</code>.</li>
+<li><code>collision_layers::UInt32</code>: Bitmask of collision layers occupied by this filament type; default <code>UInt32(1)</code> selects the first layer. Multiple bits may be set.</li>
+<li><code>no_collide_mask::UInt32</code>: Bitmask of layers this filament type ignores. A pair is excluded if either object’s mask intersects the other’s layers. Default <code>UInt32(0)</code> excludes no layers.</li>
+<li><code>max_num_unmin_end::Int32</code>: Maximum number of newly added, mechanically unminimized monomers allowed at each tip. Tip reactions that would exceed this limit are disabled until mechanical relaxation. Choose a nonnegative limit smaller than <code>(radius + minimum_other_filament_radius)/spacing</code> so unrelaxed growth remains shorter than the filament contact distance.</li>
 </ul>
 </div>
 </div>
