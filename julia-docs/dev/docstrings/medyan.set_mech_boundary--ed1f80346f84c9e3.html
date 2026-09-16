@@ -212,8 +212,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    boundary<span class="op">::</span><span class="dt">MEDYAN.Boundary</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Set the mechanical boundary.</p>
-<p>See also <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a></p>
+<p>Set the mechanical boundary, replacing any existing one.</p>
+<p>The mechanical boundary is a set of soft walls that push beads back inside the domain. Build the <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a> with one of the constructors:</p>
+<ul>
+<li><a href="../docstrings/medyan.boundary_box-060d4c56df40146a.html"><code>boundary_box</code></a>: planes at the edges of a <code>CubicGrid</code>.</li>
+<li><a href="../docstrings/medyan.boundary_plane-2caa9b52b3b3f0cc.html"><code>boundary_plane</code></a>: a single plane.</li>
+<li><a href="../docstrings/medyan.boundary_capsule-1700142f310bd9db.html"><code>boundary_capsule</code></a>: a sphere or capsule, inside or outside.</li>
+<li><a href="../docstrings/medyan.boundary_cylinder-33a45da15f9672d3.html"><code>boundary_cylinder</code></a>: a cylinder with flat ends.</li>
+</ul>
+<p>Combine boundaries with <code>∩</code>. Pass <code>Boundary()</code> to remove the boundary.</p>
+<section id="example" class="level1">
+<h1>Example</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> <span class="fu">CubicGrid</span>(SA[<span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span>], <span class="fl">250.0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_mech_boundary!</span>(c, MEDYAN.<span class="fu">boundary_box</span>(grid; stiffness<span class="op">=</span><span class="fl">100.0</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a sphere of radius 400 nm clipped by the grid box</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sphere <span class="op">=</span> MEDYAN.<span class="fu">boundary_capsule</span>(; radius<span class="op">=</span><span class="fl">400.0</span>, stiffness<span class="op">=</span><span class="fl">100.0</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set_mech_boundary!</span>(c, sphere <span class="op">∩</span> MEDYAN.<span class="fu">boundary_box</span>(grid; stiffness<span class="op">=</span><span class="fl">100.0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See also <a href="../docstrings/medyan.set_chem_boundary--8446b49a230e3146.html"><code>set_chem_boundary!</code></a></p>
+</section>
 </div>
 </div>
 </div>

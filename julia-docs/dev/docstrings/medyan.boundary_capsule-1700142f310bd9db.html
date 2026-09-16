@@ -210,18 +210,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boundary_capsule</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    center,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    axis,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    radius,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    radius,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    center,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    axis,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    stiffness,</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    collision_layers,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    no_collide_mask</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a capsule boundary.</p>
-<p><code>center</code>(nm): The center of the capsule.</p>
-<p><code>axis</code>(nm): The direction and length of the capsule spine. The spine line segment goes from <code>center - axis/2</code> to <code>center + axis/2</code> If zero the capsule is a sphere.</p>
-<p><code>radius</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2*abs(radius)</code>. If negative, the domain is the outside of the capsule, if positive the domain is the inside of the capsule.</p>
-<p><code>stiffness</code>(pN/nm): How strong the boundary is.</p>
+<p>A bead a distance <code>d</code> past the capsule surface has energy <code>1/2 * stiffness * d^2</code> and is pushed back toward the surface.</p>
+<p><code>radius::Float64</code>(nm): Radius of capsule, the full length of the capsule is <code>norm(axis) + 2*abs(radius)</code>. If negative, the domain is the outside of the capsule, if positive the domain is the inside of the capsule.</p>
+<p><code>center::SVector{3,Float64}=SA[0.0,0.0,0.0]</code>(nm): The center of the capsule.</p>
+<p><code>axis::SVector{3,Float64}=SA[0.0,0.0,0.0]</code>(nm): The direction and length of the capsule spine. The spine line segment goes from <code>center - axis/2</code> to <code>center + axis/2</code>. If zero the capsule is a sphere.</p>
+<p><code>stiffness::Float64=1.0</code>(pN/nm): How strong the boundary is.</p>
+<p><code>collision_layers::UInt32=UInt32(1)</code>: Collision layers bitmask.</p>
+<p><code>no_collide_mask::UInt32=UInt32(0)</code>: No-collide mask bitmask. Bits set = layers this capsule will not collide with. The default collides with everything. See the “Collision Layers and No-Collide Masks” explanation page.</p>
+<section id="example" class="level1">
+<h1>Example</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inside a sphere of radius 400 nm</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boundary_capsule</span>(; radius<span class="op">=</span><span class="fl">400.0</span>, stiffness<span class="op">=</span><span class="fl">100.0</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># outside a ball of radius 50 nm at z = 300 nm</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boundary_capsule</span>(; center<span class="op">=</span>SA[<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">300.0</span>], radius<span class="op">=-</span><span class="fl">50.0</span>, stiffness<span class="op">=</span><span class="fl">100.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See also <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a>, <a href="../docstrings/medyan.set_mech_boundary--ed1f80346f84c9e3.html"><code>set_mech_boundary!</code></a></p>
+</section>
 </div>
 </div>
 </div>

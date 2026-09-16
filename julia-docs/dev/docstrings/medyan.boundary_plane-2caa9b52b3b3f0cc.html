@@ -217,9 +217,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    no_collide_mask</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> MEDYAN.Boundary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return a plane boundary.</p>
-<p><code>normal</code>(unit vector): Vector pointing normal to the plane. This points outside of the boundary.</p>
-<p><code>point</code>(nm): Point on the plane.</p>
-<p><code>stiffness</code>(pN/nm): How strong the boundary is.</p>
+<p>A bead a distance <code>d</code> past the plane has energy <code>1/2 * stiffness * d^2</code> and is pushed back along <code>-normal</code>.</p>
+<p><code>normal::SVector{3,Float64}=SA[1.0,0.0,0.0]</code>(unit vector): Vector normal to the plane, pointing outside of the boundary.</p>
+<p><code>point::SVector{3,Float64}=SA[0.0,0.0,0.0]</code>(nm): Point on the plane.</p>
+<p><code>stiffness::Float64=1.0</code>(pN/nm): How strong the boundary is.</p>
+<p><code>collision_layers::UInt32=UInt32(1)</code>: Collision layers bitmask.</p>
+<p><code>no_collide_mask::UInt32=UInt32(0)</code>: No-collide mask bitmask. Bits set = layers this plane will not collide with. The default collides with everything. See the “Collision Layers and No-Collide Masks” explanation page.</p>
+<section id="example" class="level1">
+<h1>Example</h1>
+<p>A floor keeping beads above z = -200 nm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boundary_plane</span>(; normal<span class="op">=</span>SA[<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">1.0</span>], point<span class="op">=</span>SA[<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">200.0</span>], stiffness<span class="op">=</span><span class="fl">100.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See also <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>Boundary</code></a>, <a href="../docstrings/medyan.set_mech_boundary--ed1f80346f84c9e3.html"><code>set_mech_boundary!</code></a></p>
+</section>
 </div>
 </div>
 </div>
