@@ -245,6 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="file-formats" class="level1">
 <h1>File Formats</h1>
 <p>MEDYAN.jl uses Zarr v2 zip store for saving snapshots.</p>
+<p>Arrays are saved with <a href="https://github.com/medyan-dev/SmallZarrGroups.jl">SmallZarrGroups.jl</a>, by default compressed with zstd after the shuffle filter. SmallZarrGroups 0.9 and later can’t load arrays compressed with blosc, the default compressor of SmallZarrGroups 0.8 and earlier. To load older files, first load and resave them with no compressor using SmallZarrGroups 0.8.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -256,6 +257,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p>To open the snapshots in python use <a href="https://github.com/zarr-developers/zarr-python">zarr</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Array dimension order
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The shapes, rows, and columns of arrays described below are in Julia order, as loaded by SmallZarrGroups.jl.</p>
+<p>Like Zarr.jl, SmallZarrGroups.jl reverses the dimensions of arrays relative to the Zarr metadata. For example, in Julia <code>ball/p</code> is a <code>3×(number of balls)</code> matrix where each column is a ball position, so in python it has shape <code>(number of balls, 3)</code> and each row is a ball position.</p>
 </div>
 </div>
 <section id="trajectory-output-directory" class="level2">
@@ -283,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "version": "0.14.0",
     "medyanInfo": {
         "title": "MEDYAN.jl",
-        "version": "0.7.1",
+        "version": "0.8.0-dev",
         "sourceCodeUrl": "https://github.com/medyan-dev/MEDYAN.jl"
     },
     "size": {
@@ -473,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>group <span class="op">=</span> MEDYAN.<span class="fu">snapshot</span>(cinit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -482,10 +497,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -494,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -540,7 +555,7 @@ Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08” to be consider
 </div>
 <!--##################### SNAPSHOT GROUPS ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -549,11 +564,11 @@ Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08” to be consider
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <!--##################### CHEM ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -562,11 +577,11 @@ Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08” to be consider
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <!-- Attributes -->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -575,7 +590,7 @@ Must be set to exactly “37eee81f-88ae-4d11-b6b3-d38e1ccf0a08” to be consider
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -594,7 +609,7 @@ chem data major version, version 1 is described here.
 </summary>
 <pre class="{julia}"><code>collect(group["chem/dc"])</code></pre>
 <p>Default: Empty</p>
-<p>A 4D Array of <code>Int32</code> indexed by [species id, cartesian index] to give count.</p>
+<p>A 4D Array of <code>Int32</code> indexed by [z index, y index, x index, species id] to give count.</p>
 See <a href="../docstrings/medyan.add_diffusing_count--78fc5fd22c94a7fa.html"><code>MEDYAN.add_diffusing_count!</code></a>
 </details>
 <details>
@@ -603,7 +618,7 @@ See <a href="../docstrings/medyan.add_diffusing_count--78fc5fd22c94a7fa.html"><c
 </summary>
 <pre class="{julia}"><code>collect(group["chem/fc"])</code></pre>
 <p>Default: Empty</p>
-<p>A 4D array of <code>Int64</code> indexed by [species id, cartesian index] to give count. The count is a fixed point number <code>Q31f32</code> reinterpreted as an integer. To get the count, divide the integers stored by 2^32.</p>
+<p>A 4D array of <code>Int64</code> indexed by [z index, y index, x index, species id] to give count. The count is a fixed point number <code>Q31f32</code> reinterpreted as an integer. To get the count, divide the integers stored by 2^32.</p>
 See <a href="../docstrings/medyan.add_fixed_count--51020c406ff1afef.html"><code>MEDYAN.add_fixed_count!</code></a>
 </details>
 <details>
@@ -612,7 +627,7 @@ See <a href="../docstrings/medyan.add_fixed_count--51020c406ff1afef.html"><code>
 </summary>
 <pre class="{julia}"><code>collect(group["chem/a"])</code></pre>
 <p>Default: Full areas</p>
-A 4D array indexed by (side, cartesian index) to get the area of a minus side of a chem voxel. side 1 is x, 2 is y, and 3 is z. These can be recalculated based on the chem boundaries and membranes by <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a>
+A 4D array indexed by [z index, y index, x index, side] to get the area of a minus side of a chem voxel. side 1 is x, 2 is y, and 3 is z. These can be recalculated based on the chem boundaries and membranes by <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a>
 </details>
 <details>
 <summary>
@@ -620,7 +635,7 @@ A 4D array indexed by (side, cartesian index) to get the area of a minus side of
 </summary>
 <pre class="{julia}"><code>collect(group["chem/v"])</code></pre>
 <p>Default: Full volumes</p>
-A 3D array indexed by a cartesian index to get the volume of a chem voxel. voxels can have zero volume if they were outside the boundaries when <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a> was called. These can be recalculated based on the chem boundaries and membranes by <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a>
+A 3D array indexed by [z index, y index, x index] to get the volume of a chem voxel. voxels can have zero volume if they were outside the boundaries when <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a> was called. These can be recalculated based on the chem boundaries and membranes by <a href="../docstrings/medyan.apply_chem_boundaries--8309f59b64256ecd.qmd"><code>MEDYAN.apply_chem_boundaries!</code></a>
 </details>
 <p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
 <p>See <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>MEDYAN.Boundary</code></a></p>
@@ -630,7 +645,7 @@ A 3D array indexed by a cartesian index to get the volume of a chem voxel. voxel
 </summary>
 <pre class="{julia}"><code>collect(group["chem/ca"])</code></pre>
 <p>Default: Empty</p>
-Each column of the dataset is a capsule.
+Each row of the dataset is a capsule.
 </details>
 <details>
 <summary>
@@ -638,7 +653,7 @@ Each column of the dataset is a capsule.
 </summary>
 <pre class="{julia}"><code>collect(group["chem/pl"])</code></pre>
 <p>Default: Empty</p>
-Each column of the dataset is a plane.
+Each row of the dataset is a plane.
 </details>
 </div>
 </div>
@@ -646,7 +661,7 @@ Each column of the dataset is a plane.
 <!--##################### CHEMBOUNDARY END ##################-->
 <!--##################### BALL ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -655,11 +670,11 @@ Each column of the dataset is a plane.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <!-- Attributes -->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -668,7 +683,7 @@ Each column of the dataset is a plane.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -694,7 +709,7 @@ Ball positions were rounded to the nearest 2^-position_scale nm when saved.
 🔢 p
 </summary>
 <pre class="{julia}"><code>collect(group["ball/p"])</code></pre>
-Each row is a ball position in nm.
+Each column is a ball position in nm.
 </details>
 <details>
 <summary>
@@ -723,7 +738,7 @@ Stokes drag coefficient γ (pN·s/nm) per ball, used by the BAOAB thermostat and
 🔢 s
 </summary>
 <pre class="{julia}"><code>collect(group["ball/s"])</code></pre>
-Each row is a ball state integers.
+Each column is a ball’s state integers.
 </details>
 <details>
 <summary>
@@ -757,7 +772,7 @@ Boolean vector indicating whether each ball is marked as minimized. <code>true</
 <!--##################### BALL END ##################-->
 <!--##################### FILA ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -766,11 +781,11 @@ Boolean vector indicating whether each ball is marked as minimized. <code>true</
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <!-- Attributes -->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -779,7 +794,7 @@ Boolean vector indicating whether each ball is marked as minimized. <code>true</
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -803,7 +818,7 @@ Filament positions were rounded to the nearest 2^-position_scale nm when saved.
 <p>There is a subgroup for each filament type with at least one filament. The subgroups are named by their filament typeid. For example:</p>
 <!--##################### FILAMENTTYPE ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -812,7 +827,7 @@ Filament positions were rounded to the nearest 2^-position_scale nm when saved.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -820,7 +835,7 @@ Filament positions were rounded to the nearest 2^-position_scale nm when saved.
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/load"])</code></pre>
 <p>Filament end load forces (pN).</p>
-Each row is the load force on the minus and plus ends of a filament.
+Each column is the load force on the minus and plus ends of a filament.
 </details>
 <details>
 <summary>
@@ -869,7 +884,7 @@ The monomer id with parenthesis (M) will in <code>node_mids</code>
 🔢 np
 </summary>
 <pre class="{julia}"><code>collect(group["fila/1/np"])</code></pre>
-Each row is a node position in nm.
+Each column is a node position in nm.
 </details>
 <details>
 <summary>
@@ -883,7 +898,7 @@ Monomer states.
 🔢 mdir
 </summary>
 <pre class="{julia}"><code>collect(group["fila/2/mdir"])</code></pre>
-This array only exists if the filament type is twistable. Each row is the material direction associated with the center of each chem cylinder.
+This array only exists if the filament type is twistable. Each column is the material direction associated with the center of each chem cylinder.
 </details>
 <details>
 <summary>
@@ -892,7 +907,7 @@ This array only exists if the filament type is twistable. Each row is the materi
 <pre class="{julia}"><code>collect(group["fila/1/tsm"])</code></pre>
 <p>Default: NaN</p>
 <p>Snapshotted minus-end tip positions (nm).</p>
-<p>Each row is the minus-end tip position of a filament, set at the end of <code>minimize_energy!</code> / <code>baoab!</code>. NaN before the first mechanics cycle. Used by <code>fila_tip_cutoff</code> reactions.</p>
+<p>Each column is the minus-end tip position of a filament, set at the end of <code>minimize_energy!</code> / <code>baoab!</code>. NaN before the first mechanics cycle. Used by <code>fila_tip_cutoff</code> reactions.</p>
 <p>May be absent in older snapshots.</p>
 See <a href="../docstrings/medyan.fila_tip_snapshot-1a8df73c85df5309.html"><code>fila_tip_snapshot</code></a>.
 </details>
@@ -937,7 +952,7 @@ See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><cod
 <!--##################### FILA END ##################-->
 <!--##################### LINKS ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -946,11 +961,11 @@ See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><cod
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <!-- Attributes -->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -959,7 +974,7 @@ See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><cod
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -975,7 +990,7 @@ link data major version, version 1 is described here.
 <p>There is a subgroup for each link type with at least one current or past link. The subgroups are named by their link typeid. For example:</p>
 <!--##################### LINK_TYPE ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -984,10 +999,10 @@ link data major version, version 1 is described here.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -996,7 +1011,7 @@ link data major version, version 1 is described here.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -1022,7 +1037,7 @@ This should be greater than all the existing link ids of this type.
 </summary>
 <pre class="{julia}"><code>collect(group["links/8/be"])</code></pre>
 <p>The bonds that are enabled.</p>
-Each row of this matrix represents a link, each column represents a bond.
+Each column of this matrix represents a link, each row represents a bond.
 </details>
 <details>
 <summary>
@@ -1031,7 +1046,7 @@ Each row of this matrix represents a link, each column represents a bond.
 <pre class="{julia}"><code>collect(group["links/8/cv"])</code></pre>
 <p>Default: all <code>NaN</code></p>
 <p>The collective variable statistics (<a href="../docstrings/medyan.colvarstats-4856e7d7fcb271c5.html"><code>MEDYAN.ColVarStats</code></a>) of the links.</p>
-Only stored if the link type has any colvars. Each row of this <code>Float32</code> matrix represents a link. The row is the link’s tuple of <code>ColVarStats</code> (one per colvar of the link type, in definition order) reinterpreted as <code>Float32</code>s. If the matrix doesn’t have the expected number of rows or columns, all stats are loaded as <code>NaN</code>. See <a href="../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>MEDYAN.get_colvar_stats</code></a>.
+Only stored if the link type has any colvars. Each column of this <code>Float32</code> matrix represents a link. The column is the link’s tuple of <code>ColVarStats</code> (one per colvar of the link type, in definition order) reinterpreted as <code>Float32</code>s. If the matrix doesn’t have the expected number of rows or columns, all stats are loaded as <code>NaN</code>. See <a href="../docstrings/medyan.get_colvar_stats-74a983aac3e388cf.html"><code>MEDYAN.get_colvar_stats</code></a>.
 </details>
 <details>
 <summary>
@@ -1039,7 +1054,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 </summary>
 <pre class="{julia}"><code>collect(group["links/8/cvt"])</code></pre>
 <p>The collective variable thresholds of the links.</p>
-Only stored if the link type has any colvars. Each row of this <code>Float32</code> matrix represents a link. The row is the link’s tuple of thresholds (one per colvar of the link type, in definition order; each a vector matching the colvar’s dimension) reinterpreted as <code>Float32</code>s. If the key is missing or the matrix doesn’t have the expected number of rows or columns, all thresholds are loaded as the defaults. See <a href="../docstrings/medyan.get_colvar_thresholds-839253312aa16582.html"><code>MEDYAN.get_colvar_thresholds</code></a>.
+Only stored if the link type has any colvars. Each column of this <code>Float32</code> matrix represents a link. The column is the link’s tuple of thresholds (one per colvar of the link type, in definition order; each a vector matching the colvar’s dimension) reinterpreted as <code>Float32</code>s. If the key is missing or the matrix doesn’t have the expected number of rows or columns, all thresholds are loaded as the defaults. See <a href="../docstrings/medyan.get_colvar_thresholds-839253312aa16582.html"><code>MEDYAN.get_colvar_thresholds</code></a>.
 </details>
 <details>
 <summary>
@@ -1061,7 +1076,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 </summary>
 <pre class="{julia}"><code>collect(group["links/8/re"])</code></pre>
 <p>The reactions that are enabled.</p>
-<p>Each row of this matrix represents a link, each column represents a reaction.</p>
+<p>Each column of this matrix represents a link, each row represents a reaction.</p>
 </details>
 <details>
 <summary>
@@ -1069,8 +1084,8 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 </summary>
 <pre class="{julia}"><code>collect(group["links/8/tags"])</code></pre>
 <p>The tags of the places the links are attached to.</p>
-<p>Each row of this matrix represents a link.</p>
-<p>Each place has two adjacent columns. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.</p>
+<p>Each column of this matrix represents a link.</p>
+<p>Each place has two adjacent rows. First a index into the tags, and next a tag generation. The place type can be found in the header file. If the place is not attached, the generation and index will be zero.</p>
 </details>
 <details>
 <summary>
@@ -1115,7 +1130,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 <!--##################### LINKS END ##################-->
 <!--##################### MECHBOUNDARY ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1124,7 +1139,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse show">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>There is a dataset for each type of boundary, the total boundary is an intersection of the following.</p>
 <p>See <a href="../docstrings/medyan.boundary-f1e7be79002a27f8.html"><code>MEDYAN.Boundary</code></a></p>
@@ -1134,7 +1149,7 @@ Only stored if the link type has any colvars. Each row of this <code>Float32</co
 </summary>
 <pre class="{julia}"><code>collect(group["mechboundary/capsules"])</code></pre>
 <p>Default: Empty</p>
-Each column of the dataset is a capsule.
+Each row of the dataset is a capsule.
 </details>
 <details>
 <summary>
@@ -1160,7 +1175,7 @@ See <a href="../explanation/collision-layers.html">Collision Layers and No-Colli
 </summary>
 <pre class="{julia}"><code>collect(group["mechboundary/planes"])</code></pre>
 <p>Default: Empty</p>
-Each column of the dataset is a plane.
+Each row of the dataset is a plane.
 </details>
 <details>
 <summary>
@@ -1186,7 +1201,7 @@ See <a href="../explanation/collision-layers.html">Collision Layers and No-Colli
 <!--##################### MECHBOUNDARY END ##################-->
 <!--##################### MEMB ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1195,10 +1210,10 @@ See <a href="../explanation/collision-layers.html">Collision Layers and No-Colli
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1207,7 +1222,7 @@ See <a href="../explanation/collision-layers.html">Collision Layers and No-Colli
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse show">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -1245,7 +1260,7 @@ In-triangle point barycentric coordinates were rounded to the nearest 2^-bary_sc
 <p>There is a subgroup for each membrane. The subgroups are named by the membrane index. For example:</p>
 <!--##################### MEMBRANE ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1254,10 +1269,10 @@ In-triangle point barycentric coordinates were rounded to the nearest 2^-bary_sc
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1266,7 +1281,7 @@ In-triangle point barycentric coordinates were rounded to the nearest 2^-bary_sc
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse show">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -1283,14 +1298,14 @@ This membrane’s type id.
 🔢 trilist
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/trilist"])</code></pre>
-Each column is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.
+Each row is the 3 vertex indexes of a triangle. Indexes are one based, and follow the right hand rule. Looking at the triangle from the outside in, they have counterclockwise winding.
 </details>
 <details>
 <summary>
 🔢 vertlist
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/vertlist"])</code></pre>
-Each column is a vertex coordinate in nm.
+Each row is a vertex coordinate in nm.
 </details>
 The following datasets store in-triangle points. If the membrane has no in-triangle points these datasets will not exist.
 <details>
@@ -1305,7 +1320,7 @@ Each entry is the 1-based index of the triangle containing the point.
 optional 🔢 itp_bary
 </summary>
 <pre class="{julia}"><code>collect(group["memb/1/itp_bary"])</code></pre>
-Each column is the barycentric coordinates (λ₂, λ₃) of a point. The third coordinate is λ₁ = 1 − λ₂ − λ₃. <code>(0,0)</code> maps to the first vertex of the triangle, <code>(1,0)</code> to the second, and <code>(0,1)</code> to the third (vertex order given by the corresponding column in <code>trilist</code>).
+Each row is the barycentric coordinates (λ₂, λ₃) of a point. The third coordinate is λ₁ = 1 − λ₂ − λ₃. <code>(0,0)</code> maps to the first vertex of the triangle, <code>(1,0)</code> to the second, and <code>(0,1)</code> to the third (vertex order given by the corresponding row in <code>trilist</code>).
 </details>
 <details>
 <summary>
@@ -1331,7 +1346,7 @@ Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only sto
 <!--##################### MEMB END ##################-->
 <!--##################### TAGS ##################-->
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1340,11 +1355,11 @@ Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only sto
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>There is a subgroup for each tag type with at least one current or past tag. Each tag type stores tag generations as a vector of <code>UInt32</code> in <code>g</code> and packed places in <code>p_n</code> where <code>n</code> is the packed format version. If the generation is odd the tag is valid. otherwise the tag is an empty slot à la <a href="https://docs.rs/slotmap/latest/slotmap/" class="uri">https://docs.rs/slotmap/latest/slotmap/</a>.</p>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1353,7 +1368,7 @@ Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only sto
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
@@ -1366,7 +1381,7 @@ Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only sto
 </div>
 </div>
 <div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1375,7 +1390,7 @@ Per-point friction coefficient (pN·s/nm) used by the BAOAB thermostat. Only sto
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse show">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <details>
 <summary>
