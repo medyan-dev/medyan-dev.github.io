@@ -208,15 +208,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_memb_sphere!</span>(c<span class="op">::</span><span class="dt">Context</span>; radius, center<span class="op">=</span>SA[<span class="fl">0.0</span>,<span class="fl">0.0</span>,<span class="fl">0.0</span>], subdivisions<span class="op">=</span><span class="fl">2</span>)<span class="op">::</span><span class="dt">MembId</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_memb_sphere!</span>(c<span class="op">::</span><span class="dt">Context</span>; radius, center<span class="op">=</span>SA[<span class="fl">0.0</span>,<span class="fl">0.0</span>,<span class="fl">0.0</span>], subdivisions<span class="op">=</span><span class="fl">3</span>, divisions<span class="op">=</span><span class="fl">2</span><span class="op">^</span>(subdivisions<span class="op">-</span><span class="fl">1</span>))<span class="op">::</span><span class="dt">MembId</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create a new spherical membrane in the simulation context and return its membrane identifier.</p>
-<p>This function generates an icosphere mesh by subdividing the faces of a regular icosahedron. Each subdivision step splits every triangle into four smaller triangles, resulting in a more refined, nearly uniform triangulation of the sphere. The mesh is then scaled by <code>radius</code>, rotated by <code>rotation</code>, and translated to <code>center</code>.</p>
+<p>This function generates a geodesic icosphere mesh by dividing each edge of a regular icosahedron into <code>divisions</code> segments, and splitting each face into a triangular grid of <code>divisions^2</code> triangles. The vertices are placed on the sphere so that the triangles are nearly uniform in size. The resulting mesh has <code>20divisions^2</code> triangles and <code>10divisions^2 + 2</code> vertices. The mesh is then scaled by <code>radius</code>, rotated by <code>rotation</code>, and translated to <code>center</code>.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
 <li><code>radius::Float64</code>: Radius of the sphere (nm)</li>
 <li><code>center::SVector{3,Float64}=SA[0.0,0.0,0.0]</code>: Center of the sphere (nm)</li>
 <li><code>subdivisions::Int=3</code>: Number of subdivisions (1 = icosahedron, each increment quadruples the number of triangles)</li>
+<li><code>divisions::Int=2^(subdivisions-1)</code>: Number of segments each icosahedron edge is divided into (1 = icosahedron). Overrides <code>subdivisions</code>, and allows triangle sizes between those of successive <code>subdivisions</code>.</li>
 <li><code>rotation=I</code>: 3x3 matrix to rotate the sphere around its center</li>
 <li><code>mech_params::MembraneMechParams = MembraneMechParams()</code>: Mechanical parameters for membrane mechanics</li>
 <li><code>area0::Union{Float64, Nothing} = nothing</code>: Reference area (if <code>nothing</code>, computed from initial mesh) (nm^2)</li>
@@ -231,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="references" class="level1">
 <h1>References</h1>
 <ul>
-<li>Mesh construction method: https://web.archive.org/web/20200210070737/http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html</li>
+<li>Geodesic polyhedron: https://en.wikipedia.org/wiki/Geodesic_polyhedron</li>
 </ul>
 </section>
 </div>
