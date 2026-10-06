@@ -213,10 +213,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fields" class="level1">
 <h1>Fields</h1>
 <ul>
-<li><code>max_force::Float64 = Inf</code>: run FIRE if the initial magnitude of a net force on any bead is larger than this threshold in pN. Position forces use their physical force norm. Material-direction forces use <code>|F| / direction_radius</code>, with <code>direction_radius = sqrt(direction_mass / particle_mass)</code>.</li>
+<li><code>max_force::Float64 = Inf</code>: run FIRE if the initial magnitude of a net force on any bead is larger than this threshold in pN. Position forces use their physical force norm. Material-direction forces use <code>|F| / direction_radius</code>, with <code>direction_radius = sqrt(direction_mass / node_mass)</code> (nm), where <code>node_mass</code> is the node mass of the filament’s type.</li>
 <li><code>max_force_evals::Int = typemax(Int)</code>: maximum force evaluations to spend on pre-relaxation.</li>
-<li><code>dmax::Float64 = 1.5</code>: maximum distance any positional bead is moved in a step.</li>
-<li><code>dirmax::Float64 = 0.8</code>: maximum motion any directional bead is moved in a step.</li>
+<li><code>dmax::Float64 = 1.5</code>: maximum distance (nm) any positional bead is moved in a step.</li>
+<li><code>dirmax::Float64 = 0.8</code>: maximum change of any material direction (a unit vector) in a step.</li>
 <li><code>tstart::Float64 = 6.0</code>: initial FIRE timestep as <code>tstart * dt</code>, where <code>dt</code> is the production BAOAB timestep.</li>
 <li><code>tmax::Float64 = 4.0</code>: maximum FIRE timestep as <code>tmax * dt</code>.</li>
 <li><code>tmin::Float64 = 0.1</code>: minimum FIRE timestep as <code>tmin * dt</code>.</li>
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The defaults aim to be robust across systems; for the last factor of performance on one system, tune these in order of impact (objective: minimize force evaluations to reach <code>max_force</code>):</p>
 <ol type="1">
 <li><code>tmax</code> — the dominant knob. It sets the timestep ceiling, i.e.&nbsp;how aggressive the relaxation gets. Raise it until the relaxation starts thrashing or diverging (force evals spike or it fails to converge), then back off. Stiff systems near their stability limit want a smaller <code>tmax</code> (closer to a constant timestep); softer systems tolerate a larger <code>tmax</code>.</li>
-<li><code>alpha0</code> — the velocity/force mixing strength. Stiff or strongly coupled systems (e.g.&nbsp;with material-direction DOFs) generally want a smaller <code>alpha0</code>.</li>
+<li><code>alpha0</code> — the velocity/force mixing strength. Stiff or strongly coupled systems (e.g.&nbsp;with material-direction beads) generally want a smaller <code>alpha0</code>.</li>
 <li><code>tstart</code>, then <code>alphashrink</code> and <code>delaystep</code> for marginal gains.</li>
 </ol>
 <p><code>tmin</code> only needs to stay below <code>tmax</code> to allow timestep adaptation; its exact value has little effect. Note <code>dt</code> is redundant with the timestep multipliers during relaxation: scaling <code>dt</code> and <code>tstart</code>/<code>tmax</code>/<code>tmin</code> inversely leaves the relaxation unchanged, so there is no need to tune <code>dt</code> separately for it.</p>
