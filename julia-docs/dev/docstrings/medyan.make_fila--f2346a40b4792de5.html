@@ -214,14 +214,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    node_mids,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    node_positions,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">::</span><span class="dt">Tag{FilaTipIdx}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the tag of the plus tip of the new filament. Error if the filament isn’t initially over 2 monomers long. Newly added filaments can’t be selected from nearby monomers until after minimization.</p>
+<p>Return the tag of the plus tip of the new filament. Error if the filament isn’t initially at least 2 monomers long. Newly added filaments can’t be selected from nearby monomers until after minimization.</p>
 <section id="keyword-arguments" class="level1">
 <h1>Keyword Arguments</h1>
 <ul>
 <li><code>type=1</code>: filament type id or symbol.</li>
 <li><code>mono_states</code>: Collection of the <code>MonomerState</code> or <code>Symbol</code> of the monomers in the new filament. In order from minus end to plus end. <code>length(mono_states)&gt;1</code></li>
-<li><code>node_positions</code>: Collection of <code>SVector{3,Float64}</code>. The positions of the nodes, monomers are between nodes.</li>
-<li><code>node_mids</code>: Collection of <code>Integer</code>. The monomer ids at (slightly plus side of) the <code>node_positions</code>. The monomer id with parenthesis <code>(M)</code> below will be in <code>node_mids</code>. <code>length(node_mids) == length(node_positions) - 1</code></li>
+<li><code>node_positions</code>: Collection of <code>SVector{3,Float64}</code>. The positions of the nodes, monomers are between nodes. The filament is straight between consecutive nodes, and the monomers between them are evenly spaced. The first node is at the minus end of the first monomer, and the last node is at the plus end of the last monomer. So for a straight filament at its rest length, the end nodes are <code>length(mono_states)*spacing</code> apart. The nodes don’t need to be at chem cylinder boundaries; the chem beads are interpolated between them. <a href="../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a> returns node positions in this format.</li>
+<li><code>node_mids</code>: Collection of <code>Integer</code>. The monomer ids at (slightly plus side of) the <code>node_positions</code>. The monomer id with parenthesis <code>(M)</code> below will be in <code>node_mids</code>. <code>node_mids[begin]</code> is the id of the first monomer. It can be any integer; the chem cylinder boundaries are at monomer ids that are multiples of <code>numpercylinder</code>. Usually <code>length(node_mids) == length(node_positions) - 1</code>, because the id at the last node is implied. It can also include that id, <code>node_mids[begin] + length(mono_states)</code>, as the last element, so <code>length(node_mids) == length(node_positions)</code>. <a href="../docstrings/medyan.fila_node_mids-35de9fc339cbec42.html"><code>fila_node_mids</code></a> returns this form.</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>                               <span class="op">|</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-----+-----|-----+-----</span></span>
@@ -236,6 +236,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>minus_tip_extension=0.0</code>: tip extension for the minus end in monomer spacings. 0=monomer center. See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</li>
 <li><code>plus_tip_extension=0.0</code>: tip extension for the plus end in monomer spacings. 0=monomer center. See <a href="../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</li>
 </ul>
+</section>
+<section id="example" class="level1">
+<h1>Example</h1>
+<p>A straight filament of 3 monomers along the x axis, with its minus end node at the origin, where <code>spacing</code> is the monomer spacing of the filament type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_fila!</span>(c; mono_states<span class="op">=</span>[<span class="op">:</span>a, <span class="op">:</span>a, <span class="op">:</span>a], node_mids<span class="op">=</span>[<span class="fl">0</span>], node_positions<span class="op">=</span>[SA[<span class="fl">0.0</span>, <span class="fl">0</span>, <span class="fl">0</span>], SA[<span class="fl">3</span><span class="op">*</span>spacing, <span class="fl">0</span>, <span class="fl">0</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The monomer centers are at <code>x = 0.5*spacing</code>, <code>1.5*spacing</code>, and <code>2.5*spacing</code>. With the default zero tip extensions, the tips are at the end monomer centers, <code>x = 0.5*spacing</code> and <code>x = 2.5*spacing</code>, half a spacing inside the end nodes.</p>
 </section>
 </div>
 </div>

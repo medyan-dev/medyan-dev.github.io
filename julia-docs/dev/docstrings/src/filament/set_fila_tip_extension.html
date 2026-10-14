@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>&gt; 0.0</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
 <li><code>&lt; 0.0</code>: tip moves inward past the monomer center</li>
 </ul>
-<p>The mechanical node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) remain at cylinder boundaries and are not affected by the extension. During energy minimization, end nodes are temporarily shifted to tip positions so volume exclusion sees the extension, then shifted back afterward.</p>
+<p>The node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) are not affected by the extension. During energy minimization, end nodes are temporarily shifted to tip positions so volume exclusion sees the extension, then shifted back afterward. The extension is included in the rest length of an end cylinder when checking whether it is merged into its neighbor, see <code>min_monomers_per_cylinder</code> in <a href="../../../docstrings/medyan.filamentmechparams-003aa222b98c6481.html"><code>FilamentMechParams</code></a>.</p>
 <p>See also <a href="../../../docstrings/medyan.fila_tip_extension-cef965509800f1e7.html"><code>fila_tip_extension</code></a>.</p>
 </div>
 </div>

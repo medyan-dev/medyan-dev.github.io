@@ -324,7 +324,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Int64</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the number of mechanical node positions of a filament.</p>
+<p>Return the number of node positions of a filament, <code>length(fila_chem_positions(c, f))</code>, see <a href="../../../docstrings/medyan.fila_chem_positions-4bb01f692fdc715c.html"><code>fila_chem_positions</code></a>.</p>
+<p>This is one more than the number of chem cylinders. During mechanics, short end chem cylinders can be merged into their neighbors, so there can be fewer mechanical nodes, see <code>min_monomers_per_cylinder</code> in <a href="../../../docstrings/medyan.filamentmechparams-003aa222b98c6481.html"><code>FilamentMechParams</code></a>.</p>
 </div>
 </div>
 </div>
@@ -368,8 +369,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    c<span class="op">::</span><span class="dt">MEDYAN.Context</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    f<span class="op">::</span><span class="dt">MEDYAN.FilaIdx</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vector</span>{StaticArraysCore.SVector{<span class="fl">3</span>, <span class="dt">Float64</span>}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Return the node positions of the filament at cylinder boundaries.</p>
+<p>Return the node positions of the filament, in the format of the <code>node_positions</code> keyword of <a href="../../../docstrings/medyan.make_fila--f2346a40b4792de5.html"><code>make_fila!</code></a>.</p>
+<p>The interior nodes are at the chem cylinder boundaries. The first node is at the minus end of the first monomer, and the last node is at the plus end of the last monomer.</p>
 <p>These are NOT adjusted for tip extension. Use <code>get_position(c, FilaTipIdx(...))</code> to get the tip position with extension applied.</p>
+<p>During mechanics, the end nodes are moved to the tips, and short end chem cylinders can be merged into their neighbors, see <code>min_monomers_per_cylinder</code> in <a href="../../../docstrings/medyan.filamentmechparams-003aa222b98c6481.html"><code>FilamentMechParams</code></a>.</p>
 </div>
 </div>
 </div>
@@ -487,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>&gt; 0.0</code>: tip extends further outward (e.g.&nbsp;bulky end-binding protein)</li>
 <li><code>&lt; 0.0</code>: tip moves inward past the monomer center</li>
 </ul>
-<p>The mechanical node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) remain at cylinder boundaries and are not affected by the extension.</p>
+<p>The node positions (<a href="../../../docstrings/medyan.fila_node_positions-f4c5bac0dcb570ff.html"><code>fila_node_positions</code></a>) are not affected by the extension.</p>
 <p>See also <a href="../../../docstrings/medyan.set_fila_tip_extension--4067d098840cde42.html"><code>set_fila_tip_extension!</code></a>.</p>
 </div>
 </div>
