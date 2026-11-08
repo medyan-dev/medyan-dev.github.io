@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>nenergy_fractbit::Int64</code>: number of fractional bits used to scale energy values into Int64</p></li>
 <li><p><code>shake_before_minimization::Float64</code>: Standard deviation of noise added to coordinates before starting minimization.</p></li>
 <li><p><code>iter_max_cg_minimization::Int64</code>: Max number of steps in conjugate gradient minimization.</p></li>
-<li><p><code>maxstep::Float64</code>: max step to take during line search (nm)</p></li>
+<li><p><code>maxstep::Float64</code>: Max distance any bead moves in a line search step, before the constraints (nm)</p></li>
 <li><p><code>check_neighborlist_error::Bool</code>: If true neighborlists are checked for errors on every force calc. This is extremely slow, but useful for testing neighborlist errors.</p></li>
 <li><p><code>nthreads::Int64</code>: Experimental Set to more than 1 to enable multi threading. This is currently may result in non bitwise reproducable simulations. Results should be statistcally identical, but this is currently not well tested.</p></li>
 <li><p><code>enable_collision::Ref{Bool}</code>: Are collision forces calculated</p></li>
