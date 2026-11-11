@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -174,8 +209,16 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Remesh all membrane meshes.</p>
-<p>Also remove unreferenced MembVertIdx tags.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adapt_membranes!</span>(c<span class="op">::</span><span class="dt">Context</span>; params<span class="op">::</span><span class="dt">MeshAdaptParams</span>=<span class="fu">MeshAdaptParams</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Remesh every membrane that is not <code>fixed</code>, so that edge lengths follow the local curvature. Edges are split, collapsed and flipped as set by <code>params</code>, see <a href="../../docstrings/medyan.meshadaptparams-099f04fa545fe607.html"><code>MeshAdaptParams</code></a>.</p>
+<p>Vertex and triangle indices from before the call are invalid afterwards.</p>
+<ul>
+<li>The border of an open membrane is unchanged.</li>
+<li>A vertex with a nonzero state is never removed. New vertices have state zero.</li>
+<li>A vertex whose <code>MembVertIdx</code> tag has a link is never removed, and its tag follows it to its new index. <code>MembVertIdx</code> tags without links are freed.</li>
+<li>In-triangle points keep their <code>InTriPointIdx</code> and tags. A point in a changed triangle moves to the closest point on the new triangles.</li>
+</ul>
+<p>Chem caching is deferred, see <a href="../../docstrings/medyan.defer_chem_caching--9538a1c449f3da93.html"><code>defer_chem_caching!</code></a>.</p>
 </div>
 </div>
 </div>

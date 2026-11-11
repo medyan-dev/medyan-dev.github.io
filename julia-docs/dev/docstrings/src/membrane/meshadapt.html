@@ -152,6 +152,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#srcmembranemeshadapt.jl" id="toc-srcmembranemeshadapt.jl" class="nav-link active" data-scroll-target="#srcmembranemeshadapt.jl">src/membrane/meshadapt.jl</a>
   <ul class="collapse">
+  <li><a href="#medyan.meshadaptparams-099f04fa545fe607" id="toc-medyan.meshadaptparams-099f04fa545fe607" class="nav-link" data-scroll-target="#medyan.meshadaptparams-099f04fa545fe607"><code>MEDYAN.MeshAdaptParams</code></a></li>
   <li><a href="#medyan.num_vertexwithstate-3cf6fcd964588d37" id="toc-medyan.num_vertexwithstate-3cf6fcd964588d37" class="nav-link" data-scroll-target="#medyan.num_vertexwithstate-3cf6fcd964588d37"><code>MEDYAN.num_vertexwithstate</code></a></li>
   </ul></li>
   </ul>
@@ -165,6 +166,47 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="srcmembranemeshadapt.jl" class="level1">
 <h1>src/membrane/meshadapt.jl</h1>
+<section id="medyan.meshadaptparams-099f04fa545fe607" class="level2">
+<h2 class="anchored" data-anchor-id="medyan.meshadaptparams-099f04fa545fe607"><a href="../../../docstrings/medyan.meshadaptparams-099f04fa545fe607.html"><code>MEDYAN.MeshAdaptParams</code></a></h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Parameters of the mesh adaptation done by <a href="../../../docstrings/medyan.adapt_membranes--1d26092defd0f4fa.html"><code>adapt_membranes!</code></a>.</p>
+<p>Adaptation repeats a main loop:</p>
+<ol type="1">
+<li>If <code>do_meshsmoothing</code>, smooth the mesh.</li>
+<li>Set the target length of every edge, as described below.</li>
+<li>Scan the edges up to <code>max_adjust_iter</code> times. An edge longer than <code>√2</code> times its target is split. An edge shorter than <code>1/√2</code> times its target is collapsed.</li>
+<li>Stop if step 3 found every edge within those bounds. Otherwise relax the mesh and go back to step 1.</li>
+</ol>
+<p>The target length of an edge is the mean of the target lengths at its two vertices. The target length at a vertex starts as <code>curvature_resolution</code> times the smallest radius of curvature there, so more curved regions get shorter edges. At a border vertex it starts no longer than the shortest border edge of the vertex. It is then limited to between <code>min_size</code> and <code>max_size</code>, which gives flat regions <code>max_size</code>. Last, the target lengths are smoothed over neighboring vertices <code>diffuse_iter</code> times.</p>
+<p>Relaxing the mesh takes up to <code>relaxation_max_iter_total</code> rounds. A round is <code>relaxation_max_iter_reloc</code> vertex relocation sweeps, then an attempt to flip every edge.</p>
+<ul>
+<li><p><code>min_degree::Int64</code>: Lowest degree a collapse or flip can leave an internal vertex with. Default is <code>4</code>.</p></li>
+<li><p><code>max_degree::Int64</code>: Highest degree a split, collapse or flip can leave a vertex with. Default is <code>9</code>.</p></li>
+<li><p><code>edge_flip_min_dot_normal::Float64</code>: An edge is flipped only if the unit normals of its two triangles have a dot product of at least this, both before and after the flip. Default is <code>0.9</code>.</p></li>
+<li><p><code>edge_collapse_min_quality_improvement::Float64</code>: An edge is collapsed only if <code>q_before / q_after</code> is at least this. <code>q</code> is the worst triangle quality around the two vertices of the edge. Quality is circumradius / (2 inradius): 1 for an equilateral triangle, larger for worse shapes. A value below 1 lets a collapse worsen the worst triangle. Default is <code>0.6</code>.</p></li>
+<li><p><code>edge_collapse_min_dot_normal::Float64</code>: An edge is collapsed only if each triangle around the merged vertex would have a unit normal with a dot product of at least this with the unit normals of its neighbors. Default is <code>0.85</code>.</p></li>
+<li><p><code>relaxation_max_iter_reloc::Int64</code>: Number of vertex relocation sweeps in a relaxation round. A sweep moves each internal vertex within its tangent plane, toward where its triangles would be equilateral. This drags along what is attached to the membrane: linked vertices move like any other, and in-triangle points keep their barycentric coordinates. The default, <code>0</code>, never relocates vertices.</p></li>
+<li><p><code>relaxation_max_iter_total::Int64</code>: Maximum number of relaxation rounds each time the mesh is relaxed. Rounds stop early when one flips no edge. Default is <code>3</code>.</p></li>
+<li><p><code>curvature_resolution::Float64</code>: Target length at a vertex divided by the smallest radius of curvature there, before the limits and smoothing. The normals of neighboring triangles then differ by about this angle (rad), so <code>cos(curvature_resolution)</code> should be above <code>edge_flip_min_dot_normal</code>. Otherwise edges in curved regions are not flipped. Default is <code>0.3</code>.</p></li>
+<li><p><code>max_size::Float64</code>: Upper limit of the target length at a vertex (nm). Default is <code>60</code>.</p></li>
+<li><p><code>min_size::Float64</code>: Lower limit of the target length at a vertex (nm). A membrane collides with itself where the height of a triangle is under twice the <code>radius_collide</code> of its <code>MembraneMechParams</code>. Heights get down to about 0.4 times the target length, so this should be at least 5 times <code>radius_collide</code>. Default is <code>25</code>.</p></li>
+<li><p><code>diffuse_iter::Int64</code>: Number of times the target lengths at the vertices are smoothed. Each time, the target length at a vertex becomes the mean of its own and the average of its neighbors’. Default is <code>4</code>.</p></li>
+<li><p><code>do_meshsmoothing::Bool</code>: If <code>true</code>, each main loop iteration starts with <code>meshsmoothing_iter</code> steps of curvature flow, which moves internal vertices to shrink the surface area. This changes the shape and energy of the membrane, so only use it to clean up an initial mesh. Default is <code>false</code>.</p></li>
+<li><p><code>meshsmoothing_dt::Float64</code>: Step size of a curvature flow step (dimensionless). Default is <code>0.01</code>.</p></li>
+<li><p><code>meshsmoothing_iter::Int64</code>: Number of curvature flow steps per main loop iteration. Default is <code>5</code>.</p></li>
+<li><p><code>max_adjust_iter::Int64</code>: Maximum number of scans over all edges in a main loop iteration. Scans stop early when one changes nothing. Default is <code>10</code>.</p></li>
+<li><p><code>max_soft_mainloop_iter::Int64</code>: After this many main loop iterations, adaptation stops as soon as the last edge scan of an iteration changes nothing. Default is <code>7</code>.</p></li>
+<li><p><code>max_hard_mainloop_iter::Int64</code>: After this many main loop iterations, adaptation stops at the next step 4. Default is <code>14</code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
 <section id="medyan.num_vertexwithstate-3cf6fcd964588d37" class="level2">
 <h2 class="anchored" data-anchor-id="medyan.num_vertexwithstate-3cf6fcd964588d37"><a href="../../../docstrings/medyan.num_vertexwithstate-3cf6fcd964588d37.html"><code>MEDYAN.num_vertexwithstate</code></a></h2>
 <div class="callout callout-style-simple callout-note no-icon">
